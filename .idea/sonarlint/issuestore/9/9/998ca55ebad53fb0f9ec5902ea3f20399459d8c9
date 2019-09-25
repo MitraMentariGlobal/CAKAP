@@ -1,0 +1,5 @@
+
+rsquid:S1450"TRemove the "mView" field and declare it as a local variable in the relevant methods.(°ä³”8ÄæåÖ-
+Qsquid:S1068"3Remove this unused "mMainRepository" private field.(öŒÙ¹8ô›åÖ-
+Qsquid:S1068	".Remove this unused "mDataModel" private field.(û¢Àÿÿÿÿÿ8ô›åÖ-
+Gsquid:S1068")Remove this unused "mView" private field.(°ä³”8ô›åÖ-

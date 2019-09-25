@@ -1,0 +1,4 @@
+
+Usquid:S1068"7Remove this unused "mUserActionListener" private field.(ˆòÒ“8çÚÖ-
+qsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8Üµ¼Ö-
+€squid:S1450"bRemove the "mUserActionListener" field and declare it as a local variable in the relevant methods.(ˆòÒ“8‚ìÛÖ-
