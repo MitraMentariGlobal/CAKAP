@@ -12,7 +12,7 @@
 
         <ImageView
             android:id="@+id/item_thumbnail"
-            android:background="@drawable/teabackground"
+            android:background="@drawable/img_baground_blesstea"
             android:adjustViewBounds="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -28,6 +28,7 @@
                 android:layout_marginBottom="@dimen/margin_bottom_16"
                 android:layout_marginTop="@dimen/margin_top_16"
                 android:paddingBottom="@dimen/padding_16"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -36,7 +37,7 @@
                     android:layout_marginBottom="@dimen/margin_bottom_16"
                     android:layout_marginStart="@dimen/margin_left_16"
                     android:layout_marginEnd="@dimen/margin_right_16"
-                    android:layout_marginTop="@dimen/margin_top_16"
+                    android:layout_marginTop="@dimen/margin_top_32"
                     android:alpha=".5"
                     android:background="@drawable/black_border_fade"
                     android:gravity="center"
@@ -51,7 +52,7 @@
                         android:textSize="@dimen/text_18"
                         android:layout_gravity="start"
                         android:fontFamily="sans-serif-regular"
-                        android:text="Hey Member, Welcome !" />
+                        android:text="@string/login_title_1" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -65,17 +66,17 @@
                         android:layout_gravity="start"
                         android:lineSpacingExtra="@dimen/lineSpacingExtra_4"
                         android:fontFamily="sans-serif-light"
-                        android:text="Please log in to get something awesome." />
+                        android:text="@string/login_title_2" />
 
                     <EditText
-                        android:id="@+id/user_name_et"
+                        android:id="@+id/user_id_et"
                         style="@style/Font_family_light"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
                         android:drawableStart="@drawable/ic_person"
                         android:drawablePadding="@dimen/padding_8"
-                        android:hint="User Name"
+                        android:hint="@string/login_user_id"
                         android:inputType="textEmailAddress"
                         android:maxLength="50"
                         android:maxLines="1"
@@ -100,7 +101,7 @@
                         android:background="@color/transparent"
                         android:drawableStart="@drawable/password"
                         android:drawablePadding="@dimen/padding_8"
-                        android:hint="Password"
+                        android:hint="@string/login_password"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="@dimen/padding_16"
@@ -129,10 +130,23 @@
                     android:layout_marginRight="@dimen/margin_right_16"
                     android:layout_marginBottom="@dimen/margin_bottom_16"
                     android:background="@drawable/button_login_style"
-                    android:text="Log me in"
+                    android:text="@string/login_btn"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_18" />
             </LinearLayout>
         </ScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_16"
+            android:layout_marginEnd="@dimen/margin_right_16"
+            android:layout_marginBottom="@dimen/margin_top_16"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_12"
+            android:gravity="center"
+            android:fontFamily="sans-serif-regular"
+            android:text="@string/login_bottom" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

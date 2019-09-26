@@ -1,15 +1,15 @@
 
 Isquid:S1444"-Make this "public static URL_API" field final(¼ä¾³ıÿÿÿÿ
-‡"squid:ClassVariableVisibilityCheck"YMake DATABASE_NAME a static final constant or non-public and provide accessors if needed.(­İü°
-ksquid:S3008"TRename this field "URL_IMAGE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œö¢¹
-ƒ"squid:ClassVariableVisibilityCheck"UMake URL_IMAGE a static final constant or non-public and provide accessors if needed.(œö¢¹
-nsquid:S3008"RRename this field "URL_API" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ä¾³ıÿÿÿÿ
+Jsquid:S1444"3Make this "public static DATABASE_NAME" field final(­İü°
+†"squid:ClassVariableVisibilityCheck"SMake URL_API a static final constant or non-public and provide accessors if needed.(¼ä¾³ıÿÿÿÿ
 Vsquid:S1118
 ":Add a private constructor to hide the implicit public one.(Ø¡²›ÿÿÿÿÿ
-†"squid:ClassVariableVisibilityCheck"SMake URL_API a static final constant or non-public and provide accessors if needed.(¼ä¾³ıÿÿÿÿ
 Dsquid:S1444"-Make this "public static API_KEY" field final(ü²Ğ‘
-Fsquid:S1444"/Make this "public static URL_IMAGE" field final(œö¢¹
-Jsquid:S1444"3Make this "public static DATABASE_NAME" field final(­İü°
-isquid:S3008"RRename this field "API_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü²Ğ‘
 "squid:ClassVariableVisibilityCheck"SMake API_KEY a static final constant or non-public and provide accessors if needed.(ü²Ğ‘
+‡"squid:ClassVariableVisibilityCheck"YMake DATABASE_NAME a static final constant or non-public and provide accessors if needed.(­İü°
+ƒ"squid:ClassVariableVisibilityCheck"UMake URL_IMAGE a static final constant or non-public and provide accessors if needed.(œö¢¹
+Fsquid:S1444"/Make this "public static URL_IMAGE" field final(œö¢¹
+nsquid:S3008"RRename this field "URL_API" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ä¾³ıÿÿÿÿ
+ksquid:S3008"TRename this field "URL_IMAGE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œö¢¹
 osquid:S3008"XRename this field "DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­İü°
+isquid:S3008"RRename this field "API_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü²Ğ‘

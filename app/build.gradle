@@ -44,11 +44,18 @@ android {
             buildConfigField 'String', 'API_KEY', endpointProperties['api_key']
             buildConfigField 'String', 'URL_API', endpointProperties['utl_api']
             buildConfigField 'String', 'URL_IMAGE', endpointProperties['url_image']
-            buildConfigField 'String', 'DB_NAME', endpointProperties['db_name']
+            buildConfigField 'String', 'DAO_NAME', endpointProperties['dao_name_dev']
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'DAO_NAME', endpointProperties['dao_name_prod']
+        }
+        buildTypes.all {
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_TOKEN', endpointProperties['firebase_notification_token']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_TITLE', endpointProperties['firebase_notification_title']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_BODY', endpointProperties['firebase_notification_body']
         }
     }
 
@@ -80,6 +87,7 @@ dependencies {
     //Android Dependency
     implementation "com.android.support:appcompat-v7:$AndroidLibVersion"
     implementation "com.android.support:recyclerview-v7:$AndroidLibVersion"
+    implementation 'android.arch.work:work-runtime:1.0.1'
 
     //Testing Dependency
     testImplementation "junit:junit:$JUnitVersion"
@@ -125,6 +133,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-config:19.0.1'
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 apply plugin: 'com.google.gms.google-services'
