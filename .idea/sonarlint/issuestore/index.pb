@@ -61,3 +61,5 @@ x
 Happ/src/main/java/co/id/cakap/ui/splash_screen/SplashScreenActivity.java,b/f/bff7cd814006c8b74658c1eb1efe9b5a2a5ffd84
 H
 app/google-services.json,f/d/fd8d34b142d02ec743a8efefefd2c097961666e9
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
