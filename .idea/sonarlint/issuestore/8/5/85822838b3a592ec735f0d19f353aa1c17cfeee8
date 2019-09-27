@@ -1,4 +1,4 @@
 
-[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ÌØÌÖ-
 hsquid:UselessImportCheck"8Remove this unused import 'co.id.cakap.data.ResultData'.(ÆÉ°äøÿÿÿÿ8ÌØÌÖ-
-lsquid:UselessImportCheck"<Remove this unused import 'co.id.cakap.network.ApiResponse'.(”é¥¨øÿÿÿÿ8§’ÍÖ-
+lsquid:UselessImportCheck"<Remove this unused import 'co.id.cakap.network.ApiResponse'.(”é¥¨øÿÿÿÿ8£“ı×-
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ÌØÌÖ-

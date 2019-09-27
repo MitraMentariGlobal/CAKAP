@@ -1,4 +1,15 @@
 
-Usquid:S1068"7Remove this unused "mUserActionListener" private field.(ˆòÒ“8çÚÖ-
-qsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8Üµ¼Ö-
-€squid:S1450"bRemove the "mUserActionListener" field and declare it as a local variable in the relevant methods.(ˆòÒ“8‚ìÛÖ-
+psquid:UselessImportCheck"ERemove this unused import 'com.google.firebase.iid.InstanceIdResult'.(ªÎÛ«8¡¡×-
+]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8¡¡×-
+jsquid:UselessImportCheck"@Remove this unused import 'com.google.firebase.auth.AuthResult'.(âÂ8¡¡×-
+squid:S1186k"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ßœ)8…ŒÆ×-
+isquid:CommentedOutCodeLine5"<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
+qsquid:MaximumInheritanceDepth""<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8¤ƒ½àÖ-
+€squid:S1450/"bRemove the "mUserActionListener" field and declare it as a local variable in the relevant methods.(ˆòÒ“8¤ƒ½àÖ-
+Esquid:S1068#"'Remove this unused "TAG" private field.(Ô‹‡½8¡¡×-
+Usquid:S1068/"7Remove this unused "mUserActionListener" private field.(ˆòÒ“8¤ƒ½àÖ-
+rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8·Æ«×-
+|squid:UselessImportCheck"LRemove this unused import 'com.google.android.gms.tasks.OnCompleteListener'.(Çğ¸Òÿÿÿÿÿ8¡¡×-
+wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.iid.FirebaseInstanceId'.(½ÉÈÊùÿÿÿÿ8¡¡×-
+csquid:UselessImportCheck"8Remove this unused import 'androidx.annotation.NonNull'.(ˆÛúÜ8¡¡×-
+isquid:UselessImportCheck">Remove this unused import 'com.google.android.gms.tasks.Task'.(¦âÏô8¡¡×-

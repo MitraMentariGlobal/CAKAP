@@ -1,5 +1,8 @@
 package co.id.cakap.di.module;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -38,11 +41,15 @@ public class NetworkModule {
     @Provides
     @Singleton
     public Retrofit provideRestAdapter(OkHttpClient okHttpClient) {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(okHttpClient)
                 .baseUrl(Constant.URL_API)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create());
+                .addConverterFactory(GsonConverterFactory.create(gson));
         return builder.build();
     }
 

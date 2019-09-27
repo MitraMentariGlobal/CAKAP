@@ -8,6 +8,8 @@ import java.util.List;
 import co.id.cakap.data.DaoSession;
 import co.id.cakap.data.ResultData;
 import co.id.cakap.data.ResultDataDao;
+import co.id.cakap.data.ResultDataLogin;
+import co.id.cakap.data.ResultDataLoginDao;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -16,10 +18,12 @@ import co.id.cakap.data.ResultDataDao;
 
 public class DataModel extends BaseModel {
     private ResultDataDao mResultDataDao;
+    private ResultDataLoginDao mResultDataLoginDao;
 
     public DataModel(DaoSession daoSession) {
         super(daoSession);
         mResultDataDao = daoSession.getResultDataDao();
+        mResultDataLoginDao = daoSession.getResultDataLoginDao();
     }
 
 //    @NonNull
@@ -34,5 +38,25 @@ public class DataModel extends BaseModel {
 
     public void deleteDataList() {
         mResultDataDao.deleteAll();
+    }
+
+    public void insertResultDataLogin(ResultDataLogin resultDataLogin){
+        mResultDataLoginDao.insertOrReplace(resultDataLogin);
+    }
+
+    public List<ResultDataLogin> getAllResultDataLogin(){
+        try {
+            return mResultDataLoginDao.loadAll();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public void deleteResultDataLogin() {
+        try {
+            mResultDataLoginDao.deleteAll();
+        } catch (Exception e) {
+
+        }
     }
 }

@@ -1,3 +1,5 @@
 
-esquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(©ˆà
-Fsquid:S1604)"(Make this anonymous inner class a lambda(„ÑñŒ8½¼Ë”Ö-
+`squid:UselessImportCheck"7Remove this unused import 'android.view.WindowManager'.(Ü³‹Å8°Ñ…ÇÖ-
+^squid:UselessImportCheck"0Remove this unused import 'android.view.Window'.(¿è™÷úÿÿÿÿ8°Ñ…ÇÖ-
+Fsquid:S16043"(Make this anonymous inner class a lambda(„ÑñŒ8½¼Ë”Ö-
+csquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(©ˆà

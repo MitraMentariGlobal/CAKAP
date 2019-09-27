@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
             webSetting.setSafeBrowsingEnabled(false);
         }
         mWebView.setWebViewClient(new CustomWebViewClient());
-        mWebView.loadUrl("https://www.google.com/");
+        mWebView.loadUrl("http://159.89.197.191/~cakap/main/?auth=QkMwMTM7MjAxOS0wOS0yNiAxMjozNjowNTsyMDE5LTA5LTI2IDEyOjQxOjA1");
     }
 
     @Override

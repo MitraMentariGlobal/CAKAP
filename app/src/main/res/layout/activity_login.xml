@@ -148,5 +148,11 @@
             android:gravity="center"
             android:fontFamily="sans-serif-regular"
             android:text="@string/login_bottom" />
+
+        <ProgressBar
+            android:id="@+id/main_progress_bar"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
