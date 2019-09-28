@@ -9,12 +9,23 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import javax.inject.Inject;
+
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.login.LoginActivity;
 
-public class SplashScreenActivity extends AppCompatActivity{
+public class SplashScreenActivity extends AppCompatActivity implements SplashScreenContract.View{
+    private static final String TAG = "LoginActivity";
+
+    @Inject
+    SplashScreenPresenter mSplashScreenPresenter;
+
+    private SplashScreenContract.UserActionListener mUserActionListener;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,11 @@ public class SplashScreenActivity extends AppCompatActivity{
     }
 
     public void initializeData() {
+        mAuth = FirebaseAuth.getInstance();
+        mUserActionListener = mSplashScreenPresenter;
+        mSplashScreenPresenter.setView(this);
+        hideProgressBar();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -55,5 +71,25 @@ public class SplashScreenActivity extends AppCompatActivity{
                 finish();
             }
         },2000);
+    }
+
+    @Override
+    public void showProgressBar() {
+
+    }
+
+    @Override
+    public void hideProgressBar() {
+
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+
+    }
+
+    @Override
+    public void setSuccessResponse() {
+
     }
 }

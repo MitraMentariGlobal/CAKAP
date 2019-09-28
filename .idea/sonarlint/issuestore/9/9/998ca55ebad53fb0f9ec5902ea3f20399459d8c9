@@ -1,9 +1,11 @@
 
-[squid:S18546"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8û„Ë×-
-Ÿsquid:S1186m"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×İŠÎ8‰šì×-
-Ksquid:S1604C"(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
-lsquid:UselessImportCheck"<Remove this unused import 'co.id.cakap.network.ApiResponse'.(”é¥¨øÿÿÿÿ8‡¹ú×-
-Ksquid:S16040"(Make this anonymous inner class a lambda(çªç†ùÿÿÿÿ8Ş˜¤×-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8äïÆ×-
-Lsquid:S14816")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8û„Ë×-
-msquid:UselessImportCheck"=Remove this unused import 'co.id.cakap.data.ResultDataLogin'.(¹¼†°ıÿÿÿÿ8×½‹×-
+rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8£…û˜×-
+msquid:UselessImportCheck"=Remove this unused import 'co.id.cakap.data.ResultDataLogin'.(¹¼†°ıÿÿÿÿ8×½‹×-
+Ksquid:S16040"(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
+rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseUser'.(’àíĞùÿÿÿÿ8úãÍ˜×-
+lsquid:UselessImportCheck"<Remove this unused import 'co.id.cakap.network.ApiResponse'.(”é¥¨øÿÿÿÿ8‡¹ú×-
+asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8äïÆ×-
+jsquid:UselessImportCheck":Remove this unused import 'java.util.concurrent.Executor'.(÷ı¶Œúÿÿÿÿ8ª„É˜×-
+jsquid:UselessImportCheck"@Remove this unused import 'com.google.firebase.auth.AuthResult'.(âÂ8úãÍ˜×-
+psquid:S00117C"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡­ßÚ8Œ’Â˜×-
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8úãÍ˜×-

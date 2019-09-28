@@ -76,8 +76,12 @@ public class LoginPresenter implements LoginContract.UserActionListener {
                 .subscribe(new ResourceSubscriber<ApiResponseLogin>() {
                     @Override
                     public void onNext(ApiResponseLogin apiResponseLogin) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("param : " + param.toString());
+                        Logger.d("message : " + apiResponseLogin.getMessages());
                         Logger.d("url : " + apiResponseLogin.getResult().getUrl());
                         Logger.d("session token : " + apiResponseLogin.getResult().getSession_token());
+                        Logger.d("<<<<<=====");
                         mView.hideProgressBar();
                         saveData(apiResponseLogin);
                     }

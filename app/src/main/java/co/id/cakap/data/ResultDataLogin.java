@@ -3,6 +3,7 @@ package co.id.cakap.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
@@ -19,9 +20,11 @@ import lombok.Data;
 @Entity
 public class ResultDataLogin implements Parcelable {
     @SerializedName("url")
+    @Expose
     private String url;
 
     @SerializedName("session_token")
+    @Expose
     private String session_token;
 
     protected ResultDataLogin(Parcel in) {

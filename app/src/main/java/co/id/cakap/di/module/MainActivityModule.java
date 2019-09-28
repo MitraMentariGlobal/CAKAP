@@ -17,6 +17,7 @@ import co.id.cakap.ui.login.LoginPresenter;
 import co.id.cakap.ui.main.MainActivity;
 import co.id.cakap.ui.main.MainPresenter;
 import co.id.cakap.ui.splash_screen.SplashScreenActivity;
+import co.id.cakap.ui.splash_screen.SplashScreenPresenter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -107,5 +108,11 @@ public class MainActivityModule {
     @ActivityScope
     LoginPresenter provideLoginPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new LoginPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    SplashScreenPresenter provideSplashScreenPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new SplashScreenPresenter(mainRepository, dataModel);
     }
 }
