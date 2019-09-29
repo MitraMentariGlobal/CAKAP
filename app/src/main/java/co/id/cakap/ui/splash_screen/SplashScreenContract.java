@@ -5,13 +5,15 @@ import co.id.cakap.network.ApiResponseSession;
 public class SplashScreenContract {
     public interface View{
         void initializeData();
-        void showProgressBar();
-        void hideProgressBar();
         void setErrorResponse(String message);
-        void setSuccessResponse();
+        void goToHome(String url);
+        void goToLogin();
+        void finishActivity();
+
     }
 
     public interface UserActionListener{
         void setView(SplashScreenContract.View view);
+        void getData();
     }
 }

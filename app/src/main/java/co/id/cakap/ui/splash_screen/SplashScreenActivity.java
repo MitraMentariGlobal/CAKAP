@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,8 @@ import javax.inject.Inject;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.home.HomeActivity;
 import co.id.cakap.ui.login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity implements SplashScreenContract.View{
@@ -62,34 +65,36 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         mAuth = FirebaseAuth.getInstance();
         mUserActionListener = mSplashScreenPresenter;
         mSplashScreenPresenter.setView(this);
-        hideProgressBar();
 
+        mUserActionListener.getData();
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+        Toast.makeText(SplashScreenActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void goToHome(String url) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra(Constant.URL_LINK, url);
+        startActivity(intent);
+        finishActivity();
+    }
+
+    @Override
+    public void goToLogin() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-                finish();
+                finishActivity();
             }
         },2000);
     }
 
     @Override
-    public void showProgressBar() {
-
-    }
-
-    @Override
-    public void hideProgressBar() {
-
-    }
-
-    @Override
-    public void setErrorResponse(String message) {
-
-    }
-
-    @Override
-    public void setSuccessResponse() {
-
+    public void finishActivity() {
+        finish();
     }
 }

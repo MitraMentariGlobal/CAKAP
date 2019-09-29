@@ -1,8 +1,10 @@
 package co.id.cakap.ui.home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
@@ -15,11 +17,15 @@ import butterknife.ButterKnife;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.utils.Logger;
 
 public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.webView)
     WebView mWebView;
+
+    String mUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,9 @@ public class HomeActivity extends AppCompatActivity {
 
     @SuppressLint("SetJavaScriptEnabled")
     public void initializeData() {
+        Intent intent = getIntent();
+        mUrl = intent.getStringExtra(Constant.URL_LINK);
+        Logger.d("home url : " + mUrl);
 
         WebSettings webSetting = mWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);
@@ -55,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
             webSetting.setSafeBrowsingEnabled(false);
         }
         mWebView.setWebViewClient(new CustomWebViewClient());
-        mWebView.loadUrl("http://159.89.197.191/~cakap/main/?auth=QkMwMTM7MjAxOS0wOS0yNiAxMjozNjowNTsyMDE5LTA5LTI2IDEyOjQxOjA1");
+        mWebView.loadUrl(mUrl);
     }
 
     @Override

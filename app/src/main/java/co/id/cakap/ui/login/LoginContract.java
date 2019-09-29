@@ -14,7 +14,7 @@ public class LoginContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void setSuccessResponse();
+        void setSuccessResponse(String url);
     }
 
     public interface UserActionListener{

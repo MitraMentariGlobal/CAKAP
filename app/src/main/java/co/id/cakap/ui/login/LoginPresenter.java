@@ -14,10 +14,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
 
+import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
@@ -25,12 +28,16 @@ import co.id.cakap.network.ApiResponse;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
 import io.reactivex.subscribers.ResourceSubscriber;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 public class LoginPresenter implements LoginContract.UserActionListener {
     private LoginContract.View mView;
     private MainRepository mMainRepository;
     private DataModel mDataModel;
+    private FirebaseTokenData mFirebaseTokenData;
 
     public LoginPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -40,10 +47,12 @@ public class LoginPresenter implements LoginContract.UserActionListener {
     @Override
     public void setView(LoginContract.View view) {
         mView = view;
+        mFirebaseTokenData = new FirebaseTokenData();
     }
 
     @Override
     public void getNotificationToken(String userId, String password) {
+        mView.showProgressBar();
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -59,42 +68,47 @@ public class LoginPresenter implements LoginContract.UserActionListener {
                         // Log and toast
                         String msg = "Token : " + token;
                         Logger.d(msg);
-                        actionLogin(userId, password, token);
+
+                        mFirebaseTokenData.setFcmToken(token);
+                        mDataModel.insertFirebaseTokenData(mFirebaseTokenData);
+                        actionLogin(userId, password, mFirebaseTokenData.getFcmToken());
                     }
                 });
     }
 
-    public void actionLogin(String userId, String password, String fcm_token) {
-        Map<String, Object> param = new HashMap<>();
-        param.put(Constant.BODY_USER_ID, userId);
-        param.put(Constant.BODY_PASSWORD, password);
-        param.put(Constant.BODY_FCM_TOKEN, fcm_token);
-
+    private void actionLogin(String userId, String password, String fcmToken) {
         mDataModel.deleteResultDataLogin();
-        mView.showProgressBar();
-        mMainRepository.postLogin(param)
+        mMainRepository.postLogin(userId, password, fcmToken)
                 .subscribe(new ResourceSubscriber<ApiResponseLogin>() {
                     @Override
                     public void onNext(ApiResponseLogin apiResponseLogin) {
                         Logger.d("=====>>>>>");
-                        Logger.d("param : " + param.toString());
                         Logger.d("message : " + apiResponseLogin.getMessages());
                         Logger.d("url : " + apiResponseLogin.getResult().getUrl());
                         Logger.d("session token : " + apiResponseLogin.getResult().getSession_token());
                         Logger.d("<<<<<=====");
                         mView.hideProgressBar();
+                        mView.setSuccessResponse(apiResponseLogin.getResult().getUrl());
                         saveData(apiResponseLogin);
                     }
 
                     @Override
                     public void onError(Throwable t) {
-                        //Handle when onErrorResponse From API
-                        Logger.e("error : " + t.getMessage());
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
                         mView.hideProgressBar();
+                        mView.setErrorResponse(errorResponse);
                     }
 
                     @Override
                     public void onComplete() {
+                        mView.hideProgressBar();
                         Logger.d("onComplete");
                     }
                 });

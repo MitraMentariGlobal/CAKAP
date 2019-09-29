@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,7 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.home.HomeActivity;
 import co.id.cakap.utils.Logger;
 
@@ -39,12 +42,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Inject
     LoginPresenter mLoginPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.user_id_et)
     EditText mUserId;
     @BindView(R.id.password_et)
     EditText mPassword;
+    @BindView(R.id.login_btn)
+    Button mLoginButton;
 
     private LoginContract.UserActionListener mUserActionListener;
     private FirebaseAuth mAuth;
@@ -82,7 +87,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @OnClick(R.id.login_btn)
     public void userLoginAction(View view) {
-//        startActivity(new Intent(this, HomeActivity.class));
         getAuthData(mUserId.getText().toString(), mPassword.getText().toString());
     }
 
@@ -118,12 +122,18 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
+        mUserId.setEnabled(false);
+        mPassword.setEnabled(false);
+        mLoginButton.setEnabled(false);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
+        mUserId.setEnabled(true);
+        mPassword.setEnabled(true);
+        mLoginButton.setEnabled(true);
     }
 
     @Override
@@ -132,7 +142,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void setSuccessResponse() {
-
+    public void setSuccessResponse(String url) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra(Constant.URL_LINK, url);
+        startActivity(intent);
+        finish();
     }
 }

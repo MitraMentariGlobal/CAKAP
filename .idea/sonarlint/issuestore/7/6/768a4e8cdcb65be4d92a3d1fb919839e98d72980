@@ -1,13 +1,13 @@
 
-psquid:UselessImportCheck"ERemove this unused import 'com.google.firebase.iid.InstanceIdResult'.(ªÎÛ«8¡¡×-
+Lsquid:S1481a")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8úÎ˜×-
+Esquid:S1068%"'Remove this unused "TAG" private field.(Ô‹‡½8¡¡×-
+Ksquid:S1604["(Make this anonymous inner class a lambda(¥íîŸÿÿÿÿÿ8úÎ˜×-
+wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.iid.FirebaseInstanceId'.(½ÉÈÊùÿÿÿÿ8¡¡×-
+Ÿsquid:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ßœ)8…ŒÆ×-
+isquid:CommentedOutCodeLine8"<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
 nsquid:CommentedOutCodeLineU"<This block of commented-out lines of code should be removed.(®ÌÁƒÿÿÿÿÿ8¶Ì˜×-
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8›·Î˜×-
 qsquid:MaximumInheritanceDepth$"<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8¤ƒ½àÖ-
 [squid:S1854a"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8úÎ˜×-
-Ksquid:S1604["(Make this anonymous inner class a lambda(¥íîŸÿÿÿÿÿ8úÎ˜×-
-_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8›·Î˜×-
-wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.iid.FirebaseInstanceId'.(½ÉÈÊùÿÿÿÿ8¡¡×-
-Esquid:S1068%"'Remove this unused "TAG" private field.(Ô‹‡½8¡¡×-
-Ÿsquid:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ßœ)8…ŒÆ×-
-Lsquid:S1481a")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8úÎ˜×-
-isquid:CommentedOutCodeLine8"<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
 ]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8¡¡×-
+psquid:UselessImportCheck"ERemove this unused import 'com.google.firebase.iid.InstanceIdResult'.(ªÎÛ«8¡¡×-

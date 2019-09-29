@@ -194,7 +194,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                                .bigLargeIcon(null))
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .setBigContentTitle(title)
-                                .setSummaryText("TEST SUMMARY")
+//                                .setSummaryText("TEST SUMMARY")
                                 .bigText(messageBody))
                         .setContentIntent(pendingIntent)
                         .setPriority(NotificationCompat.PRIORITY_MAX);
