@@ -15,6 +15,7 @@ public class Constant {
     public static String FIREBASE_NOTIFICATION_TOKEN = BuildConfig.FIREBASE_NOTIFICATION_TOKEN;
     public static String FIREBASE_NOTIFICATION_TITLE = BuildConfig.FIREBASE_NOTIFICATION_TITLE;
     public static String FIREBASE_NOTIFICATION_BODY = BuildConfig.FIREBASE_NOTIFICATION_BODY;
+    public static String FIREBASE_NOTIFICATION_URL = BuildConfig.FIREBASE_NOTIFICATION_URL;
     public final static String BODY_USER_ID = BuildConfig.BODY_USER_ID;
     public final static String BODY_PASSWORD = BuildConfig.BODY_PASSWORD;
     public final static String BODY_FCM_TOKEN = BuildConfig.BODY_FCM_TOKEN;

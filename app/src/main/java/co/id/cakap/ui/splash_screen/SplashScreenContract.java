@@ -9,6 +9,8 @@ public class SplashScreenContract {
         void goToHome(String url);
         void goToLogin();
         void finishActivity();
+        void showProgressBar();
+        void hideProgressBar();
 
     }
 

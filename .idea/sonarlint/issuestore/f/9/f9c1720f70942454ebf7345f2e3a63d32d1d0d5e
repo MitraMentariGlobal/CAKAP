@@ -1,2 +1,4 @@
 
-hsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ¿
+Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8¤³Êí×-
+[squid:UselessImportCheck"0Remove this unused import 'retrofit2.http.Body'.(º–øÚ8¤³Êí×-
+hsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ¿

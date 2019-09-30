@@ -61,6 +61,7 @@ android {
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TOKEN', endpointProperties['firebase_notification_token']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TITLE', endpointProperties['firebase_notification_title']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_BODY', endpointProperties['firebase_notification_body']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_URL', endpointProperties['firebase_notification_url']
             buildConfigField 'String', 'ENDPOINT_CONTENT_TYPE', endpointProperties['endpoint_content_type']
             buildConfigField 'String', 'CONTENT_TYPE_TEXT', endpointProperties['content_type_text']
             buildConfigField 'String', 'CAKAP_KEY_TEXT', endpointProperties['cakap_key_text']
@@ -146,5 +147,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
+
+    //Android-SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }
 apply plugin: 'com.google.gms.google-services'

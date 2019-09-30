@@ -54,19 +54,19 @@
                         android:fontFamily="sans-serif-regular"
                         android:text="@string/login_title_1" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_left_16"
-                        android:layout_marginEnd="@dimen/margin_right_16"
-                        android:layout_marginBottom="@dimen/margin_bottom_4"
-                        android:textColor="@color/white"
-                        android:gravity="start"
-                        android:textSize="@dimen/text_16"
-                        android:layout_gravity="start"
-                        android:lineSpacingExtra="@dimen/lineSpacingExtra_4"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/login_title_2" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/margin_left_16"-->
+<!--                        android:layout_marginEnd="@dimen/margin_right_16"-->
+<!--                        android:layout_marginBottom="@dimen/margin_bottom_4"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:gravity="start"-->
+<!--                        android:textSize="@dimen/text_16"-->
+<!--                        android:layout_gravity="start"-->
+<!--                        android:lineSpacingExtra="@dimen/lineSpacingExtra_4"-->
+<!--                        android:fontFamily="sans-serif-light"-->
+<!--                        android:text="@string/login_title_2" />-->
 
                     <EditText
                         android:id="@+id/user_id_et"

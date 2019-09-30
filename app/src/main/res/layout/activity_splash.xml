@@ -9,7 +9,17 @@
     <ImageView
         android:background="@drawable/cakap_logo"
         android:adjustViewBounds="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="150dp"
-        android:layout_height="150dp"/>
+        android:layout_height="150dp"
+        android:layout_marginTop="180dp"/>
+
+    <ProgressBar
+        android:id="@+id/main_progress_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_marginBottom="50dp"/>
 
 </RelativeLayout>

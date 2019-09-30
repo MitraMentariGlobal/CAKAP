@@ -69,8 +69,9 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
                             Logger.e("error HttpException: " + errorResponse);
                         }
 
+                        mDataModel.deleteFirebaseTokenData();
                         mView.setErrorResponse(errorResponse);
-                        mView.finishActivity();
+                        mView.goToLogin();
                     }
 
                     @Override
