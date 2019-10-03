@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "841292419166",
+    "firebase_url": "https://cakap-v1.firebaseio.com",
+    "project_id": "cakap-v1",
+    "storage_bucket": "cakap-v1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841292419166:android:b8ef0f8f02108a0c5ce4cf",
+        "android_client_info": {
+          "package_name": "co.id.cakap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841292419166-umr0gsu6a2sauculm402qopvbbjd5bbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3aOBdmNoqqMu0gA-sEUHY-LE9QmxrrEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841292419166-umr0gsu6a2sauculm402qopvbbjd5bbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

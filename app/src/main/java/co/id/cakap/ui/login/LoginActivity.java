@@ -115,9 +115,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mUserActionListener = mLoginPresenter;
         mLoginPresenter.setView(this);
         hideProgressBar();
-
-        mUserId.setText("BC013");
-        mPassword.setText("12345678");
     }
 
     @Override
