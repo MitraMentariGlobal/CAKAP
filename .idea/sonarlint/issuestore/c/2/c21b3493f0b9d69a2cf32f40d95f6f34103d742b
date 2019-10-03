@@ -1,7 +1,7 @@
 
-…squid:S1450""bRemove the "mUserActionListener" field and declare it as a local variable in the relevant methods.(Ïï¿øÿÿÿÿ8¼ğÖÖ-
-}squid:S1450#"aRemove the "mGridLayoutManager" field and declare it as a local variable in the relevant methods.(é ­„şÿÿÿÿ
-jsquid:UselessImportCheck"?Remove this unused import 'co.id.cakap.ui.login.LoginActivity'.(¨†8Êˆ—’Ö-
-]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G8Êˆ—’Ö-
 lsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(•½ÑÕ8€ú¼òÕ-
+…squid:S1450""bRemove the "mUserActionListener" field and declare it as a local variable in the relevant methods.(Ïï¿øÿÿÿÿ8¼ğÖÖ-
+]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ğ‹G8Êˆ—’Ö-
+jsquid:UselessImportCheck"?Remove this unused import 'co.id.cakap.ui.login.LoginActivity'.(¨†8Êˆ—’Ö-
+}squid:S1450#"aRemove the "mGridLayoutManager" field and declare it as a local variable in the relevant methods.(é ­„şÿÿÿÿ
 wsquid:S1450$"[Remove the "mListAdapter" field and declare it as a local variable in the relevant methods.(íı„Íıÿÿÿÿ

@@ -1,11 +1,16 @@
 package co.id.cakap.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,12 +26,15 @@ import com.google.firebase.iid.InstanceIdResult;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.home.HomeActivity;
+import co.id.cakap.utils.Logger;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
@@ -34,14 +42,23 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Inject
     LoginPresenter mLoginPresenter;
 
-    private LoginContract.UserActionListener mUserActionListener;private
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
+    @BindView(R.id.user_id_et)
+    EditText mUserId;
+    @BindView(R.id.password_et)
+    EditText mPassword;
+    @BindView(R.id.login_btn)
+    Button mLoginButton;
 
-    FirebaseAuth mAuth;
+    private LoginContract.UserActionListener mUserActionListener;
+    private FirebaseAuth mAuth;
+
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
 //        updateUI(currentUser);
     }
 
@@ -70,53 +87,62 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @OnClick(R.id.login_btn)
     public void userLoginAction(View view) {
+        getAuthData(mUserId.getText().toString(), mPassword.getText().toString());
+    }
+
+    public void getAuthData(String userId, String password) {
         mAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInAnonymously:success");
+                            Logger.d("signInAnonymously:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d(TAG, "user : " + user.getUid());
-//                            updateUI(user);
+                            mUserActionListener.getNotificationToken(userId, password);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInAnonymously:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
+                            Logger.w("signInAnonymously:failure", task.getException());
+                            setErrorResponse("Authentication failed.");
                         }
-
-                        // ...
                     }
                 });
-
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "getInstanceId failed", task.getException());
-                            return;
-                        }
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-
-                        // Log and toast
-                        String msg = "Token : " + token;
-                        Log.d(TAG, msg);
-                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-//        startActivity(new Intent(this, HomeActivity.class));
     }
 
     @Override
     public void initializeData() {
+        mAuth = FirebaseAuth.getInstance();
         mUserActionListener = mLoginPresenter;
         mLoginPresenter.setView(this);
-        mAuth = FirebaseAuth.getInstance();
+        hideProgressBar();
+    }
+
+    @Override
+    public void showProgressBar() {
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
+        mUserId.setEnabled(false);
+        mPassword.setEnabled(false);
+        mLoginButton.setEnabled(false);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mRelativeProgressBar.setVisibility(View.GONE);
+        mUserId.setEnabled(true);
+        mPassword.setEnabled(true);
+        mLoginButton.setEnabled(true);
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setSuccessResponse(String url) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra(Constant.URL_LINK, url);
+        startActivity(intent);
+        finish();
     }
 }

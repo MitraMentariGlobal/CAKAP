@@ -33,29 +33,42 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         debug {
-//            shrinkResources true
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.debug
             resValue("string", "PORT_NUMBER", "8080")
 
-            buildConfigField 'String', 'API_KEY', endpointProperties['api_key']
-            buildConfigField 'String', 'URL_API', endpointProperties['utl_api']
-            buildConfigField 'String', 'URL_IMAGE', endpointProperties['url_image']
             buildConfigField 'String', 'DAO_NAME', endpointProperties['dao_name_dev']
+            buildConfigField 'String', 'URL_API', endpointProperties['utl_api_dev']
+            buildConfigField 'String', 'CAKAP_KEY', endpointProperties['cakap_key_dev']
         }
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField 'String', 'DAO_NAME', endpointProperties['dao_name_prod']
+            buildConfigField 'String', 'URL_API', endpointProperties['utl_api_prod']
+            buildConfigField 'String', 'CAKAP_KEY', endpointProperties['cakap_key_prod']
         }
         buildTypes.all {
+            buildConfigField 'String', 'API_KEY', endpointProperties['api_key']
+            buildConfigField 'String', 'URL_IMAGE', endpointProperties['url_image']
+// =================================================================================================
+
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TOKEN', endpointProperties['firebase_notification_token']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TITLE', endpointProperties['firebase_notification_title']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_BODY', endpointProperties['firebase_notification_body']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_URL', endpointProperties['firebase_notification_url']
+            buildConfigField 'String', 'ENDPOINT_CONTENT_TYPE', endpointProperties['endpoint_content_type']
+            buildConfigField 'String', 'CONTENT_TYPE_TEXT', endpointProperties['content_type_text']
+            buildConfigField 'String', 'CAKAP_KEY_TEXT', endpointProperties['cakap_key_text']
+            buildConfigField 'String', 'BODY_USER_ID', endpointProperties['body_user_id']
+            buildConfigField 'String', 'BODY_PASSWORD', endpointProperties['body_password']
+            buildConfigField 'String', 'BODY_FCM_TOKEN', endpointProperties['body_fcm_token']
+            buildConfigField 'String', 'BODY_SESSION_TOKEN', endpointProperties['body_session_token']
         }
     }
 
@@ -125,7 +138,7 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$PicassoVersion"
 
     //Lombok
-    compileOnly "org.projectlombok:lombok:$LombokVersion"
+    implementation "org.projectlombok:lombok:$LombokVersion"
     annotationProcessor "org.projectlombok:lombok:$LombokVersion"
 
     //Firebase
@@ -134,5 +147,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
+
+    //Android-SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }
 apply plugin: 'com.google.gms.google-services'

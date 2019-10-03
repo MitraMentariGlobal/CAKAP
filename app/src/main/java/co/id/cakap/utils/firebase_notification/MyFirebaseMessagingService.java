@@ -21,10 +21,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -38,6 +40,7 @@ import co.id.cakap.R;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.splash_screen.SplashScreenActivity;
+import co.id.cakap.utils.Logger;
 
 /**
  * NOTE: There can only be one service in each app that receives FCM messages. If multiple
@@ -56,6 +59,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private String mTitle = "";
     private String mBody = "";
+    private String mUrl = "";
     /**
      * Called when message is received.
      *
@@ -114,10 +118,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * Handle data with object.
      */
     private void handleDataMessage(RemoteMessage remoteMessage){
-        mTitle = remoteMessage.getData().get(Constant.FIREBASE_NOTIFICATION_TITLE);
-        mBody = remoteMessage.getData().get(Constant.FIREBASE_NOTIFICATION_BODY);
+//        mTitle = remoteMessage.getData().get(Constant.FIREBASE_NOTIFICATION_TITLE);
+//        mBody = remoteMessage.getData().get(Constant.FIREBASE_NOTIFICATION_BODY);
 
-        sendNotification(mTitle, mBody);
+        try {
+            mUrl = remoteMessage.getData().get(Constant.FIREBASE_NOTIFICATION_URL);
+            mTitle = remoteMessage.getNotification().getTitle();
+            mBody = remoteMessage.getNotification().getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        sendNotification(mTitle, mBody, mUrl);
     }
 
     // [START on_new_token]
@@ -173,7 +185,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String title, String messageBody) {
+    private void sendNotification(String title, String messageBody, String url) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor sharedPrefEd = sharedPreferences.edit();
+        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_URL, url);
+        sharedPrefEd.apply();
+
         Intent intent = new Intent(this, SplashScreenActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -194,7 +211,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                                .bigLargeIcon(null))
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .setBigContentTitle(title)
-                                .setSummaryText("TEST SUMMARY")
+//                                .setSummaryText("TEST SUMMARY")
                                 .bigText(messageBody))
                         .setContentIntent(pendingIntent)
                         .setPriority(NotificationCompat.PRIORITY_MAX);

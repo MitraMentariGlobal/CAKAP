@@ -1,26 +1,54 @@
 package co.id.cakap.ui.splash_screen;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.ybq.android.spinkit.style.ThreeBounce;
+import com.google.firebase.auth.FirebaseAuth;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.home.HomeActivity;
 import co.id.cakap.ui.login.LoginActivity;
+import co.id.cakap.utils.Logger;
 
-public class SplashScreenActivity extends AppCompatActivity{
+public class SplashScreenActivity extends AppCompatActivity implements SplashScreenContract.View{
+    private static final String TAG = "LoginActivity";
+
+    @Inject
+    SplashScreenPresenter mSplashScreenPresenter;
+
+    @BindView(R.id.main_progress_bar)
+    ProgressBar mProgressBar;
+
+    private SplashScreenContract.UserActionListener mUserActionListener;
+    private FirebaseAuth mAuth;
+    private ThreeBounce mThreeBounce;
+    private SharedPreferences mSharedPreferences;
+    private String mUrlNotification = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hideSystemUI();
         setContentView(R.layout.activity_splash);
+        ButterKnife.bind(this);
 
         setupActivityComponent();
         initializeData();
@@ -48,12 +76,69 @@ public class SplashScreenActivity extends AppCompatActivity{
     }
 
     public void initializeData() {
+        mAuth = FirebaseAuth.getInstance();
+        mUserActionListener = mSplashScreenPresenter;
+        mSplashScreenPresenter.setView(this);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        mThreeBounce = new ThreeBounce();
+        mThreeBounce.setColor(getResources().getColor(R.color.white));
+        mProgressBar.setIndeterminateDrawable(mThreeBounce);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-                finish();
+                showProgressBar();
+                try {
+                    mUrlNotification = mSharedPreferences.getString(Constant.FIREBASE_NOTIFICATION_URL, "");
+                } catch (Exception e) {
+                    Logger.e("error SharedPreferences : " + e.getMessage());
+                    mUrlNotification = "";
+                }
+                mUserActionListener.getData();
             }
         },2000);
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+        Toast.makeText(SplashScreenActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void goToHome(String url) {
+        Intent intent = new Intent(this, HomeActivity.class);
+
+        if (mUrlNotification != null && mUrlNotification.length() > 0) {
+            intent.putExtra(Constant.URL_LINK, mUrlNotification);
+            SharedPreferences.Editor sharedPrefEd = mSharedPreferences.edit();
+            sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_URL, url);
+            sharedPrefEd.apply();
+        } else {
+            intent.putExtra(Constant.URL_LINK, url);
+        }
+        startActivity(intent);
+        finishActivity();
+    }
+
+    @Override
+    public void goToLogin() {
+        startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+        finishActivity();
+    }
+
+    @Override
+    public void finishActivity() {
+        finish();
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 }
