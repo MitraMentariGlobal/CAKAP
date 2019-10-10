@@ -18,9 +18,6 @@ import retrofit2.http.Query;
  */
 
 public interface NetworkService {
-    @GET("movie/popular")
-    Flowable<ApiResponse> getData(@Query("api_key") String api_key);
-
     @FormUrlEncoded
     @POST("check_session")
     Flowable<ApiResponseSession> postCheckLogin(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
@@ -35,5 +32,12 @@ public interface NetworkService {
                                          @Field(Constant.BODY_USER_ID) String userId,
                                          @Field(Constant.BODY_PASSWORD) String password,
                                          @Field(Constant.BODY_FCM_TOKEN) String fcmToken);
+
+    @FormUrlEncoded
+    @POST("logout_mobile")
+    Flowable<ApiResponseLogout> postLogout(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                @Field(Constant.BODY_FCM_TOKEN) String fcmToken,
+                                                @Field(Constant.BODY_SESSION_TOKEN) String sessionToken);
 
 }

@@ -1,30 +1,14 @@
 package co.id.cakap.ui.login;
 
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Executor;
-
 import co.id.cakap.data.FirebaseTokenData;
-import co.id.cakap.data.ResultDataLogin;
-import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
-import co.id.cakap.network.ApiResponse;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.utils.Logger;

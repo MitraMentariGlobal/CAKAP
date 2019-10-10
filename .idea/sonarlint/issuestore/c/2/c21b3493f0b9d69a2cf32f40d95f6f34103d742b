@@ -1,7 +1,0 @@
-
-lsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(•½ÑÕ8€ú¼òÕ-
-…squid:S1450""bRemove the "mUserActionListener" field and declare it as a local variable in the relevant methods.(Ïï¿øÿÿÿÿ8¼ðÖÖ-
-]squid:UselessImportCheck"3Remove this unused import 'android.content.Intent'.(³ð‹G8Êˆ—’Ö-
-jsquid:UselessImportCheck"?Remove this unused import 'co.id.cakap.ui.login.LoginActivity'.(¨†8Êˆ—’Ö-
-}squid:S1450#"aRemove the "mGridLayoutManager" field and declare it as a local variable in the relevant methods.(é ­„þÿÿÿÿ
-wsquid:S1450$"[Remove the "mListAdapter" field and declare it as a local variable in the relevant methods.(íý„Íýÿÿÿÿ

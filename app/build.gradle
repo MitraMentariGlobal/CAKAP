@@ -45,7 +45,8 @@ android {
             buildConfigField 'String', 'CAKAP_KEY', endpointProperties['cakap_key_dev']
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
@@ -54,10 +55,6 @@ android {
             buildConfigField 'String', 'CAKAP_KEY', endpointProperties['cakap_key_prod']
         }
         buildTypes.all {
-            buildConfigField 'String', 'API_KEY', endpointProperties['api_key']
-            buildConfigField 'String', 'URL_IMAGE', endpointProperties['url_image']
-// =================================================================================================
-
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TOKEN', endpointProperties['firebase_notification_token']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TITLE', endpointProperties['firebase_notification_title']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_BODY', endpointProperties['firebase_notification_body']
@@ -83,6 +80,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
     }
 }
 

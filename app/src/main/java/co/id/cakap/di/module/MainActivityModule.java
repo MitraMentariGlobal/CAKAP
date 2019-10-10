@@ -12,10 +12,9 @@ import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.home.HomeActivity;
+import co.id.cakap.ui.home.HomePresenter;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.login.LoginPresenter;
-import co.id.cakap.ui.main.MainActivity;
-import co.id.cakap.ui.main.MainPresenter;
 import co.id.cakap.ui.splash_screen.SplashScreenActivity;
 import co.id.cakap.ui.splash_screen.SplashScreenPresenter;
 import dagger.Module;
@@ -29,16 +28,11 @@ import dagger.Provides;
 @Module
 public class MainActivityModule {
     private SplashScreenActivity splashScreenActivity;
-    private MainActivity mainActivity;
     private LoginActivity loginActivity;
     private HomeActivity homeActivity;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
-    }
-
-    public MainActivityModule(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
     }
 
     public MainActivityModule(LoginActivity loginActivity) {
@@ -53,12 +47,6 @@ public class MainActivityModule {
     @ActivityScope
     SplashScreenActivity provideSplashScreenActivity() {
         return splashScreenActivity;
-    }
-
-    @Provides
-    @ActivityScope
-    MainActivity provideMainActivity() {
-        return mainActivity;
     }
 
     @Provides
@@ -100,12 +88,6 @@ public class MainActivityModule {
 
     @Provides
     @ActivityScope
-    MainPresenter provideMainPresenter(MainRepository mainRepository, DataModel dataModel) {
-        return new MainPresenter(mainRepository, dataModel);
-    }
-
-    @Provides
-    @ActivityScope
     LoginPresenter provideLoginPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new LoginPresenter(mainRepository, dataModel);
     }
@@ -114,5 +96,11 @@ public class MainActivityModule {
     @ActivityScope
     SplashScreenPresenter provideSplashScreenPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new SplashScreenPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    HomePresenter provideHomeScreenPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new HomePresenter(mainRepository, dataModel);
     }
 }

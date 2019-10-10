@@ -5,27 +5,44 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.utils.Logger;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeContract.View{
+
+    @Inject
+    HomePresenter mHomePresenter;
 
     @BindView(R.id.webView)
     WebView mWebView;
+    @BindView(R.id.fab)
+    FloatingActionButton floatingActionButton;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
 
     String mUrl = "";
+    private HomeContract.UserActionListener mUserActionListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +69,10 @@ public class HomeActivity extends AppCompatActivity {
 
     @SuppressLint("SetJavaScriptEnabled")
     public void initializeData() {
+        mUserActionListener = mHomePresenter;
+        mHomePresenter.setView(this);
+        hideProgressBar();
+
         Intent intent = getIntent();
         mUrl = intent.getStringExtra(Constant.URL_LINK);
         Logger.d("home url : " + mUrl);
@@ -65,6 +86,34 @@ public class HomeActivity extends AppCompatActivity {
         }
         mWebView.setWebViewClient(new CustomWebViewClient());
         mWebView.loadUrl(mUrl);
+    }
+
+    @OnClick(R.id.fab)
+    public void userLogout(View view) {
+        showProgressBar();
+        mUserActionListener.getData();
+    }
+
+    @Override
+    public void showProgressBar() {
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mRelativeProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+        Toast.makeText(HomeActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setSuccessResponse() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
