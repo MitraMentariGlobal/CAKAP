@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,7 +22,7 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.home.HomeActivity;
+import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.utils.Logger;
 
@@ -107,7 +105,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void goToHome(String url) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeWebViewActivity.class);
 
         if (mUrlNotification != null && mUrlNotification.length() > 0) {
             intent.putExtra(Constant.URL_LINK, mUrlNotification);

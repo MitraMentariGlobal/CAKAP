@@ -11,8 +11,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
-import co.id.cakap.ui.home.HomeActivity;
-import co.id.cakap.ui.home.HomePresenter;
+import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
+import co.id.cakap.ui.homeWebView.HomeWebViewPresenter;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.login.LoginPresenter;
 import co.id.cakap.ui.splash_screen.SplashScreenActivity;
@@ -29,7 +29,7 @@ import dagger.Provides;
 public class MainActivityModule {
     private SplashScreenActivity splashScreenActivity;
     private LoginActivity loginActivity;
-    private HomeActivity homeActivity;
+    private HomeWebViewActivity homeWebViewActivity;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
@@ -39,8 +39,8 @@ public class MainActivityModule {
         this.loginActivity = loginActivity;
     }
 
-    public MainActivityModule(HomeActivity homeActivity) {
-        this.homeActivity = homeActivity;
+    public MainActivityModule(HomeWebViewActivity homeWebViewActivity) {
+        this.homeWebViewActivity = homeWebViewActivity;
     }
 
     @Provides
@@ -57,8 +57,8 @@ public class MainActivityModule {
 
     @Provides
     @ActivityScope
-    HomeActivity provideHomeActivity() {
-        return homeActivity;
+    HomeWebViewActivity provideHomeActivity() {
+        return homeWebViewActivity;
     }
 
     @Provides
@@ -100,7 +100,7 @@ public class MainActivityModule {
 
     @Provides
     @ActivityScope
-    HomePresenter provideHomeScreenPresenter(MainRepository mainRepository, DataModel dataModel) {
-        return new HomePresenter(mainRepository, dataModel);
+    HomeWebViewPresenter provideHomeScreenPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new HomeWebViewPresenter(mainRepository, dataModel);
     }
 }

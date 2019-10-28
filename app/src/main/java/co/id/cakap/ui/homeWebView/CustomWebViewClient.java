@@ -1,4 +1,4 @@
-package co.id.cakap.ui.home;
+package co.id.cakap.ui.homeWebView;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;

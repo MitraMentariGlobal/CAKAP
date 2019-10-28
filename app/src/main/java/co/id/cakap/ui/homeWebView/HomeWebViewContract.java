@@ -1,8 +1,6 @@
-package co.id.cakap.ui.home;
+package co.id.cakap.ui.homeWebView;
 
-import co.id.cakap.network.ApiResponseLogin;
-
-public class HomeContract {
+public class HomeWebViewContract {
     public interface View{
         void initializeData();
         void showProgressBar();
@@ -12,7 +10,7 @@ public class HomeContract {
     }
 
     public interface UserActionListener{
-        void setView(HomeContract.View view);
+        void setView(HomeWebViewContract.View view);
         void getData();
     }
 }

@@ -1,15 +1,12 @@
 package co.id.cakap.ui.login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -21,8 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import javax.inject.Inject;
 
@@ -33,7 +28,7 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.home.HomeActivity;
+import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.utils.Logger;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
@@ -140,7 +135,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void setSuccessResponse(String url) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeWebViewActivity.class);
         intent.putExtra(Constant.URL_LINK, url);
         startActivity(intent);
         finish();

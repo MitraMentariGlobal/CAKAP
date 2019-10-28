@@ -1,10 +1,9 @@
-package co.id.cakap.ui.home;
+package co.id.cakap.ui.homeWebView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -29,10 +28,10 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.utils.Logger;
 
-public class HomeActivity extends AppCompatActivity implements HomeContract.View{
+public class HomeWebViewActivity extends AppCompatActivity implements HomeWebViewContract.View{
 
     @Inject
-    HomePresenter mHomePresenter;
+    HomeWebViewPresenter mHomeWebViewPresenter;
 
     @BindView(R.id.webView)
     WebView mWebView;
@@ -42,13 +41,13 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     RelativeLayout mRelativeProgressBar;
 
     String mUrl = "";
-    private HomeContract.UserActionListener mUserActionListener;
+    private HomeWebViewContract.UserActionListener mUserActionListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hideSystemUI();
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_web_view);
         ButterKnife.bind(this);
 
         setupActivityComponent();
@@ -69,8 +68,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @SuppressLint("SetJavaScriptEnabled")
     public void initializeData() {
-        mUserActionListener = mHomePresenter;
-        mHomePresenter.setView(this);
+        mUserActionListener = mHomeWebViewPresenter;
+        mHomeWebViewPresenter.setView(this);
         hideProgressBar();
 
         Intent intent = getIntent();
@@ -106,7 +105,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(HomeActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomeWebViewActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

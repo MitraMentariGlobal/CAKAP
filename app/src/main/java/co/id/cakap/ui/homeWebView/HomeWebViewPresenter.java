@@ -1,18 +1,10 @@
-package co.id.cakap.ui.home;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+package co.id.cakap.ui.homeWebView;
 
 import java.util.List;
 
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
-import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.utils.Logger;
@@ -21,21 +13,21 @@ import io.reactivex.subscribers.ResourceSubscriber;
 import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
-public class HomePresenter implements HomeContract.UserActionListener {
-    private HomeContract.View mView;
+public class HomeWebViewPresenter implements HomeWebViewContract.UserActionListener {
+    private HomeWebViewContract.View mView;
     private MainRepository mMainRepository;
     private DataModel mDataModel;
     private FirebaseTokenData mFirebaseTokenData;
     private List<FirebaseTokenData> mFirebaseTokenDataList;
     private List<ResultDataLogin> mResultDataLoginList;
 
-    public HomePresenter(MainRepository mainRepository, DataModel dataModel) {
+    public HomeWebViewPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
         mDataModel = dataModel;
     }
 
     @Override
-    public void setView(HomeContract.View view) {
+    public void setView(HomeWebViewContract.View view) {
         mView = view;
         mFirebaseTokenData = new FirebaseTokenData();
     }
