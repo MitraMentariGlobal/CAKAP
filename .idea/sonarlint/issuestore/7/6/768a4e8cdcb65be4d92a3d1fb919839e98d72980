@@ -1,12 +1,12 @@
 
-Ksquid:S1604_"(Make this anonymous inner class a lambda(¥íîŸÿÿÿÿÿ8úÎ˜×-
-Lsquid:S1481e")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8úÎ˜×-
-isquid:CommentedOutCodeLine="<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
-]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8¡¡×-
-wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.iid.FirebaseInstanceId'.(½ÉÈÊùÿÿÿÿ8¡¡×-
-[squid:S1854e"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8úÎ˜×-
-qsquid:MaximumInheritanceDepth'"<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8¤ƒ½àÖ-
 Esquid:S1068("'Remove this unused "TAG" private field.(Ô‹‡½8¡¡×-
 psquid:UselessImportCheck"ERemove this unused import 'com.google.firebase.iid.InstanceIdResult'.(ªÎÛ«8¡¡×-
+[squid:S1854e"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8úÎ˜×-
+Ksquid:S1604_"(Make this anonymous inner class a lambda(¥íîŸÿÿÿÿÿ8úÎ˜×-
+]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8¡¡×-
+isquid:CommentedOutCodeLine="<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
+qsquid:MaximumInheritanceDepth'"<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8¤ƒ½àÖ-
+wsquid:UselessImportCheck"GRemove this unused import 'com.google.firebase.iid.FirebaseInstanceId'.(½ÉÈÊùÿÿÿÿ8¡¡×-
 _squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8›·Î˜×-
 gsquid:UselessImportCheck"7Remove this unused import 'android.widget.ProgressBar'.(³ñÿŸùÿÿÿÿ8’Œùí×-
+Lsquid:S1481e")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8úÎ˜×-

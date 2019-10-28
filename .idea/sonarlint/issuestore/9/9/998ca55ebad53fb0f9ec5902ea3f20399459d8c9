@@ -1,19 +1,3 @@
 
-jsquid:UselessImportCheck"@Remove this unused import 'com.google.firebase.auth.AuthResult'.(âÂ8úãÍ˜×-
-_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8úãÍ˜×-
-lsquid:UselessImportCheck"<Remove this unused import 'co.id.cakap.network.ApiResponse'.(”é¥¨øÿÿÿÿ8‡¹ú×-
-Ksquid:S1604)"(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
-asquid:UselessImportCheck"1Remove this unused import 'android.widget.Toast'.(©›ïÍúÿÿÿÿ8äïÆ×-
-`squid:UselessImportCheck
-"0Remove this unused import 'org.json.JSONObject'.(œÖ´üşÿÿÿÿ8Äñóí×-
-Zsquid:UselessImportCheck
-"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8²óŠî×-
-rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8£…û˜×-
-^squid:UselessImportCheck
-".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8²óŠî×-
-rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseUser'.(’àíĞùÿÿÿÿ8úãÍ˜×-
-msquid:UselessImportCheck"=Remove this unused import 'co.id.cakap.data.ResultDataLogin'.(¹¼†°ıÿÿÿÿ8×½‹×-
-hsquid:UselessImportCheck"8Remove this unused import 'co.id.cakap.helper.Constant'.(İËøøÿÿÿÿ8²óŠî×-
-jsquid:UselessImportCheck
-":Remove this unused import 'java.util.concurrent.Executor'.(÷ı¶Œúÿÿÿÿ8ª„É˜×-
 Fsquid:S1148R"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8£Ëóí×-
+Ksquid:S1604)"(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-

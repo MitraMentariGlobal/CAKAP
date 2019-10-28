@@ -1,5 +1,3 @@
 
 ]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8­Ïíî×-
-nsquid:CommentedOutCodeLineL"<This block of commented-out lines of code should be removed.(ÎÌŸØùÿÿÿÿ8£§¦ûÙ-
-lsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(Æ¼¾Î8ÃÆó’Ö-
-nsquid:CommentedOutCodeLineJ"<This block of commented-out lines of code should be removed.(‰Þ€èüÿÿÿÿ8£§¦ûÙ-
+qsquid:MaximumInheritanceDepth "<This class has 6 parents which is greater than 5 authorized.(éÂèýÿÿÿÿ8ÃÆó’Ö-
