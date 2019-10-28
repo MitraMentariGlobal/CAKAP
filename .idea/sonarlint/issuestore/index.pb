@@ -3,8 +3,6 @@ G
 app/endpoint.properties,f/6/f629d25400337edfd361cb51745fb5b2af60ef24
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-b
-2app/src/main/java/co/id/cakap/data/ResultData.java,1/0/10bbc8f4238d3460f7ee4ca7918d2f3636b350d1
 l
 <app/src/main/java/co/id/cakap/di/component/AppComponent.java,1/b/1b0917eac06c23f2ee6bb2a6e936a85650d0df16
 f
@@ -15,8 +13,6 @@ i
 9app/src/main/java/co/id/cakap/di/scope/ActivityScope.java,4/5/459f6441f41caff3a33783feee1a330c0f02a262
 b
 2app/src/main/java/co/id/cakap/helper/Constant.java,b/b/bb48f9fec57e13d820efb6fbb53b8178dc122cdb
-f
-6app/src/main/java/co/id/cakap/network/ApiResponse.java,0/3/030629630efbeb1249537cd7986b46095b1be690
 i
 9app/src/main/java/co/id/cakap/network/NetworkService.java,f/9/f9c1720f70942454ebf7345f2e3a63d32d1d0d5e
 l
@@ -25,8 +21,6 @@ l
 <app/src/main/java/co/id/cakap/repository/MainRepository.java,2/a/2a0835153e79da8708c01b9279d6c1d307f9f8f8
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-f
-6app/src/main/java/co/id/cakap/adapter/ListAdapter.java,2/0/20727d7d15b004945810a54b88c5ae5b05b3339a
 b
 2app/src/main/java/co/id/cakap/model/BaseModel.java,d/1/d1dc70f2dd55e3e38e89dd803557b5a84590e715
 b
@@ -37,16 +31,10 @@ Z
 app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 k
 ;app/src/main/java/co/id/cakap/ui/loading/RotateLoading.java,4/c/4c9707d2418dd87ee7a5032da7a6ce7bb601fb18
-g
-7app/src/main/java/co/id/cakap/ui/main/MainContract.java,9/f/9f683b632f6613e37d2216ec8b177e8036a43d2d
 i
 9app/src/main/java/co/id/cakap/ui/login/LoginContract.java,8/5/85822838b3a592ec735f0d19f353aa1c17cfeee8
-h
-8app/src/main/java/co/id/cakap/ui/main/MainPresenter.java,a/d/addd829758fe473bc2794c5291b8d02cc9a428af
 j
 :app/src/main/java/co/id/cakap/ui/login/LoginPresenter.java,9/9/998ca55ebad53fb0f9ec5902ea3f20399459d8c9
-g
-7app/src/main/java/co/id/cakap/ui/main/MainActivity.java,c/2/c21b3493f0b9d69a2cf32f40d95f6f34103d742b
 m
 =app/src/main/java/co/id/cakap/di/component/MainComponent.java,b/3/b3e9de0d6beaa29792fabf251e4acbaffc54e8ee
 o
@@ -93,3 +81,21 @@ i
 9app/src/main/java/co/id/cakap/data/ResultDataSession.java,f/b/fba0762c16f1c095615c397a16252018dfe526cd
 ^
 .app/src/main/java/co/id/cakap/utils/Utils.java,4/a/4abd1d997839294b07a358ddc90b7be6af361b42
+R
+"app/src/debug/google-services.json,3/1/3176849b4b3358130bbdcc581e9adbffdb0f4a60
+T
+$app/src/release/google-services.json,1/a/1ab097274795f43ae65d9819a929f6591798b586
+F
+app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
+?
+settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
+l
+<app/src/main/java/co/id/cakap/network/ApiResponseLogout.java,1/f/1f24710c022d04cbff11dafbbe553620c9f99b7c
+g
+7app/src/main/java/co/id/cakap/ui/home/HomeContract.java,e/c/ec3c436d5bd84ea7163ec30826b3e2a5c2ae1ee8
+h
+8app/src/main/java/co/id/cakap/ui/home/HomePresenter.java,5/8/580a007506b1d0835b7f3d96409903dafbd16772
+Y
+)app/src/main/res/layout/activity_home.xml,8/4/84bbfd95b490b92591d2b037417f036942315d57
+R
+"app/src/main/res/values/dimens.xml,c/3/c3c1811dec2dbad2deeafb9aad505ca9631da740

@@ -4,7 +4,6 @@ import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.home.HomeActivity;
 import co.id.cakap.ui.login.LoginActivity;
-import co.id.cakap.ui.main.MainActivity;
 import co.id.cakap.ui.splash_screen.SplashScreenActivity;
 import dagger.Subcomponent;
 
@@ -19,7 +18,6 @@ import dagger.Subcomponent;
 )
 public interface MainComponent {
     SplashScreenActivity inject(SplashScreenActivity splashScreenActivity);
-    MainActivity inject(MainActivity mainActivity);
     LoginActivity inject(LoginActivity loginActivity);
     HomeActivity inject(HomeActivity homeActivity);
 }

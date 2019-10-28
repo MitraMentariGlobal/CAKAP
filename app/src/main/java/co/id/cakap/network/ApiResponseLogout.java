@@ -2,7 +2,7 @@ package co.id.cakap.network;
 
 import com.google.gson.annotations.SerializedName;
 
-import co.id.cakap.data.ResultDataLogin;
+import co.id.cakap.data.ResultDataSession;
 import lombok.Data;
 
 /**
@@ -11,9 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class ApiResponseLogin {
+public class ApiResponseLogout {
     @SerializedName("messages")
     private String messages;
-    @SerializedName("result")
-    private ResultDataLogin result;
 }
