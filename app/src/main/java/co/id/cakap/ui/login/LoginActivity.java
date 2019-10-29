@@ -86,22 +86,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     public void getAuthData(String userId, String password) {
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Logger.d("signInAnonymously:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            mUserActionListener.getNotificationToken(userId, password);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Logger.w("signInAnonymously:failure", task.getException());
-                            setErrorResponse("Authentication failed.");
-                        }
-                    }
-                });
+        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Logger.d("signInAnonymously:success");
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    mUserActionListener.getNotificationToken(userId, password);
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Logger.w("signInAnonymously:failure", task.getException());
+                    setErrorResponse("Authentication failed.");
+                }
+            }
+        });
     }
 
     @Override

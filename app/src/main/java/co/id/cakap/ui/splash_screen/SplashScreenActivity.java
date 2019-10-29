@@ -22,6 +22,7 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.utils.Logger;
@@ -93,7 +94,9 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
                     Logger.e("error SharedPreferences : " + e.getMessage());
                     mUrlNotification = "";
                 }
-                mUserActionListener.getData();
+//                mUserActionListener.getData();
+                startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
+
             }
         },2000);
     }
