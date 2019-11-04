@@ -26,7 +26,9 @@
     <dimen name="margin_right_4">4dp</dimen>
 
     <dimen name="radius_2">2dp</dimen>
+    <dimen name="radius_4">4dp</dimen>
     <dimen name="radius_8">8dp</dimen>
+    <dimen name="radius_10">10dp</dimen>
     <dimen name="radius_16">16dp</dimen>
     <dimen name="radius_24">24dp</dimen>
     <dimen name="radius_32">32dp</dimen>
@@ -71,6 +73,8 @@
     <dimen name="design_bottom_navigation_icon_size" tools:override="true">6dp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="card_padding">60dp</dimen>
     <!--
         bottom_navigation_elevation
         bottom_navigation_height

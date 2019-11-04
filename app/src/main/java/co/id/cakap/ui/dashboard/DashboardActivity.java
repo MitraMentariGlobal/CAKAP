@@ -27,16 +27,16 @@ import co.id.cakap.ui.dashboard.search.SearchFragment;
 
 public class DashboardActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.title)
-    TextView mTitle;
-    @BindView(R.id.date)
-    TextView mDate;
-    @BindView(R.id.time)
-    TextView mTime;
+//    @BindView(R.id.title)
+//    TextView mTitle;
+//    @BindView(R.id.date)
+//    TextView mDate;
+//    @BindView(R.id.time)
+//    TextView mTime;
     @BindView(R.id.bn_main)
     BottomNavigationView mBottomNavigationView;
 
-    Thread thread;
+//    Thread thread;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,56 +52,55 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
         Typeface typeface = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             typeface = getResources().getFont(R.font.museo_sans);
-            mTitle.setTypeface(typeface);
+//            mTitle.setTypeface(typeface);
         }
 
-        setDateTime();
         loadFragment(new HomeFragment());
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
-    public void setDateTime() {
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        String day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
-        String dateMonthYear = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
-        String dayDate = day + ", " + dateMonthYear;
-        mDate.setText(dayDate);
-
-        thread = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                String time = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-                                mTime.setText(time);
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-
-                }
-            }
-        };
-
-        thread.start();
-    }
+//    public void setDateTime() {
+//        Calendar calendar = Calendar.getInstance();
+//        Date date = calendar.getTime();
+//        String day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
+//        String dateMonthYear = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
+//        String dayDate = day + ", " + dateMonthYear;
+//        mDate.setText(dayDate);
+//
+//        thread = new Thread() {
+//
+//            @Override
+//            public void run() {
+//                try {
+//                    while (!isInterrupted()) {
+//                        Thread.sleep(1000);
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                String time = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+//                                mTime.setText(time);
+//                            }
+//                        });
+//                    }
+//                } catch (InterruptedException e) {
+//
+//                }
+//            }
+//        };
+//
+//        thread.start();
+//    }
 
     @Override
     public void onStop() {
-        thread.stop();
+//        thread.stop();
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        thread.stop();
+//        thread.stop();
     }
 
     private boolean loadFragment(Fragment fragment){

@@ -81,7 +81,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mThreeBounce = new ThreeBounce();
-        mThreeBounce.setColor(getResources().getColor(R.color.white));
+        mThreeBounce.setColor(getResources().getColor(R.color.colorPrimaryDark));
         mProgressBar.setIndeterminateDrawable(mThreeBounce);
 
         new Handler().postDelayed(new Runnable() {

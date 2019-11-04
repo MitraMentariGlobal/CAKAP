@@ -11,6 +11,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
+import co.id.cakap.ui.dashboard.home.HomeFragment;
+import co.id.cakap.ui.dashboard.home.HomePresenter;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewPresenter;
 import co.id.cakap.ui.login.LoginActivity;
@@ -30,6 +32,7 @@ public class MainActivityModule {
     private SplashScreenActivity splashScreenActivity;
     private LoginActivity loginActivity;
     private HomeWebViewActivity homeWebViewActivity;
+    private HomeFragment homeFragment;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
@@ -41,6 +44,10 @@ public class MainActivityModule {
 
     public MainActivityModule(HomeWebViewActivity homeWebViewActivity) {
         this.homeWebViewActivity = homeWebViewActivity;
+    }
+
+    public MainActivityModule(HomeFragment homeFragment) {
+        this.homeFragment = homeFragment;
     }
 
     @Provides
@@ -102,5 +109,11 @@ public class MainActivityModule {
     @ActivityScope
     HomeWebViewPresenter provideHomeScreenPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new HomeWebViewPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    HomePresenter provideHomePresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new HomePresenter(mainRepository, dataModel);
     }
 }

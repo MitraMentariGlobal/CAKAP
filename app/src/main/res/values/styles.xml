@@ -24,8 +24,15 @@
         <item name="android:fontFamily">sans-serif-regular</item>
     </style>
 
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
+    <style name="TexViewFont" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:fontFamily">fonts/museo_sans.otf</item>
+    </style>
 </resources>
