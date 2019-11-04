@@ -3,7 +3,6 @@ package co.id.cakap.ui.dashboard;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,18 +11,14 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.ui.dashboard.account.AccountFragment;
-import co.id.cakap.ui.dashboard.favorite.FavoriteFragment;
+import co.id.cakap.ui.dashboard.inbox.InboxFragment;
+import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
-import co.id.cakap.ui.dashboard.search.SearchFragment;
+import co.id.cakap.ui.dashboard.activity.ActivityFragment;
 
 public class DashboardActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -120,11 +115,14 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
             case R.id.home_menu:
                 fragment = new HomeFragment();
                 break;
-            case R.id.search_menu:
-                fragment = new SearchFragment();
+            case R.id.activity_menu:
+                fragment = new ActivityFragment();
                 break;
-            case R.id.favorite_menu:
-                fragment = new FavoriteFragment();
+            case R.id.restock_menu:
+                fragment = new RestockFragment();
+                break;
+            case R.id.inbox_menu:
+                fragment = new InboxFragment();
                 break;
             case R.id.account_menu:
                 fragment = new AccountFragment();

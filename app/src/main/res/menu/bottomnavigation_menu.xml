@@ -8,14 +8,20 @@
         android:icon="@drawable/ic_home"/>
 
     <item
-        android:id="@+id/search_menu"
-        android:title="@string/search"
-        android:icon="@drawable/ic_search"/>
+        android:id="@+id/activity_menu"
+        android:title="@string/activity"
+        android:icon="@drawable/ic_activity"/>
 
     <item
-        android:id="@+id/favorite_menu"
-        android:title="@string/favorite"
-        android:icon="@drawable/ic_favorite"/>
+        android:id="@+id/restock_menu"
+        android:title="@string/restock"
+        android:icon="@drawable/ic_stock"/>
+
+    <item
+        android:id="@+id/inbox_menu"
+        android:title="@string/inbox"
+        android:icon="@drawable/ic_email"/>
+
     <item
         android:id="@+id/account_menu"
         android:title="@string/account"

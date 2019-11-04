@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="?android:attr/actionBarSize"
     android:fitsSystemWindows="true">
 
     <FrameLayout
@@ -307,7 +309,72 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="@dimen/margin_left_16"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="Restock"
+                    style="@style/TexViewFont"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radius_10"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:layout_marginStart="@dimen/radius_16"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:background="@drawable/gradient_4">
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:layout_marginStart="@dimen/radius_8"
+                            android:layout_marginBottom="@dimen/radius_32"
+                            android:textSize="12sp"
+                            android:text="Request Invoice To Company"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            style="@style/TexViewFont"/>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:layout_marginStart="@dimen/radius_8"
+                        android:layout_marginEnd="@dimen/radius_16"
+                        android:background="@drawable/gradient_5">
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:layout_marginStart="@dimen/radius_8"
+                            android:layout_marginBottom="@dimen/radius_32"
+                            android:textSize="12sp"
+                            android:text="Request Invoice To BC"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            style="@style/TexViewFont"/>
+                    </FrameLayout>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.core.widget.NestedScrollView>

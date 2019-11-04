@@ -1,4 +1,4 @@
-package co.id.cakap.ui.dashboard.account;
+package co.id.cakap.ui.dashboard.inbox;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,19 +17,19 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 
-public class AccountFragment extends Fragment implements AccountContract.View {
+public class InboxFragment extends Fragment implements InboxContract.View {
     @Inject
-    AccountPresenter mAccountPresenter;
+    InboxPresenter mInboxPresenter;
 
     private View mView;
     private Unbinder mUnbinder;
-    private AccountContract.UserActionListener mUserActionListener;
+    private InboxContract.UserActionListener mUserActionListener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mView == null) {
-            mView = inflater.inflate(R.layout.fragment_account, container, false);
+            mView = inflater.inflate(R.layout.fragment_inbox, container, false);
             mUnbinder = ButterKnife.bind(this, mView);
 
             setupActivityComponent();

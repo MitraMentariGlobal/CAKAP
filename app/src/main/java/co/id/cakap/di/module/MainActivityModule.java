@@ -11,8 +11,16 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
+import co.id.cakap.ui.dashboard.account.AccountFragment;
+import co.id.cakap.ui.dashboard.account.AccountPresenter;
+import co.id.cakap.ui.dashboard.activity.ActivityFragment;
+import co.id.cakap.ui.dashboard.activity.ActivityPresenter;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
 import co.id.cakap.ui.dashboard.home.HomePresenter;
+import co.id.cakap.ui.dashboard.inbox.InboxFragment;
+import co.id.cakap.ui.dashboard.inbox.InboxPresenter;
+import co.id.cakap.ui.dashboard.restock.RestockFragment;
+import co.id.cakap.ui.dashboard.restock.RestockPresenter;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewPresenter;
 import co.id.cakap.ui.login.LoginActivity;
@@ -33,6 +41,10 @@ public class MainActivityModule {
     private LoginActivity loginActivity;
     private HomeWebViewActivity homeWebViewActivity;
     private HomeFragment homeFragment;
+    private ActivityFragment activityFragment;
+    private InboxFragment inboxFragment;
+    private RestockFragment restockFragment;
+    private AccountFragment accountFragment;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
@@ -48,6 +60,22 @@ public class MainActivityModule {
 
     public MainActivityModule(HomeFragment homeFragment) {
         this.homeFragment = homeFragment;
+    }
+
+    public MainActivityModule(ActivityFragment activityFragment) {
+        this.activityFragment = activityFragment;
+    }
+
+    public MainActivityModule(RestockFragment restockFragment) {
+        this.restockFragment = restockFragment;
+    }
+
+    public MainActivityModule(InboxFragment inboxFragment) {
+        this.inboxFragment = inboxFragment;
+    }
+
+    public MainActivityModule(AccountFragment accountFragment) {
+        this.accountFragment = accountFragment;
     }
 
     @Provides
@@ -115,5 +143,29 @@ public class MainActivityModule {
     @ActivityScope
     HomePresenter provideHomePresenter(MainRepository mainRepository, DataModel dataModel) {
         return new HomePresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ActivityPresenter provideActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    RestockPresenter provideRestockPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new RestockPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    InboxPresenter provideInboxPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new InboxPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    AccountPresenter provideAccountPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new AccountPresenter(mainRepository, dataModel);
     }
 }
