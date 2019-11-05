@@ -37,7 +37,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:layout_marginTop="20dp"
-                    android:text="E-Wallet"
+                    android:text="@string/ewallet"
                     android:textSize="14sp"
                     style="@style/TexViewFont"/>
 
@@ -53,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
                         android:gravity="center"
-                        android:text="IDR"
+                        android:text="@string/idr_upper"
                         android:textSize="12sp"
                         style="@style/TexViewFont"/>
 
@@ -114,7 +114,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="12sp"
-                                    android:text="Fee"
+                                    android:text="@string/fee"
                                     android:textColor="@color/curated"
                                     style="@style/TexViewFont"/>
                             </LinearLayout>
@@ -156,7 +156,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="12sp"
-                                    android:text="Omset"
+                                    android:text="@string/omset"
                                     android:textColor="@color/curated"
                                     style="@style/TexViewFont"/>
                             </LinearLayout>
@@ -198,7 +198,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="12sp"
-                                    android:text="Total Omset"
+                                    android:text="@string/total_omset"
                                     android:textColor="@color/curated"
                                     style="@style/TexViewFont"/>
                             </LinearLayout>
@@ -210,6 +210,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="@dimen/radius_10"
                 android:orientation="vertical">
 
                 <TextView
@@ -222,7 +223,7 @@
                     android:gravity="center"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:text="Transaction"
+                    android:text="@string/transaction"
                     style="@style/TexViewFont"/>
 
                 <LinearLayout
@@ -243,7 +244,7 @@
                             android:clickable="true"
                             android:layout_marginStart="@dimen/radius_16"
                             android:layout_marginEnd="@dimen/radius_8"
-                            android:background="@drawable/gradient_1">
+                            android:background="@drawable/gradient_6">
 
                             <TextView
                                 android:background="@android:color/transparent"
@@ -253,7 +254,7 @@
                                 android:layout_marginStart="@dimen/radius_8"
                                 android:layout_marginBottom="@dimen/radius_32"
                                 android:textSize="12sp"
-                                android:text="Registration"
+                                android:text="@string/registration"
                                 android:textColor="@color/white"
                                 android:textStyle="bold"
                                 style="@style/TexViewFont"/>
@@ -266,7 +267,7 @@
                             android:clickable="true"
                             android:layout_marginStart="@dimen/radius_8"
                             android:layout_marginEnd="@dimen/radius_16"
-                            android:background="@drawable/gradient_2">
+                            android:background="@drawable/gradient_6">
 
                             <TextView
                                 android:background="@android:color/transparent"
@@ -276,7 +277,7 @@
                                 android:layout_marginStart="@dimen/radius_8"
                                 android:layout_marginBottom="@dimen/radius_32"
                                 android:textSize="12sp"
-                                android:text="Cashbill"
+                                android:text="@string/cashbill"
                                 android:textColor="@color/white"
                                 android:textStyle="bold"
                                 style="@style/TexViewFont"/>
@@ -291,7 +292,7 @@
                         android:layout_marginTop="@dimen/radius_16"
                         android:layout_marginStart="@dimen/radius_16"
                         android:layout_marginEnd="@dimen/radius_16"
-                        android:background="@drawable/gradient_3">
+                        android:background="@drawable/gradient_6">
 
                         <TextView
                             android:background="@android:color/transparent"
@@ -301,7 +302,7 @@
                             android:layout_marginStart="@dimen/radius_8"
                             android:layout_marginBottom="@dimen/radius_32"
                             android:textSize="12sp"
-                            android:text="Invoice To MB"
+                            android:text="@string/invoice_to_mb"
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             style="@style/TexViewFont"/>
@@ -335,7 +336,7 @@
                         android:clickable="true"
                         android:layout_marginStart="@dimen/radius_16"
                         android:layout_marginEnd="@dimen/radius_8"
-                        android:background="@drawable/gradient_4">
+                        android:background="@drawable/gradient_6">
 
                         <TextView
                             android:background="@android:color/transparent"
@@ -345,7 +346,7 @@
                             android:layout_marginStart="@dimen/radius_8"
                             android:layout_marginBottom="@dimen/radius_32"
                             android:textSize="12sp"
-                            android:text="Request Invoice To Company"
+                            android:text="@string/req_invoice_to_com"
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             style="@style/TexViewFont"/>
@@ -358,7 +359,7 @@
                         android:clickable="true"
                         android:layout_marginStart="@dimen/radius_8"
                         android:layout_marginEnd="@dimen/radius_16"
-                        android:background="@drawable/gradient_5">
+                        android:background="@drawable/gradient_6">
 
                         <TextView
                             android:background="@android:color/transparent"
@@ -368,7 +369,7 @@
                             android:layout_marginStart="@dimen/radius_8"
                             android:layout_marginBottom="@dimen/radius_32"
                             android:textSize="12sp"
-                            android:text="Request Invoice To BC"
+                            android:text="@string/req_invoice_to_bc"
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             style="@style/TexViewFont"/>

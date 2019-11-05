@@ -96,6 +96,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
                 }
 //                mUserActionListener.getData();
                 startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
+                finishActivity();
 
             }
         },2000);

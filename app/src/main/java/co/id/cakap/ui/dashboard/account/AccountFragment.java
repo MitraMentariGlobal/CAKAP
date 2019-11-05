@@ -49,6 +49,7 @@ public class AccountFragment extends Fragment implements AccountContract.View {
 
     @Override
     public void initializeData() {
-
+        mUserActionListener = mAccountPresenter;
+        mAccountPresenter.setView(this);
     }
 }

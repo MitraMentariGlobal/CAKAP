@@ -6,7 +6,7 @@ import co.id.cakap.ui.dashboard.activity.ActivityContract;
 import co.id.cakap.ui.dashboard.home.HomeContract;
 
 public class InboxPresenter implements InboxContract.UserActionListener {
-    private HomeContract.View mView;
+    private InboxContract.View mView;
     private MainRepository mMainRepository;
     private DataModel mDataModel;
 
@@ -15,7 +15,7 @@ public class InboxPresenter implements InboxContract.UserActionListener {
         mDataModel = dataModel;
     }
 
-    public void setView(HomeContract.View view){
+    public void setView(InboxContract.View view){
         mView = view;
     }
 }

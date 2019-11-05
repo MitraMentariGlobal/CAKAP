@@ -5,7 +5,7 @@ import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.home.HomeContract;
 
 public class RestockPresenter implements RestockContract.UserActionListener {
-    private HomeContract.View mView;
+    private RestockContract.View mView;
     private MainRepository mMainRepository;
     private DataModel mDataModel;
 
@@ -14,7 +14,7 @@ public class RestockPresenter implements RestockContract.UserActionListener {
         mDataModel = dataModel;
     }
 
-    public void setView(HomeContract.View view){
+    public void setView(RestockContract.View view){
         mView = view;
     }
 }

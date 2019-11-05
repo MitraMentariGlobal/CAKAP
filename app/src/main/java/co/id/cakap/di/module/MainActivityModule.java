@@ -15,12 +15,26 @@ import co.id.cakap.ui.dashboard.account.AccountFragment;
 import co.id.cakap.ui.dashboard.account.AccountPresenter;
 import co.id.cakap.ui.dashboard.activity.ActivityFragment;
 import co.id.cakap.ui.dashboard.activity.ActivityPresenter;
+import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillFragment;
+import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
+import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbFragment;
+import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
+import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbFragment;
+import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbPresenter;
+import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbFragment;
+import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbPresenter;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
 import co.id.cakap.ui.dashboard.home.HomePresenter;
 import co.id.cakap.ui.dashboard.inbox.InboxFragment;
 import co.id.cakap.ui.dashboard.inbox.InboxPresenter;
 import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.restock.RestockPresenter;
+import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoiceFragment;
+import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoicePresenter;
+import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockFragment;
+import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockPresenter;
+import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoiceFragment;
+import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoicePresenter;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewPresenter;
 import co.id.cakap.ui.login.LoginActivity;
@@ -45,6 +59,13 @@ public class MainActivityModule {
     private InboxFragment inboxFragment;
     private RestockFragment restockFragment;
     private AccountFragment accountFragment;
+    private ActivityCashbillFragment activityCashbillFragment;
+    private ActivityInvToMbFragment activityInvToMbFragment;
+    private ActivityRekapBnsBcmbFragment activityRekapBnsBcmbFragment;
+    private ActivityReqInvMbFragment activityReqInvMbFragment;
+    private RestockInvoiceFragment restockInvoiceFragment;
+    private RestockReceiveStockFragment restockReceiveStockFragment;
+    private RestockReqInvoiceFragment restockReqInvoiceFragment;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
@@ -76,6 +97,34 @@ public class MainActivityModule {
 
     public MainActivityModule(AccountFragment accountFragment) {
         this.accountFragment = accountFragment;
+    }
+
+    public MainActivityModule(ActivityCashbillFragment activityCashbillFragment) {
+        this.activityCashbillFragment = activityCashbillFragment;
+    }
+
+    public MainActivityModule(ActivityInvToMbFragment activityInvToMbFragment) {
+        this.activityInvToMbFragment = activityInvToMbFragment;
+    }
+
+    public MainActivityModule(ActivityRekapBnsBcmbFragment activityRekapBnsBcmbFragment) {
+        this.activityRekapBnsBcmbFragment = activityRekapBnsBcmbFragment;
+    }
+
+    public MainActivityModule(ActivityReqInvMbFragment activityReqInvMbFragment) {
+        this.activityReqInvMbFragment = activityReqInvMbFragment;
+    }
+
+    public MainActivityModule(RestockInvoiceFragment restockInvoiceFragment) {
+        this.restockInvoiceFragment = restockInvoiceFragment;
+    }
+
+    public MainActivityModule(RestockReceiveStockFragment restockReceiveStockFragment) {
+        this.restockReceiveStockFragment = restockReceiveStockFragment;
+    }
+
+    public MainActivityModule(RestockReqInvoiceFragment restockReqInvoiceFragment) {
+        this.restockReqInvoiceFragment = restockReqInvoiceFragment;
     }
 
     @Provides
@@ -167,5 +216,47 @@ public class MainActivityModule {
     @ActivityScope
     AccountPresenter provideAccountPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new AccountPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ActivityCashbillPresenter provideActivityCashbillPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ActivityCashbillPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ActivityInvToMbPresenter provideActivityInvToMbPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ActivityInvToMbPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ActivityRekapBnsBcmbPresenter provideActivityRekapBnsBcmbPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ActivityRekapBnsBcmbPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ActivityReqInvMbPresenter provideActivityReqInvMbPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ActivityReqInvMbPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    RestockReqInvoicePresenter provideRestockReqInvoicePresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new RestockReqInvoicePresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    RestockReceiveStockPresenter provideRestockReceiveStockPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new RestockReceiveStockPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    RestockInvoicePresenter provideRestockInvoicePresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new RestockInvoicePresenter(mainRepository, dataModel);
     }
 }

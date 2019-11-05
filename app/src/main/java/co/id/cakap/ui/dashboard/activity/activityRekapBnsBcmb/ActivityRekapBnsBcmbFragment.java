@@ -1,4 +1,4 @@
-package co.id.cakap.ui.dashboard.inbox;
+package co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,20 +16,22 @@ import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbContract;
+import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
 
-public class InboxFragment extends Fragment implements InboxContract.View {
+public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRekapBnsBcmbContract.View {
     @Inject
-    InboxPresenter mInboxPresenter;
+    ActivityRekapBnsBcmbPresenter mActivityRekapBnsBcmbPresenter;
 
     private View mView;
     private Unbinder mUnbinder;
-    private InboxContract.UserActionListener mUserActionListener;
+    private ActivityRekapBnsBcmbContract.UserActionListener mUserActionListener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mView == null) {
-            mView = inflater.inflate(R.layout.fragment_inbox, container, false);
+            mView = inflater.inflate(R.layout.fragment_activity_rekap_bns_bcmb, container, false);
             mUnbinder = ButterKnife.bind(this, mView);
 
             setupActivityComponent();
@@ -49,7 +51,7 @@ public class InboxFragment extends Fragment implements InboxContract.View {
 
     @Override
     public void initializeData() {
-        mUserActionListener = mInboxPresenter;
-        mInboxPresenter.setView(this);
+        mUserActionListener = mActivityRekapBnsBcmbPresenter;
+        mActivityRekapBnsBcmbPresenter.setView(this);
     }
 }

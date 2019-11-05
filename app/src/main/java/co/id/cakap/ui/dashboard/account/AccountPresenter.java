@@ -2,10 +2,9 @@ package co.id.cakap.ui.dashboard.account;
 
 import co.id.cakap.model.DataModel;
 import co.id.cakap.repository.MainRepository;
-import co.id.cakap.ui.dashboard.home.HomeContract;
 
 public class AccountPresenter implements AccountContract.UserActionListener {
-    private HomeContract.View mView;
+    private AccountContract.View mView;
     private MainRepository mMainRepository;
     private DataModel mDataModel;
 
@@ -14,7 +13,7 @@ public class AccountPresenter implements AccountContract.UserActionListener {
         mDataModel = dataModel;
     }
 
-    public void setView(HomeContract.View view){
+    public void setView(AccountContract.View view){
         mView = view;
     }
 }
