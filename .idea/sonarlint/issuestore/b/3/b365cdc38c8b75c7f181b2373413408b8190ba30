@@ -1,7 +1,14 @@
 
-Qsquid:S1068/"3Remove this unused "accountFragment" private field.(÷²Ö8±ÔÁ·ã-
-Qsquid:S1068."3Remove this unused "restockFragment" private field.(œÐ±8¶´»·ã-
-isquid:S00117l"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¡®–
-Tsquid:S1068-"1Remove this unused "inboxFragment" private field.(˜«“øÿÿÿÿ8üÖ¹·ã-
-Ssquid:S1068+"0Remove this unused "homeFragment" private field.(ëŒó¨üÿÿÿÿ8¤ ‚»â-
-Wsquid:S1068,"4Remove this unused "activityFragment" private field.(ÄïÙüþÿÿÿÿ8œ‰¸·ã-
+^squid:S1068@"@Remove this unused "activityRekapBnsBcmbFragment" private field.(Ýä…È8Û„™áã-
+Qsquid:S1068="3Remove this unused "accountFragment" private field.(÷²Ö8±ÔÁ·ã-
+bsquid:S1068C"?Remove this unused "restockReceiveStockFragment" private field.(‚ƒ·öÿÿÿÿÿ8ê£Ýâã-
+qsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¡®–8Åïßâã-
+^squid:S1068?";Remove this unused "activityInvToMbFragment" private field.(¤û‚îûÿÿÿÿ8Û„™áã-
+Ssquid:S10689"0Remove this unused "homeFragment" private field.(ëŒó¨üÿÿÿÿ8¤ ‚»â-
+Zsquid:S1068D"=Remove this unused "restockReqInvoiceFragment" private field.(ƒÞüh8ê£Ýâã-
+Wsquid:S1068:"4Remove this unused "activityFragment" private field.(ÄïÙüþÿÿÿÿ8œ‰¸·ã-
+Tsquid:S1068;"1Remove this unused "inboxFragment" private field.(˜«“øÿÿÿÿ8üÖ¹·ã-
+_squid:S1068>"<Remove this unused "activityCashbillFragment" private field.(Ã”®èÿÿÿÿÿ8Ùü•áã-
+Zsquid:S1068A"<Remove this unused "activityReqInvMbFragment" private field.(–Ý€ö8Û„™áã-
+]squid:S1068B":Remove this unused "restockInvoiceFragment" private field.(”àªáÿÿÿÿÿ8ê£Ýâã-
+Qsquid:S1068<"3Remove this unused "restockFragment" private field.(œÐ±8¶´»·ã-

@@ -23,8 +23,8 @@
     <string name="registration">Registration</string>
     <string name="cashbill">Cashbill</string>
     <string name="invoice_to_mb">Invoice To MB</string>
-    <string name="req_invoice_to_com">Request Invoice To Company</string>
-    <string name="req_invoice_to_bc">Request Invoice To BC</string>
+    <string name="req_invoice_to_com">Req Invoice To Company</string>
+    <string name="req_invoice_to_bc">Req Invoice To BC</string>
     <string name="req_invoice_mb">Request Inv MB</string>
     <string name="rekap_bns_bcmb">Rekap Bns BCMB</string>
     <string name="invoice">Invoice</string>

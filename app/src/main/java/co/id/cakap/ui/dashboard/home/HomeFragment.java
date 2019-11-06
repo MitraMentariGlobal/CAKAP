@@ -6,6 +6,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @BindView(R.id.viewPager)
     CustomRecyclerViewPager mViewPager;
+    @BindView(R.id.running_text)
+    TextView mRunningText;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -80,6 +83,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mUserActionListener = mHomePresenter;
         mHomePresenter.setView(this);
         mUserActionListener.getData();
+        mRunningText.setText("SEMANGAT PAGI MITRA BLESSTEA........ APA KABAR..... MANTAP. BLESSTEA .... PASTI. CAKAP.... YES..... ");
+        mRunningText.setSelected(true);
     }
 
     @Override

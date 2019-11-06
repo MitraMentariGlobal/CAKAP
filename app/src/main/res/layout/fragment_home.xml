@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="?android:attr/actionBarSize"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_color">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,8 +20,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/background_gradient">
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/running_text"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    style="@style/TexViewFont"
+                    tools:ignore="EllipsizeMaxLines"/>
 
                 <co.id.cakap.utils.widget.CustomRecyclerViewPager
                     android:id="@+id/viewPager"
@@ -30,57 +47,70 @@
                     android:layout_marginTop="15dp"
                     app:itemMargin="15dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/ewallet"
-                    android:textSize="14sp"
-                    style="@style/TexViewFont"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:gravity="center"
-                        android:text="@string/idr_upper"
-                        android:textSize="12sp"
-                        style="@style/TexViewFont"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:maxLines="1"
-                        android:text="100.000.000"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        style="@style/TexViewFont"/>
-
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
+                    android:orientation="vertical"
+                    android:background="@drawable/home_info_style"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/radius_10"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/radius_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="@string/ewallet"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            style="@style/TexViewFont"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:gravity="center"
+                                android:text="@string/idr_upper"
+                                android:textSize="8sp"
+                                style="@style/TexViewFont"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:maxLines="1"
+                                android:text="100.000.000"
+                                android:textSize="14sp"
+                                style="@style/TexViewFont"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/radius_10"
+                        android:layout_marginEnd="@dimen/radius_10"
+                        android:background="#c9c9c9" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
 
                         <FrameLayout
@@ -103,7 +133,6 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="14sp"
-                                    android:textStyle="bold"
                                     android:text="1.000.000.000"
                                     style="@style/TexViewFont" />
 
@@ -123,6 +152,8 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:background="#c9c9c9" />
 
                         <FrameLayout
@@ -145,7 +176,6 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="14sp"
-                                    android:textStyle="bold"
                                     android:text="1.000.000.000"
                                     style="@style/TexViewFont"/>
 
@@ -165,6 +195,8 @@
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:background="#c9c9c9" />
 
                         <FrameLayout
@@ -187,7 +219,6 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="14sp"
-                                    android:textStyle="bold"
                                     android:text="1.000.000.000"
                                     style="@style/TexViewFont"/>
 
@@ -211,169 +242,274 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/radius_10"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="vertical">
-
-                <TextView
-                    android:background="@android:color/transparent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="@dimen/margin_left_16"
-                    android:gravity="center"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:text="@string/transaction"
-                    style="@style/TexViewFont"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/radius_10"
+                    android:background="@drawable/home_info_style"
+                    android:layout_marginBottom="@dimen/radius_10"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="@dimen/radius_10"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/transaction"
+                        style="@style/TexViewFont"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginStart="@dimen/radius_10"
+                        android:layout_marginEnd="@dimen/radius_10"
+                        android:layout_marginBottom="@dimen/radius_10"
+                        android:orientation="vertical">
 
-                        <FrameLayout
-                            android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:layout_marginStart="@dimen/radius_16"
-                            android:layout_marginEnd="@dimen/radius_8"
-                            android:background="@drawable/gradient_6">
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:background="@android:color/transparent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/radius_8"
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="55dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="@dimen/radius_8"
+                                app:cardCornerRadius="@dimen/radius_10"
+                                app:cardElevation="1dp">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/cakap_registration"/>
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="#99808080"/>
+
+                                    <TextView
+                                        android:background="@android:color/transparent"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/radius_8"
+                                        android:layout_marginStart="@dimen/radius_8"
+                                        android:layout_marginBottom="@dimen/radius_32"
+                                        android:textSize="12sp"
+                                        android:text="@string/registration"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
+                                        style="@style/TexViewFont"/>
+                                </RelativeLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="55dp"
+                                android:layout_weight="1"
                                 android:layout_marginStart="@dimen/radius_8"
-                                android:layout_marginBottom="@dimen/radius_32"
-                                android:textSize="12sp"
-                                android:text="@string/registration"
-                                android:textColor="@color/white"
-                                android:textStyle="bold"
-                                style="@style/TexViewFont"/>
-                        </FrameLayout>
+                                app:cardCornerRadius="@dimen/radius_10"
+                                app:cardElevation="1dp">
 
-                        <FrameLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:layout_marginStart="@dimen/radius_8"
-                            android:layout_marginEnd="@dimen/radius_16"
-                            android:background="@drawable/gradient_6">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
 
-                            <TextView
-                                android:background="@android:color/transparent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/radius_8"
-                                android:layout_marginStart="@dimen/radius_8"
-                                android:layout_marginBottom="@dimen/radius_32"
-                                android:textSize="12sp"
-                                android:text="@string/cashbill"
-                                android:textColor="@color/white"
-                                android:textStyle="bold"
-                                style="@style/TexViewFont"/>
-                        </FrameLayout>
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/cakap_cashbill"/>
 
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="#99808080"/>
+
+                                    <TextView
+                                        android:background="@android:color/transparent"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/radius_8"
+                                        android:layout_marginStart="@dimen/radius_8"
+                                        android:layout_marginBottom="@dimen/radius_32"
+                                        android:textSize="12sp"
+                                        android:text="@string/cashbill"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold"
+                                        style="@style/TexViewFont"/>
+                                </RelativeLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="@dimen/radius_16"
+                            app:cardCornerRadius="@dimen/radius_10"
+                            app:cardElevation="1dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/cakap_inv_to_mb"/>
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#99808080"/>
+
+                                <TextView
+                                    android:background="@android:color/transparent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/radius_8"
+                                    android:layout_marginStart="@dimen/radius_8"
+                                    android:layout_marginBottom="@dimen/radius_32"
+                                    android:textSize="12sp"
+                                    android:text="@string/invoice_to_mb"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    style="@style/TexViewFont"/>
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:layout_marginTop="@dimen/radius_16"
-                        android:layout_marginStart="@dimen/radius_16"
-                        android:layout_marginEnd="@dimen/radius_16"
-                        android:background="@drawable/gradient_6">
-
-                        <TextView
-                            android:background="@android:color/transparent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/radius_8"
-                            android:layout_marginStart="@dimen/radius_8"
-                            android:layout_marginBottom="@dimen/radius_32"
-                            android:textSize="12sp"
-                            android:text="@string/invoice_to_mb"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            style="@style/TexViewFont"/>
-                    </FrameLayout>
-
                 </LinearLayout>
-
-                <TextView
-                    android:background="@android:color/transparent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="@dimen/margin_left_16"
-                    android:gravity="center"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:text="Restock"
-                    style="@style/TexViewFont"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/radius_10"
-                    android:orientation="horizontal">
+                    android:background="@drawable/home_info_style"
+                    android:orientation="vertical">
 
-                    <FrameLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:layout_marginStart="@dimen/radius_16"
-                        android:layout_marginEnd="@dimen/radius_8"
-                        android:background="@drawable/gradient_6">
+                        android:layout_gravity="start"
+                        android:layout_margin="@dimen/radius_10"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/restock"
+                        style="@style/TexViewFont"/>
 
-                        <TextView
-                            android:background="@android:color/transparent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/radius_8"
-                            android:layout_marginStart="@dimen/radius_8"
-                            android:layout_marginBottom="@dimen/radius_32"
-                            android:textSize="12sp"
-                            android:text="@string/req_invoice_to_com"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            style="@style/TexViewFont"/>
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
-                        android:layout_marginStart="@dimen/radius_8"
-                        android:layout_marginEnd="@dimen/radius_16"
-                        android:background="@drawable/gradient_6">
+                        android:layout_marginStart="@dimen/radius_10"
+                        android:layout_marginEnd="@dimen/radius_10"
+                        android:layout_marginBottom="@dimen/radius_10"
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:background="@android:color/transparent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/radius_8"
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="@dimen/radius_8"
+                            app:cardCornerRadius="@dimen/radius_10"
+                            app:cardElevation="1dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/cakap_invoice"/>
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#99808080"/>
+
+                                <TextView
+                                    android:background="@android:color/transparent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/radius_8"
+                                    android:layout_marginStart="@dimen/radius_8"
+                                    android:layout_marginBottom="@dimen/radius_32"
+                                    android:textSize="12sp"
+                                    android:text="@string/req_invoice_to_com"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    style="@style/TexViewFont"/>
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
                             android:layout_marginStart="@dimen/radius_8"
-                            android:layout_marginBottom="@dimen/radius_32"
-                            android:textSize="12sp"
-                            android:text="@string/req_invoice_to_bc"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            style="@style/TexViewFont"/>
-                    </FrameLayout>
+                            app:cardCornerRadius="@dimen/radius_10"
+                            app:cardElevation="1dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/cakap_request_invoice"/>
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#99808080"/>
+
+                                <TextView
+                                    android:background="@android:color/transparent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/radius_8"
+                                    android:layout_marginStart="@dimen/radius_8"
+                                    android:layout_marginBottom="@dimen/radius_32"
+                                    android:textSize="12sp"
+                                    android:text="@string/req_invoice_to_bc"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    style="@style/TexViewFont"/>
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
