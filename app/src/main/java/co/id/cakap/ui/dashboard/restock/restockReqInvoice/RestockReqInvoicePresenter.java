@@ -17,4 +17,9 @@ public class RestockReqInvoicePresenter implements RestockReqInvoiceContract.Use
     public void setView(RestockReqInvoiceContract.View view){
         mView = view;
     }
+
+    @Override
+    public void getData() {
+
+    }
 }

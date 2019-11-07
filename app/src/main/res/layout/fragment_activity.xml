@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_gradient">
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/title"
@@ -18,7 +18,10 @@
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:textSize="20sp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:text="Activity"
+            style="@style/TexViewFont"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"

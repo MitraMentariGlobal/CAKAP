@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -25,6 +28,11 @@ import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresen
 public class RestockReceiveStockFragment extends Fragment implements RestockReceiveStockContract.View {
     @Inject
     RestockReceiveStockPresenter mRestockReceiveStockPresenter;
+
+    @BindView(R.id.main_list)
+    ViewPager mViewPager;
+    @BindView(R.id.main_progress_bar)
+    ProgressBar mProgressBar;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -56,5 +64,16 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
     public void initializeData() {
         mUserActionListener = mRestockReceiveStockPresenter;
         mRestockReceiveStockPresenter.setView(this);
+        hideProgressBar();
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 }

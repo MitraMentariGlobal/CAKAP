@@ -46,7 +46,7 @@ public class CustomViewPagerAdapter extends CustomRecyclerViewPager.CustomAdapte
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.pager_item, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.banner_item, parent, false);
         return new CustomViewHolder(itemView);
     }
 

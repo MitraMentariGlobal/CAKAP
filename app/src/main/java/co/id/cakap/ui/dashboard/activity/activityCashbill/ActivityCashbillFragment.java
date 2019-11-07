@@ -4,13 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,6 +26,8 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.ActivityCashbillAdapter;
+import co.id.cakap.data.ActivityCashbillData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.account.AccountContract;
 import co.id.cakap.ui.dashboard.account.AccountPresenter;
@@ -28,8 +36,14 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     @Inject
     ActivityCashbillPresenter mActivityCashbillPresenter;
 
+    @BindView(R.id.main_list)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.main_progress_bar)
+    ProgressBar mProgressBar;
+
     private View mView;
     private Unbinder mUnbinder;
+    private ActivityCashbillAdapter mListAdapter;
     private ActivityCashbillContract.UserActionListener mUserActionListener;
 
     @Nullable
@@ -58,6 +72,26 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     public void initializeData() {
         mUserActionListener = mActivityCashbillPresenter;
         mActivityCashbillPresenter.setView(this);
+        mUserActionListener.getData();
+    }
+
+    @Override
+    public void setAdapter(List<ActivityCashbillData> resultData) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mListAdapter = new ActivityCashbillAdapter(resultData, getContext());
+        mRecyclerView.setAdapter(mListAdapter);
+        hideProgressBar();
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.fab)

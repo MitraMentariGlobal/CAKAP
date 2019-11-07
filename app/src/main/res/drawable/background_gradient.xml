@@ -8,10 +8,10 @@
                 android:endColor="#FFF"
                 android:angle="90"/>
 
-            <corners
-                android:bottomLeftRadius="@dimen/radius_10"
-                android:bottomRightRadius="@dimen/radius_10">
-            </corners>
+<!--            <corners-->
+<!--                android:bottomLeftRadius="@dimen/radius_10"-->
+<!--                android:bottomRightRadius="@dimen/radius_10">-->
+<!--            </corners>-->
         </shape>
     </item>
 </selector>

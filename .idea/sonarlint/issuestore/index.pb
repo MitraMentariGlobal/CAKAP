@@ -129,8 +129,6 @@ _
 /app/src/main/res/menu/bottomnavigation_menu.xml,7/6/7626953d7c5e5dfe9e8b69ea89dc1dbc67bca7d4
 R
 "app/src/main/res/values/styles.xml,f/7/f79cc2688e29fcbc286fda14ae07b27c9e83690f
-f
-6app/src/main/java/co/id/cakap/utils/FlingBehavior.java,6/a/6a05b8a4fecf6aacb0cf728c939ad2fef5587f9c
 r
 Bapp/src/main/java/co/id/cakap/ui/dashboard/home/HomePresenter.java,7/6/76e39e314239d1060bf65c9b090da166d1a2fb56
 q
@@ -257,3 +255,9 @@ j
 :app/src/main/res/layout/fragment_restock_reveive_stock.xml,6/5/65011c4e2ba3b9229b200fffabd081fdef3aed50
 Y
 )app/src/main/res/values-w820dp/dimens.xml,4/6/467054222a8c785d9f601de4a89582d93facd302
+]
+-app/src/main/res/drawable/home_info_style.xml,3/3/33f3e5d2d786affda0ad17d929d1d588bd407912
+w
+Gapp/src/main/java/co/id/cakap/utils/firebase_notification/MyWorker.java,9/7/970af9bcfc003be04441a5f57e73316536c4ce0e
+X
+(gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e

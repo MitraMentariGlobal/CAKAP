@@ -16,6 +16,7 @@ def DaggerVersion = "2.5"
 def GreenDaoVersion = "3.2.2"
 def PicassoVersion = "2.5.2"
 def LombokVersion = "1.16.20"
+def CircleImageViewVersion = "3.0.1"
 
 // Define the endpoint strings
 def endpointFile = file('endpoint.properties')
@@ -141,6 +142,9 @@ dependencies {
     //Lombok
     implementation "org.projectlombok:lombok:$LombokVersion"
     annotationProcessor "org.projectlombok:lombok:$LombokVersion"
+
+    //Circle ImageView
+    implementation "de.hdodenhof:circleimageview:$CircleImageViewVersion"
 
     //Firebase
     implementation 'com.google.firebase:firebase-auth:19.0.0'

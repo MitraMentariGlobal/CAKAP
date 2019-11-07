@@ -17,4 +17,9 @@ public class RestockReceiveStockPresenter implements RestockReceiveStockContract
     public void setView(RestockReceiveStockContract.View view){
         mView = view;
     }
+
+    @Override
+    public void getData() {
+
+    }
 }
