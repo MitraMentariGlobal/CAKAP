@@ -9,9 +9,14 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,21 +26,27 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.RestockInvoiceAdapter;
+import co.id.cakap.data.RestockInvoiceData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class RestockInvoiceFragment extends Fragment implements RestockInvoiceContract.View {
     @Inject
     RestockInvoicePresenter mRestockInvoicePresenter;
 
     @BindView(R.id.main_list)
-    ViewPager mViewPager;
+    RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
 
     private View mView;
     private Unbinder mUnbinder;
+    private RestockInvoiceAdapter mListAdapter;
     private RestockInvoiceContract.UserActionListener mUserActionListener;
 
     @Nullable
@@ -64,6 +75,32 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
     public void initializeData() {
         mUserActionListener = mRestockInvoicePresenter;
         mRestockInvoicePresenter.setView(this);
+        mUserActionListener.getData();
+    }
+
+    @Override
+    public void setAdapter(List<RestockInvoiceData> resultData) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mListAdapter = new RestockInvoiceAdapter(resultData, getContext());
+        mRecyclerView.setAdapter(mListAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                if (dy<0 && !mFab.isShown())
+                    mFab.show();
+                else if(dy>0 && mFab.isShown())
+                    mFab.hide();
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
         hideProgressBar();
     }
 

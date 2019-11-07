@@ -8,9 +8,9 @@ import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbContract;
 
 public class ActivityReqInvMbPresenter implements ActivityReqInvMbContract.UserActionListener {
-    private ActivityReqInvMbContract.View mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
+    private static ActivityReqInvMbContract.View mView;
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
 
     private ArrayList<ActivityReqInvMbData> arrayList;
 

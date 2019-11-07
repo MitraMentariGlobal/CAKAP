@@ -155,5 +155,8 @@ dependencies {
 
     //Android-SpinKit
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    //Over scroll
+    implementation 'me.everything:overscroll-decor-android:1.0.4'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -9,21 +9,26 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_gradient">
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="start"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            style="@style/TexViewFont"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/CustomTextAppearanceTab"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabMode="scrollable" />
     </com.google.android.material.appbar.AppBarLayout>
 

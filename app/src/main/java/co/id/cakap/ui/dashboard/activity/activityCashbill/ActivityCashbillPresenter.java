@@ -9,9 +9,9 @@ import co.id.cakap.ui.dashboard.account.AccountContract;
 import co.id.cakap.ui.dashboard.home.HomeContract;
 
 public class ActivityCashbillPresenter implements ActivityCashbillContract.UserActionListener {
-    private ActivityCashbillContract.View mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
+    private static ActivityCashbillContract.View mView;
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
 
     private ArrayList<ActivityCashbillData> arrayList;
 

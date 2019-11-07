@@ -27,6 +27,7 @@ import co.id.cakap.data.ActivityRekapBnsBcmbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbContract;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRekapBnsBcmbContract.View {
     @Inject
@@ -77,6 +78,7 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityRekapBnsBcmbAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         hideProgressBar();
     }
 

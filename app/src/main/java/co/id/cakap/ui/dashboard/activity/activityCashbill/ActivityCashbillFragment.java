@@ -31,6 +31,9 @@ import co.id.cakap.data.ActivityCashbillData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.account.AccountContract;
 import co.id.cakap.ui.dashboard.account.AccountPresenter;
+import me.everything.android.ui.overscroll.HorizontalOverScrollBounceEffectDecorator;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
+import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 
 public class ActivityCashbillFragment extends Fragment implements ActivityCashbillContract.View {
     @Inject
@@ -40,6 +43,8 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -81,6 +86,23 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityCashbillAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                if (dy<0 && !mFab.isShown())
+                    mFab.show();
+                else if(dy>0 && mFab.isShown())
+                    mFab.hide();
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
         hideProgressBar();
     }
 

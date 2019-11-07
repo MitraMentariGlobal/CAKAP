@@ -13,19 +13,20 @@ import java.util.List;
 
 import butterknife.OnClick;
 import co.id.cakap.R;
-import co.id.cakap.data.ActivityInvToMbData;
+import co.id.cakap.data.RestockInvoiceData;
+import co.id.cakap.data.RestockReqInvoiceData;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
  * Android Developer
  */
 
-public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMbAdapter.ViewHolder> {
-    private List<ActivityInvToMbData> mResultData;
+public class RestockReqInvoiceAdapter extends RecyclerView.Adapter<RestockReqInvoiceAdapter.ViewHolder> {
+    private List<RestockReqInvoiceData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public ActivityInvToMbAdapter(List<ActivityInvToMbData> resultData, Context context){
+    public RestockReqInvoiceAdapter(List<RestockReqInvoiceData> resultData, Context context){
         mResultData = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -34,20 +35,20 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_list_activity, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_list_restock, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ActivityInvToMbData activityInvToMbData = mResultData.get(position);
+        RestockReqInvoiceData restockReqInvoiceData = mResultData.get(position);
 
         holder.mLinearAction.setVisibility(View.GONE);
-        holder.mTotalPv.setText(activityInvToMbData.getTotal_pv());
-        holder.mTransactionId.setText(activityInvToMbData.getTransaction_id());
-        holder.mDate.setText(activityInvToMbData.getDate());
-        holder.mMemberId.setText(activityInvToMbData.getMember_id());
-        holder.mTotalAmount.setText(activityInvToMbData.getTotal_amount());
+        holder.mTotalPv.setText(restockReqInvoiceData.getTotal_pv());
+        holder.mTransactionId.setText(restockReqInvoiceData.getTransaction_id());
+        holder.mDate.setText(restockReqInvoiceData.getDate());
+        holder.mStatus.setText(restockReqInvoiceData.getStatus());
+        holder.mTotalAmount.setText(restockReqInvoiceData.getTotal_amount());
     }
 
     @Override
@@ -60,8 +61,7 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         TextView mTotalPv;
         TextView mTransactionId;
         TextView mDate;
-        TextView mMemberId;
-        TextView mName;
+        TextView mStatus;
         TextView mTotalAmount;
         LinearLayout mLinearAction;
 
@@ -70,9 +70,8 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
             mTotalPv = itemView.findViewById(R.id.txt_total_pv);
             mTransactionId = itemView.findViewById(R.id.txt_transaction_id);
             mDate = itemView.findViewById(R.id.txt_date);
-            mMemberId = itemView.findViewById(R.id.txt_member_id);
-            mName = itemView.findViewById(R.id.txt_name);
             mTotalAmount = itemView.findViewById(R.id.txt_total_amount);
+            mStatus = itemView.findViewById(R.id.txt_status);
             mLinearAction = itemView.findViewById(R.id.linear_action);
         }
 

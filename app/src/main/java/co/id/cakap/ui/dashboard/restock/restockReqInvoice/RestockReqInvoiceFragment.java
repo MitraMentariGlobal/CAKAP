@@ -9,9 +9,13 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,21 +25,25 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.RestockReqInvoiceAdapter;
+import co.id.cakap.data.RestockReqInvoiceData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class RestockReqInvoiceFragment extends Fragment implements RestockReqInvoiceContract.View {
     @Inject
     RestockReqInvoicePresenter mRestockReqInvoicePresenter;
 
     @BindView(R.id.main_list)
-    ViewPager mViewPager;
+    RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
 
     private View mView;
     private Unbinder mUnbinder;
+    private RestockReqInvoiceAdapter mListAdapter;
     private RestockReqInvoiceContract.UserActionListener mUserActionListener;
 
     @Nullable
@@ -64,6 +72,16 @@ public class RestockReqInvoiceFragment extends Fragment implements RestockReqInv
     public void initializeData() {
         mUserActionListener = mRestockReqInvoicePresenter;
         mRestockReqInvoicePresenter.setView(this);
+        mUserActionListener.getData();
+    }
+
+    @Override
+    public void setAdapter(List<RestockReqInvoiceData> resultData) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mListAdapter = new RestockReqInvoiceAdapter(resultData, getContext());
+        mRecyclerView.setAdapter(mListAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         hideProgressBar();
     }
 

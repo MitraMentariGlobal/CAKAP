@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -30,6 +31,7 @@ import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMbContract.View {
     @Inject
@@ -39,6 +41,8 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -80,6 +84,23 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityInvToMbAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                if (dy<0 && !mFab.isShown())
+                    mFab.show();
+                else if(dy>0 && mFab.isShown())
+                    mFab.hide();
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
         hideProgressBar();
     }
 

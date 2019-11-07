@@ -1,13 +1,19 @@
 package co.id.cakap.ui.dashboard.restock.restockReceiveStock;
 
+import java.util.ArrayList;
+
+import co.id.cakap.data.RestockReceiveStockData;
+import co.id.cakap.data.RestockReqInvoiceData;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoiceContract;
 
 public class RestockReceiveStockPresenter implements RestockReceiveStockContract.UserActionListener {
-    private RestockReceiveStockContract.View mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
+    private static RestockReceiveStockContract.View mView;
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
+
+    private ArrayList<RestockReceiveStockData> arrayList;
 
     public RestockReceiveStockPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -20,6 +26,17 @@ public class RestockReceiveStockPresenter implements RestockReceiveStockContract
 
     @Override
     public void getData() {
-
+        arrayList = new ArrayList<>();
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
+        mView.setAdapter(arrayList);
     }
 }

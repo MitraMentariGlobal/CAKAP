@@ -7,10 +7,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Keep;
 
 import lombok.Data;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -19,18 +19,10 @@ import lombok.Data;
 
 @Data
 @Entity
-public class ActivityCashbillData implements Parcelable {
+public class RestockReqInvoiceData implements Parcelable {
     @SerializedName("transaction_id")
     @Expose
     private String transaction_id;
-
-    @SerializedName("member_id")
-    @Expose
-    private String member_id;
-
-    @SerializedName("name")
-    @Expose
-    private String name;
 
     @SerializedName("total_amount")
     @Expose
@@ -44,54 +36,43 @@ public class ActivityCashbillData implements Parcelable {
     @Expose
     private String date;
 
+    @SerializedName("status")
+    @Expose
+    private String status;
+
     @Keep
-    public ActivityCashbillData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date) {
+    public RestockReqInvoiceData(String transaction_id, String total_amount, String total_pv, String date, String status) {
         this.transaction_id = transaction_id;
-        this.member_id = member_id;
-        this.name = name;
         this.total_amount = total_amount;
         this.total_pv = total_pv;
         this.date = date;
+        this.status = status;
     }
 
-    protected ActivityCashbillData(Parcel in) {
+    protected RestockReqInvoiceData(Parcel in) {
         transaction_id = in.readString();
-        member_id = in.readString();
-        name = in.readString();
         total_amount = in.readString();
         total_pv = in.readString();
         date = in.readString();
+        status = in.readString();
     }
 
-    @Generated(hash = 998928684)
-    public ActivityCashbillData() {
-    }
-
-    public static final Creator<ActivityCashbillData> CREATOR = new Creator<ActivityCashbillData>() {
-        @Override
-        public ActivityCashbillData createFromParcel(Parcel in) {
-            return new ActivityCashbillData(in);
-        }
-
-        @Override
-        public ActivityCashbillData[] newArray(int size) {
-            return new ActivityCashbillData[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+    @Generated(hash = 1846228108)
+    public RestockReqInvoiceData() {
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(transaction_id);
-        dest.writeString(member_id);
-        dest.writeString(name);
         dest.writeString(total_amount);
         dest.writeString(total_pv);
         dest.writeString(date);
+        dest.writeString(status);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public String getTransaction_id() {
@@ -100,22 +81,6 @@ public class ActivityCashbillData implements Parcelable {
 
     public void setTransaction_id(String transaction_id) {
         this.transaction_id = transaction_id;
-    }
-
-    public String getMember_id() {
-        return this.member_id;
-    }
-
-    public void setMember_id(String member_id) {
-        this.member_id = member_id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTotal_amount() {
@@ -141,4 +106,24 @@ public class ActivityCashbillData implements Parcelable {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public static final Creator<RestockReqInvoiceData> CREATOR = new Creator<RestockReqInvoiceData>() {
+        @Override
+        public RestockReqInvoiceData createFromParcel(Parcel in) {
+            return new RestockReqInvoiceData(in);
+        }
+
+        @Override
+        public RestockReqInvoiceData[] newArray(int size) {
+            return new RestockReqInvoiceData[size];
+        }
+    };
 }

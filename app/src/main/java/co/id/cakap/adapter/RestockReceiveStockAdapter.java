@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,19 +15,20 @@ import java.util.List;
 
 import butterknife.OnClick;
 import co.id.cakap.R;
-import co.id.cakap.data.ActivityReqInvMbData;
+import co.id.cakap.data.RestockReceiveStockData;
+import co.id.cakap.data.RestockReqInvoiceData;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
  * Android Developer
  */
 
-public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInvMbAdapter.ViewHolder> {
-    private List<ActivityReqInvMbData> mResultData;
+public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockReceiveStockAdapter.ViewHolder> {
+    private List<RestockReceiveStockData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public ActivityReqInvMbAdapter(List<ActivityReqInvMbData> resultData, Context context){
+    public RestockReceiveStockAdapter(List<RestockReceiveStockData> resultData, Context context){
         mResultData = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -35,25 +37,19 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_list_activity, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_list_restock, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ActivityReqInvMbData activityReqInvMbData = mResultData.get(position);
+        RestockReceiveStockData restockReceiveStockData = mResultData.get(position);
 
-        holder.mTotalPv.setText(activityReqInvMbData.getTotal_pv());
-        holder.mTransactionId.setText(activityReqInvMbData.getTransaction_id());
-        holder.mDate.setText(activityReqInvMbData.getDate());
-        holder.mMemberId.setText(activityReqInvMbData.getMember_id());
-        holder.mTotalAmount.setText(activityReqInvMbData.getTotal_amount());
-
-        holder.mItemCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Reject", Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.mStatus.setVisibility(View.GONE);
+        holder.mTotalPv.setText(restockReceiveStockData.getTotal_pv());
+        holder.mTransactionId.setText(restockReceiveStockData.getTransaction_id());
+        holder.mDate.setText(restockReceiveStockData.getDate());
+        holder.mTotalAmount.setText(restockReceiveStockData.getTotal_amount());
 
         holder.mItemVerified.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -72,10 +68,8 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
         TextView mTotalPv;
         TextView mTransactionId;
         TextView mDate;
-        TextView mMemberId;
-        TextView mName;
+        TextView mStatus;
         TextView mTotalAmount;
-        ImageView mItemCancel;
         ImageView mItemVerified;
 
         public ViewHolder(View itemView) {
@@ -83,10 +77,8 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
             mTotalPv = itemView.findViewById(R.id.txt_total_pv);
             mTransactionId = itemView.findViewById(R.id.txt_transaction_id);
             mDate = itemView.findViewById(R.id.txt_date);
-            mMemberId = itemView.findViewById(R.id.txt_member_id);
-            mName = itemView.findViewById(R.id.txt_name);
             mTotalAmount = itemView.findViewById(R.id.txt_total_amount);
-            mItemCancel = itemView.findViewById(R.id.item_cancel);
+            mStatus = itemView.findViewById(R.id.txt_status);
             mItemVerified = itemView.findViewById(R.id.item_verified);
         }
 

@@ -6,13 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityCashbillData;
+import co.id.cakap.ui.login.LoginActivity;
+import co.id.cakap.utils.Logger;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -47,6 +52,12 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
         holder.mDate.setText(activityCashbillData.getDate());
         holder.mMemberId.setText(activityCashbillData.getMember_id());
         holder.mTotalAmount.setText(activityCashbillData.getTotal_amount());
+
+        holder.mItemCancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Cancel", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -62,6 +73,7 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
         TextView mMemberId;
         TextView mName;
         TextView mTotalAmount;
+        ImageView mItemCancel;
         ImageView mItemVerified;
 
         public ViewHolder(View itemView) {
@@ -72,7 +84,13 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
             mMemberId = itemView.findViewById(R.id.txt_member_id);
             mName = itemView.findViewById(R.id.txt_name);
             mTotalAmount = itemView.findViewById(R.id.txt_total_amount);
+            mItemCancel = itemView.findViewById(R.id.item_cancel);
             mItemVerified = itemView.findViewById(R.id.item_verified);
+        }
+
+        @OnClick(R.id.relative_parent)
+        public void openDetail() {
+
         }
     }
 }

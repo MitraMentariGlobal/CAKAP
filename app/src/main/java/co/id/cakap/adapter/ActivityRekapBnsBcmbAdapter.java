@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityRekapBnsBcmbData;
 import co.id.cakap.data.ActivityReqInvMbData;
@@ -65,6 +66,11 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
             mName = itemView.findViewById(R.id.txt_name);
             mPhoneNumber = itemView.findViewById(R.id.txt_phone_number);
             mAmount = itemView.findViewById(R.id.txt_amount);
+        }
+
+        @OnClick(R.id.relative_parent)
+        public void openDetail() {
+
         }
     }
 }

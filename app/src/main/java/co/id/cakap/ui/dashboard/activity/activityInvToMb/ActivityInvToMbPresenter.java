@@ -8,9 +8,9 @@ import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 
 public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserActionListener {
-    private ActivityInvToMbContract.View mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
+    private static ActivityInvToMbContract.View mView;
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
 
     private ArrayList<ActivityInvToMbData> arrayList;
 
