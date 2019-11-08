@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
@@ -21,6 +23,9 @@ import co.id.cakap.di.module.MainActivityModule;
 public class NotificationFragment extends Fragment implements NotificationContract.View {
     @Inject
     NotificationPresenter mNotificationPresenter;
+
+    @BindView(R.id.title)
+    TextView mTitle;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -52,6 +57,8 @@ public class NotificationFragment extends Fragment implements NotificationContra
     public void initializeData() {
         mUserActionListener = mNotificationPresenter;
         mNotificationPresenter.setView(this);
+
+        mTitle.setText(getContext().getResources().getString(R.string.notification).toUpperCase());
     }
 
     @Override

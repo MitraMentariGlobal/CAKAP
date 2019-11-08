@@ -85,7 +85,7 @@ public class RestockReqInvoiceAdapter extends RecyclerView.Adapter<RestockReqInv
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new RestockReqInvoicePresenter().getView().openDetailTransaction();
+            new RestockReqInvoicePresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
         }
     }
 }

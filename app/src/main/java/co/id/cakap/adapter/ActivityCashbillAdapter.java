@@ -131,7 +131,7 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityCashbillPresenter().getView().openDetailTransaction();
+            new ActivityCashbillPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
         }
 
         @OnClick(R.id.item_cancel)

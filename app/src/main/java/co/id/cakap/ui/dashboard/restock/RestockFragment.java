@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,11 +18,13 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.SectionsRestockPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RestockFragment extends Fragment implements RestockContract.View {
     @Inject
@@ -33,6 +36,8 @@ public class RestockFragment extends Fragment implements RestockContract.View {
     TabLayout mTabLayout;
     @BindView(R.id.title)
     TextView mTitle;
+    @BindView(R.id.iv_add)
+    CircleImageView mIvAdd;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -70,5 +75,10 @@ public class RestockFragment extends Fragment implements RestockContract.View {
         SectionsRestockPagerAdapter sectionsRestockPagerAdapter = new SectionsRestockPagerAdapter(getContext(), getChildFragmentManager());
         mViewPager.setAdapter(sectionsRestockPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+    @OnClick(R.id.iv_add)
+    public void actionAdd(View view) {
+        Toast.makeText(getContext(), "Add Invoice", Toast.LENGTH_SHORT).show();
     }
 }

@@ -92,7 +92,7 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new RestockReceiveStockPresenter().getView().openDetailTransaction();
+            new RestockReceiveStockPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
         }
 
         @OnClick(R.id.item_verified)

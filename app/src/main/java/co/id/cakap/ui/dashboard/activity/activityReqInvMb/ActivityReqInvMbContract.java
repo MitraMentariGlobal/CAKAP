@@ -12,7 +12,7 @@ public class ActivityReqInvMbContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void openDetailTransaction();
+        void openDetailTransaction(String transactionId);
     }
 
     public interface UserActionListener {

@@ -11,17 +11,40 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-        <TextView
-            android:id="@+id/title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
             android:background="@color/colorPrimaryDark"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            style="@style/TexViewFont"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_add"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/appbar_padding"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/ic_plus_symbol"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"

@@ -31,6 +31,7 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.RestockInvoiceAdapter;
 import co.id.cakap.data.RestockInvoiceData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
@@ -123,9 +124,10 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
     }
 
     @Override
-    public void openDetailTransaction() {
+    public void openDetailTransaction(String transactionId) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
-//        intent.putExtra("", "");
+        intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.invoice));
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
         startActivity(intent);
     }
 

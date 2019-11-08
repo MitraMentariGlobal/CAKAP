@@ -134,9 +134,10 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     }
 
     @Override
-    public void openDetailTransaction() {
+    public void openDetailTransaction(String transactionId) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
-//        intent.putExtra("", "");
+        intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.cashbill));
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
         startActivity(intent);
     }
 

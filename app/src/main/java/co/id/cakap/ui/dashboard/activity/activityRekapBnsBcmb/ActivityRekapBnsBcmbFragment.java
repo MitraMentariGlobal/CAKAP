@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,12 +32,13 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.ActivityRekapBnsBcmbAdapter;
 import co.id.cakap.data.ActivityRekapBnsBcmbData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbContract;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRekapBnsBcmbContract.View {
+public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRekapBnsBcmbContract.View, AdapterView.OnItemSelectedListener {
     @Inject
     ActivityRekapBnsBcmbPresenter mActivityRekapBnsBcmbPresenter;
 
@@ -40,11 +46,16 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
     RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.month_spinner)
+    Spinner mMonthSpinner;
+    @BindView(R.id.year_spinner)
+    Spinner mYearSpinner;
 
     private View mView;
     private Unbinder mUnbinder;
     private ActivityRekapBnsBcmbAdapter mListAdapter;
     private ActivityRekapBnsBcmbContract.UserActionListener mUserActionListener;
+    private List<String> mYearData = new ArrayList<>();
 
     @Nullable
     @Override
@@ -73,6 +84,7 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
         mUserActionListener = mActivityRekapBnsBcmbPresenter;
         mActivityRekapBnsBcmbPresenter.setView(this);
         mUserActionListener.getData();
+        initSpinner();
     }
 
     @Override
@@ -101,9 +113,44 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
     }
 
     @Override
-    public void openDetailTransaction() {
+    public void openDetailTransaction(String transactionId) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
-//        intent.putExtra("", "");
+        intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.rekap_bns_bcmb));
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
         startActivity(intent);
+    }
+
+    public void initSpinner() {
+        mMonthSpinner.setOnItemSelectedListener(this);
+        mYearSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> monthAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.month_array, R.layout.item_spinner);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mMonthSpinner.setAdapter(monthAdapter);
+
+        mYearData.add(String.valueOf(getResources().getInteger(R.integer.minimum_year)));
+        Calendar calendar = Calendar.getInstance();
+        int now = calendar.get(Calendar.YEAR);
+        int totalLoop = now - getResources().getInteger(R.integer.minimum_year);
+
+        for (int i = 0; i < totalLoop; i++) {
+            mYearData.add(String.valueOf(now - 1));
+        }
+
+        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(getActivity(),
+                R.layout.item_spinner, android.R.id.text1, mYearData);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mYearSpinner.setAdapter(yearAdapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

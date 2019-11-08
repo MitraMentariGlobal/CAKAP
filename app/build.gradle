@@ -158,5 +158,8 @@ dependencies {
 
     //Over scroll
     implementation 'me.everything:overscroll-decor-android:1.0.4'
+
+    //Expandable Layout
+    implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
 }
 apply plugin: 'com.google.gms.google-services'

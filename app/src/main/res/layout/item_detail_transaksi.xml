@@ -22,7 +22,6 @@
             android:id="@+id/detailData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <LinearLayout
@@ -31,28 +30,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txt_transaction_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
-                    android:text="INV - 123123123123123"
-                    style="@style/TexViewFont" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_member_id"
+                    android:id="@+id/txt_item_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
                     android:textColor="@color/curated"
-                    android:text="BC123"
+                    android:text="BT01"
                     style="@style/TexViewFont" />
 
                 <TextView
@@ -64,12 +47,12 @@
                     style="@style/TexViewFont" />
 
                 <TextView
-                    android:id="@+id/txt_name"
+                    android:id="@+id/txt_item_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
                     android:textColor="@color/curated"
-                    android:text="Nama Sub Stockist"
+                    android:text="Blesstea Botol"
                     style="@style/TexViewFont" />
             </LinearLayout>
 
@@ -80,21 +63,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txt_total_amount"
+                    android:id="@+id/txt_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
                     android:textColor="@color/curated"
-                    android:text="IDR 100.000.000"
+                    android:text="IDR 120.000"
                     style="@style/TexViewFont" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
-                    android:text=" / "
-                    style="@style/TexViewFont" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txt_total_pv"
@@ -102,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
                     android:textColor="@color/curated"
-                    android:text="123"
+                    android:text="25"
                     style="@style/TexViewFont" />
 
                 <TextView
@@ -118,40 +101,96 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textColor="@color/curated"
+                    android:text="Qty : "
+                    style="@style/TexViewFont" />
+
+                <TextView
+                    android:id="@+id/txt_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textColor="@color/curated"
+                    android:text="10"
+                    style="@style/TexViewFont" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:gravity="end"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
-                android:textSize="@dimen/text_12"
-                android:textColor="@color/curated"
-                android:text="28 Jan 2020"
-                style="@style/TexViewFont" />
-
             <LinearLayout
-                android:id="@+id/linear_action"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/radius_10"
+                android:gravity="end"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/item_cancel"
-                    android:background="@drawable/ic_cancel"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:text="@string/subtotal"
+                    style="@style/TexViewFont" />
+            </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/item_verified"
-                    android:background="@drawable/ic_verified"
-                    android:layout_marginStart="@dimen/radius_10"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_sub_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textColor="@color/curated"
+                    android:text="IDR 1.200.000"
+                    style="@style/TexViewFont" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_sub_total_pv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textColor="@color/curated"
+                    android:text="250"
+                    style="@style/TexViewFont" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textColor="@color/curated"
+                    android:text="pv"
+                    style="@style/TexViewFont" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

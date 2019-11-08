@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityInvToMbData;
+import co.id.cakap.data.DetailTransaksiData;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
 
 /**
@@ -23,12 +24,12 @@ import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresente
  * Android Developer
  */
 
-public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMbAdapter.ViewHolder> {
-    private List<ActivityInvToMbData> mResultData;
+public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksiAdapter.ViewHolder> {
+    private List<DetailTransaksiData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public ActivityInvToMbAdapter(List<ActivityInvToMbData> resultData, Context context){
+    public DetailTransaksiAdapter(List<DetailTransaksiData> resultData, Context context){
         mResultData = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -37,21 +38,22 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_list_activity, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_detail_transaksi, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ActivityInvToMbData activityInvToMbData = mResultData.get(position);
+        DetailTransaksiData detailTransaksiData = mResultData.get(position);
 
         holder.context = mContext;
-        holder.mTotalPv.setText(activityInvToMbData.getTotal_pv());
-        holder.mTransactionId.setText(activityInvToMbData.getTransaction_id());
-        holder.mDate.setText(activityInvToMbData.getDate());
-        holder.mMemberId.setText(activityInvToMbData.getMember_id());
-        holder.mName.setText(activityInvToMbData.getName());
-        holder.mTotalAmount.setText(activityInvToMbData.getTotal_amount());
+        holder.mItemCode.setText(detailTransaksiData.getItem_code());
+        holder.mItemName.setText(detailTransaksiData.getItem_name());
+        holder.mPrice.setText(detailTransaksiData.getPrice());
+        holder.mTotalPv.setText(detailTransaksiData.getPv());
+        holder.mQty.setText(detailTransaksiData.getQty());
+        holder.mSubTotal.setText(detailTransaksiData.getSub_total());
+        holder.mSubTotalPv.setText(detailTransaksiData.getSub_total_pv());
     }
 
     @Override
@@ -61,33 +63,26 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.txt_item_code)
+        TextView mItemCode;
+        @BindView(R.id.txt_item_name)
+        TextView mItemName;
+        @BindView(R.id.txt_price)
+        TextView mPrice;
         @BindView(R.id.txt_total_pv)
         TextView mTotalPv;
-        @BindView(R.id.txt_transaction_id)
-        TextView mTransactionId;
-        @BindView(R.id.txt_date)
-        TextView mDate;
-        @BindView(R.id.txt_member_id)
-        TextView mMemberId;
-        @BindView(R.id.txt_name)
-        TextView mName;
-        @BindView(R.id.txt_total_amount)
-        TextView mTotalAmount;
-        @BindView(R.id.linear_action)
-        LinearLayout mLinearAction;
+        @BindView(R.id.txt_qty)
+        TextView mQty;
+        @BindView(R.id.txt_sub_total)
+        TextView mSubTotal;
+        @BindView(R.id.txt_sub_total_pv)
+        TextView mSubTotalPv;
 
         Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-            mLinearAction.setVisibility(View.GONE);
-        }
-
-        @OnClick(R.id.relative_parent)
-        public void openDetail() {
-            new ActivityInvToMbPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
         }
     }
 }

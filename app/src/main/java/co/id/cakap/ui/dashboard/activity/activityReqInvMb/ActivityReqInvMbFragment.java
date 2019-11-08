@@ -27,6 +27,7 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.ActivityReqInvMbAdapter;
 import co.id.cakap.data.ActivityReqInvMbData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbContract;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
@@ -101,9 +102,10 @@ public class ActivityReqInvMbFragment extends Fragment implements ActivityReqInv
     }
 
     @Override
-    public void openDetailTransaction() {
+    public void openDetailTransaction(String transactionId) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
-//        intent.putExtra("", "");
+        intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.req_invoice_mb));
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
         startActivity(intent);
     }
 }

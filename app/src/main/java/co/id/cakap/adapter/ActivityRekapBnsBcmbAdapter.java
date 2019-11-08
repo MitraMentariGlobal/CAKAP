@@ -77,7 +77,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityRekapBnsBcmbPresenter().getView().openDetailTransaction();
+            new ActivityRekapBnsBcmbPresenter().getView().openDetailTransaction(mMemberId.getText().toString());
         }
     }
 }

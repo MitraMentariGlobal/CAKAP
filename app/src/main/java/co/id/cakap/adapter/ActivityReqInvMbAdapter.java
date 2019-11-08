@@ -88,7 +88,7 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityReqInvMbPresenter().getView().openDetailTransaction();
+            new ActivityReqInvMbPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
         }
 
         @OnClick(R.id.item_cancel)

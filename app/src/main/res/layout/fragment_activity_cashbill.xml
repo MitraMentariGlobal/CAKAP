@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/radius_10"
-            android:background="@drawable/edit_search_style"
+            android:background="@drawable/search_background_style"
             android:orientation="horizontal">
 
             <EditText

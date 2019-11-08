@@ -121,7 +121,7 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
             case R.id.restock_menu:
                 fragment = new RestockFragment();
                 break;
-            case R.id.inbox_menu:
+            case R.id.notification_menu:
                 fragment = new NotificationFragment();
                 break;
             case R.id.account_menu:

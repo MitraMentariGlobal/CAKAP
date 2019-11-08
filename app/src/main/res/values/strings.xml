@@ -12,7 +12,7 @@
     <string name="home">Home</string>
     <string name="activity">Activity</string>
     <string name="restock">Restock</string>
-    <string name="inbox">Notifications</string>
+    <string name="notification">Notifications</string>
     <string name="account">Account</string>
     <string name="ewallet">E-Wallet</string>
     <string name="idr_upper">IDR</string>
@@ -31,11 +31,29 @@
     <string name="req_invoice">Req Invoice</string>
     <string name="receive_stock">Receive Stock</string>
     <string name="search">Search</string>
+    <string name="periode">Periode</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="daftar_produk">Daftar Produk</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>
 
     <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
     <item name="root_layout" type="id" />
+
+    <string-array name="month_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
 </resources>
