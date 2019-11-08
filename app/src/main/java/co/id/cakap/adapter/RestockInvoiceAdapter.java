@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.data.RestockInvoiceData;
+import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoicePresenter;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -43,7 +46,7 @@ public class RestockInvoiceAdapter extends RecyclerView.Adapter<RestockInvoiceAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         RestockInvoiceData restockInvoiceData = mResultData.get(position);
 
-        holder.mLinearAction.setVisibility(View.GONE);
+        holder.context = mContext;
         holder.mTotalPv.setText(restockInvoiceData.getTotal_pv());
         holder.mTransactionId.setText(restockInvoiceData.getTransaction_id());
         holder.mDate.setText(restockInvoiceData.getDate());
@@ -58,26 +61,31 @@ public class RestockInvoiceAdapter extends RecyclerView.Adapter<RestockInvoiceAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.txt_total_pv)
         TextView mTotalPv;
+        @BindView(R.id.txt_transaction_id)
         TextView mTransactionId;
+        @BindView(R.id.txt_date)
         TextView mDate;
+        @BindView(R.id.txt_status)
         TextView mStatus;
+        @BindView(R.id.txt_total_amount)
         TextView mTotalAmount;
+        @BindView(R.id.linear_action)
         LinearLayout mLinearAction;
+
+        Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTotalPv = itemView.findViewById(R.id.txt_total_pv);
-            mTransactionId = itemView.findViewById(R.id.txt_transaction_id);
-            mDate = itemView.findViewById(R.id.txt_date);
-            mTotalAmount = itemView.findViewById(R.id.txt_total_amount);
-            mStatus = itemView.findViewById(R.id.txt_status);
-            mLinearAction = itemView.findViewById(R.id.linear_action);
+            ButterKnife.bind(this, itemView);
+
+            mLinearAction.setVisibility(View.GONE);
         }
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-
+            new RestockInvoicePresenter().getView().openDetailTransaction();
         }
     }
 }

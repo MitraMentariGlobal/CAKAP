@@ -1,10 +1,12 @@
 package co.id.cakap.ui.dashboard.restock.restockInvoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +33,7 @@ import co.id.cakap.data.RestockInvoiceData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
+import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class RestockInvoiceFragment extends Fragment implements RestockInvoiceContract.View {
@@ -112,6 +115,18 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
     @Override
     public void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void openDetailTransaction() {
+        Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
+//        intent.putExtra("", "");
+        startActivity(intent);
     }
 
     @OnClick(R.id.fab)

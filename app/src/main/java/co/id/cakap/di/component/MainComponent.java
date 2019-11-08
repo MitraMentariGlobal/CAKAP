@@ -9,14 +9,15 @@ import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbFragment
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbFragment;
 import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbFragment;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
-import co.id.cakap.ui.dashboard.inbox.InboxFragment;
+import co.id.cakap.ui.dashboard.notification.NotificationFragment;
 import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoiceFragment;
 import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockFragment;
 import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoiceFragment;
+import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.login.LoginActivity;
-import co.id.cakap.ui.splash_screen.SplashScreenActivity;
+import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 import dagger.Subcomponent;
 
 /**
@@ -32,10 +33,12 @@ public interface MainComponent {
     SplashScreenActivity inject(SplashScreenActivity splashScreenActivity);
     LoginActivity inject(LoginActivity loginActivity);
     HomeWebViewActivity inject(HomeWebViewActivity homeWebViewActivity);
+    DetailTransactionActivity inject(DetailTransactionActivity detailTransactionActivity);
+
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);
     ActivityFragment inject(ActivityFragment activityFragment);
-    InboxFragment inject(InboxFragment inboxFragment);
+    NotificationFragment inject(NotificationFragment notificationFragment);
     RestockFragment inject(RestockFragment restockFragment);
     ActivityCashbillFragment inject(ActivityCashbillFragment activityCashbillFragment);
     ActivityInvToMbFragment inject(ActivityInvToMbFragment activityInvToMbFragment);

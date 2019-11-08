@@ -1,9 +1,10 @@
-package co.id.cakap.ui.dashboard.inbox;
+package co.id.cakap.ui.dashboard.notification;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,19 +18,19 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 
-public class InboxFragment extends Fragment implements InboxContract.View {
+public class NotificationFragment extends Fragment implements NotificationContract.View {
     @Inject
-    InboxPresenter mInboxPresenter;
+    NotificationPresenter mNotificationPresenter;
 
     private View mView;
     private Unbinder mUnbinder;
-    private InboxContract.UserActionListener mUserActionListener;
+    private NotificationContract.UserActionListener mUserActionListener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mView == null) {
-            mView = inflater.inflate(R.layout.fragment_inbox, container, false);
+            mView = inflater.inflate(R.layout.fragment_notification, container, false);
             mUnbinder = ButterKnife.bind(this, mView);
 
             setupActivityComponent();
@@ -49,7 +50,22 @@ public class InboxFragment extends Fragment implements InboxContract.View {
 
     @Override
     public void initializeData() {
-        mUserActionListener = mInboxPresenter;
-        mInboxPresenter.setView(this);
+        mUserActionListener = mNotificationPresenter;
+        mNotificationPresenter.setView(this);
+    }
+
+    @Override
+    public void showProgressBar() {
+
+    }
+
+    @Override
+    public void hideProgressBar() {
+
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

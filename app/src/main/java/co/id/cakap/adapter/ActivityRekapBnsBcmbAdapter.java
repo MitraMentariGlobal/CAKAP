@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityRekapBnsBcmbData;
 import co.id.cakap.data.ActivityReqInvMbData;
+import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbPresenter;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -42,6 +45,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
     public void onBindViewHolder(ViewHolder holder, int position) {
         ActivityRekapBnsBcmbData activityRekapBnsBcmbData = mResultData.get(position);
 
+        holder.context = mContext;
         holder.mMemberId.setText(activityRekapBnsBcmbData.getMember_id());
         holder.mName.setText(activityRekapBnsBcmbData.getName());
         holder.mPhoneNumber.setText(activityRekapBnsBcmbData.getMobile_phone());
@@ -55,22 +59,25 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.txt_member_id)
         TextView mMemberId;
+        @BindView(R.id.txt_name)
         TextView mName;
+        @BindView(R.id.txt_phone_number)
         TextView mPhoneNumber;
+        @BindView(R.id.txt_amount)
         TextView mAmount;
+
+        Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mMemberId = itemView.findViewById(R.id.txt_member_id);
-            mName = itemView.findViewById(R.id.txt_name);
-            mPhoneNumber = itemView.findViewById(R.id.txt_phone_number);
-            mAmount = itemView.findViewById(R.id.txt_amount);
+            ButterKnife.bind(this, itemView);
         }
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-
+            new ActivityRekapBnsBcmbPresenter().getView().openDetailTransaction();
         }
     }
 }

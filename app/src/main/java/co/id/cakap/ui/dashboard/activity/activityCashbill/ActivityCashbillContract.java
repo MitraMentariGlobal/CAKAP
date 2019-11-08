@@ -10,6 +10,8 @@ public class ActivityCashbillContract {
         void setAdapter(List<ActivityCashbillData> resultData);
         void showProgressBar();
         void hideProgressBar();
+        void setErrorResponse(String message);
+        void openDetailTransaction();
     }
 
     public interface UserActionListener {

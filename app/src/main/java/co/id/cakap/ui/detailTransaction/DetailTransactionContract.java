@@ -1,6 +1,6 @@
-package co.id.cakap.ui.dashboard.account;
+package co.id.cakap.ui.detailTransaction;
 
-public class AccountContract {
+public class DetailTransactionContract {
     public interface View {
         void initializeData();
         void showProgressBar();
@@ -9,6 +9,6 @@ public class AccountContract {
     }
 
     public interface UserActionListener {
-
+        void getData();
     }
 }

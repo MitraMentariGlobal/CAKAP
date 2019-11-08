@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.restock.restockReceiveStock;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import co.id.cakap.data.RestockReceiveStockData;
@@ -9,7 +10,7 @@ import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoiceContract;
 
 public class RestockReceiveStockPresenter implements RestockReceiveStockContract.UserActionListener {
-    private static RestockReceiveStockContract.View mView;
+    private static WeakReference<RestockReceiveStockContract.View> mView;
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
 
@@ -20,8 +21,20 @@ public class RestockReceiveStockPresenter implements RestockReceiveStockContract
         mDataModel = dataModel;
     }
 
+    public RestockReceiveStockPresenter() {
+
+    }
+
     public void setView(RestockReceiveStockContract.View view){
-        mView = view;
+        mView = new WeakReference<>(view);
+    }
+
+    public RestockReceiveStockContract.View getView() throws NullPointerException {
+        if (mView != null){
+            return mView.get();
+        } else{
+            throw new NullPointerException("View is unavailable");
+        }
     }
 
     @Override
@@ -37,6 +50,6 @@ public class RestockReceiveStockPresenter implements RestockReceiveStockContract
         arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
         arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
         arrayList.add(new RestockReceiveStockData("INV - 789789789789789", "IDR 100.000.000", "123", "28 Jan 2020"));
-        mView.setAdapter(arrayList);
+        getView().setAdapter(arrayList);
     }
 }

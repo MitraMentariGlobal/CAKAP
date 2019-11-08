@@ -1,6 +1,6 @@
-package co.id.cakap.ui.dashboard.account;
+package co.id.cakap.ui.dashboard.notification;
 
-public class AccountContract {
+public class NotificationContract {
     public interface View {
         void initializeData();
         void showProgressBar();

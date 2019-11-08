@@ -38,9 +38,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import co.id.cakap.R;
 import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.login.LoginActivity;
-import co.id.cakap.ui.splash_screen.SplashScreenActivity;
-import co.id.cakap.utils.Logger;
+import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 
 /**
  * NOTE: There can only be one service in each app that receives FCM messages. If multiple

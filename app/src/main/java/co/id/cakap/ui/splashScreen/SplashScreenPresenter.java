@@ -1,14 +1,10 @@
-package co.id.cakap.ui.splash_screen;
+package co.id.cakap.ui.splashScreen;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.ResultDataLogin;
-import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
-import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseSession;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.utils.Logger;

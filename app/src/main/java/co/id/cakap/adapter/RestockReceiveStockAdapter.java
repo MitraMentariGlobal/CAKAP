@@ -13,10 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.RestockReceiveStockData;
 import co.id.cakap.data.RestockReqInvoiceData;
+import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockPresenter;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -45,7 +48,7 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
     public void onBindViewHolder(ViewHolder holder, int position) {
         RestockReceiveStockData restockReceiveStockData = mResultData.get(position);
 
-        holder.mStatus.setVisibility(View.GONE);
+        holder.context = mContext;
         holder.mTotalPv.setText(restockReceiveStockData.getTotal_pv());
         holder.mTransactionId.setText(restockReceiveStockData.getTransaction_id());
         holder.mDate.setText(restockReceiveStockData.getDate());
@@ -65,26 +68,36 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.txt_total_pv)
         TextView mTotalPv;
+        @BindView(R.id.txt_transaction_id)
         TextView mTransactionId;
+        @BindView(R.id.txt_date)
         TextView mDate;
+        @BindView(R.id.txt_status)
         TextView mStatus;
+        @BindView(R.id.txt_total_amount)
         TextView mTotalAmount;
+        @BindView(R.id.item_verified)
         ImageView mItemVerified;
+
+        Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTotalPv = itemView.findViewById(R.id.txt_total_pv);
-            mTransactionId = itemView.findViewById(R.id.txt_transaction_id);
-            mDate = itemView.findViewById(R.id.txt_date);
-            mTotalAmount = itemView.findViewById(R.id.txt_total_amount);
-            mStatus = itemView.findViewById(R.id.txt_status);
-            mItemVerified = itemView.findViewById(R.id.item_verified);
+            ButterKnife.bind(this, itemView);
+
+            mStatus.setVisibility(View.GONE);
         }
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
+            new RestockReceiveStockPresenter().getView().openDetailTransaction();
+        }
 
+        @OnClick(R.id.item_verified)
+        public void actionApprove() {
+            Toast.makeText(context, "Approve", Toast.LENGTH_SHORT).show();
         }
     }
 }

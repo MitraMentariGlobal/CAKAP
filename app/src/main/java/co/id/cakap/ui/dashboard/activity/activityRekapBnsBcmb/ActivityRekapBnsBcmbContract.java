@@ -11,6 +11,8 @@ public class ActivityRekapBnsBcmbContract {
         void setAdapter(List<ActivityRekapBnsBcmbData> resultData);
         void showProgressBar();
         void hideProgressBar();
+        void setErrorResponse(String message);
+        void openDetailTransaction();
     }
 
     public interface UserActionListener {

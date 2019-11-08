@@ -3,7 +3,6 @@ package co.id.cakap.ui.dashboard;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.ui.dashboard.account.AccountFragment;
-import co.id.cakap.ui.dashboard.inbox.InboxFragment;
+import co.id.cakap.ui.dashboard.notification.NotificationFragment;
 import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
 import co.id.cakap.ui.dashboard.activity.ActivityFragment;
@@ -123,7 +122,7 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
                 fragment = new RestockFragment();
                 break;
             case R.id.inbox_menu:
-                fragment = new InboxFragment();
+                fragment = new NotificationFragment();
                 break;
             case R.id.account_menu:
                 fragment = new AccountFragment();

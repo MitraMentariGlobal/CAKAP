@@ -1,6 +1,4 @@
-package co.id.cakap.ui.splash_screen;
-
-import co.id.cakap.network.ApiResponseSession;
+package co.id.cakap.ui.splashScreen;
 
 public class SplashScreenContract {
     public interface View{

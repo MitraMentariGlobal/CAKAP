@@ -6,7 +6,9 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,21 +21,25 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.CustomViewPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.utils.widget.CustomRecyclerViewPager;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
     @Inject
     HomePresenter mHomePresenter;
 
     @BindView(R.id.viewPager)
-    CustomRecyclerViewPager mViewPager;
+    CustomRecyclerViewPager mRecyclerView;
     @BindView(R.id.running_text)
     TextView mRunningText;
+    @BindView(R.id.main_progress_bar)
+    ProgressBar mProgressBar;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -75,7 +81,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
                 "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg"
         );
         CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(metrics, metalList, getContext());
-        mViewPager.setAdapter(customViewPagerAdapter);
+        mRecyclerView.setAdapter(customViewPagerAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
+
+        hideProgressBar();
     }
 
     @Override
@@ -89,12 +98,12 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void showProgressBar() {
-
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        mProgressBar.setVisibility(View.GONE);
     }
 
     private DisplayMetrics getDisplayMetrics() {
@@ -103,5 +112,30 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         display.getMetrics(metrics);
 
         return metrics;
+    }
+
+    @OnClick(R.id.relative_registration)
+    public void homeRegistration(View view) {
+        Toast.makeText(getContext(), "Registration", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.relative_cashbill)
+    public void homeCashbill(View view) {
+        Toast.makeText(getContext(), "Cashbill", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.relative_invoice_to_mb)
+    public void homeInvoiceToMb(View view) {
+        Toast.makeText(getContext(), "Invoice To MB", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.relative_req_inv_to_company)
+    public void homeReqInvToCompany(View view) {
+        Toast.makeText(getContext(), "Req Invoie To Company", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.relative_req_inv_to_bc)
+    public void homeReqInvToBc(View view) {
+        Toast.makeText(getContext(), "Req Invoie To BC", Toast.LENGTH_SHORT).show();
     }
 }

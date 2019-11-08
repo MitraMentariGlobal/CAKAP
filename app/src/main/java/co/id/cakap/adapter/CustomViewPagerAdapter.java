@@ -28,6 +28,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.utils.widget.CustomRecyclerViewPager;
 
@@ -54,6 +56,8 @@ public class CustomViewPagerAdapter extends CustomRecyclerViewPager.CustomAdapte
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
 
+        holder.context = mContext;
+
         Picasso.with(mContext)
                 .load(dataList.get(position))
                 .into(holder.mImageView);
@@ -66,11 +70,14 @@ public class CustomViewPagerAdapter extends CustomRecyclerViewPager.CustomAdapte
 
     static class CustomViewHolder extends CustomRecyclerViewPager.CustomViewHolder {
 
+        @BindView(R.id.item_thumbnail)
         ImageView mImageView;
+
+        Context context;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.item_thumbnail);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

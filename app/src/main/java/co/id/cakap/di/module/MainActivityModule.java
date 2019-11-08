@@ -25,8 +25,8 @@ import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbFragme
 import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbPresenter;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
 import co.id.cakap.ui.dashboard.home.HomePresenter;
-import co.id.cakap.ui.dashboard.inbox.InboxFragment;
-import co.id.cakap.ui.dashboard.inbox.InboxPresenter;
+import co.id.cakap.ui.dashboard.notification.NotificationFragment;
+import co.id.cakap.ui.dashboard.notification.NotificationPresenter;
 import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.restock.RestockPresenter;
 import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoiceFragment;
@@ -35,12 +35,14 @@ import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockF
 import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockPresenter;
 import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoiceFragment;
 import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoicePresenter;
+import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
+import co.id.cakap.ui.detailTransaction.DetailTransactionPresenter;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewPresenter;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.login.LoginPresenter;
-import co.id.cakap.ui.splash_screen.SplashScreenActivity;
-import co.id.cakap.ui.splash_screen.SplashScreenPresenter;
+import co.id.cakap.ui.splashScreen.SplashScreenActivity;
+import co.id.cakap.ui.splashScreen.SplashScreenPresenter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -54,9 +56,11 @@ public class MainActivityModule {
     private SplashScreenActivity splashScreenActivity;
     private LoginActivity loginActivity;
     private HomeWebViewActivity homeWebViewActivity;
+    private DetailTransactionActivity detailTransactionActivity;
+
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
-    private InboxFragment inboxFragment;
+    private NotificationFragment notificationFragment;
     private RestockFragment restockFragment;
     private AccountFragment accountFragment;
     private ActivityCashbillFragment activityCashbillFragment;
@@ -91,8 +95,8 @@ public class MainActivityModule {
         this.restockFragment = restockFragment;
     }
 
-    public MainActivityModule(InboxFragment inboxFragment) {
-        this.inboxFragment = inboxFragment;
+    public MainActivityModule(NotificationFragment notificationFragment) {
+        this.notificationFragment = notificationFragment;
     }
 
     public MainActivityModule(AccountFragment accountFragment) {
@@ -125,6 +129,10 @@ public class MainActivityModule {
 
     public MainActivityModule(RestockReqInvoiceFragment restockReqInvoiceFragment) {
         this.restockReqInvoiceFragment = restockReqInvoiceFragment;
+    }
+
+    public MainActivityModule(DetailTransactionActivity detailTransactionActivity) {
+        this.detailTransactionActivity = detailTransactionActivity;
     }
 
     @Provides
@@ -208,8 +216,8 @@ public class MainActivityModule {
 
     @Provides
     @ActivityScope
-    InboxPresenter provideInboxPresenter(MainRepository mainRepository, DataModel dataModel) {
-        return new InboxPresenter(mainRepository, dataModel);
+    NotificationPresenter provideInboxPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new NotificationPresenter(mainRepository, dataModel);
     }
 
     @Provides
@@ -258,5 +266,11 @@ public class MainActivityModule {
     @ActivityScope
     RestockInvoicePresenter provideRestockInvoicePresenter(MainRepository mainRepository, DataModel dataModel) {
         return new RestockInvoicePresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    DetailTransactionPresenter provideDetailTransactionPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new DetailTransactionPresenter(mainRepository, dataModel);
     }
 }

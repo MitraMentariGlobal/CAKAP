@@ -11,6 +11,8 @@ public class ActivityInvToMbContract {
         void setAdapter(List<ActivityInvToMbData> resultData);
         void showProgressBar();
         void hideProgressBar();
+        void setErrorResponse(String message);
+        void openDetailTransaction();
     }
 
     public interface UserActionListener {

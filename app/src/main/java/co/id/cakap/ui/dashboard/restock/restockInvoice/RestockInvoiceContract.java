@@ -10,6 +10,8 @@ public class RestockInvoiceContract {
         void setAdapter(List<RestockInvoiceData> resultData);
         void showProgressBar();
         void hideProgressBar();
+        void setErrorResponse(String message);
+        void openDetailTransaction();
     }
 
     public interface UserActionListener {

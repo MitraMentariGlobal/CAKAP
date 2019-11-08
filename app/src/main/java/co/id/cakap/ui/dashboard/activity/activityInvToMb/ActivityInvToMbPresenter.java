@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.activity.activityInvToMb;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import co.id.cakap.data.ActivityInvToMbData;
@@ -8,7 +9,7 @@ import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 
 public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserActionListener {
-    private static ActivityInvToMbContract.View mView;
+    private static WeakReference<ActivityInvToMbContract.View> mView;
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
 
@@ -19,8 +20,20 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
         mDataModel = dataModel;
     }
 
+    public ActivityInvToMbPresenter() {
+
+    }
+
     public void setView(ActivityInvToMbContract.View view){
-        mView = view;
+        mView = new WeakReference<>(view);
+    }
+
+    public ActivityInvToMbContract.View getView() throws NullPointerException {
+        if (mView != null){
+            return mView.get();
+        } else{
+            throw new NullPointerException("View is unavailable");
+        }
     }
 
     @Override
@@ -36,6 +49,6 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
         arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
         arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
         arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-        mView.setAdapter(arrayList);
+        getView().setAdapter(arrayList);
     }
 }

@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityReqInvMbData;
+import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbPresenter;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -43,23 +46,13 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
     public void onBindViewHolder(ViewHolder holder, int position) {
         ActivityReqInvMbData activityReqInvMbData = mResultData.get(position);
 
+        holder.context = mContext;
         holder.mTotalPv.setText(activityReqInvMbData.getTotal_pv());
         holder.mTransactionId.setText(activityReqInvMbData.getTransaction_id());
         holder.mDate.setText(activityReqInvMbData.getDate());
         holder.mMemberId.setText(activityReqInvMbData.getMember_id());
+        holder.mName.setText(activityReqInvMbData.getName());
         holder.mTotalAmount.setText(activityReqInvMbData.getTotal_amount());
-
-        holder.mItemCancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Reject", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        holder.mItemVerified.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Approve", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -69,30 +62,43 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.txt_total_pv)
         TextView mTotalPv;
+        @BindView(R.id.txt_transaction_id)
         TextView mTransactionId;
+        @BindView(R.id.txt_date)
         TextView mDate;
+        @BindView(R.id.txt_member_id)
         TextView mMemberId;
+        @BindView(R.id.txt_name)
         TextView mName;
+        @BindView(R.id.txt_total_amount)
         TextView mTotalAmount;
+        @BindView(R.id.item_cancel)
         ImageView mItemCancel;
+        @BindView(R.id.item_verified)
         ImageView mItemVerified;
+
+        Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTotalPv = itemView.findViewById(R.id.txt_total_pv);
-            mTransactionId = itemView.findViewById(R.id.txt_transaction_id);
-            mDate = itemView.findViewById(R.id.txt_date);
-            mMemberId = itemView.findViewById(R.id.txt_member_id);
-            mName = itemView.findViewById(R.id.txt_name);
-            mTotalAmount = itemView.findViewById(R.id.txt_total_amount);
-            mItemCancel = itemView.findViewById(R.id.item_cancel);
-            mItemVerified = itemView.findViewById(R.id.item_verified);
+            ButterKnife.bind(this, itemView);
         }
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
+            new ActivityReqInvMbPresenter().getView().openDetailTransaction();
+        }
 
+        @OnClick(R.id.item_cancel)
+        public void actionReject() {
+            Toast.makeText(context, "Reject", Toast.LENGTH_SHORT).show();
+        }
+
+        @OnClick(R.id.item_verified)
+        public void actionApprove() {
+            Toast.makeText(context, "Approve", Toast.LENGTH_SHORT).show();
         }
     }
 }

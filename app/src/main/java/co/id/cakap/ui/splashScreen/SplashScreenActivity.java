@@ -1,4 +1,4 @@
-package co.id.cakap.ui.splash_screen;
+package co.id.cakap.ui.splashScreen;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +28,7 @@ import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.utils.Logger;
 
 public class SplashScreenActivity extends AppCompatActivity implements SplashScreenContract.View{
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "SplashScreenActivity";
 
     @Inject
     SplashScreenPresenter mSplashScreenPresenter;
@@ -74,6 +74,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
+    @Override
     public void initializeData() {
         mAuth = FirebaseAuth.getInstance();
         mUserActionListener = mSplashScreenPresenter;
