@@ -30,6 +30,7 @@
     <string name="invoice">Invoice</string>
     <string name="req_invoice">Req Invoice</string>
     <string name="receive_stock">Receive Stock</string>
+    <string name="search">Search</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

@@ -2,9 +2,12 @@ package co.id.cakap.ui.dashboard.activity.activityCashbill;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -19,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -35,6 +39,7 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.account.AccountContract;
 import co.id.cakap.ui.dashboard.account.AccountPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
+import co.id.cakap.utils.Logger;
 import me.everything.android.ui.overscroll.HorizontalOverScrollBounceEffectDecorator;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
@@ -49,6 +54,8 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     ProgressBar mProgressBar;
     @BindView(R.id.fab)
     FloatingActionButton mFab;
+    @BindView(R.id.et_search)
+    EditText mSearchEditText;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -107,6 +114,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
             }
         });
 
+        setupOnFocusListener(mSearchEditText);
         hideProgressBar();
     }
 
@@ -136,5 +144,28 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     public void floatingAction(View view) {
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    private void setupOnFocusListener(EditText editText) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                Logger.d("arg0 : " + arg0);
+                String text = editText.getText().toString().toLowerCase(Locale.getDefault());
+                if (mListAdapter != null) mListAdapter.getFilter().filter(text);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+                                      int arg3) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
 }

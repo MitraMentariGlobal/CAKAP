@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,13 +30,15 @@ import co.id.cakap.utils.Logger;
  * Android Developer
  */
 
-public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbillAdapter.ViewHolder> {
+public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbillAdapter.ViewHolder> implements Filterable {
     private List<ActivityCashbillData> mResultData;
+    private List<ActivityCashbillData> mFilteredList;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
     public ActivityCashbillAdapter(List<ActivityCashbillData> resultData, Context context){
         mResultData = resultData;
+        mFilteredList = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         notifyDataSetChanged();
@@ -47,7 +52,7 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ActivityCashbillData activityCashbillData = mResultData.get(position);
+        ActivityCashbillData activityCashbillData = mFilteredList.get(position);
 
         holder.context = mContext;
         holder.mTotalPv.setText(activityCashbillData.getTotal_pv());
@@ -60,7 +65,40 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
 
     @Override
     public int getItemCount() {
-        return mResultData.size();
+        return mFilteredList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    mFilteredList = mResultData;
+                } else {
+                    ArrayList<ActivityCashbillData> filteredList = new ArrayList<>();
+                    for (ActivityCashbillData activityCashbillData : mResultData) {
+                        if (activityCashbillData.getTransaction_id().toLowerCase().contains(charString) ||
+                                activityCashbillData.getMember_id().toLowerCase().contains(charString) ||
+                                activityCashbillData.getName().toLowerCase().contains(charString)) {
+                            filteredList.add(activityCashbillData);
+                        }
+                    }
+                    mFilteredList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilteredList = (ArrayList<ActivityCashbillData>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
