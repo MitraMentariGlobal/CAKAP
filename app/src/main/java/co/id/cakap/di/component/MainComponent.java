@@ -2,6 +2,13 @@ package co.id.cakap.di.component;
 
 import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
+import co.id.cakap.ui.myProfile.MyProfileActivity;
+import co.id.cakap.ui.omset.OmsetActivity;
+import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
+import co.id.cakap.ui.cashbill.CashbillActivity;
+import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.dashboard.account.AccountFragment;
 import co.id.cakap.ui.dashboard.activity.ActivityFragment;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillFragment;
@@ -16,8 +23,12 @@ import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockF
 import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoiceFragment;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
+import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.login.LoginActivity;
+import co.id.cakap.ui.registration.RegistrationActivity;
+import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
+import co.id.cakap.ui.stockReport.StockReportActivity;
 import dagger.Subcomponent;
 
 /**
@@ -33,7 +44,18 @@ public interface MainComponent {
     SplashScreenActivity inject(SplashScreenActivity splashScreenActivity);
     LoginActivity inject(LoginActivity loginActivity);
     HomeWebViewActivity inject(HomeWebViewActivity homeWebViewActivity);
+    DashboardActivity inject(DashboardActivity dashboardActivity);
     DetailTransactionActivity inject(DetailTransactionActivity detailTransactionActivity);
+    CashbillActivity inject(CashbillActivity cashbillActivity);
+    InvoiceToMbActivity inject(InvoiceToMbActivity invoiceToMbActivity);
+    RegistrationActivity inject(RegistrationActivity registrationActivity);
+    ReqInvoiceToBcActivity inject(ReqInvoiceToBcActivity reqInvoiceToBcActivity);
+    ReqInvoiceToCompanyActivity inject(ReqInvoiceToCompanyActivity reqInvoiceToCompanyActivity);
+    FeeBcmbActivity inject(FeeBcmbActivity feeBcmbActivity);
+    MyProfileActivity inject(MyProfileActivity myProfileActivity);
+    OmsetActivity inject(OmsetActivity omsetActivity);
+    SearchMemberActivity inject(SearchMemberActivity searchMemberActivityz);
+    StockReportActivity inject(StockReportActivity omsetActivity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

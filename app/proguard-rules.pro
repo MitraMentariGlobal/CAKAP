@@ -164,3 +164,5 @@
 -keep class org.sqlite.database.** { *; }
 
 -dontwarn lombok.**
+
+-keep class io.codetail.animation.arcanimator.** { *; }

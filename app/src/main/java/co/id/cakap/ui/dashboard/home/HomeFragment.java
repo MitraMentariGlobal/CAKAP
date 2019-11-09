@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +27,11 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.CustomViewPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
+import co.id.cakap.ui.cashbill.CashbillActivity;
+import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
+import co.id.cakap.ui.registration.RegistrationActivity;
 import co.id.cakap.utils.widget.CustomRecyclerViewPager;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -116,26 +121,26 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @OnClick(R.id.relative_registration)
     public void homeRegistration(View view) {
-        Toast.makeText(getContext(), "Registration", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), RegistrationActivity.class));
     }
 
     @OnClick(R.id.relative_cashbill)
     public void homeCashbill(View view) {
-        Toast.makeText(getContext(), "Cashbill", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), CashbillActivity.class));
     }
 
     @OnClick(R.id.relative_invoice_to_mb)
     public void homeInvoiceToMb(View view) {
-        Toast.makeText(getContext(), "Invoice To MB", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), InvoiceToMbActivity.class));
     }
 
     @OnClick(R.id.relative_req_inv_to_company)
     public void homeReqInvToCompany(View view) {
-        Toast.makeText(getContext(), "Req Invoie To Company", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), ReqInvoiceToCompanyActivity.class));
     }
 
     @OnClick(R.id.relative_req_inv_to_bc)
     public void homeReqInvToBc(View view) {
-        Toast.makeText(getContext(), "Req Invoie To BC", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getContext(), ReqInvoiceToBcActivity.class));
     }
 }

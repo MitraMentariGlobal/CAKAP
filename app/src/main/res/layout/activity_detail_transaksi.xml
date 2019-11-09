@@ -13,31 +13,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="horizontal">
+            android:background="@color/colorPrimaryDark">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/arrow_back"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginStart="@dimen/appbar_padding"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:background="@drawable/ic_back"/>
-
-            <TextView
-                android:id="@+id/title_toolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minHeight="?actionBarSize"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:text="Detail Transaksi"
-                android:layout_marginStart="@dimen/appbar_padding"
-                style="@style/TexViewFont"/>
+            <include layout="@layout/title_back"/>
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>

@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.DetailTransaksiAdapter;
@@ -35,6 +36,8 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     ProgressBar mProgressBar;
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
+    @BindView(R.id.title_toolbar)
+    TextView mTitleToolbar;
     @BindView(R.id.title)
     TextView mTitleText;
     @BindView(R.id.txt_transaction_id)
@@ -73,6 +76,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
         mTitleText.setText(mTitle);
         mTransactionIdText.setText(mTransactionId);
+        mTitleToolbar.setText(getString(R.string.detail_transaksi));
     }
 
     @Override
@@ -99,5 +103,10 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     @Override
     public void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.arrow_back)
+    public void arrowBack(View view) {
+        super.onBackPressed();
     }
 }

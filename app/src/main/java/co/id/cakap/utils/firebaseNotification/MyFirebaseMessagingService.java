@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package co.id.cakap.utils.firebase_notification;
+package co.id.cakap.utils.firebaseNotification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

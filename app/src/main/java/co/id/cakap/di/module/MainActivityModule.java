@@ -11,6 +11,20 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
+import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
+import co.id.cakap.ui.feeBCMB.FeeBcmbActivityPresenter;
+import co.id.cakap.ui.myProfile.MyProfileActivity;
+import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
+import co.id.cakap.ui.omset.OmsetActivity;
+import co.id.cakap.ui.omset.OmsetActivityPresenter;
+import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
+import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivityPresenter;
+import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivityPresenter;
+import co.id.cakap.ui.cashbill.CashbillActivity;
+import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
+import co.id.cakap.ui.dashboard.DashboardActivity;
+import co.id.cakap.ui.dashboard.DashboardPresenter;
 import co.id.cakap.ui.dashboard.account.AccountFragment;
 import co.id.cakap.ui.dashboard.account.AccountPresenter;
 import co.id.cakap.ui.dashboard.activity.ActivityFragment;
@@ -39,10 +53,18 @@ import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.ui.detailTransaction.DetailTransactionPresenter;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewPresenter;
+import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
+import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivityPresenter;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.login.LoginPresenter;
+import co.id.cakap.ui.registration.RegistrationActivity;
+import co.id.cakap.ui.registration.RegistrationActivityPresenter;
+import co.id.cakap.ui.searchMember.SearchMemberActivity;
+import co.id.cakap.ui.searchMember.SearchMemberActivityPresenter;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 import co.id.cakap.ui.splashScreen.SplashScreenPresenter;
+import co.id.cakap.ui.stockReport.StockReportActivity;
+import co.id.cakap.ui.stockReport.StockReportActivityPresenter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -56,7 +78,18 @@ public class MainActivityModule {
     private SplashScreenActivity splashScreenActivity;
     private LoginActivity loginActivity;
     private HomeWebViewActivity homeWebViewActivity;
+    private DashboardActivity dashboardActivity;
     private DetailTransactionActivity detailTransactionActivity;
+    private CashbillActivity cashbillActivity;
+    private InvoiceToMbActivity invoiceToMbActivity;
+    private RegistrationActivity registrationActivity;
+    private ReqInvoiceToBcActivity reqInvoiceToBcActivity;
+    private ReqInvoiceToCompanyActivity reqInvoiceToCompanyActivity;
+    private FeeBcmbActivity feeBcmbActivity;
+    private MyProfileActivity myProfileActivity;
+    private OmsetActivity omsetActivity;
+    private SearchMemberActivity searchMemberActivity;
+    private StockReportActivity stockReportActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -81,6 +114,10 @@ public class MainActivityModule {
 
     public MainActivityModule(HomeWebViewActivity homeWebViewActivity) {
         this.homeWebViewActivity = homeWebViewActivity;
+    }
+
+    public MainActivityModule(DashboardActivity dashboardActivity) {
+        this.dashboardActivity = dashboardActivity;
     }
 
     public MainActivityModule(HomeFragment homeFragment) {
@@ -133,6 +170,46 @@ public class MainActivityModule {
 
     public MainActivityModule(DetailTransactionActivity detailTransactionActivity) {
         this.detailTransactionActivity = detailTransactionActivity;
+    }
+
+    public MainActivityModule(CashbillActivity cashbillActivity) {
+        this.cashbillActivity = cashbillActivity;
+    }
+
+    public MainActivityModule(InvoiceToMbActivity invoiceToMbActivity) {
+        this.invoiceToMbActivity = invoiceToMbActivity;
+    }
+
+    public MainActivityModule(RegistrationActivity registrationActivity) {
+        this.registrationActivity = registrationActivity;
+    }
+
+    public MainActivityModule(ReqInvoiceToBcActivity reqInvoiceToBcActivity) {
+        this.reqInvoiceToBcActivity = reqInvoiceToBcActivity;
+    }
+
+    public MainActivityModule(ReqInvoiceToCompanyActivity reqInvoiceToCompanyActivity) {
+        this.reqInvoiceToCompanyActivity = reqInvoiceToCompanyActivity;
+    }
+
+    public MainActivityModule(FeeBcmbActivity feeBcmbActivity) {
+        this.feeBcmbActivity = feeBcmbActivity;
+    }
+
+    public MainActivityModule(MyProfileActivity myProfileActivity) {
+        this.myProfileActivity = myProfileActivity;
+    }
+
+    public MainActivityModule(OmsetActivity omsetActivity) {
+        this.omsetActivity = omsetActivity;
+    }
+
+    public MainActivityModule(SearchMemberActivity searchMemberActivity) {
+        this.searchMemberActivity = searchMemberActivity;
+    }
+
+    public MainActivityModule(StockReportActivity stockReportActivity) {
+        this.stockReportActivity = stockReportActivity;
     }
 
     @Provides
@@ -194,6 +271,12 @@ public class MainActivityModule {
     @ActivityScope
     HomeWebViewPresenter provideHomeScreenPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new HomeWebViewPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    DashboardPresenter provideDashboardPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new DashboardPresenter(mainRepository, dataModel);
     }
 
     @Provides
@@ -272,5 +355,62 @@ public class MainActivityModule {
     @ActivityScope
     DetailTransactionPresenter provideDetailTransactionPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new DetailTransactionPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    CashbillActivityPresenter provideCashbillActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new CashbillActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    InvoiceToMbActivityPresenter provideInvoiceToMbActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new InvoiceToMbActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    RegistrationActivityPresenter provideRegistrationActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new RegistrationActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ReqInvoiceToBcActivityPresenter provideReqInvoiceToBcActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ReqInvoiceToBcActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ReqInvoiceToCompanyActivityPresenter provideReqInvoiceToCompanyActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ReqInvoiceToCompanyActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    FeeBcmbActivityPresenter provideFeeBcmbActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new FeeBcmbActivityPresenter(mainRepository, dataModel);
+    }
+    @Provides
+    @ActivityScope
+    MyProfileActivityPresenter provideMyProfileActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new MyProfileActivityPresenter(mainRepository, dataModel);
+    }
+    @Provides
+    @ActivityScope
+    OmsetActivityPresenter provideOmsetActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new OmsetActivityPresenter(mainRepository, dataModel);
+    }
+    @Provides
+    @ActivityScope
+    SearchMemberActivityPresenter provideSearchMemberActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new SearchMemberActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    StockReportActivityPresenter provideStockReportActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new StockReportActivityPresenter(mainRepository, dataModel);
     }
 }

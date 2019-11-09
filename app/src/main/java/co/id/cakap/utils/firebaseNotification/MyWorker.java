@@ -1,4 +1,4 @@
-package co.id.cakap.utils.firebase_notification;
+package co.id.cakap.utils.firebaseNotification;
 
 import android.content.Context;
 import android.util.Log;

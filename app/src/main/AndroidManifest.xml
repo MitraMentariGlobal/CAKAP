@@ -14,9 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity"></activity>
+        <activity android:name=".ui.reqInvoiceToBc.ReqInvoiceToBcActivity" />
+        <activity android:name=".ui.invoiceToMb.InvoiceToMbActivity" />
+        <activity android:name=".ui.cashbill.CashbillActivity" />
+        <activity android:name=".ui.registration.RegistrationActivity" />
 
         <service
-            android:name=".utils.firebase_notification.MyFirebaseMessagingService"
+            android:name=".utils.firebaseNotification.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -39,7 +44,7 @@
         <activity android:name=".ui.dashboard.DashboardActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".ui.homeWebView.HomeWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -55,6 +60,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.detailTransaction.DetailTransactionActivity" />
+        <activity android:name=".ui.feeBCMB.FeeBcmbActivity" />
+        <activity android:name=".ui.myProfile.MyProfileActivity" />
+        <activity android:name=".ui.omset.OmsetActivity" />
+        <activity android:name=".ui.searchMember.SearchMemberActivity" />
+        <activity android:name=".ui.stockReport.StockReportActivity" />
     </application>
 
 </manifest>
