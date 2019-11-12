@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="textEnd"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="28 Jan 2020"
                     style="@style/TexViewFont" />
 
@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_12"
-                        android:textColor="@color/curated"
+                        android:textColor="@color/black"
                         android:lines="1"
                         android:ellipsize="end"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
@@ -126,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                     style="@style/TexViewFont" />
             </com.github.aakira.expandablelayout.ExpandableRelativeLayout>

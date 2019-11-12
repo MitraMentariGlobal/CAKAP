@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="BT01"
                     style="@style/TexViewFont" />
 
@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text=" - "
                     style="@style/TexViewFont" />
 
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="Blesstea Botol"
                     style="@style/TexViewFont" />
             </LinearLayout>
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="IDR 120.000"
                     style="@style/TexViewFont" />
 
@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="25"
                     style="@style/TexViewFont" />
 
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="pv"
                     style="@style/TexViewFont" />
             </LinearLayout>
@@ -113,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="Qty : "
                     style="@style/TexViewFont" />
 
@@ -122,7 +122,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="10"
                     style="@style/TexViewFont" />
             </LinearLayout>
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="IDR 1.200.000"
                     style="@style/TexViewFont" />
 
@@ -180,7 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="250"
                     style="@style/TexViewFont" />
 
@@ -188,7 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="pv"
                     style="@style/TexViewFont" />
             </LinearLayout>

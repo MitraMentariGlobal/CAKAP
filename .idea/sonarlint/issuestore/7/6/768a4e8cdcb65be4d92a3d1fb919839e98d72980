@@ -1,7 +1,7 @@
 
-Lsquid:S1481_")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8úÎ˜×-
-isquid:CommentedOutCodeLine8"<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
-Fsquid:S1604Y"(Make this anonymous inner class a lambda(Ûâ—Ş8úÎ˜×-
 Esquid:S1068#"'Remove this unused "TAG" private field.(Ô‹‡½8¡¡×-
-[squid:S1854_"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8úÎ˜×-
+Fsquid:S1604Y"(Make this anonymous inner class a lambda(Ûâ—Ş8úÎ˜×-
+isquid:CommentedOutCodeLine8"<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
 qsquid:MaximumInheritanceDepth""<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8¤ƒ½àÖ-
+[squid:S1854_"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8úÎ˜×-
+Lsquid:S1481_")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8úÎ˜×-

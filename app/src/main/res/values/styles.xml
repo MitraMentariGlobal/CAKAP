@@ -51,4 +51,8 @@
     <style name="BottomNavigationView" parent="TexViewFont">
         <item name="android:textSize">10sp</item>
     </style>
+
+    <style name="BottomNavigationView.Active" parent="TexViewFont">
+        <item name="android:textSize">10sp</item>
+    </style>
 </resources>

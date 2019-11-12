@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_14"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="Pendekar Harus Menang"
                     style="@style/TexViewFont" />
 
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="14sp"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:text="@string/my_profile"
                     style="@style/TexViewFont" />
 
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="14sp"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:text="@string/fee_bcmb"
                     style="@style/TexViewFont" />
 
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="14sp"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:text="@string/stock_report"
                     style="@style/TexViewFont" />
 
@@ -210,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="14sp"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:text="@string/omset"
                     style="@style/TexViewFont" />
 
@@ -247,7 +247,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="14sp"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/black"
                     android:text="@string/search_member"
                     style="@style/TexViewFont" />
 

@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="BC123"
                     style="@style/TexViewFont" />
 
@@ -59,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text=" - "
                     style="@style/TexViewFont" />
 
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="Nama Sub Stockist"
                     style="@style/TexViewFont" />
             </LinearLayout>
@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="IDR 100.000.000"
                     style="@style/TexViewFont" />
 
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text=" / "
                     style="@style/TexViewFont" />
 
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="123"
                     style="@style/TexViewFont" />
 
@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/curated"
+                    android:textColor="@color/black"
                     android:text="pv"
                     style="@style/TexViewFont" />
             </LinearLayout>
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="textEnd"
                 android:textSize="@dimen/text_12"
-                android:textColor="@color/curated"
+                android:textColor="@color/black"
                 android:text="28 Jan 2020"
                 style="@style/TexViewFont" />
 

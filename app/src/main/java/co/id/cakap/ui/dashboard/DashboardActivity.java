@@ -54,6 +54,7 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
     public void initializeData() {
         loadFragment(new HomeFragment());
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+        mBottomNavigationView.setItemIconTintList(null);
     }
 
     @Override

@@ -78,16 +78,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void setAdapter() {
         DisplayMetrics metrics = getDisplayMetrics();
         List<String> metalList = Arrays.asList(
-                "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg",
-                "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg",
-                "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg",
-                "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg",
-                "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg",
                 "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg"
         );
         CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(metrics, metalList, getContext());
         mRecyclerView.setAdapter(customViewPagerAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
+//        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
 
         hideProgressBar();
     }

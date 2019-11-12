@@ -1,6 +1,6 @@
 
+Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8¤³Êí×-
+[squid:UselessImportCheck"0Remove this unused import 'retrofit2.http.Body'.(º–øÚ8¤³Êí×-
+\squid:UselessImportCheck"1Remove this unused import 'retrofit2.http.Query'.(ÔÑîì8ÕÒ¥ãÙ-
 Zsquid:UselessImportCheck
 "/Remove this unused import 'retrofit2.http.GET'.(¬ü‰´8ÕÒ¥ãÙ-
-\squid:UselessImportCheck"1Remove this unused import 'retrofit2.http.Query'.(ÔÑîì8ÕÒ¥ãÙ-
-[squid:UselessImportCheck"0Remove this unused import 'retrofit2.http.Body'.(º–øÚ8¤³Êí×-
-Zsquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8¤³Êí×-

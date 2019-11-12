@@ -20,6 +20,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.gordonwong.materialsheetfab.MaterialSheetFab;
+import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 
 import java.util.List;
 import java.util.Locale;
@@ -40,6 +42,7 @@ import co.id.cakap.ui.dashboard.account.AccountContract;
 import co.id.cakap.ui.dashboard.account.AccountPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.widget.Fab;
 import me.everything.android.ui.overscroll.HorizontalOverScrollBounceEffectDecorator;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
@@ -52,13 +55,20 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
-    @BindView(R.id.fab)
-    FloatingActionButton mFab;
+//    @BindView(R.id.fab)
+//    FloatingActionButton mFab;
     @BindView(R.id.et_search)
     EditText mSearchEditText;
+    @BindView(R.id.fab)
+    Fab mFab;
+    @BindView(R.id.fab_sheet)
+    View sheetView;
+    @BindView(R.id.overlay)
+    View overlay;
 
     private View mView;
     private Unbinder mUnbinder;
+    private MaterialSheetFab materialSheetFab;
     private ActivityCashbillAdapter mListAdapter;
     private ActivityCashbillContract.UserActionListener mUserActionListener;
 
@@ -115,6 +125,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         });
 
         setupOnFocusListener(mSearchEditText);
+        setupFab();
         hideProgressBar();
     }
 
@@ -166,6 +177,27 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
             public void onTextChanged(CharSequence arg0, int arg1, int arg2,
                                       int arg3) {
                 // TODO Auto-generated method stub
+            }
+        });
+    }
+
+    private void setupFab() {
+        int sheetColor = getResources().getColor(R.color.white);
+        int fabColor = getResources().getColor(R.color.colorPrimaryDark);
+
+        // Create material sheet FAB
+        materialSheetFab = new MaterialSheetFab<>(mFab, sheetView, overlay, sheetColor, fabColor);
+
+        // Set material sheet event listener
+        materialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
+            @Override
+            public void onShowSheet() {
+                // Save current status bar color
+            }
+
+            @Override
+            public void onHideSheet() {
+                // Restore status bar color
             }
         });
     }

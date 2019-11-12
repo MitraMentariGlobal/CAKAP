@@ -1,10 +1,0 @@
-
-Esquid:S1068"'Remove this unused "TAG" private field.(Ô‹‡½8ÕÁ“ª×-
-Zsquid:S1068'"7Remove this unused "mUserActionListener" private field.(Ç¤±øûÿÿÿÿ8ÁÖãá-
-rsquid:S1450("TRemove the "mAuth" field and declare it as a local variable in the relevant methods.(ªĞ”’8Ñ¿–ª×-
-qsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ù¾…ïøÿÿÿÿ8ëÅ¬ÈÜ-
-ysquid:S1450)"[Remove the "mThreeBounce" field and declare it as a local variable in the relevant methods.(­¿½´8Íëô†Ø-
-Fsquid:S1604W"(Make this anonymous inner class a lambda(„ÑñŒ8ú†Ø-
-Gsquid:S1068(")Remove this unused "mAuth" private field.(ªĞ”’8ÕÁ“ª×-
-…squid:S1450'"bRemove the "mUserActionListener" field and declare it as a local variable in the relevant methods.(Ç¤±øûÿÿÿÿ8ÁÖãá-
-isquid:CommentedOutCodeLinea"<This block of commented-out lines of code should be removed.(±ŞÉõ8ÁÖãá-
