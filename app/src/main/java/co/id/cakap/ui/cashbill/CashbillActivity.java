@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.utils.Utils;
 
 public class CashbillActivity extends AppCompatActivity implements CashbillActivityContract.View{
     @Inject
@@ -25,8 +28,13 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
     ProgressBar mProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
+    @BindView(R.id.linear_expand_collapse)
+    LinearLayout mLinearExpandCollapse;
+    @BindView(R.id.item_thumbnail)
+    ImageView mImageIcon;
 
     private CashbillActivityContract.UserActionListener mUserActionListener;
+    private boolean mIsExpand = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +58,7 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
         mUserActionListener = mCashbillActivityPresenter;
         mCashbillActivityPresenter.setView(this);
 
-        mTitle.setText(getString(R.string.cashbill));
+        mTitle.setText(getString(R.string.cashbill).toUpperCase());
         hideProgressBar();
     }
 
@@ -72,5 +80,18 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
+    }
+
+    @OnClick(R.id.action_expand_collapse)
+    public void actionExpandCollapse(View view) {
+        if (mIsExpand) {
+            Utils.collapse(mLinearExpandCollapse);
+            mIsExpand = false;
+            mImageIcon.animate().rotation(180).setDuration(500).start();
+        } else {
+            Utils.expand(mLinearExpandCollapse);
+            mIsExpand = true;
+            mImageIcon.animate().rotation(0).setDuration(500).start();
+        }
     }
 }

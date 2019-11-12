@@ -4,20 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        android:layout_margin="@dimen/fab_margin"-->
-<!--        app:backgroundTint="@color/colorPrimaryDark"-->
-<!--        app:borderWidth="0dp"-->
-<!--        android:src="@drawable/ic_filter"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_alignParentEnd="true" />-->
-
-    <!-- Your FAB implementation -->
-    <co.id.cakap.utils.widget.Fab
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,54 +16,72 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
-    <!-- Overlay that dims the screen -->
-    <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
-        android:id="@+id/overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!-- Circular reveal container for the sheet -->
-    <io.codetail.widget.RevealLinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="end|bottom"
-        android:orientation="vertical">
+        android:visibility="gone">
 
-        <!-- Sheet that contains your items -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/fab_sheet"
+        <!-- Your FAB implementation -->
+        <co.id.cakap.utils.widget.Fab
+            android:id="@+id/fabs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/radius_10">
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:borderWidth="0dp"
+            android:src="@drawable/ic_filter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical">-->
+        <!-- Overlay that dims the screen -->
+        <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="start"-->
-<!--                    android:minHeight="?actionBarSize"-->
-<!--                    android:padding="@dimen/appbar_padding"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:text="tteestttt"-->
-<!--                    style="@style/TexViewFont"/>-->
+        <!-- Circular reveal container for the sheet -->
+        <io.codetail.widget.RevealLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|bottom"
+            android:orientation="vertical">
 
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="start"-->
-<!--                    android:minHeight="?actionBarSize"-->
-<!--                    android:padding="@dimen/appbar_padding"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:text="tteestttt"-->
-<!--                    style="@style/TexViewFont"/>-->
-<!--            </LinearLayout>-->
+            <!-- Sheet that contains your items -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fab_sheet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/radius_10">
 
-        </androidx.cardview.widget.CardView>
-    </io.codetail.widget.RevealLinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:minHeight="?actionBarSize"
+                        android:padding="@dimen/appbar_padding"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="tteestttt"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:minHeight="?actionBarSize"
+                        android:padding="@dimen/appbar_padding"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="tteestttt"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </io.codetail.widget.RevealLinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

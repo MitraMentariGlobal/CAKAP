@@ -164,5 +164,8 @@ dependencies {
 
     //material-sheet
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'
+
+    //Date Range
+    implementation 'com.borax12.materialdaterangepicker:library:2.0'
 }
 apply plugin: 'com.google.gms.google-services'

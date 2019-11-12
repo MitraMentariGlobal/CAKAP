@@ -18,11 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
 import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,7 +49,7 @@ import me.everything.android.ui.overscroll.HorizontalOverScrollBounceEffectDecor
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 
-public class ActivityCashbillFragment extends Fragment implements ActivityCashbillContract.View {
+public class ActivityCashbillFragment extends Fragment implements ActivityCashbillContract.View, DatePickerDialog.OnDateSetListener {
     @Inject
     ActivityCashbillPresenter mActivityCashbillPresenter;
 
@@ -55,12 +57,12 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
-//    @BindView(R.id.fab)
-//    FloatingActionButton mFab;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
     @BindView(R.id.et_search)
     EditText mSearchEditText;
-    @BindView(R.id.fab)
-    Fab mFab;
+    @BindView(R.id.fabs)
+    Fab mFabs;
     @BindView(R.id.fab_sheet)
     View sheetView;
     @BindView(R.id.overlay)
@@ -154,8 +156,16 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
     @OnClick(R.id.fab)
     public void floatingAction(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = com.borax12.materialdaterangepicker.date.DatePickerDialog.newInstance(
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.setAutoHighlight(true);
+        dpd.setAccentColor(getContext().getResources().getColor(R.color.colorPrimaryDark));
+        dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
     }
 
     private void setupOnFocusListener(EditText editText) {
@@ -186,7 +196,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         int fabColor = getResources().getColor(R.color.colorPrimaryDark);
 
         // Create material sheet FAB
-        materialSheetFab = new MaterialSheetFab<>(mFab, sheetView, overlay, sheetColor, fabColor);
+        materialSheetFab = new MaterialSheetFab<>(mFabs, sheetView, overlay, sheetColor, fabColor);
 
         // Set material sheet event listener
         materialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
@@ -200,5 +210,11 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
                 // Restore status bar color
             }
         });
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
+        String date = "You picked the following date: From- "+dayOfMonth+"/"+(++monthOfYear)+"/"+year+" To "+dayOfMonthEnd+"/"+(++monthOfYearEnd)+"/"+yearEnd;
+        Logger.d(date);
     }
 }

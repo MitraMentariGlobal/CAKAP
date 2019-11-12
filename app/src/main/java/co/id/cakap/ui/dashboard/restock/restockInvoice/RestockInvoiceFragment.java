@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,9 +37,10 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
+import co.id.cakap.utils.Logger;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class RestockInvoiceFragment extends Fragment implements RestockInvoiceContract.View {
+public class RestockInvoiceFragment extends Fragment implements RestockInvoiceContract.View, DatePickerDialog.OnDateSetListener {
     @Inject
     RestockInvoicePresenter mRestockInvoicePresenter;
 
@@ -133,7 +136,21 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
 
     @OnClick(R.id.fab)
     public void floatingAction(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = com.borax12.materialdaterangepicker.date.DatePickerDialog.newInstance(
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.setAutoHighlight(true);
+        dpd.setAccentColor(getContext().getResources().getColor(R.color.colorPrimaryDark));
+        dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
+        String date = "You picked the following date: From- "+dayOfMonth+"/"+(++monthOfYear)+"/"+year+" To "+dayOfMonthEnd+"/"+(++monthOfYearEnd)+"/"+yearEnd;
+        Logger.d(date);
     }
 }
