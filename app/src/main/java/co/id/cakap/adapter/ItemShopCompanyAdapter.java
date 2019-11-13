@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -113,22 +114,41 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
         EditText mQty;
         @BindView(R.id.img_plus)
         ImageView mPlus;
+        @BindView(R.id.linear_stock)
+        LinearLayout mLinearStock;
 
         Context context;
+        int qty = 0;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            mLinearStock.setVisibility(View.GONE);
+            setZeroQty();
+        }
+
+        public void setZeroQty() {
+            if (mQty.getText().toString().length() == 0) {
+                mQty.setText("0");
+            }
+            qty = Integer.parseInt(mQty.getText().toString());
         }
 
         @OnClick(R.id.img_minus)
         public void minusItem() {
-
+            setZeroQty();
+            if (qty > 0) {
+                qty -= 1;
+                mQty.setText(String.valueOf(qty));
+            }
         }
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
-
+            setZeroQty();
+            qty += 1;
+            mQty.setText(String.valueOf(qty));
         }
     }
 }

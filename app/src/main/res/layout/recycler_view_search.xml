@@ -21,7 +21,6 @@
             android:drawableEnd="@drawable/ic_loupe"
             android:drawablePadding="@dimen/padding_8"
             android:hint="@string/search"
-            android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/curated_light"

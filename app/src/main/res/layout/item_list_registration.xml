@@ -28,14 +28,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_member_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="0099838"
+                    style="@style/TexViewFont" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/txt_variant_of_kit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/text_12"
                     android:text="Starter Kit Khusus V-Bless"
                     style="@style/TexViewFont" />
             </LinearLayout>
@@ -54,23 +71,6 @@
                     android:textColor="@color/black"
                     android:text="0f4abe9495d1"
                     style="@style/TexViewFont" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_member_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_12"
-                    android:textColor="@color/black"
-                    android:text="BC123"
-                    style="@style/TexViewFont" />
-
             </LinearLayout>
         </LinearLayout>
 

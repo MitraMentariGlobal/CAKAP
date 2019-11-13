@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +22,7 @@ import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -40,7 +44,7 @@ import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.utils.Logger;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class RestockInvoiceFragment extends Fragment implements RestockInvoiceContract.View, DatePickerDialog.OnDateSetListener {
+public class RestockInvoiceFragment extends Fragment implements RestockInvoiceContract.View, DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener  {
     @Inject
     RestockInvoicePresenter mRestockInvoicePresenter;
 
@@ -50,11 +54,16 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
     ProgressBar mProgressBar;
     @BindView(R.id.fab)
     FloatingActionButton mFab;
+    @BindView(R.id.month_spinner)
+    Spinner mMonthSpinner;
+    @BindView(R.id.year_spinner)
+    Spinner mYearSpinner;
 
     private View mView;
     private Unbinder mUnbinder;
     private RestockInvoiceAdapter mListAdapter;
     private RestockInvoiceContract.UserActionListener mUserActionListener;
+    private List<String> mYearData = new ArrayList<>();
 
     @Nullable
     @Override
@@ -83,6 +92,7 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
         mUserActionListener = mRestockInvoicePresenter;
         mRestockInvoicePresenter.setView(this);
         mUserActionListener.getData();
+        initSpinner();
     }
 
     @Override
@@ -152,5 +162,39 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
         String date = "You picked the following date: From- "+dayOfMonth+"/"+(++monthOfYear)+"/"+year+" To "+dayOfMonthEnd+"/"+(++monthOfYearEnd)+"/"+yearEnd;
         Logger.d(date);
+    }
+
+    public void initSpinner() {
+        mMonthSpinner.setOnItemSelectedListener(this);
+        mYearSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> monthAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.month_array, R.layout.item_spinner);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mMonthSpinner.setAdapter(monthAdapter);
+
+        mYearData.add(String.valueOf(getResources().getInteger(R.integer.minimum_year)));
+        Calendar calendar = Calendar.getInstance();
+        int now = calendar.get(Calendar.YEAR);
+        int totalLoop = now - getResources().getInteger(R.integer.minimum_year);
+
+        for (int i = 0; i < totalLoop; i++) {
+            mYearData.add(String.valueOf(now - 1));
+        }
+
+        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(getActivity(),
+                R.layout.item_spinner, android.R.id.text1, mYearData);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mYearSpinner.setAdapter(yearAdapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

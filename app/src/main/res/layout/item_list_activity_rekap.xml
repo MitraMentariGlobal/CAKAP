@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:textSize="@dimen/text_12"
+                android:textSize="@dimen/text_13"
                 android:textColor="@color/black"
                 android:text="081912345678"
                 style="@style/TexViewFont" />

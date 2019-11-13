@@ -50,7 +50,7 @@
                     android:id="@+id/txt_member_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_12"
+                    android:textSize="@dimen/text_13"
                     android:textColor="@color/black"
                     android:text="BC123"
                     style="@style/TexViewFont" />
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_12"
+                    android:textSize="@dimen/text_13"
                     android:textColor="@color/black"
                     android:text=" - "
                     style="@style/TexViewFont" />
@@ -67,7 +67,7 @@
                     android:id="@+id/txt_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_12"
+                    android:textSize="@dimen/text_13"
                     android:textColor="@color/black"
                     android:text="Nama Sub Stockist"
                     style="@style/TexViewFont" />

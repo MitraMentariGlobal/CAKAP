@@ -7,8 +7,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +27,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
 import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -49,7 +53,7 @@ import me.everything.android.ui.overscroll.HorizontalOverScrollBounceEffectDecor
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.everything.android.ui.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 
-public class ActivityCashbillFragment extends Fragment implements ActivityCashbillContract.View, DatePickerDialog.OnDateSetListener {
+public class ActivityCashbillFragment extends Fragment implements ActivityCashbillContract.View, DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener  {
     @Inject
     ActivityCashbillPresenter mActivityCashbillPresenter;
 
@@ -67,12 +71,19 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     View sheetView;
     @BindView(R.id.overlay)
     View overlay;
+    @BindView(R.id.month_spinner)
+    Spinner mMonthSpinner;
+    @BindView(R.id.year_spinner)
+    Spinner mYearSpinner;
+    @BindView(R.id.include_spinner_filter)
+    View mIncludeSpinnerLayout;
 
     private View mView;
     private Unbinder mUnbinder;
     private MaterialSheetFab materialSheetFab;
     private ActivityCashbillAdapter mListAdapter;
     private ActivityCashbillContract.UserActionListener mUserActionListener;
+    private List<String> mYearData = new ArrayList<>();
 
     @Nullable
     @Override
@@ -101,6 +112,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         mUserActionListener = mActivityCashbillPresenter;
         mActivityCashbillPresenter.setView(this);
         mUserActionListener.getData();
+        initSpinner();
     }
 
     @Override
@@ -114,10 +126,11 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                if (dy<0 && !mFab.isShown())
+                if (dy<0 && !mFab.isShown()) {
                     mFab.show();
-                else if(dy>0 && mFab.isShown())
+                } else if(dy>0 && mFab.isShown()) {
                     mFab.hide();
+                }
             }
 
             @Override
@@ -216,5 +229,39 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
         String date = "You picked the following date: From- "+dayOfMonth+"/"+(++monthOfYear)+"/"+year+" To "+dayOfMonthEnd+"/"+(++monthOfYearEnd)+"/"+yearEnd;
         Logger.d(date);
+    }
+
+    public void initSpinner() {
+        mMonthSpinner.setOnItemSelectedListener(this);
+        mYearSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> monthAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.month_array, R.layout.item_spinner);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mMonthSpinner.setAdapter(monthAdapter);
+
+        mYearData.add(String.valueOf(getResources().getInteger(R.integer.minimum_year)));
+        Calendar calendar = Calendar.getInstance();
+        int now = calendar.get(Calendar.YEAR);
+        int totalLoop = now - getResources().getInteger(R.integer.minimum_year);
+
+        for (int i = 0; i < totalLoop; i++) {
+            mYearData.add(String.valueOf(now - 1));
+        }
+
+        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(getActivity(),
+                R.layout.item_spinner, android.R.id.text1, mYearData);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mYearSpinner.setAdapter(yearAdapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

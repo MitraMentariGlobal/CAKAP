@@ -113,6 +113,7 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
 
     @Override
     public void setAdapter(List<ItemShopData> resultData, OperationUserStatusData operationUserStatusData) {
+        mMemberId.setText(operationUserStatusData.getUser_code());
         mName.setText(operationUserStatusData.getUser_name());
         mStatus.setText(operationUserStatusData.getStatus());
 

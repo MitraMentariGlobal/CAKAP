@@ -2,10 +2,8 @@ package co.id.cakap.ui.cashbill;
 
 import java.util.List;
 
-import co.id.cakap.adapter.ItemShopAdapter;
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
-import co.id.cakap.network.ApiResponseLogin;
 
 public class CashbillActivityContract {
     public interface View{

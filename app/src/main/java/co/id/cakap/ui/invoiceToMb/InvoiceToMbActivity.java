@@ -1,12 +1,23 @@
 package co.id.cakap.ui.invoiceToMb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -15,7 +26,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.ItemShopAdapter;
+import co.id.cakap.data.ItemShopData;
+import co.id.cakap.data.OperationUserStatusData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToMbActivityContract.View{
     @Inject
@@ -25,8 +42,31 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
     ProgressBar mProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
+    @BindView(R.id.linear_expand_collapse)
+    LinearLayout mLinearExpandCollapse;
+    @BindView(R.id.item_thumbnail)
+    ImageView mImageIcon;
+    @BindView(R.id.main_list)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.et_search)
+    EditText mSearchEditText;
+    @BindView(R.id.linear_search)
+    LinearLayout mLinearSearch;
+    @BindView(R.id.et_mb_id)
+    EditText mMbId;
+    @BindView(R.id.et_name)
+    EditText mName;
+    @BindView(R.id.et_status)
+    EditText mStatus;
+    @BindView(R.id.linear_submit)
+    LinearLayout mLinearSubmit;
+    @BindView(R.id.relative_member_id)
+    RelativeLayout mRelativeMemberId;
 
+    private ItemShopAdapter mListAdapter;
     private InvoiceToMbActivityContract.UserActionListener mUserActionListener;
+    private boolean mIsExpand = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +89,8 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
         mUserActionListener = mInvoiceToMbActivityPresenter;
         mInvoiceToMbActivityPresenter.setView(this);
 
-        mTitle.setText(getString(R.string.invoice_to_mb));
+        mTitle.setText(getString(R.string.invoice_to_mb).toUpperCase());
+        mLinearSearch.setVisibility(View.GONE);
         hideProgressBar();
     }
 
@@ -68,8 +109,74 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void setAdapter(List<ItemShopData> resultData, OperationUserStatusData operationUserStatusData) {
+        mMbId.setText(operationUserStatusData.getUser_code());
+        mName.setText(operationUserStatusData.getUser_name());
+        mStatus.setText(operationUserStatusData.getStatus());
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mListAdapter = new ItemShopAdapter(resultData, this);
+        mRecyclerView.setAdapter(mListAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        setupOnFocusListener(mSearchEditText);
+        hideProgressBar();
+    }
+
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
+    }
+
+    @OnClick(R.id.linear_submit)
+    public void submitMemberId(View view) {
+        if (mMbId.getText().length() == 0) {
+            mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+        } else {
+            mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mUserActionListener.getData(mMbId.getText().toString());
+            mMbId.setInputType(0);
+//            showProgressBar();
+        }
+    }
+
+    @OnClick(R.id.action_expand_collapse)
+    public void actionExpandCollapse(View view) {
+        if (mIsExpand) {
+            Utils.collapse(mLinearExpandCollapse);
+            mIsExpand = false;
+            mImageIcon.animate().rotation(180).setDuration(500).start();
+            mLinearSearch.setVisibility(View.VISIBLE);
+        } else {
+            Utils.expand(mLinearExpandCollapse);
+            mIsExpand = true;
+            mImageIcon.animate().rotation(0).setDuration(500).start();
+            mLinearSearch.setVisibility(View.GONE);
+        }
+    }
+
+    private void setupOnFocusListener(EditText editText) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                Logger.d("arg0 : " + arg0);
+                String text = editText.getText().toString().toLowerCase(Locale.getDefault());
+                if (mListAdapter != null) mListAdapter.getFilter().filter(text);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1,
+                                          int arg2, int arg3) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+                                      int arg3) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
 }

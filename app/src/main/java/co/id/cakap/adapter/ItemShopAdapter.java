@@ -55,6 +55,7 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
         holder.context = mContext;
         holder.mItemCode.setText(itemShopData.getItem_code());
+        holder.mStock.setText(itemShopData.getStock());
         holder.mItemName.setText(itemShopData.getItem_name());
         holder.mPrice.setText(itemShopData.getPrice());
         holder.mPv.setText(itemShopData.getPv());
@@ -103,6 +104,8 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
         @BindView(R.id.txt_item_code)
         TextView mItemCode;
+        @BindView(R.id.txt_stock)
+        TextView mStock;
         @BindView(R.id.txt_item_name)
         TextView mItemName;
         @BindView(R.id.txt_price)
