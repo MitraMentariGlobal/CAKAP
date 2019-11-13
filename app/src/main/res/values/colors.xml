@@ -42,6 +42,7 @@
     <color name="gratitude_txt">#666666</color>
     <color name="gratitude_btn">#FCBC54</color>
     <color name="cal">#ff0801</color>
+    <color name="red">#ff0000</color>
     <color name="white_trans">#99FFFFFF</color>
 
     <color name="red_dark">#F06423</color>
