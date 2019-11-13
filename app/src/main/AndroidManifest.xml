@@ -66,6 +66,7 @@
         <activity android:name=".ui.omset.OmsetActivity" />
         <activity android:name=".ui.searchMember.SearchMemberActivity" />
         <activity android:name=".ui.stockReport.StockReportActivity" />
+        <activity android:name=".ui.memberDetail.MemberDetailActivity" />
     </application>
 
 </manifest>

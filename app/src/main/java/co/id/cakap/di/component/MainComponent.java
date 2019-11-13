@@ -3,6 +3,7 @@ package co.id.cakap.di.component;
 import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
+import co.id.cakap.ui.memberDetail.MemberDetailActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
@@ -56,6 +57,7 @@ public interface MainComponent {
     OmsetActivity inject(OmsetActivity omsetActivity);
     SearchMemberActivity inject(SearchMemberActivity searchMemberActivityz);
     StockReportActivity inject(StockReportActivity omsetActivity);
+    MemberDetailActivity inject(MemberDetailActivity activity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

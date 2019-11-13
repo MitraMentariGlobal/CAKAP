@@ -10,10 +10,7 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_gravity="center"
-        android:clickable="true"
-        android:focusable="true"
         android:layout_marginStart="@dimen/appbar_padding"
-        android:foreground="?android:attr/selectableItemBackground"
         android:background="@drawable/ic_back"/>
 
     <TextView

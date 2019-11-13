@@ -13,6 +13,8 @@ import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivityPresenter;
+import co.id.cakap.ui.memberDetail.MemberDetailActivity;
+import co.id.cakap.ui.memberDetail.MemberDetailActivityPresenter;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
 import co.id.cakap.ui.omset.OmsetActivity;
@@ -90,6 +92,7 @@ public class MainActivityModule {
     private OmsetActivity omsetActivity;
     private SearchMemberActivity searchMemberActivity;
     private StockReportActivity stockReportActivity;
+    private MemberDetailActivity memberDetailActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -210,6 +213,10 @@ public class MainActivityModule {
 
     public MainActivityModule(StockReportActivity stockReportActivity) {
         this.stockReportActivity = stockReportActivity;
+    }
+
+    public MainActivityModule(MemberDetailActivity memberDetailActivity) {
+        this.memberDetailActivity = memberDetailActivity;
     }
 
     @Provides
@@ -412,5 +419,11 @@ public class MainActivityModule {
     @ActivityScope
     StockReportActivityPresenter provideStockReportActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new StockReportActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    MemberDetailActivityPresenter provideMemberDetailActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new MemberDetailActivityPresenter(mainRepository, dataModel);
     }
 }

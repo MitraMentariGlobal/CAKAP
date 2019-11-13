@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +29,7 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.RegistrationAdapter;
 import co.id.cakap.data.RegistrationData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.memberDetail.MemberDetailActivity;
 import co.id.cakap.utils.Logger;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -102,7 +104,9 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
     @Override
     public void openDetailRegistration() {
-
+        Intent intent = new Intent(this, MemberDetailActivity.class);
+//        intent.putExtra(Constant.URL_LINK, url);
+        startActivity(intent);
     }
 
     @OnClick(R.id.arrow_back)

@@ -52,8 +52,8 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
     RecyclerView mRecyclerView;
     @BindView(R.id.et_search)
     EditText mSearchEditText;
-    @BindView(R.id.include_list)
-    View mIncludeList;
+    @BindView(R.id.linear_search)
+    LinearLayout mLinearSearch;
     @BindView(R.id.et_member_id)
     EditText mMemberId;
     @BindView(R.id.et_name)
@@ -92,6 +92,7 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
         mCashbillActivityPresenter.setView(this);
 
         mTitle.setText(getString(R.string.cashbill).toUpperCase());
+        mLinearSearch.setVisibility(View.GONE);
         hideProgressBar();
     }
 
@@ -137,6 +138,7 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
         } else {
             mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
             mUserActionListener.getData(mMemberId.getText().toString());
+            mMemberId.setInputType(0);
 //            showProgressBar();
         }
     }
@@ -147,12 +149,12 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
             Utils.collapse(mLinearExpandCollapse);
             mIsExpand = false;
             mImageIcon.animate().rotation(180).setDuration(500).start();
-            mIncludeList.setVisibility(View.VISIBLE);
+            mLinearSearch.setVisibility(View.VISIBLE);
         } else {
             Utils.expand(mLinearExpandCollapse);
             mIsExpand = true;
             mImageIcon.animate().rotation(0).setDuration(500).start();
-            mIncludeList.setVisibility(View.GONE);
+            mLinearSearch.setVisibility(View.GONE);
         }
     }
 

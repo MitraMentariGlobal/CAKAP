@@ -30,7 +30,6 @@
                 android:id="@+id/action_expand_collapse"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -49,9 +48,9 @@
                     android:background="@drawable/ic_collapse"
                     android:adjustViewBounds="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
-                    android:layout_marginEnd="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_16"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
 
@@ -218,8 +217,6 @@
         </LinearLayout>
 
         <include layout="@layout/recycler_view_search"
-            android:id="@+id/include_list"
-            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_width="match_parent" />
 
@@ -230,5 +227,35 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/radius_16"
+        android:visibility="gone"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:text="@string/remark"
+                android:layout_marginStart="@dimen/radius_10"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
