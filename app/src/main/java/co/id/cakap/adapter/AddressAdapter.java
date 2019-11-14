@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.AddressData;
 import co.id.cakap.data.DetailTransaksiData;
+import co.id.cakap.utils.Logger;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -28,11 +29,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
-    private RecyclerView mRecyclerView = null;
+    private static RecyclerView mRecyclerView = null;
     private List<AddressData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
-    private int mPositionCheck = 0;
+    private static int mPositionCheck = 0;
 
     public AddressAdapter(RecyclerView recyclerView, List<AddressData> resultData, Context context) {
         mRecyclerView = recyclerView;
@@ -90,6 +91,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
                 mPositionCheck = getAdapterPosition();
             } else {
+                Logger.d("mPositionCheck : " + mPositionCheck);
                 recyclerView = mRecyclerView.findViewHolderForAdapterPosition(mPositionCheck).itemView;
                 mItemCheck = (CircleImageView) recyclerView.findViewById(R.id.item_check);
                 mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_off_button));

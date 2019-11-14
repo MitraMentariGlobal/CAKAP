@@ -30,7 +30,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginTop="@dimen/radius_10"
                 android:orientation="horizontal">
 
                 <TextView
@@ -48,7 +48,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/radius_10"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/period_background_style">
 
                 <Spinner
@@ -61,7 +61,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginTop="@dimen/radius_10"
                 android:orientation="horizontal">
 
                 <TextView
@@ -80,7 +80,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/radius_10"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="11dp"
             android:layout_marginEnd="11dp"
             android:orientation="horizontal">
@@ -88,11 +88,40 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?android:attr/actionBarSize"/>
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/fab_filter_date"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/text_submit"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@string/submit"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/TexViewFont"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/fab_filter_date"
+        android:layout_marginBottom="?android:attr/actionBarSize"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content" />
 
     <ProgressBar
         android:id="@+id/main_progress_bar"

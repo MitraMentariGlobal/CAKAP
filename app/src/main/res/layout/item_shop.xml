@@ -194,8 +194,8 @@
                         android:maxLength="5"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_16"
-                        android:focusableInTouchMode="true"
-                        android:focusable="true"/>
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"/>
 
                     <View
                         android:layout_width="match_parent"

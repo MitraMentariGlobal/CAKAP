@@ -1,4 +1,4 @@
-package co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery;
+package co.id.cakap.ui.pickUpDelivery;
 
 import java.util.List;
 

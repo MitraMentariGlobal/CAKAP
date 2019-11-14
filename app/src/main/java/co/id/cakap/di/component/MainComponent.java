@@ -27,7 +27,7 @@ import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.registration.RegistrationActivity;
-import co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery.PickUpDeliveryActivity;
+import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 import co.id.cakap.ui.stockReport.StockReportActivity;

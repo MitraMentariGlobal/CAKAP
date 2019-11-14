@@ -1,23 +1,21 @@
-package co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery;
+package co.id.cakap.ui.pickUpDelivery;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,8 +28,7 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.AddressAdapter;
 import co.id.cakap.data.AddressData;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.myProfile.MyProfileActivityContract;
-import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
+import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpDeliveryActivityContract.View, AdapterView.OnItemSelectedListener {
@@ -48,8 +45,8 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     RecyclerView mRecyclerView;
     @BindView(R.id.fab)
     FloatingActionButton mFab;
-    @BindView(R.id.fab_next)
-    FloatingActionButton mFabNext;
+    @BindView(R.id.fab_plus)
+    FloatingActionButton mFabPlus;
 
     private AddressAdapter mListAdapter;
     private PickUpDeliveryActivityContract.UserActionListener mUserActionListener;
@@ -109,10 +106,10 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                if (dy<0 && !mFabNext.isShown()) {
-                    mFabNext.show();
-                } else if(dy>0 && mFabNext.isShown()) {
-                    mFabNext.hide();
+                if (dy<0 && !mFabPlus.isShown()) {
+                    mFabPlus.show();
+                } else if(dy>0 && mFabPlus.isShown()) {
+                    mFabPlus.hide();
                 }
             }
 
@@ -128,6 +125,16 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
+    }
+
+    @OnClick(R.id.fab_plus)
+    public void addAddress(View view) {
+
+    }
+
+    @OnClick(R.id.text_submit)
+    public void actionSubmit(View view) {
+        startActivity(new Intent(this, ReqInvoiceToCompanyActivity.class));
     }
 
     public void initSpinner() {

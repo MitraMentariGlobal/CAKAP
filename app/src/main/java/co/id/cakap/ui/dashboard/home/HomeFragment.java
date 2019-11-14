@@ -28,13 +28,11 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.CustomViewPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
-import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
 import co.id.cakap.ui.cashbill.CashbillActivity;
 import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.registration.RegistrationActivity;
-import co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery.PickUpDeliveryActivity;
+import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivity;
 import co.id.cakap.utils.widget.CustomRecyclerViewPager;
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
     @Inject

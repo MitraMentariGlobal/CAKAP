@@ -1,11 +1,10 @@
-package co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery;
+package co.id.cakap.ui.pickUpDelivery;
 
 import java.util.ArrayList;
 
 import co.id.cakap.data.AddressData;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.repository.MainRepository;
-import co.id.cakap.ui.myProfile.MyProfileActivityContract;
 
 public class PickUpDeliveryActivityPresenter implements PickUpDeliveryActivityContract.UserActionListener {
     private PickUpDeliveryActivityContract.View mView;

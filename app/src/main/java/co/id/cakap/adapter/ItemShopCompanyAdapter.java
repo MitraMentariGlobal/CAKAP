@@ -22,6 +22,7 @@ import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ItemShopCompanyData;
 import co.id.cakap.data.ItemShopData;
+import co.id.cakap.utils.Logger;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -53,6 +54,9 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
         ItemShopCompanyData itemShopCompanyData = mFilteredList.get(position);
 
         holder.context = mContext;
+        holder.itemShopCompanyData = itemShopCompanyData;
+        holder.position = position;
+
         holder.mItemCode.setText(itemShopCompanyData.getItem_code());
         holder.mItemName.setText(itemShopCompanyData.getItem_name());
         holder.mPrice.setText(itemShopCompanyData.getPrice());
@@ -117,8 +121,10 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
         @BindView(R.id.linear_stock)
         LinearLayout mLinearStock;
 
+        ItemShopCompanyData itemShopCompanyData;
         Context context;
         int qty = 0;
+        int position = 0;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -141,6 +147,8 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
+                itemShopCompanyData.setQty(String.valueOf(qty));
+                mResultData.set(position, itemShopCompanyData);
             }
         }
 
@@ -149,6 +157,8 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
             setZeroQty();
             qty += 1;
             mQty.setText(String.valueOf(qty));
+            itemShopCompanyData.setQty(String.valueOf(qty));
+            mResultData.set(position, itemShopCompanyData);
         }
     }
 }

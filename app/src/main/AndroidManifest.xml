@@ -67,7 +67,7 @@
         <activity android:name=".ui.searchMember.SearchMemberActivity" />
         <activity android:name=".ui.stockReport.StockReportActivity" />
         <activity android:name=".ui.memberDetail.MemberDetailActivity" />
-        <activity android:name=".ui.reqInvoiceToCompany.pick_up_delivery.PickUpDeliveryActivity" />
+        <activity android:name=".ui.pickUpDelivery.PickUpDeliveryActivity" />
     </application>
 
 </manifest>
