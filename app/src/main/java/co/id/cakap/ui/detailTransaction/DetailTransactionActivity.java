@@ -76,7 +76,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
         mTitleText.setText(mTitle);
         mTransactionIdText.setText(mTransactionId);
-        mTitleToolbar.setText(getString(R.string.detail_transaksi));
+        mTitleToolbar.setText(getString(R.string.detail_transaksi).toUpperCase());
     }
 
     @Override

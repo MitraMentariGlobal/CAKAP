@@ -489,3 +489,7 @@ Oapp/src/main/java/co/id/cakap/ui/memberDetail/MemberDetailActivityContract.java
 Papp/src/main/java/co/id/cakap/ui/memberDetail/MemberDetailActivityPresenter.java,0/7/07c07315541585432a9f715ceea84110706430e5
 b
 2app/src/main/res/layout/activity_member_detail.xml,c/7/c7188b6fe5de68f971de7b82696f3aa2dd3b4e32
+b
+2app/src/main/res/drawable/img_item_placeholder.xml,b/9/b9580c10d16c8ac066a228313d7c711c73248811
+a
+1app/src/main/res/layout/spinner_filter_layout.xml,f/6/f663a81ff0adc7c8758dfbf9892afe1a5997a73a

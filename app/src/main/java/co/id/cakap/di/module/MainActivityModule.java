@@ -61,6 +61,8 @@ import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.login.LoginPresenter;
 import co.id.cakap.ui.registration.RegistrationActivity;
 import co.id.cakap.ui.registration.RegistrationActivityPresenter;
+import co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery.PickUpDeliveryActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery.PickUpDeliveryActivityPresenter;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivityPresenter;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
@@ -93,6 +95,7 @@ public class MainActivityModule {
     private SearchMemberActivity searchMemberActivity;
     private StockReportActivity stockReportActivity;
     private MemberDetailActivity memberDetailActivity;
+    private PickUpDeliveryActivity pickUpDeliveryActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -217,6 +220,10 @@ public class MainActivityModule {
 
     public MainActivityModule(MemberDetailActivity memberDetailActivity) {
         this.memberDetailActivity = memberDetailActivity;
+    }
+
+    public MainActivityModule(PickUpDeliveryActivity pickUpDeliveryActivity) {
+        this.pickUpDeliveryActivity = pickUpDeliveryActivity;
     }
 
     @Provides
@@ -425,5 +432,11 @@ public class MainActivityModule {
     @ActivityScope
     MemberDetailActivityPresenter provideMemberDetailActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new MemberDetailActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    PickUpDeliveryActivityPresenter providePickUpDeliveryActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new PickUpDeliveryActivityPresenter(mainRepository, dataModel);
     }
 }

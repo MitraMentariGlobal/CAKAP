@@ -32,6 +32,7 @@ import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
 import co.id.cakap.ui.cashbill.CashbillActivity;
 import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.registration.RegistrationActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery.PickUpDeliveryActivity;
 import co.id.cakap.utils.widget.CustomRecyclerViewPager;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -131,7 +132,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @OnClick(R.id.relative_req_inv_to_company)
     public void homeReqInvToCompany(View view) {
-        startActivity(new Intent(getContext(), ReqInvoiceToCompanyActivity.class));
+        startActivity(new Intent(getContext(), PickUpDeliveryActivity.class));
     }
 
     @OnClick(R.id.relative_req_inv_to_bc)

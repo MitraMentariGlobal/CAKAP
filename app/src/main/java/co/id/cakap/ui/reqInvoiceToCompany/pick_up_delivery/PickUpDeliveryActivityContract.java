@@ -1,20 +1,20 @@
-package co.id.cakap.ui.reqInvoiceToBc;
+package co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery;
 
 import java.util.List;
 
-import co.id.cakap.data.ItemShopCompanyData;
+import co.id.cakap.data.AddressData;
 
-public class ReqInvoiceToBcActivityContract {
+public class PickUpDeliveryActivityContract {
     public interface View{
         void initializeData();
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void setAdapter(List<ItemShopCompanyData> resultData);
+        void setAdapter(List<AddressData> resultData);
     }
 
     public interface UserActionListener{
-        void setView(ReqInvoiceToBcActivityContract.View view);
+        void setView(PickUpDeliveryActivityContract.View view);
         void getData();
     }
 }

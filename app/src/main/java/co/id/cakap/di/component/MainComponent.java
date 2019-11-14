@@ -27,6 +27,7 @@ import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.registration.RegistrationActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.pick_up_delivery.PickUpDeliveryActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 import co.id.cakap.ui.stockReport.StockReportActivity;
@@ -58,6 +59,7 @@ public interface MainComponent {
     SearchMemberActivity inject(SearchMemberActivity searchMemberActivityz);
     StockReportActivity inject(StockReportActivity omsetActivity);
     MemberDetailActivity inject(MemberDetailActivity activity);
+    PickUpDeliveryActivity inject(PickUpDeliveryActivity activity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

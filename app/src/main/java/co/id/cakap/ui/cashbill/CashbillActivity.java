@@ -60,6 +60,8 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
     EditText mName;
     @BindView(R.id.et_status)
     EditText mStatus;
+    @BindView(R.id.et_remark)
+    EditText mRemark;
     @BindView(R.id.linear_submit)
     LinearLayout mLinearSubmit;
     @BindView(R.id.relative_member_id)
@@ -140,7 +142,6 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
             mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
             mUserActionListener.getData(mMemberId.getText().toString());
             mMemberId.setInputType(0);
-//            showProgressBar();
         }
     }
 
