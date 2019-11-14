@@ -5,13 +5,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 import java.util.List;
@@ -42,6 +46,10 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     Spinner mPickUpDeliverySpinner;
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+    @BindView(R.id.fab_next)
+    FloatingActionButton mFabNext;
 
     private AddressAdapter mListAdapter;
     private PickUpDeliveryActivityContract.UserActionListener mUserActionListener;
@@ -67,8 +75,10 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     public void initializeData() {
         mUserActionListener = mPickUpDeliveryActivityPresenter;
         mPickUpDeliveryActivityPresenter.setView(this);
+//        mRecyclerView.setNestedScrollingEnabled(false);
         mUserActionListener.getData();
 
+        mFab.hide();
         mTitle.setText(getString(R.string.req_invoice_to_com).toUpperCase());
         initSpinner();
     }
@@ -92,9 +102,25 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     public void setAdapter(List<AddressData> resultData) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-        mListAdapter = new AddressAdapter(resultData, this);
+        mListAdapter = new AddressAdapter(mRecyclerView, resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                if (dy<0 && !mFabNext.isShown()) {
+                    mFabNext.show();
+                } else if(dy>0 && mFabNext.isShown()) {
+                    mFabNext.hide();
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
 
         hideProgressBar();
     }

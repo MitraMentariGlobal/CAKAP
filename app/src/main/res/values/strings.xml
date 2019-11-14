@@ -49,6 +49,7 @@
     <string name="pick_up_delivery">Pick up / Delivery</string>
     <string name="delivery_address">Delivery Address</string>
     <string name="change_address">Change Address</string>
+    <string name="submit">Submit</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

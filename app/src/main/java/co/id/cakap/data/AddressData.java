@@ -32,17 +32,23 @@ public class AddressData implements Parcelable {
     @Expose
     private String address;
 
+    @SerializedName("is_check")
+    @Expose
+    private boolean isCheck;
+
     @Keep
-    public AddressData(String kota, String province, String address) {
+    public AddressData(String kota, String province, String address, boolean isCheck) {
         this.kota = kota;
         this.province = province;
         this.address = address;
+        this.isCheck = isCheck;
     }
 
     protected AddressData(Parcel in) {
         kota = in.readString();
         province = in.readString();
         address = in.readString();
+        isCheck = in.readByte() != 0;
     }
 
     @Generated(hash = 262205491)
@@ -54,6 +60,7 @@ public class AddressData implements Parcelable {
         dest.writeString(kota);
         dest.writeString(province);
         dest.writeString(address);
+        dest.writeByte((byte) (isCheck ? 1 : 0));
     }
 
     @Override
@@ -83,6 +90,14 @@ public class AddressData implements Parcelable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean getIsCheck() {
+        return this.isCheck;
+    }
+
+    public void setIsCheck(boolean isCheck) {
+        this.isCheck = isCheck;
     }
 
     public static final Creator<AddressData> CREATOR = new Creator<AddressData>() {

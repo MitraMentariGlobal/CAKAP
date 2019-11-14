@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,6 +20,7 @@ import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.AddressData;
 import co.id.cakap.data.DetailTransaksiData;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -26,11 +28,14 @@ import co.id.cakap.data.DetailTransaksiData;
  */
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
+    private RecyclerView mRecyclerView = null;
     private List<AddressData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
+    private int mPositionCheck = 0;
 
-    public AddressAdapter(List<AddressData> resultData, Context context){
+    public AddressAdapter(RecyclerView recyclerView, List<AddressData> resultData, Context context) {
+        mRecyclerView = recyclerView;
         mResultData = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -66,9 +71,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         TextView mTxtProvince;
         @BindView(R.id.txt_address)
         TextView mTxtAddress;
-        @BindView(R.id.item_check)
-        ImageView mItemCheck;
 
+        CircleImageView mItemCheck;
         Context context;
 
         public ViewHolder(View itemView) {
@@ -78,7 +82,23 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
         @OnClick(R.id.item_check)
         public void userCheck(View view) {
-            mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
+            View recyclerView = null;
+
+            if (getAdapterPosition() == mPositionCheck) {
+                recyclerView = mRecyclerView.findViewHolderForAdapterPosition(mPositionCheck).itemView;
+                mItemCheck = (CircleImageView) recyclerView.findViewById(R.id.item_check);
+                mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
+                mPositionCheck = getAdapterPosition();
+            } else {
+                recyclerView = mRecyclerView.findViewHolderForAdapterPosition(mPositionCheck).itemView;
+                mItemCheck = (CircleImageView) recyclerView.findViewById(R.id.item_check);
+                mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_off_button));
+
+                recyclerView = mRecyclerView.findViewHolderForAdapterPosition(getAdapterPosition()).itemView;
+                mItemCheck = (CircleImageView) recyclerView.findViewById(R.id.item_check);
+                mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
+                mPositionCheck = getAdapterPosition();
+            }
         }
     }
 }

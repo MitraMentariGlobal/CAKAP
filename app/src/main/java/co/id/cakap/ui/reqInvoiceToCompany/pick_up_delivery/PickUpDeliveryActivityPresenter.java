@@ -27,9 +27,13 @@ public class PickUpDeliveryActivityPresenter implements PickUpDeliveryActivityCo
     @Override
     public void getData() {
         arrayList = new ArrayList<>();
-        arrayList.add(new AddressData("Bekasi", "Jawa Barat", "Jalan jalan di bekasi sebelah warung pecel lele"));
-        arrayList.add(new AddressData("Jakarta Timur", "DKI Jakarta", "Jalan jalan di Jakarta Timur sebelah tenda biru"));
-        arrayList.add(new AddressData("Yogyakarta", "Jawa Tengah", "Jalan jalan di Yogyakarta sebelah indomaret"));
+        arrayList.add(new AddressData("Bekasi", "Jawa Barat", "Jalan jalan di bekasi sebelah warung pecel lele", false));
+        arrayList.add(new AddressData("Jakarta Timur", "DKI Jakarta", "Jalan jalan di Jakarta Timur sebelah tenda biru", false));
+        arrayList.add(new AddressData("Yogyakarta", "Jawa Tengah", "Jalan jalan di Yogyakarta sebelah indomaret", false));
+        arrayList.add(new AddressData("Yogyakarta", "Jawa Tengah", "Jalan jalan di Yogyakarta sebelah indomaret", false));
+        arrayList.add(new AddressData("Yogyakarta", "Jawa Tengah", "Jalan jalan di Yogyakarta sebelah indomaret", false));
+        arrayList.add(new AddressData("Yogyakarta", "Jawa Tengah", "Jalan jalan di Yogyakarta sebelah indomaret", false));
+        arrayList.add(new AddressData("Yogyakarta", "Jawa Tengah", "Jalan jalan di Yogyakarta sebelah indomaret", false));
         mView.setAdapter(arrayList);
     }
 }
