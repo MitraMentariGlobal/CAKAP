@@ -1,5 +1,6 @@
 package co.id.cakap.ui.cashbill;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import co.id.cakap.data.ItemShopData;
@@ -9,9 +10,9 @@ import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.account.AccountContract;
 
 public class CashbillActivityPresenter implements CashbillActivityContract.UserActionListener {
-    private CashbillActivityContract.View mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
+    private static WeakReference<CashbillActivityContract.View> mView;
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
 
     private OperationUserStatusData operationUserStatusData;
     private ArrayList<ItemShopData> arrayList;
@@ -21,9 +22,21 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
         mDataModel = dataModel;
     }
 
+    public CashbillActivityPresenter() {
+
+    }
+
     @Override
-    public void setView(CashbillActivityContract.View view){
-        mView = view;
+    public void setView(CashbillActivityContract.View view) {
+        mView = new WeakReference<>(view);
+    }
+
+    public CashbillActivityContract.View getView() throws NullPointerException {
+        if (mView != null){
+            return mView.get();
+        } else{
+            throw new NullPointerException("View is unavailable");
+        }
     }
 
     @Override
@@ -41,6 +54,6 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
         arrayList.add(new ItemShopData("PC09", "V-Bless Pantyliner", "0", "87", "Wilayah I", "37.000", "20", "0", "0"));
         arrayList.add(new ItemShopData("PC10", "V-Bless Day", "0", "9", "Wilayah I", "40.000", "20", "0", "0"));
         arrayList.add(new ItemShopData("PC11", "V-Bless Nite", "0", "7", "Wilayah I", "41.000", "20", "0", "0"));
-        mView.setAdapter(arrayList, operationUserStatusData);
+        getView().setAdapter(arrayList, operationUserStatusData);
     }
 }

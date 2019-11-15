@@ -167,5 +167,8 @@ dependencies {
 
     //Date Range
     implementation 'com.borax12.materialdaterangepicker:library:2.0'
+
+    //Pin Lock
+    implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
 }
 apply plugin: 'com.google.gms.google-services'

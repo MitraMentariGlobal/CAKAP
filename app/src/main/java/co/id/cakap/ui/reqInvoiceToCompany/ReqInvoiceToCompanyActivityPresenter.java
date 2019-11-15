@@ -1,5 +1,6 @@
 package co.id.cakap.ui.reqInvoiceToCompany;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import co.id.cakap.data.ItemShopCompanyData;
@@ -7,9 +8,9 @@ import co.id.cakap.model.DataModel;
 import co.id.cakap.repository.MainRepository;
 
 public class ReqInvoiceToCompanyActivityPresenter implements ReqInvoiceToCompanyActivityContract.UserActionListener {
-    private ReqInvoiceToCompanyActivityContract.View mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
+    private static WeakReference<ReqInvoiceToCompanyActivityContract.View> mView;
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
 
     private ArrayList<ItemShopCompanyData> arrayList;
 
@@ -18,9 +19,21 @@ public class ReqInvoiceToCompanyActivityPresenter implements ReqInvoiceToCompany
         mDataModel = dataModel;
     }
 
+    public ReqInvoiceToCompanyActivityPresenter() {
+
+    }
+
     @Override
-    public void setView(ReqInvoiceToCompanyActivityContract.View view){
-        mView = view;
+    public void setView(ReqInvoiceToCompanyActivityContract.View view) {
+        mView = new WeakReference<>(view);
+    }
+
+    public ReqInvoiceToCompanyActivityContract.View getView() throws NullPointerException {
+        if (mView != null){
+            return mView.get();
+        } else{
+            throw new NullPointerException("View is unavailable");
+        }
     }
 
     @Override
@@ -36,6 +49,6 @@ public class ReqInvoiceToCompanyActivityPresenter implements ReqInvoiceToCompany
         arrayList.add(new ItemShopCompanyData("PC09", "V-Bless Pantyliner", "0", "37.000", "20", "0", "0"));
         arrayList.add(new ItemShopCompanyData("PC10", "V-Bless Day", "0", "40.000", "20", "0", "0"));
         arrayList.add(new ItemShopCompanyData("PC11", "V-Bless Nite", "0", "41.000", "20", "0", "0"));
-        mView.setAdapter(arrayList);
+        getView().setAdapter(arrayList);
     }
 }

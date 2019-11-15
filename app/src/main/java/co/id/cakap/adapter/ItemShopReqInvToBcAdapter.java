@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,22 +20,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
-import co.id.cakap.data.ActivityCashbillData;
-import co.id.cakap.data.ItemShopData;
-import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
+import co.id.cakap.data.ItemShopCompanyData;
+import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivityPresenter;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
  * Android Developer
  */
 
-public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHolder> implements Filterable {
-    private List<ItemShopData> mResultData;
-    private List<ItemShopData> mFilteredList;
+public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqInvToBcAdapter.ViewHolder> implements Filterable {
+    private List<ItemShopCompanyData> mResultData;
+    private List<ItemShopCompanyData> mFilteredList;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public ItemShopAdapter(List<ItemShopData> resultData, Context context){
+    public ItemShopReqInvToBcAdapter(List<ItemShopCompanyData> resultData, Context context){
         mResultData = resultData;
         mFilteredList = resultData;
         mContext = context;
@@ -51,14 +50,16 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ItemShopData itemShopData = mFilteredList.get(position);
+        ItemShopCompanyData itemShopCompanyData = mFilteredList.get(position);
 
         holder.context = mContext;
-        holder.mItemCode.setText(itemShopData.getItem_code());
-        holder.mStock.setText(itemShopData.getStock());
-        holder.mItemName.setText(itemShopData.getItem_name());
-        holder.mPrice.setText(itemShopData.getPrice());
-        holder.mPv.setText(itemShopData.getPv());
+        holder.itemShopCompanyData = itemShopCompanyData;
+        holder.position = position;
+
+        holder.mItemCode.setText(itemShopCompanyData.getItem_code());
+        holder.mItemName.setText(itemShopCompanyData.getItem_name());
+        holder.mPrice.setText(itemShopCompanyData.getPrice());
+        holder.mPv.setText(itemShopCompanyData.getPv());
     }
 
     @Override
@@ -75,13 +76,13 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
                 if (charString.isEmpty()) {
                     mFilteredList = mResultData;
                 } else {
-                    ArrayList<ItemShopData> filteredList = new ArrayList<>();
-                    for (ItemShopData itemShopData : mResultData) {
-                        if (itemShopData.getItem_code().toLowerCase().contains(charString) ||
-                                itemShopData.getItem_name().toLowerCase().contains(charString) ||
-                                itemShopData.getPrice().toLowerCase().contains(charString) ||
-                                itemShopData.getPv().toLowerCase().contains(charString)) {
-                            filteredList.add(itemShopData);
+                    ArrayList<ItemShopCompanyData> filteredList = new ArrayList<>();
+                    for (ItemShopCompanyData itemShopCompanyData : mResultData) {
+                        if (itemShopCompanyData.getItem_code().toLowerCase().contains(charString) ||
+                                itemShopCompanyData.getItem_name().toLowerCase().contains(charString) ||
+                                itemShopCompanyData.getPrice().toLowerCase().contains(charString) ||
+                                itemShopCompanyData.getPv().toLowerCase().contains(charString)) {
+                            filteredList.add(itemShopCompanyData);
                         }
                     }
                     mFilteredList = filteredList;
@@ -94,7 +95,7 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mFilteredList = (ArrayList<ItemShopData>) filterResults.values;
+                mFilteredList = (ArrayList<ItemShopCompanyData>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
@@ -104,8 +105,6 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
 
         @BindView(R.id.txt_item_code)
         TextView mItemCode;
-        @BindView(R.id.txt_stock)
-        TextView mStock;
         @BindView(R.id.txt_item_name)
         TextView mItemName;
         @BindView(R.id.txt_price)
@@ -118,14 +117,19 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
         EditText mQty;
         @BindView(R.id.img_plus)
         ImageView mPlus;
+        @BindView(R.id.linear_stock)
+        LinearLayout mLinearStock;
 
+        ItemShopCompanyData itemShopCompanyData;
         Context context;
         int qty = 0;
+        int position = 0;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
+            mLinearStock.setVisibility(View.GONE);
             setZeroQty();
         }
 
@@ -142,6 +146,9 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
+                itemShopCompanyData.setQty(String.valueOf(qty));
+                mResultData.set(position, itemShopCompanyData);
+                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 0);
             }
         }
 
@@ -150,6 +157,9 @@ public class ItemShopAdapter extends RecyclerView.Adapter<ItemShopAdapter.ViewHo
             setZeroQty();
             qty += 1;
             mQty.setText(String.valueOf(qty));
+            itemShopCompanyData.setQty(String.valueOf(qty));
+            mResultData.set(position, itemShopCompanyData);
+            new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 1);
         }
     }
 }

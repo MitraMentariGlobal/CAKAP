@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -25,11 +30,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
-import co.id.cakap.adapter.ItemShopCompanyAdapter;
+import co.id.cakap.adapter.ItemShopReqInvToCompanyAdapter;
 import co.id.cakap.data.ItemShopCompanyData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
+import co.id.cakap.utils.dialog.PinDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements ReqInvoiceToCompanyActivityContract.View{
@@ -54,10 +61,24 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     TextView mSaldoEwallet;
     @BindView(R.id.et_remark)
     EditText mRemark;
+    @BindView(R.id.txt_total_item)
+    TextView mTxtTotalItem;
+    @BindView(R.id.txt_total_pv)
+    TextView mTxtTotalPv;
+    @BindView(R.id.txt_total_price)
+    TextView mTxtTotalPrice;
+    @BindView(R.id.item_check)
+    CircleImageView mItemCheck;
+    @BindView(R.id.linear_change_address)
+    LinearLayout mLinearChangeAddress;
 
-    private ItemShopCompanyAdapter mListAdapter;
+    private ItemShopReqInvToCompanyAdapter mListAdapter;
     private ReqInvoiceToCompanyActivityContract.UserActionListener mUserActionListener;
     private boolean mIsExpand = true;
+
+    private static int mItem = 0;
+    private static int mPv = 0;
+    private static double mPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +105,8 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
         mTitle.setText(getString(R.string.req_invoice_to_com).toUpperCase());
         mLinearSearch.setVisibility(View.GONE);
+        mItemCheck.setVisibility(View.GONE);
+        mLinearChangeAddress.setVisibility(View.GONE);
     }
 
     @Override
@@ -105,12 +128,29 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     public void setAdapter(List<ItemShopCompanyData> resultData) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-        mListAdapter = new ItemShopCompanyAdapter(resultData, this);
+        mListAdapter = new ItemShopReqInvToCompanyAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();
+    }
+
+    @Override
+    public void setCheckoutValue(List<ItemShopCompanyData> resultData, ItemShopCompanyData itemShopCompanyData, int action) {
+        if (action == 0) {
+            mItem -= 1;
+            mPv -= Integer.parseInt(itemShopCompanyData.getPv());
+            mPrice -= Double.parseDouble(itemShopCompanyData.getPrice().replace(".",""));
+        } else {
+            mItem += 1;
+            mPv += Integer.parseInt(itemShopCompanyData.getPv());
+            mPrice += Double.parseDouble(itemShopCompanyData.getPrice().replace(".",""));
+        }
+
+        mTxtTotalItem.setText(String.valueOf(mItem));
+        mTxtTotalPv.setText(String.valueOf(mPv));
+        mTxtTotalPrice.setText(Utils.priceWithoutDecimal(mPrice));
     }
 
     @OnClick(R.id.arrow_back)
@@ -154,5 +194,38 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    @OnClick(R.id.card_checkout)
+    public void checkOut(View view) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 }

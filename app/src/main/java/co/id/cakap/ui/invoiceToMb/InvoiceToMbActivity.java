@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -26,12 +31,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
-import co.id.cakap.adapter.ItemShopAdapter;
+import co.id.cakap.adapter.ItemShopCashbillAdapter;
+import co.id.cakap.adapter.ItemShopInvToMbAdapter;
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
+import co.id.cakap.utils.dialog.PinDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToMbActivityContract.View{
@@ -62,10 +69,20 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
     LinearLayout mLinearSubmit;
     @BindView(R.id.relative_member_id)
     RelativeLayout mRelativeMemberId;
+    @BindView(R.id.txt_total_item)
+    TextView mTxtTotalItem;
+    @BindView(R.id.txt_total_pv)
+    TextView mTxtTotalPv;
+    @BindView(R.id.txt_total_price)
+    TextView mTxtTotalPrice;
 
-    private ItemShopAdapter mListAdapter;
+    private ItemShopInvToMbAdapter mListAdapter;
     private InvoiceToMbActivityContract.UserActionListener mUserActionListener;
     private boolean mIsExpand = true;
+
+    private static int mItem = 0;
+    private static int mPv = 0;
+    private static double mPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,12 +134,29 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-        mListAdapter = new ItemShopAdapter(resultData, this);
+        mListAdapter = new ItemShopInvToMbAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();
+    }
+
+    @Override
+    public void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action) {
+        if (action == 0) {
+            mItem -= 1;
+            mPv -= Integer.parseInt(itemShopData.getPv());
+            mPrice -= Double.parseDouble(itemShopData.getPrice().replace(".",""));
+        } else {
+            mItem += 1;
+            mPv += Integer.parseInt(itemShopData.getPv());
+            mPrice += Double.parseDouble(itemShopData.getPrice().replace(".",""));
+        }
+
+        mTxtTotalItem.setText(String.valueOf(mItem));
+        mTxtTotalPv.setText(String.valueOf(mPv));
+        mTxtTotalPrice.setText(Utils.priceWithoutDecimal(mPrice));
     }
 
     @OnClick(R.id.arrow_back)
@@ -178,5 +212,38 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    @OnClick(R.id.card_checkout)
+    public void checkOut(View view) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 }

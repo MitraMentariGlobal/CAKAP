@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/radius_10"
+    app:cardElevation="0dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pin_dialog_style"
+        android:padding="@dimen/radius_16">
+
+        <TextView
+            android:id="@+id/wording"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_22"
+            android:text="@string/enter_your_pin"
+            android:textColor="@color/colorPrimaryDark"
+            style="@style/TexViewFont" />
+
+        <com.andrognito.pinlockview.IndicatorDots
+            android:id="@+id/indicator_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wording"
+            app:dotFilledBackground="@drawable/pin_filled_style"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
+
+        <com.andrognito.pinlockview.PinLockView
+            android:id="@+id/pin_lock_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/indicator_dots"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            app:keypadButtonSize="72dp"
+            app:keypadShowDeleteButton="true"
+            app:keypadTextColor="@color/colorPrimaryDark"
+            app:keypadTextSize="18dp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

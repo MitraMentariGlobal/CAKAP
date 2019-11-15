@@ -1,5 +1,6 @@
 package co.id.cakap.ui.invoiceToMb;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import co.id.cakap.data.ItemShopData;
@@ -9,9 +10,9 @@ import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
 
 public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract.UserActionListener {
-    private InvoiceToMbActivityContract.View mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
+    private static WeakReference<InvoiceToMbActivityContract.View> mView;
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
 
     private OperationUserStatusData operationUserStatusData;
     private ArrayList<ItemShopData> arrayList;
@@ -21,9 +22,21 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
         mDataModel = dataModel;
     }
 
+    public InvoiceToMbActivityPresenter() {
+
+    }
+
     @Override
-    public void setView(InvoiceToMbActivityContract.View view){
-        mView = view;
+    public void setView(InvoiceToMbActivityContract.View view) {
+        mView = new WeakReference<>(view);
+    }
+
+    public InvoiceToMbActivityContract.View getView() throws NullPointerException {
+        if (mView != null){
+            return mView.get();
+        } else{
+            throw new NullPointerException("View is unavailable");
+        }
     }
 
     @Override
@@ -41,6 +54,6 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
         arrayList.add(new ItemShopData("PC09", "V-Bless Pantyliner", "0", "87", "Wilayah I", "37.000", "20", "0", "0"));
         arrayList.add(new ItemShopData("PC10", "V-Bless Day", "0", "9", "Wilayah I", "40.000", "20", "0", "0"));
         arrayList.add(new ItemShopData("PC11", "V-Bless Nite", "0", "7", "Wilayah I", "41.000", "20", "0", "0"));
-        mView.setAdapter(arrayList, operationUserStatusData);
+        getView().setAdapter(arrayList, operationUserStatusData);
     }
 }

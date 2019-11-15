@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,22 +19,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
-import co.id.cakap.data.ItemShopCompanyData;
 import co.id.cakap.data.ItemShopData;
-import co.id.cakap.utils.Logger;
+import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivityPresenter;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
  * Android Developer
  */
 
-public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompanyAdapter.ViewHolder> implements Filterable {
-    private List<ItemShopCompanyData> mResultData;
-    private List<ItemShopCompanyData> mFilteredList;
+public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMbAdapter.ViewHolder> implements Filterable {
+    private List<ItemShopData> mResultData;
+    private List<ItemShopData> mFilteredList;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public ItemShopCompanyAdapter(List<ItemShopCompanyData> resultData, Context context){
+    public ItemShopInvToMbAdapter(List<ItemShopData> resultData, Context context){
         mResultData = resultData;
         mFilteredList = resultData;
         mContext = context;
@@ -51,16 +49,17 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ItemShopCompanyData itemShopCompanyData = mFilteredList.get(position);
+        ItemShopData itemShopData = mFilteredList.get(position);
 
         holder.context = mContext;
-        holder.itemShopCompanyData = itemShopCompanyData;
+        holder.itemShopData = itemShopData;
         holder.position = position;
 
-        holder.mItemCode.setText(itemShopCompanyData.getItem_code());
-        holder.mItemName.setText(itemShopCompanyData.getItem_name());
-        holder.mPrice.setText(itemShopCompanyData.getPrice());
-        holder.mPv.setText(itemShopCompanyData.getPv());
+        holder.mItemCode.setText(itemShopData.getItem_code());
+        holder.mStock.setText(itemShopData.getStock());
+        holder.mItemName.setText(itemShopData.getItem_name());
+        holder.mPrice.setText(itemShopData.getPrice());
+        holder.mPv.setText(itemShopData.getPv());
     }
 
     @Override
@@ -77,13 +76,13 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
                 if (charString.isEmpty()) {
                     mFilteredList = mResultData;
                 } else {
-                    ArrayList<ItemShopCompanyData> filteredList = new ArrayList<>();
-                    for (ItemShopCompanyData itemShopCompanyData : mResultData) {
-                        if (itemShopCompanyData.getItem_code().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getItem_name().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getPrice().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getPv().toLowerCase().contains(charString)) {
-                            filteredList.add(itemShopCompanyData);
+                    ArrayList<ItemShopData> filteredList = new ArrayList<>();
+                    for (ItemShopData itemShopData : mResultData) {
+                        if (itemShopData.getItem_code().toLowerCase().contains(charString) ||
+                                itemShopData.getItem_name().toLowerCase().contains(charString) ||
+                                itemShopData.getPrice().toLowerCase().contains(charString) ||
+                                itemShopData.getPv().toLowerCase().contains(charString)) {
+                            filteredList.add(itemShopData);
                         }
                     }
                     mFilteredList = filteredList;
@@ -96,7 +95,7 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mFilteredList = (ArrayList<ItemShopCompanyData>) filterResults.values;
+                mFilteredList = (ArrayList<ItemShopData>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
@@ -106,6 +105,8 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
 
         @BindView(R.id.txt_item_code)
         TextView mItemCode;
+        @BindView(R.id.txt_stock)
+        TextView mStock;
         @BindView(R.id.txt_item_name)
         TextView mItemName;
         @BindView(R.id.txt_price)
@@ -118,10 +119,8 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
         EditText mQty;
         @BindView(R.id.img_plus)
         ImageView mPlus;
-        @BindView(R.id.linear_stock)
-        LinearLayout mLinearStock;
 
-        ItemShopCompanyData itemShopCompanyData;
+        ItemShopData itemShopData;
         Context context;
         int qty = 0;
         int position = 0;
@@ -130,7 +129,6 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            mLinearStock.setVisibility(View.GONE);
             setZeroQty();
         }
 
@@ -147,8 +145,9 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
-                itemShopCompanyData.setQty(String.valueOf(qty));
-                mResultData.set(position, itemShopCompanyData);
+                itemShopData.setQty(String.valueOf(qty));
+                mResultData.set(position, itemShopData);
+                new InvoiceToMbActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 0);
             }
         }
 
@@ -157,8 +156,9 @@ public class ItemShopCompanyAdapter extends RecyclerView.Adapter<ItemShopCompany
             setZeroQty();
             qty += 1;
             mQty.setText(String.valueOf(qty));
-            itemShopCompanyData.setQty(String.valueOf(qty));
-            mResultData.set(position, itemShopCompanyData);
+            itemShopData.setQty(String.valueOf(qty));
+            mResultData.set(position, itemShopData);
+            new InvoiceToMbActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
         }
     }
 }

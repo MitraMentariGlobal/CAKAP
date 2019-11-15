@@ -11,6 +11,7 @@ public class ReqInvoiceToCompanyActivityContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void setAdapter(List<ItemShopCompanyData> resultData);
+        void setCheckoutValue(List<ItemShopCompanyData> resultData, ItemShopCompanyData itemShopCompanyData, int action);
     }
 
     public interface UserActionListener{

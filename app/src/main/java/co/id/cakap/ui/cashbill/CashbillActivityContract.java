@@ -12,6 +12,7 @@ public class CashbillActivityContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void setAdapter(List<ItemShopData> resultData, OperationUserStatusData operationUserStatusData);
+        void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action);
     }
 
     public interface UserActionListener{

@@ -1,13 +1,23 @@
 package co.id.cakap.utils;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.view.animation.TranslateAnimation;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.util.List;
+
+import co.id.cakap.BuildConfig;
 import okhttp3.ResponseBody;
 
 public class Utils {
@@ -77,5 +87,42 @@ public class Utils {
         // Collapse speed of 1dp/ms
         a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
         v.startAnimation(a);
+    }
+
+    public static String priceFromString(String price) {
+        return priceWithoutDecimal(Double.parseDouble(price.replace(".","")));
+    }
+
+    public static String priceWithoutDecimal (Double price) {
+        DecimalFormat formatter = new DecimalFormat("###,###,###.##");
+        return formatter.format(price);
+    }
+
+    public static boolean isAppInBackground(Context context) {
+        boolean isInBackground = true;
+
+        if(context != null) {
+            ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
+                List<ActivityManager.RunningAppProcessInfo> runningProcesses = am.getRunningAppProcesses();
+                for (ActivityManager.RunningAppProcessInfo processInfo : runningProcesses) {
+                    if (processInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                        for (String activeProcess : processInfo.pkgList) {
+                            if (activeProcess.equals(BuildConfig.APPLICATION_ID)) {
+                                isInBackground = false;
+                            }
+                        }
+                    }
+                }
+            } else {
+                List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+                ComponentName componentInfo = taskInfo.get(0).topActivity;
+                if (componentInfo.getPackageName().equals(BuildConfig.APPLICATION_ID)) {
+                    isInBackground = false;
+                }
+            }
+        }
+
+        return isInBackground;
     }
 }

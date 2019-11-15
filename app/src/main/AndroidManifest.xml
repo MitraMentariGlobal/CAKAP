@@ -14,10 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity"></activity>
-        <activity android:name=".ui.reqInvoiceToBc.ReqInvoiceToBcActivity" />
-        <activity android:name=".ui.invoiceToMb.InvoiceToMbActivity" />
-        <activity android:name=".ui.cashbill.CashbillActivity" />
+        <activity android:name=".ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.reqInvoiceToBc.ReqInvoiceToBcActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.invoiceToMb.InvoiceToMbActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.cashbill.CashbillActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.registration.RegistrationActivity" />
 
         <service

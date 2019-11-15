@@ -110,7 +110,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="@string/submit"
+            android:text="@string/submit_upper"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
