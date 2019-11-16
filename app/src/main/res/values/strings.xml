@@ -54,6 +54,7 @@
     <string name="kota">Kota</string>
     <string name="alamat">Alamat</string>
     <string name="enter_your_pin">Enter Your Pin</string>
+    <string name="default_address">Default</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

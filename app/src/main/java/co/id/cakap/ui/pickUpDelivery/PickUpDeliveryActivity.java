@@ -131,6 +131,33 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         hideProgressBar();
     }
 
+    @Override
+    public void changeAddress(String kota, String address) {
+        NewAddressDialog utils = new NewAddressDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        mCitySpinner = dialog.findViewById(R.id.city_spinner);
+        mAlamat = dialog.findViewById(R.id.et_alamat);
+        mSubmit = dialog.findViewById(R.id.submit_btn);
+
+        initCitySpinner();
+        for (int i = 0; i < mCitySpinner.getAdapter().getCount(); i++) {
+            if(mCitySpinner.getAdapter().getItem(i).toString().contains(kota)) {
+                mCitySpinner.setSelection(i);
+            }
+        }
+        mAlamat.setText(address);
+
+        mSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.d("kota : " + mCitySpinner.getSelectedItem().toString());
+                Logger.d("alamat : " + mAlamat.getText());
+                dialog.hide();
+            }
+        });
+    }
+
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();

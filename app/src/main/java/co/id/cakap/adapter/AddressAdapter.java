@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.AddressData;
 import co.id.cakap.data.DetailTransaksiData;
+import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivityPresenter;
 import co.id.cakap.utils.Logger;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -33,7 +34,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     private List<AddressData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
-    private static int mPositionCheck = 0;
+    private int mPositionCheck = 0;
 
     public AddressAdapter(RecyclerView recyclerView, List<AddressData> resultData, Context context) {
         mRecyclerView = recyclerView;
@@ -54,9 +55,20 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         AddressData addressData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.addressData = addressData;
+
         holder.mTxtCity.setText(addressData.getKota());
         holder.mTxtProvince.setText(addressData.getProvince());
         holder.mTxtAddress.setText(addressData.getAddress());
+
+        if (position == 0) {
+            holder.mLinearChangeAddress.setVisibility(View.GONE);
+            holder.mRelativeDefaultAddress.setVisibility(View.VISIBLE);
+        }
+
+        if (addressData.getIsCheck()) {
+            holder.mItemCheck.setBackground(mContext.getResources().getDrawable(R.drawable.ic_radio_on_button));
+        }
     }
 
     @Override
@@ -72,13 +84,25 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         TextView mTxtProvince;
         @BindView(R.id.txt_address)
         TextView mTxtAddress;
-
+        @BindView(R.id.linear_change_address)
+        LinearLayout mLinearChangeAddress;
+        @BindView(R.id.relative_default_address)
+        RelativeLayout mRelativeDefaultAddress;
+        @BindView(R.id.item_check)
         CircleImageView mItemCheck;
+
+        AddressData addressData;
+        CircleImageView itemCheck;
         Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.txt_change_address)
+        public void changeAddress(View view) {
+            new PickUpDeliveryActivityPresenter().getView().changeAddress(addressData.getKota(), addressData.getAddress());
         }
 
         @OnClick(R.id.item_check)
@@ -88,17 +112,16 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
             if (getAdapterPosition() == mPositionCheck) {
                 recyclerView = mRecyclerView.findViewHolderForAdapterPosition(mPositionCheck).itemView;
                 mItemCheck = (CircleImageView) recyclerView.findViewById(R.id.item_check);
-                mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
+                mItemCheck.setBackground(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
                 mPositionCheck = getAdapterPosition();
             } else {
-                Logger.d("mPositionCheck : " + mPositionCheck);
                 recyclerView = mRecyclerView.findViewHolderForAdapterPosition(mPositionCheck).itemView;
                 mItemCheck = (CircleImageView) recyclerView.findViewById(R.id.item_check);
-                mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_off_button));
+                mItemCheck.setBackground(context.getResources().getDrawable(R.drawable.ic_radio_off_button));
 
                 recyclerView = mRecyclerView.findViewHolderForAdapterPosition(getAdapterPosition()).itemView;
                 mItemCheck = (CircleImageView) recyclerView.findViewById(R.id.item_check);
-                mItemCheck.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
+                mItemCheck.setBackground(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
                 mPositionCheck = getAdapterPosition();
             }
         }

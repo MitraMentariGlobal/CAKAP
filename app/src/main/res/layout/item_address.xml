@@ -74,22 +74,53 @@
 
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:orientation="vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/item_check"
+                <RelativeLayout
+                    android:id="@+id/relative_default_address"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="@dimen/radius_10"
-                    android:background="@drawable/ic_radio_off_button"/>
-            </RelativeLayout>
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="@dimen/radius_10"
+                    android:paddingEnd="@dimen/radius_10"
+                    android:background="@drawable/background_green_style"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_12"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/default_address"
+                        style="@style/TexViewFont" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/item_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/radius_10"
+                        android:layout_marginBottom="@dimen/radius_10"
+                        android:layout_marginStart="@dimen/radius_10"
+                        android:background="@drawable/ic_radio_off_button"/>
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
