@@ -40,6 +40,8 @@
             android:layout_below="@id/indicator_dots"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
+            app:keypadDeleteButtonDrawable="@drawable/ic_backspace"
+            app:keypadDeleteButtonPressedColor="@color/colorPrimaryDark"
             app:keypadButtonSize="72dp"
             app:keypadShowDeleteButton="true"
             app:keypadTextColor="@color/colorPrimaryDark"

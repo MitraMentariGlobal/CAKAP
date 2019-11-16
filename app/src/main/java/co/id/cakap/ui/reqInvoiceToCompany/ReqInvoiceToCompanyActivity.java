@@ -67,6 +67,8 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     TextView mTxtTotalPv;
     @BindView(R.id.txt_total_price)
     TextView mTxtTotalPrice;
+    @BindView(R.id.txt_pick_up_delivery)
+    TextView mTxtPickUpDelivery;
     @BindView(R.id.item_check)
     CircleImageView mItemCheck;
     @BindView(R.id.linear_change_address)
@@ -104,6 +106,7 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
         mUserActionListener.getData();
 
         mTitle.setText(getString(R.string.req_invoice_to_com).toUpperCase());
+        mTxtPickUpDelivery.setText("Delivery");
         mLinearSearch.setVisibility(View.GONE);
         mItemCheck.setVisibility(View.GONE);
         mLinearChangeAddress.setVisibility(View.GONE);
@@ -198,34 +201,6 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-        PinDialog utils = new PinDialog();
-        Dialog dialog = utils.showDialog(this);
 
-        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
-        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
-        PinLockListener pinLockListener = new PinLockListener() {
-            @Override
-            public void onComplete(String pin) {
-                Logger.d("Pin complete: " + pin);
-            }
-
-            @Override
-            public void onEmpty() {
-                Logger.d("Pin empty");
-            }
-
-            @Override
-            public void onPinChange(int pinLength, String intermediatePin) {
-                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
-            }
-        };
-
-        pinLockView.attachIndicatorDots(indicatorDots);
-        pinLockView.setPinLockListener(pinLockListener);
-
-        pinLockView.setPinLength(6);
-        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-
-        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 }
