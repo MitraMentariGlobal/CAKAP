@@ -97,7 +97,7 @@
                             android:textSize="14sp"
                             android:maxLines="2"
                             android:ellipsize="end"
-                            android:text="@string/please_confirm"
+                            android:text="@string/please_confirm_bc"
                             style="@style/TexViewFont"/>
 
                     </LinearLayout>
@@ -140,7 +140,6 @@
                             android:layout_marginStart="@dimen/radius_16"
                             android:textSize="@dimen/text_22"
                             android:textColor="@color/success_font_green"
-                            android:textStyle="bold"
                             android:text="IDR 100.000.000"
                             style="@style/TexViewFont" />
 

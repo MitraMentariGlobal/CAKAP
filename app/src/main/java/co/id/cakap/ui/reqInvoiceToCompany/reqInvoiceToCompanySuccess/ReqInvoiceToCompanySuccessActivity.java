@@ -1,10 +1,8 @@
-package co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess;
+package co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,53 +22,54 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
-import co.id.cakap.adapter.CashbillSuccessAdapter;
 import co.id.cakap.adapter.ReqInvoiceToBcSuccessAdapter;
-import co.id.cakap.data.CashbillSuccessData;
 import co.id.cakap.data.ReqInvoiceToBcSuccessData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessContract;
-import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
 import co.id.cakap.ui.dashboard.DashboardActivity;
-import co.id.cakap.utils.Utils;
+import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessContract;
+import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessPresenter;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements ReqInvoiceToBcSuccessContract.View {
+public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implements ReqInvoiceToCompanySuccessContract.View {
     private static final String TAG = "DetailTransactionActivity";
 
     @Inject
-    ReqInvoiceToBcSuccessPresenter mReqInvoiceToBcSuccessPresenter;
+    ReqInvoiceToCompanySuccessPresenter mReqInvoiceToCompanySuccessPresenter;
 
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
-    @BindView(R.id.main_list)
-    RecyclerView mRecyclerView;
+
     @BindView(R.id.title_toolbar)
     TextView mTitleToolbar;
-    @BindView(R.id.txt_transaction_id)
-    TextView mTransactionIdText;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
-    @BindView(R.id.user_id_name)
-    TextView mUserIdName;
+    @BindView(R.id.txt_payment_method)
+    TextView mTxtPaymentMethod;
     @BindView(R.id.txt_total_transaction)
     TextView mTxtTotalTransaction;
-    @BindView(R.id.txt_copy)
-    TextView mTxtCopy;
+    @BindView(R.id.txt_copy_nominal)
+    TextView mTxtCopyNominal;
+    @BindView(R.id.txt_copy_rekening_1)
+    TextView mTxtCopyRekening1;
+    @BindView(R.id.txt_copy_rekening_2)
+    TextView mTxtCopyRekening2;
     @BindView(R.id.img_close)
     CircleImageView mImgClose;
+    @BindView(R.id.linear_must_transfer)
+    LinearLayout mLinearMustTransfer;
+    @BindView(R.id.linear_rekening)
+    LinearLayout mLinearRekening;
 
     private String mTitle = "";
-    private String mTransactionId = "INV - 123123123123123";
-    private ReqInvoiceToBcSuccessAdapter mListAdapter;
-    private ReqInvoiceToBcSuccessContract.UserActionListener mUserActionListener;
+    private String mPaymentMethod = "";
+    private ReqInvoiceToCompanySuccessContract.UserActionListener mUserActionListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_req_invoice_to_bc_success);
+        setContentView(R.layout.activity_req_invoice_to_company_success);
         ButterKnife.bind(this);
 
         setupActivityComponent();
@@ -86,35 +85,28 @@ public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements 
 
     @Override
     public void initializeData() {
-        mUserActionListener = mReqInvoiceToBcSuccessPresenter;
-        mReqInvoiceToBcSuccessPresenter.setView(this);
+        mUserActionListener = mReqInvoiceToCompanySuccessPresenter;
+        mReqInvoiceToCompanySuccessPresenter.setView(this);
         mUserActionListener.getData();
 
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
-//        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
-        mTransactionIdText.setText(mTransactionId);
+        mPaymentMethod = intent.getStringExtra(Constant.PAYMENT_METHOD);
         mTitleToolbar.setText(mTitle);
-        mUserIdName.setText(getResources().getString(R.string.please_confirm_bc, "BC014", "YANTI PURWANTI"));
-    }
-
-    @Override
-    public void setAdapter(List<ReqInvoiceToBcSuccessData> resultData) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setNestedScrollingEnabled(false);
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
 
-        mListAdapter = new ReqInvoiceToBcSuccessAdapter(resultData, this);
-        mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        mTxtPaymentMethod.setText(getResources().getString(R.string.payment_method_string, mPaymentMethod));
+        if (mPaymentMethod.equals(getResources().getString(R.string.ewallet_item))) {
+            mLinearMustTransfer.setVisibility(View.GONE);
+            mLinearRekening.setVisibility(View.GONE);
+        }
 
         hideProgressBar();
     }
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(ReqInvoiceToBcSuccessActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(ReqInvoiceToCompanySuccessActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -127,9 +119,19 @@ public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements 
         mProgressBar.setVisibility(View.GONE);
     }
 
-    @OnClick(R.id.txt_copy)
-    public void actionCopy(View view) {
-        Toast.makeText(ReqInvoiceToBcSuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
+    @OnClick(R.id.txt_copy_nominal)
+    public void actionCopyNominal(View view) {
+        Toast.makeText(ReqInvoiceToCompanySuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.txt_copy_rekening_1)
+    public void actionCopyRekening1(View view) {
+        Toast.makeText(ReqInvoiceToCompanySuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.txt_copy_rekening_2)
+    public void actionCopyRekening2(View view) {
+        Toast.makeText(ReqInvoiceToCompanySuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.img_close)

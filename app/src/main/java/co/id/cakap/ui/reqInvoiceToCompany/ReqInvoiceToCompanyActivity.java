@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,6 +37,8 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.ItemShopReqInvToCompanyAdapter;
 import co.id.cakap.data.ItemShopCompanyData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.dialog.PinDialog;
@@ -207,7 +210,10 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-
+        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToCompanySuccessActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_com).toUpperCase());
+        intent.putExtra(Constant.PAYMENT_METHOD, mPaymentMethodSpinner.getSelectedItem().toString());
+        startActivity(intent);
     }
 
     public void initSpinner() {

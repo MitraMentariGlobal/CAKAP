@@ -31,6 +31,7 @@ import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.registration.RegistrationActivity;
 import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 import co.id.cakap.ui.stockReport.StockReportActivity;
@@ -66,6 +67,7 @@ public interface MainComponent {
     CashbillSuccessActivity inject(CashbillSuccessActivity cashbillSuccessActivity);
     InvoiceToMbSuccessActivity inject(InvoiceToMbSuccessActivity invoiceToMbSuccessActivity);
     ReqInvoiceToBcSuccessActivity inject(ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity);
+    ReqInvoiceToCompanySuccessActivity inject(ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

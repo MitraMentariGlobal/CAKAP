@@ -69,6 +69,8 @@ import co.id.cakap.ui.registration.RegistrationActivity;
 import co.id.cakap.ui.registration.RegistrationActivityPresenter;
 import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivity;
 import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivityPresenter;
+import co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity;
+import co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessPresenter;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivityPresenter;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
@@ -105,6 +107,7 @@ public class MainActivityModule {
     private CashbillSuccessActivity cashbillSuccessActivity;
     private InvoiceToMbSuccessActivity invoiceToMbSuccessActivity;
     private ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity;
+    private ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -245,6 +248,10 @@ public class MainActivityModule {
 
     public MainActivityModule(ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity) {
         this.reqInvoiceToBcSuccessActivity = reqInvoiceToBcSuccessActivity;
+    }
+
+    public MainActivityModule(ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity) {
+        this.reqInvoiceToCompanySuccessActivity = reqInvoiceToCompanySuccessActivity;
     }
 
     @Provides
@@ -477,5 +484,11 @@ public class MainActivityModule {
     @ActivityScope
     ReqInvoiceToBcSuccessPresenter provideReqInvoiceToBcSuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new ReqInvoiceToBcSuccessPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ReqInvoiceToCompanySuccessPresenter provideReqInvoiceToCompanySuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ReqInvoiceToCompanySuccessPresenter(mainRepository, dataModel);
     }
 }

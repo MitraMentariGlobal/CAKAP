@@ -132,10 +132,7 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
 
     @OnClick(R.id.img_close)
     public void closeScreen(View view) {
-        finish();
-        Intent i = new Intent(this, DashboardActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
+        onBackPressed();
     }
 
     @OnClick(R.id.action_expand_collapse)
@@ -149,5 +146,13 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
             mIsExpand = true;
             mImageIcon.animate().rotation(0).setDuration(500).start();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent i = new Intent(this, DashboardActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 }

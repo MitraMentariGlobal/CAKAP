@@ -75,6 +75,7 @@
         <activity android:name=".ui.cashbill.cashbillSuccess.CashbillSuccessActivity" />
         <activity android:name=".ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity" />
         <activity android:name=".ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity" />
+        <activity android:name=".ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity" />
     </application>
 
 </manifest>

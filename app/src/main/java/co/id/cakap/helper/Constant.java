@@ -27,5 +27,6 @@ public class Constant {
     public static final String URL_LINK = "url_link";
     public static final String TITLE_DETAIL = "title_detail";
     public static final String TRANSACTION_ID_DETAIL = "transaction_id_detail";
+    public static final String PAYMENT_METHOD = "payment_method";
 }
 

@@ -60,9 +60,17 @@
     <string name="bcr_info">BC Info</string>
     <string name="bonus_date">Bonus Date</string>
     <string name="payment_method">Payment Method</string>
-    <string name="please_confirm">Silakan hubungi, dan lakukan pembayaran kepada %1$s - %2$s</string>
+    <string name="please_confirm_bc">Silakan hubungi, dan lakukan pembayaran kepada %1$s - %2$s</string>
     <string name="your_transaction">Jumlah transaksi anda sebesar</string>
     <string name="copy">copy</string>
+    <string name="transfer_via_bca_upper_1">Transfer via BCA 1</string>
+    <string name="transfer_via_bca_upper_2">Transfer via BCA 2</string>
+    <string name="rek_bca_1">372.306.8858</string>
+    <string name="rek_bca_2">372.303.8258</string>
+    <string name="payment_method_string">Payment method : %1$s</string>
+    <string name="please_confirm_company">Silakan hubungi, dan lakukan pembayaran sebeelum %1$s kepada company berikut dengan %2$s digit terakhir untuk memudahkan verifikasi.</string>
+    <string name="ewallet_item">Ewallet</string>
+    <string name="transfer_item">Transfer</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>
@@ -90,7 +98,7 @@
     </string-array>
 
     <string-array name="payment_method_list">
-        <item>Ewallet</item>
-        <item>Transfer</item>
+        <item>@string/ewallet_item</item>
+        <item>@string/transfer_item</item>
     </string-array>
 </resources>
