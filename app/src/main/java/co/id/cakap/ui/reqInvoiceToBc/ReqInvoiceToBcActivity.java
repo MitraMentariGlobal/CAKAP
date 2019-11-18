@@ -1,6 +1,7 @@
 package co.id.cakap.ui.reqInvoiceToBc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -67,6 +68,7 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
     TextView mTxtTotalPrice;
 
     private ItemShopReqInvToBcAdapter mListAdapter;
+    private GridLayoutManager mGridLayoutManager;
     private ReqInvoiceToBcActivityContract.UserActionListener mUserActionListener;
 
     private static int mItem = 0;
@@ -115,8 +117,9 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     @Override
     public void setAdapter(List<ItemShopCompanyData> resultData) {
+        mGridLayoutManager = new GridLayoutManager(this, 2);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopReqInvToBcAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);

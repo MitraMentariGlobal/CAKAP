@@ -11,31 +11,33 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
 
         <ImageView
             android:background="@drawable/img_item_placeholder"
-            android:layout_width="80dp"
-            android:layout_height="80dp"/>
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:scaleType="fitCenter"/>
 
         <LinearLayout
             android:id="@+id/detailData"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:layout_gravity="top"
             android:layout_marginStart="@dimen/radius_10"
+            android:layout_marginEnd="@dimen/radius_10"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:gravity="bottom"
                 android:orientation="horizontal">
 
                 <TextView
@@ -57,7 +59,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:text=" (stock:"
@@ -67,7 +69,7 @@
                         android:id="@+id/txt_stock"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:text="18"
@@ -76,7 +78,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/text_12"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:text=")"
@@ -88,6 +90,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/radius_2"
                 android:orientation="horizontal">
 
                 <TextView
@@ -104,7 +107,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -112,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
                     android:textColor="@color/red"
+                    android:textStyle="bold"
                     android:text="Rp. "
                     style="@style/TexViewFont" />
 
@@ -121,15 +125,19 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
                     android:textColor="@color/red"
+                    android:textStyle="bold"
                     android:text="1.200.000"
                     style="@style/TexViewFont" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="5dp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/radius_10"
+            android:layout_marginStart="@dimen/radius_10"
+            android:layout_marginEnd="@dimen/radius_10"
             android:orientation="vertical">
 
             <LinearLayout

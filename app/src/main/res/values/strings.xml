@@ -71,6 +71,7 @@
     <string name="please_confirm_company">Silakan hubungi, dan lakukan pembayaran sebeelum %1$s kepada company berikut dengan %2$s digit terakhir untuk memudahkan verifikasi.</string>
     <string name="ewallet_item">Ewallet</string>
     <string name="transfer_item">Transfer</string>
+    <string name="transaksi_berhasil">Transaksi anda sudah berhasil.</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

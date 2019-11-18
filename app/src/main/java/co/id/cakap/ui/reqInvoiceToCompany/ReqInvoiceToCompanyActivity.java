@@ -1,6 +1,7 @@
 package co.id.cakap.ui.reqInvoiceToCompany;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -83,6 +84,7 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     Spinner mPaymentMethodSpinner;
 
     private ItemShopReqInvToCompanyAdapter mListAdapter;
+    private GridLayoutManager mGridLayoutManager;
     private ReqInvoiceToCompanyActivityContract.UserActionListener mUserActionListener;
     private boolean mIsExpand = true;
 
@@ -138,8 +140,9 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @Override
     public void setAdapter(List<ItemShopCompanyData> resultData) {
+        mGridLayoutManager = new GridLayoutManager(this, 2);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopReqInvToCompanyAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);

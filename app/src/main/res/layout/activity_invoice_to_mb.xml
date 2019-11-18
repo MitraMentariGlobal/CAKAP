@@ -27,7 +27,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/action_expand_collapse"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 android:orientation="horizontal">
@@ -44,7 +44,6 @@
                     style="@style/TexViewFont"/>
 
                 <ImageView
-                    android:id="@+id/item_thumbnail"
                     android:background="@drawable/ic_collapse"
                     android:adjustViewBounds="true"
                     android:layout_alignParentEnd="true"
@@ -178,7 +177,38 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#dedede" />
+                android:background="@color/colorPrimaryDark"/>
+
+            <LinearLayout
+                android:id="@+id/action_expand_collapse"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:text="@string/pilih_member"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    style="@style/TexViewFont"/>
+
+                <ImageView
+                    android:id="@+id/item_thumbnail"
+                    android:background="@drawable/ic_collapse"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark" />
         </LinearLayout>
 
         <include layout="@layout/recycler_view_search"

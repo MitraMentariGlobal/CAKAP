@@ -34,7 +34,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_16"
                 android:textStyle="bold"
-                android:text="Checkout"
+                android:text="@string/submit"
                 android:layout_marginStart="@dimen/radius_10"
                 style="@style/TexViewFont"/>
 

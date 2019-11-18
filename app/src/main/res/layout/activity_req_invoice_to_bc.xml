@@ -73,7 +73,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#dedede" />
+                android:background="@color/colorPrimaryDark" />
         </LinearLayout>
 
         <include layout="@layout/recycler_view_search"

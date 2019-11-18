@@ -1,6 +1,7 @@
 package co.id.cakap.ui.invoiceToMb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,6 +81,7 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
     TextView mTxtTotalPrice;
 
     private ItemShopInvToMbAdapter mListAdapter;
+    private GridLayoutManager mGridLayoutManager;
     private InvoiceToMbActivityContract.UserActionListener mUserActionListener;
     private boolean mIsExpand = true;
 
@@ -135,8 +137,9 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
         mName.setText(operationUserStatusData.getUser_name());
         mStatus.setText(operationUserStatusData.getStatus());
 
+        mGridLayoutManager = new GridLayoutManager(this, 2);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopInvToMbAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
