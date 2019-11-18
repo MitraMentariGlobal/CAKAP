@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +42,7 @@ import co.id.cakap.utils.dialog.PinDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements ReqInvoiceToCompanyActivityContract.View{
+public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements ReqInvoiceToCompanyActivityContract.View, AdapterView.OnItemSelectedListener {
     @Inject
     ReqInvoiceToCompanyActivityPresenter mReqInvoiceToCompanyActivityPresenter;
 
@@ -73,6 +76,8 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     CircleImageView mItemCheck;
     @BindView(R.id.linear_change_address)
     LinearLayout mLinearChangeAddress;
+    @BindView(R.id.payment_method_spinner)
+    Spinner mPaymentMethodSpinner;
 
     private ItemShopReqInvToCompanyAdapter mListAdapter;
     private ReqInvoiceToCompanyActivityContract.UserActionListener mUserActionListener;
@@ -110,6 +115,7 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
         mLinearSearch.setVisibility(View.GONE);
         mItemCheck.setVisibility(View.GONE);
         mLinearChangeAddress.setVisibility(View.GONE);
+        initSpinner();
     }
 
     @Override
@@ -201,6 +207,25 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
+
+    }
+
+    public void initSpinner() {
+        mPaymentMethodSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> monthAdapter = ArrayAdapter.createFromResource(this,
+                R.array.payment_method_list, R.layout.item_spinner);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mPaymentMethodSpinner.setAdapter(monthAdapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

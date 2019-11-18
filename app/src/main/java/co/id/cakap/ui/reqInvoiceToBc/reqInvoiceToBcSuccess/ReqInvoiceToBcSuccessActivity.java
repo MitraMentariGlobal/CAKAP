@@ -1,8 +1,11 @@
-package co.id.cakap.ui.detailTransaction;
+package co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,17 +24,24 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
-import co.id.cakap.adapter.DetailTransaksiAdapter;
-import co.id.cakap.data.DetailTransaksiData;
+import co.id.cakap.adapter.CashbillSuccessAdapter;
+import co.id.cakap.adapter.ReqInvoiceToBcSuccessAdapter;
+import co.id.cakap.data.CashbillSuccessData;
+import co.id.cakap.data.ReqInvoiceToBcSuccessData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessContract;
+import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
+import co.id.cakap.ui.dashboard.DashboardActivity;
+import co.id.cakap.utils.Utils;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class DetailTransactionActivity extends AppCompatActivity implements DetailTransactionContract.View {
+public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements ReqInvoiceToBcSuccessContract.View {
     private static final String TAG = "DetailTransactionActivity";
 
     @Inject
-    DetailTransactionPresenter mDetailTransactionPresenter;
+    ReqInvoiceToBcSuccessPresenter mReqInvoiceToBcSuccessPresenter;
 
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
@@ -39,22 +49,28 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     RecyclerView mRecyclerView;
     @BindView(R.id.title_toolbar)
     TextView mTitleToolbar;
-    @BindView(R.id.title)
-    TextView mTitleText;
     @BindView(R.id.txt_transaction_id)
     TextView mTransactionIdText;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
+    @BindView(R.id.user_id_name)
+    TextView mUserIdName;
+    @BindView(R.id.txt_total_transaction)
+    TextView mTxtTotalTransaction;
+    @BindView(R.id.txt_copy)
+    TextView mTxtCopy;
+    @BindView(R.id.img_close)
+    CircleImageView mImgClose;
 
     private String mTitle = "";
-    private String mTransactionId = "";
-    private DetailTransaksiAdapter mListAdapter;
-    private DetailTransactionContract.UserActionListener mUserActionListener;
+    private String mTransactionId = "INV - 123123123123123";
+    private ReqInvoiceToBcSuccessAdapter mListAdapter;
+    private ReqInvoiceToBcSuccessContract.UserActionListener mUserActionListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_transaksi);
+        setContentView(R.layout.activity_req_invoice_to_bc_success);
         ButterKnife.bind(this);
 
         setupActivityComponent();
@@ -70,26 +86,26 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
 
     @Override
     public void initializeData() {
-        mUserActionListener = mDetailTransactionPresenter;
-        mDetailTransactionPresenter.setView(this);
+        mUserActionListener = mReqInvoiceToBcSuccessPresenter;
+        mReqInvoiceToBcSuccessPresenter.setView(this);
         mUserActionListener.getData();
 
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
-        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
-        mTitleText.setText(mTitle);
+//        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
         mTransactionIdText.setText(mTransactionId);
-        mTitleToolbar.setText(getString(R.string.detail_transaksi).toUpperCase());
+        mTitleToolbar.setText(mTitle);
+        mUserIdName.setText(getResources().getString(R.string.please_confirm, "BC014", "YANTI PURWANTI"));
     }
 
     @Override
-    public void setAdapter(List<DetailTransaksiData> resultData) {
+    public void setAdapter(List<ReqInvoiceToBcSuccessData> resultData) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
 
-        mListAdapter = new DetailTransaksiAdapter(resultData, this);
+        mListAdapter = new ReqInvoiceToBcSuccessAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
@@ -98,7 +114,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(DetailTransactionActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(ReqInvoiceToBcSuccessActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -111,8 +127,16 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mProgressBar.setVisibility(View.GONE);
     }
 
-    @OnClick(R.id.arrow_back)
-    public void arrowBack(View view) {
-        super.onBackPressed();
+    @OnClick(R.id.txt_copy)
+    public void actionCopy(View view) {
+        Toast.makeText(ReqInvoiceToBcSuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.img_close)
+    public void closeScreen(View view) {
+        finish();
+        Intent i = new Intent(this, DashboardActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,6 +37,9 @@ import co.id.cakap.adapter.ItemShopCashbillAdapter;
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
+import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.Utils;
@@ -180,6 +184,12 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
             @Override
             public void onComplete(String pin) {
                 Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
+                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
+                startActivity(intent);
             }
 
             @Override

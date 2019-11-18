@@ -55,6 +55,14 @@
     <string name="alamat">Alamat</string>
     <string name="enter_your_pin">Enter Your Pin</string>
     <string name="default_address">Default</string>
+    <string name="member_info">Member Info</string>
+    <string name="mb_info">MB Info</string>
+    <string name="bcr_info">BC Info</string>
+    <string name="bonus_date">Bonus Date</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="please_confirm">Silakan hubungi, dan lakukan pembayaran kepada %1$s - %2$s</string>
+    <string name="your_transaction">Jumlah transaksi anda sebesar</string>
+    <string name="copy">copy</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>
@@ -79,5 +87,10 @@
 
     <string-array name="pick_up_delivery">
         <item>Delivery</item>
+    </string-array>
+
+    <string-array name="payment_method_list">
+        <item>Ewallet</item>
+        <item>Transfer</item>
     </string-array>
 </resources>

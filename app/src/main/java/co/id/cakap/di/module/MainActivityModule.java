@@ -11,8 +11,12 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
+import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
+import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivityPresenter;
+import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
+import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessPresenter;
 import co.id.cakap.ui.memberDetail.MemberDetailActivity;
 import co.id.cakap.ui.memberDetail.MemberDetailActivityPresenter;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
@@ -21,6 +25,8 @@ import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.omset.OmsetActivityPresenter;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivityPresenter;
+import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity;
+import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessPresenter;
 import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
 import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivityPresenter;
 import co.id.cakap.ui.cashbill.CashbillActivity;
@@ -96,6 +102,9 @@ public class MainActivityModule {
     private StockReportActivity stockReportActivity;
     private MemberDetailActivity memberDetailActivity;
     private PickUpDeliveryActivity pickUpDeliveryActivity;
+    private CashbillSuccessActivity cashbillSuccessActivity;
+    private InvoiceToMbSuccessActivity invoiceToMbSuccessActivity;
+    private ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -224,6 +233,18 @@ public class MainActivityModule {
 
     public MainActivityModule(PickUpDeliveryActivity pickUpDeliveryActivity) {
         this.pickUpDeliveryActivity = pickUpDeliveryActivity;
+    }
+
+    public MainActivityModule(CashbillSuccessActivity cashbillSuccessActivity) {
+        this.cashbillSuccessActivity = cashbillSuccessActivity;
+    }
+
+    public MainActivityModule(InvoiceToMbSuccessActivity invoiceToMbSuccessActivity) {
+        this.invoiceToMbSuccessActivity = invoiceToMbSuccessActivity;
+    }
+
+    public MainActivityModule(ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity) {
+        this.reqInvoiceToBcSuccessActivity = reqInvoiceToBcSuccessActivity;
     }
 
     @Provides
@@ -438,5 +459,23 @@ public class MainActivityModule {
     @ActivityScope
     PickUpDeliveryActivityPresenter providePickUpDeliveryActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new PickUpDeliveryActivityPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    CashbillSuccessPresenter provideCashbillSuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new CashbillSuccessPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    InvoiceToMbSuccessPresenter provideInvoiceToMbSuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new InvoiceToMbSuccessPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ReqInvoiceToBcSuccessPresenter provideReqInvoiceToBcSuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ReqInvoiceToBcSuccessPresenter(mainRepository, dataModel);
     }
 }

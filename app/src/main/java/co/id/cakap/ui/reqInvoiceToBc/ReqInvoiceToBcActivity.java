@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -33,6 +34,8 @@ import co.id.cakap.adapter.ItemShopReqInvToBcAdapter;
 import co.id.cakap.adapter.ItemShopReqInvToCompanyAdapter;
 import co.id.cakap.data.ItemShopCompanyData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.dialog.PinDialog;
@@ -178,6 +181,12 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
             @Override
             public void onComplete(String pin) {
                 Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                Intent intent = new Intent(getApplicationContext(), ReqInvoiceToBcSuccessActivity.class);
+                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_bc).toUpperCase());
+                startActivity(intent);
             }
 
             @Override

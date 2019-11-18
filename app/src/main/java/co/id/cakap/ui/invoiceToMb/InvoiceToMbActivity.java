@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,6 +37,8 @@ import co.id.cakap.adapter.ItemShopInvToMbAdapter;
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.dialog.PinDialog;
@@ -225,6 +228,12 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
             @Override
             public void onComplete(String pin) {
                 Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                Intent intent = new Intent(getApplicationContext(), InvoiceToMbSuccessActivity.class);
+                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.invoice_to_mb).toUpperCase());
+                startActivity(intent);
             }
 
             @Override

@@ -55,7 +55,7 @@
                         android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:text=" / "
+                        android:text=" - "
                         style="@style/TexViewFont"/>
 
                     <TextView
