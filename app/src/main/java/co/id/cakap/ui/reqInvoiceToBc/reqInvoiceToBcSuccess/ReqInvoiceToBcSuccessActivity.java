@@ -132,7 +132,7 @@ public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements 
         Toast.makeText(ReqInvoiceToBcSuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.img_close)
+    @OnClick(R.id.btn_close)
     public void closeScreen(View view) {
         onBackPressed();
     }

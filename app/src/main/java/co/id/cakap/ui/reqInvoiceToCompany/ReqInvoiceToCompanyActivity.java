@@ -82,6 +82,8 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     LinearLayout mLinearChangeAddress;
     @BindView(R.id.payment_method_spinner)
     Spinner mPaymentMethodSpinner;
+    @BindView(R.id.linear_ewallet)
+    LinearLayout mLinearEwallet;
 
     private ItemShopReqInvToCompanyAdapter mListAdapter;
     private GridLayoutManager mGridLayoutManager;
@@ -230,7 +232,17 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        switch (parent.getId()) {
+            case R.id.payment_method_spinner:
+                if (position == 0) {
+                    mLinearEwallet.setVisibility(View.VISIBLE);
+                } else {
+                    mLinearEwallet.setVisibility(View.GONE);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

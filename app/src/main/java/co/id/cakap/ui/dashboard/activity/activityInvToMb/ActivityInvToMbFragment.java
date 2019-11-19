@@ -22,6 +22,7 @@ import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -167,25 +168,38 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     public void initSpinner() {
         mMonthSpinner.setOnItemSelectedListener(this);
         mYearSpinner.setOnItemSelectedListener(this);
+        Calendar calendar = Calendar.getInstance();
+        String month = new SimpleDateFormat("MMMM").format(calendar.getTime());
 
         ArrayAdapter<CharSequence> monthAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.month_array, R.layout.item_spinner);
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mMonthSpinner.setAdapter(monthAdapter);
 
+        for (int i = 0; i < mMonthSpinner.getAdapter().getCount(); i++) {
+            if(mMonthSpinner.getAdapter().getItem(i).toString().contains(month)) {
+                mMonthSpinner.setSelection(i);
+            }
+        }
+
         mYearData.add(String.valueOf(getResources().getInteger(R.integer.minimum_year)));
-        Calendar calendar = Calendar.getInstance();
         int now = calendar.get(Calendar.YEAR);
         int totalLoop = now - getResources().getInteger(R.integer.minimum_year);
 
         for (int i = 0; i < totalLoop; i++) {
-            mYearData.add(String.valueOf(now - 1));
+            mYearData.add(String.valueOf(now));
         }
 
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.item_spinner, android.R.id.text1, mYearData);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mYearSpinner.setAdapter(yearAdapter);
+
+        for (int i = 0; i < mYearSpinner.getAdapter().getCount(); i++) {
+            if(mYearSpinner.getAdapter().getItem(i).toString().contains(String.valueOf(now))) {
+                mYearSpinner.setSelection(i);
+            }
+        }
     }
 
     @Override

@@ -63,6 +63,8 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
     ImageView mImageIcon;
     @BindView(R.id.img_close)
     CircleImageView mImgClose;
+    @BindView(R.id.linear_remark)
+    LinearLayout mLinearRemark;
 
     private String mTitle = "";
     private String mTransactionId = "INV - 123123123123123";
@@ -130,7 +132,7 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
         mProgressBar.setVisibility(View.GONE);
     }
 
-    @OnClick(R.id.img_close)
+    @OnClick(R.id.btn_close)
     public void closeScreen(View view) {
         onBackPressed();
     }

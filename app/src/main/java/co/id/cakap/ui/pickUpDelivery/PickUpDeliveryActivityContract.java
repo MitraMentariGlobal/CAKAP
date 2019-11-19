@@ -11,7 +11,7 @@ public class PickUpDeliveryActivityContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void setAdapter(List<AddressData> resultData);
-        void changeAddress(String kota, String address);
+        void changeAddress(String province, String kota, String address);
     }
 
     public interface UserActionListener{

@@ -54,10 +54,12 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     FloatingActionButton mFabPlus;
 //
     private Spinner mCitySpinner;
+    private Spinner mProvinceSpinner;
     private EditText mAlamat;
     private TextView mSubmit;
     private AddressAdapter mListAdapter;
     private List<String> mCityData = new ArrayList<>();
+    private List<String> mProvinceData = new ArrayList<>();
     private PickUpDeliveryActivityContract.UserActionListener mUserActionListener;
 
     @Override
@@ -132,18 +134,24 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     }
 
     @Override
-    public void changeAddress(String kota, String address) {
+    public void changeAddress(String province, String kota, String address) {
         NewAddressDialog utils = new NewAddressDialog();
         Dialog dialog = utils.showDialog(this);
 
         mCitySpinner = dialog.findViewById(R.id.city_spinner);
+        mProvinceSpinner = dialog.findViewById(R.id.province_spinner);
         mAlamat = dialog.findViewById(R.id.et_alamat);
         mSubmit = dialog.findViewById(R.id.submit_btn);
 
-        initCitySpinner();
+        initAddressSpinner();
         for (int i = 0; i < mCitySpinner.getAdapter().getCount(); i++) {
             if(mCitySpinner.getAdapter().getItem(i).toString().contains(kota)) {
                 mCitySpinner.setSelection(i);
+            }
+        }
+        for (int i = 0; i < mProvinceSpinner.getAdapter().getCount(); i++) {
+            if(mProvinceSpinner.getAdapter().getItem(i).toString().contains(province)) {
+                mProvinceSpinner.setSelection(i);
             }
         }
         mAlamat.setText(address);
@@ -151,6 +159,7 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Logger.d("province : " + mProvinceSpinner.getSelectedItem().toString());
                 Logger.d("kota : " + mCitySpinner.getSelectedItem().toString());
                 Logger.d("alamat : " + mAlamat.getText());
                 dialog.hide();
@@ -169,14 +178,16 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         Dialog dialog = utils.showDialog(this);
 
         mCitySpinner = dialog.findViewById(R.id.city_spinner);
+        mProvinceSpinner = dialog.findViewById(R.id.province_spinner);
         mAlamat = dialog.findViewById(R.id.et_alamat);
         mSubmit = dialog.findViewById(R.id.submit_btn);
 
-        initCitySpinner();
+        initAddressSpinner();
 
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Logger.d("province : " + mProvinceSpinner.getSelectedItem().toString());
                 Logger.d("kota : " + mCitySpinner.getSelectedItem().toString());
                 Logger.d("alamat : " + mAlamat.getText());
                 dialog.hide();
@@ -184,8 +195,9 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         });
     }
 
-    public void initCitySpinner() {
+    public void initAddressSpinner() {
         mCitySpinner.setOnItemSelectedListener(this);
+        mProvinceSpinner.setOnItemSelectedListener(this);
 
         mCityData.add("Bekasi");
         mCityData.add("Bandung");
@@ -196,10 +208,22 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         mCityData.add("Aceh");
         mCityData.add("Pontianak");
 
-        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(this,
+        mProvinceData.add("Jawa Barat");
+        mProvinceData.add("Jawa Timur");
+        mProvinceData.add("Jawa Tengah");
+        mProvinceData.add("Jambi");
+        mProvinceData.add("Kalimantan Timur");
+        mProvinceData.add("Sulawesi Utara");
+
+        ArrayAdapter<String> provinceeAdapter = new ArrayAdapter<String>(this,
+                R.layout.item_spinner, android.R.id.text1, mProvinceData);
+        provinceeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mProvinceSpinner.setAdapter(provinceeAdapter);
+
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(this,
                 R.layout.item_spinner, android.R.id.text1, mCityData);
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mCitySpinner.setAdapter(yearAdapter);
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mCitySpinner.setAdapter(cityAdapter);
     }
 
     @OnClick(R.id.text_submit)

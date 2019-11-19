@@ -232,7 +232,7 @@
                         android:gravity="center"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="14sp"
-                        android:text="@string/pilih_member"
+                        android:text="@string/member_id"
                         android:layout_marginEnd="@dimen/radius_10"
                         style="@style/TexViewFont"/>
 

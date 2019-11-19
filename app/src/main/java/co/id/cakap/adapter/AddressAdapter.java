@@ -102,7 +102,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
         @OnClick(R.id.txt_change_address)
         public void changeAddress(View view) {
-            new PickUpDeliveryActivityPresenter().getView().changeAddress(addressData.getKota(), addressData.getAddress());
+            new PickUpDeliveryActivityPresenter().getView().changeAddress(addressData.getProvince(), addressData.getKota(), addressData.getAddress());
         }
 
         @OnClick(R.id.item_check)

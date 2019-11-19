@@ -134,7 +134,7 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
         Toast.makeText(ReqInvoiceToCompanySuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.img_close)
+    @OnClick(R.id.btn_close)
     public void closeScreen(View view) {
         onBackPressed();
     }

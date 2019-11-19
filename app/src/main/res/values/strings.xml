@@ -33,7 +33,7 @@
     <string name="search">Search</string>
     <string name="periode">Periode</string>
     <string name="subtotal">Subtotal</string>
-    <string name="daftar_produk">Daftar Produk</string>
+    <string name="daftar_produk">Product List </string>
     <string name="detail_transaksi">Detail Transaksi</string>
     <string name="my_profile">My Profile</string>
     <string name="fee_bcmb">Fee BCMB</string>
@@ -49,9 +49,11 @@
     <string name="pick_up_delivery">Pick up / Delivery</string>
     <string name="delivery_address">Delivery Address</string>
     <string name="change_address">Change Address</string>
+    <string name="next_upper">NEXT</string>
     <string name="submit_upper">SUBMIT</string>
     <string name="submit">Submit</string>
-    <string name="kota">Kota</string>
+    <string name="province">Province</string>
+    <string name="kota">City</string>
     <string name="alamat">Alamat</string>
     <string name="enter_your_pin">Enter Your Pin</string>
     <string name="default_address">Default</string>
@@ -71,7 +73,8 @@
     <string name="please_confirm_company">Silakan hubungi, dan lakukan pembayaran sebeelum %1$s kepada company berikut dengan %2$s digit terakhir untuk memudahkan verifikasi.</string>
     <string name="ewallet_item">Ewallet</string>
     <string name="transfer_item">Transfer</string>
-    <string name="transaksi_berhasil">Transaksi anda sudah berhasil.</string>
+    <string name="transaksi_berhasil">Thank you for your transaction.</string>
+    <string name="back_to_home">Back to Home</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

@@ -142,6 +142,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -153,6 +154,7 @@
                     style="@style/TexViewFont"/>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/et_gray_background_style">
@@ -193,7 +195,7 @@
                     android:gravity="center"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="14sp"
-                    android:text="@string/pilih_member"
+                    android:text="@string/mb_id"
                     android:layout_marginEnd="@dimen/radius_10"
                     style="@style/TexViewFont"/>
 

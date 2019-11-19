@@ -27,6 +27,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_close"
+                android:visibility="gone"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_alignParentEnd="true"
@@ -222,6 +223,35 @@
                         </LinearLayout>
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/radius_16"
+                        android:layout_marginEnd="@dimen/radius_16"
+                        android:background="#dedede" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btn_close"
+                        android:layout_width="match_parent"
+                        android:layout_height="?android:attr/actionBarSize"
+                        android:layout_margin="@dimen/radius_16"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="@dimen/radius_8">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:text="@string/back_to_home"
+                            style="@style/TexViewFont"/>
+                    </androidx.cardview.widget.CardView>
+
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -269,7 +299,7 @@
                                         android:layout_height="wrap_content"
                                         android:textSize="@dimen/text_13"
                                         android:textColor="@color/black"
-                                        android:text="BC123"
+                                        android:text="00000123"
                                         style="@style/TexViewFont" />
 
                                     <TextView
@@ -286,7 +316,7 @@
                                         android:layout_height="wrap_content"
                                         android:textSize="@dimen/text_13"
                                         android:textColor="@color/black"
-                                        android:text="Nama Sub Stockist"
+                                        android:text="Nama Member"
                                         style="@style/TexViewFont" />
                                 </LinearLayout>
                             </LinearLayout>
@@ -336,6 +366,46 @@
                             </LinearLayout>
                         </RelativeLayout>
                     </FrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_remark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:text="@string/remark"
+                            android:layout_marginStart="@dimen/appbar_padding"
+                            style="@style/TexViewFont"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/appbar_padding"
+                            android:background="@drawable/et_gray_background_style">
+
+                            <EditText
+                                android:id="@+id/et_remark"
+                                style="@style/Font_family_light"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:hint="@string/remark"
+                                android:lines="4"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/curated_light"
+                                android:textSize="@dimen/text_14"
+                                android:padding="@dimen/padding_12"
+                                android:focusableInTouchMode="false"
+                                android:focusable="false"/>
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
