@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/radius_16">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_14"
+        android:text="Recruiting ID"
+        android:layout_marginBottom="@dimen/radius_4"
+        style="@style/TexViewFont"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_gray_background_style">
+
+        <EditText
+            android:id="@+id/et_rec_id"
+            style="@style/Font_family_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="Recruiting ID"
+            android:maxLines="1"
+            android:drawableEnd="@drawable/ic_loupe"
+            android:drawablePadding="@dimen/padding_8"
+            android:textColor="@color/black"
+            android:textColorHint="@color/curated_light"
+            android:textSize="@dimen/text_14"
+            android:padding="@dimen/padding_12"
+            android:focusableInTouchMode="false"
+            android:focusable="false"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_14"
+        android:text="Recruiting Name"
+        android:layout_marginTop="@dimen/radius_16"
+        android:layout_marginBottom="@dimen/radius_4"
+        style="@style/TexViewFont"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_gray_background_style">
+
+        <EditText
+            android:id="@+id/et_rec_name"
+            style="@style/Font_family_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:hint="Recruiting Name"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/curated_light"
+            android:textSize="@dimen/text_14"
+            android:padding="@dimen/padding_12"
+            android:focusableInTouchMode="true"
+            android:focusable="true"/>
+    </LinearLayout>
+</LinearLayout>

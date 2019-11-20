@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/radius_16">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="@string/member_id"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_member_id"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/member_id"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Full Name"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_full_name"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Full Name"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="ID Card (KTP/SIM)"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_id_card"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="ID Card (KTP/SIM)"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Sex"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <Spinner
+                android:id="@+id/spinner_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Place Of Birth"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_place_of_birth"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Place Of Birth"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Date Of Birth"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_date_of_birth"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Date Of Birth"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Religion"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <Spinner
+                android:id="@+id/spinner_religion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Email"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_email"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Email"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Phone Number"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_phone_number"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Phone Number"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Mobile Number"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_mobile_number"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Mobile Number"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Address"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_address"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Address"
+                android:maxLines="5"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Province"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <Spinner
+                android:id="@+id/spinner_province"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="City"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <Spinner
+                android:id="@+id/spinner_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Postal Code"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_postal_code"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Postal Code"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Activation Code"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_activation_code"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Activation Code"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
