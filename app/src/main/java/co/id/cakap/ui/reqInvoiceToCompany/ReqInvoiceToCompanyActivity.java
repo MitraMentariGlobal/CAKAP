@@ -215,10 +215,42 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToCompanySuccessActivity.class);
-        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_com).toUpperCase());
-        intent.putExtra(Constant.PAYMENT_METHOD, mPaymentMethodSpinner.getSelectedItem().toString());
-        startActivity(intent);
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                Intent intent = new Intent(getApplicationContext(), ReqInvoiceToCompanySuccessActivity.class);
+                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_com).toUpperCase());
+                intent.putExtra(Constant.PAYMENT_METHOD, mPaymentMethodSpinner.getSelectedItem().toString());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 
     public void initSpinner() {

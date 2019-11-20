@@ -1,5 +1,6 @@
 package co.id.cakap.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityReqInvMbData;
 import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbPresenter;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -93,12 +95,50 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
 
         @OnClick(R.id.item_cancel)
         public void actionReject() {
-            Toast.makeText(context, "Reject", Toast.LENGTH_SHORT).show();
+            UserConfirmationDialog utils = new UserConfirmationDialog();
+            Dialog dialog = utils.showDialog(context);
+            utils.setTitleDialog("Reject");
+            utils.setNegativeAction();
+
+            dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         @OnClick(R.id.item_verified)
         public void actionApprove() {
-            Toast.makeText(context, "Approve", Toast.LENGTH_SHORT).show();
+            UserConfirmationDialog utils = new UserConfirmationDialog();
+            Dialog dialog = utils.showDialog(context);
+            utils.setTitleDialog("Approve");
+            utils.setPositiveAction();
+
+            dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

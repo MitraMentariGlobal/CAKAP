@@ -52,6 +52,8 @@
     <string name="next_upper">NEXT</string>
     <string name="submit_upper">SUBMIT</string>
     <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="sure">Sure</string>
     <string name="province">Province</string>
     <string name="kota">City</string>
     <string name="alamat">Alamat</string>
@@ -75,6 +77,7 @@
     <string name="transfer_item">Transfer</string>
     <string name="transaksi_berhasil">Thank you for your transaction.</string>
     <string name="back_to_home">Back to Home</string>
+    <string name="this_transaction">%1$s this transaction?</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

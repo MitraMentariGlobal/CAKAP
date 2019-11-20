@@ -3,10 +3,12 @@ package co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess;
 import java.util.List;
 
 import co.id.cakap.data.ReqInvoiceToBcSuccessData;
+import co.id.cakap.data.ReqInvoiceToCompanySuccessData;
 
 public class ReqInvoiceToCompanySuccessContract {
     public interface View {
         void initializeData();
+        void setAdapter(List<ReqInvoiceToCompanySuccessData> resultData);
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);

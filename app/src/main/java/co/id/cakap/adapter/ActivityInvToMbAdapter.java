@@ -1,11 +1,14 @@
 package co.id.cakap.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +20,7 @@ import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -75,6 +79,10 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         TextView mTotalAmount;
         @BindView(R.id.linear_action)
         LinearLayout mLinearAction;
+        @BindView(R.id.item_cancel)
+        ImageView mItemCancel;
+        @BindView(R.id.item_verified)
+        ImageView mItemVerified;
 
         Context context;
 
@@ -82,12 +90,36 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            mLinearAction.setVisibility(View.GONE);
+            mItemVerified.setVisibility(View.GONE);
         }
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
             new ActivityInvToMbPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+        }
+
+        @OnClick(R.id.item_cancel)
+        public void actionCancel() {
+            UserConfirmationDialog utils = new UserConfirmationDialog();
+            Dialog dialog = utils.showDialog(context);
+            utils.setTitleDialog("Cancel");
+            utils.setNegativeAction();
+
+            dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

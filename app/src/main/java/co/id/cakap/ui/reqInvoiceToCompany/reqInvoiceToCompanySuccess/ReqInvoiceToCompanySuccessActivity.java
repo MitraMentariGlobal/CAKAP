@@ -23,7 +23,9 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.ReqInvoiceToBcSuccessAdapter;
+import co.id.cakap.adapter.ReqInvoiceToCompanySuccessAdapter;
 import co.id.cakap.data.ReqInvoiceToBcSuccessData;
+import co.id.cakap.data.ReqInvoiceToCompanySuccessData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.DashboardActivity;
@@ -40,7 +42,8 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
 
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
-
+    @BindView(R.id.main_list)
+    RecyclerView mRecyclerView;
     @BindView(R.id.title_toolbar)
     TextView mTitleToolbar;
     @BindView(R.id.nested_scroll)
@@ -64,6 +67,7 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
 
     private String mTitle = "";
     private String mPaymentMethod = "";
+    private ReqInvoiceToCompanySuccessAdapter mListAdapter;
     private ReqInvoiceToCompanySuccessContract.UserActionListener mUserActionListener;
 
     @Override
@@ -100,6 +104,18 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
             mLinearMustTransfer.setVisibility(View.GONE);
             mLinearRekening.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void setAdapter(List<ReqInvoiceToCompanySuccessData> resultData) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
+
+        mListAdapter = new ReqInvoiceToCompanySuccessAdapter(resultData, this);
+        mRecyclerView.setAdapter(mListAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }

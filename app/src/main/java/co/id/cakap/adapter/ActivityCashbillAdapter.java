@@ -1,5 +1,6 @@
 package co.id.cakap.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import co.id.cakap.data.ActivityCashbillData;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.NewAddressDialog;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 /**
  * Created by Laksamana Guntur Dzulfikar on 19/2/18.
@@ -136,7 +139,26 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
 
         @OnClick(R.id.item_cancel)
         public void actionCancel() {
-            Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
+            UserConfirmationDialog utils = new UserConfirmationDialog();
+            Dialog dialog = utils.showDialog(context);
+            utils.setTitleDialog("Cancel");
+            utils.setNegativeAction();
+
+            dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

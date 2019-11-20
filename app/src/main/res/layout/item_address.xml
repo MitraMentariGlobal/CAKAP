@@ -88,7 +88,7 @@
                     android:paddingBottom="5dp"
                     android:paddingStart="@dimen/radius_10"
                     android:paddingEnd="@dimen/radius_10"
-                    android:background="@drawable/background_green_style"
+                    android:background="@drawable/background_green_list_style"
                     android:layout_gravity="center">
 
                     <TextView
