@@ -98,7 +98,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(DetailTransactionActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

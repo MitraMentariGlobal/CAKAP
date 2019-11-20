@@ -13,12 +13,12 @@ import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
+import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
+import co.id.cakap.ui.detailRegistration.DetailRegistrationPresenter;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivityPresenter;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessPresenter;
-import co.id.cakap.ui.memberDetail.MemberDetailActivity;
-import co.id.cakap.ui.memberDetail.MemberDetailActivityPresenter;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
 import co.id.cakap.ui.omset.OmsetActivity;
@@ -102,12 +102,12 @@ public class MainActivityModule {
     private OmsetActivity omsetActivity;
     private SearchMemberActivity searchMemberActivity;
     private StockReportActivity stockReportActivity;
-    private MemberDetailActivity memberDetailActivity;
     private PickUpDeliveryActivity pickUpDeliveryActivity;
     private CashbillSuccessActivity cashbillSuccessActivity;
     private InvoiceToMbSuccessActivity invoiceToMbSuccessActivity;
     private ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity;
     private ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity;
+    private DetailRegistrationActivity detailRegistrationActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -230,10 +230,6 @@ public class MainActivityModule {
         this.stockReportActivity = stockReportActivity;
     }
 
-    public MainActivityModule(MemberDetailActivity memberDetailActivity) {
-        this.memberDetailActivity = memberDetailActivity;
-    }
-
     public MainActivityModule(PickUpDeliveryActivity pickUpDeliveryActivity) {
         this.pickUpDeliveryActivity = pickUpDeliveryActivity;
     }
@@ -252,6 +248,10 @@ public class MainActivityModule {
 
     public MainActivityModule(ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity) {
         this.reqInvoiceToCompanySuccessActivity = reqInvoiceToCompanySuccessActivity;
+    }
+
+    public MainActivityModule(DetailRegistrationActivity detailRegistrationActivity) {
+        this.detailRegistrationActivity = detailRegistrationActivity;
     }
 
     @Provides
@@ -458,12 +458,6 @@ public class MainActivityModule {
 
     @Provides
     @ActivityScope
-    MemberDetailActivityPresenter provideMemberDetailActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
-        return new MemberDetailActivityPresenter(mainRepository, dataModel);
-    }
-
-    @Provides
-    @ActivityScope
     PickUpDeliveryActivityPresenter providePickUpDeliveryActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new PickUpDeliveryActivityPresenter(mainRepository, dataModel);
     }
@@ -490,5 +484,11 @@ public class MainActivityModule {
     @ActivityScope
     ReqInvoiceToCompanySuccessPresenter provideReqInvoiceToCompanySuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new ReqInvoiceToCompanySuccessPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    DetailRegistrationPresenter provideDetailRegistrationPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new DetailRegistrationPresenter(mainRepository, dataModel);
     }
 }

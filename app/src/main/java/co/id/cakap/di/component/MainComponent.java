@@ -3,9 +3,9 @@ package co.id.cakap.di.component;
 import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
+import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
-import co.id.cakap.ui.memberDetail.MemberDetailActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
@@ -62,12 +62,12 @@ public interface MainComponent {
     OmsetActivity inject(OmsetActivity omsetActivity);
     SearchMemberActivity inject(SearchMemberActivity searchMemberActivityz);
     StockReportActivity inject(StockReportActivity omsetActivity);
-    MemberDetailActivity inject(MemberDetailActivity memberDetailActivity);
     PickUpDeliveryActivity inject(PickUpDeliveryActivity pickUpDeliveryActivity);
     CashbillSuccessActivity inject(CashbillSuccessActivity cashbillSuccessActivity);
     InvoiceToMbSuccessActivity inject(InvoiceToMbSuccessActivity invoiceToMbSuccessActivity);
     ReqInvoiceToBcSuccessActivity inject(ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity);
     ReqInvoiceToCompanySuccessActivity inject(ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity);
+    DetailRegistrationActivity inject(DetailRegistrationActivity detailRegistrationActivity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

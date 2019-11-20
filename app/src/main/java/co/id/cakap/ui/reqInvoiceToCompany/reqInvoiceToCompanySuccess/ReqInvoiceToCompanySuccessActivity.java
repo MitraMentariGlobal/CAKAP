@@ -3,6 +3,7 @@ package co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -64,6 +65,10 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     LinearLayout mLinearMustTransfer;
     @BindView(R.id.linear_rekening)
     LinearLayout mLinearRekening;
+    @BindView(R.id.linear_remark)
+    LinearLayout mLinearRemark;
+    @BindView(R.id.et_remark)
+    EditText mRemark;
 
     private String mTitle = "";
     private String mPaymentMethod = "";

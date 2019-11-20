@@ -29,7 +29,8 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.RegistrationAdapter;
 import co.id.cakap.data.RegistrationData;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.memberDetail.MemberDetailActivity;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
 import co.id.cakap.utils.Logger;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -103,9 +104,10 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     }
 
     @Override
-    public void openDetailRegistration() {
-        Intent intent = new Intent(this, MemberDetailActivity.class);
-//        intent.putExtra(Constant.URL_LINK, url);
+    public void openDetailRegistration(String activationCode, String member_id) {
+        Intent intent = new Intent(this, DetailRegistrationActivity.class);
+        intent.putExtra(Constant.ACTIVATION_CODE, activationCode);
+        intent.putExtra(Constant.MEMBER_ID, member_id);
         startActivity(intent);
     }
 

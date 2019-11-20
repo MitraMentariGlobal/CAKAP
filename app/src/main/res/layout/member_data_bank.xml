@@ -74,7 +74,7 @@
         android:background="@drawable/et_gray_background_style">
 
         <EditText
-            android:id="@+id/et_aaccount_holder"
+            android:id="@+id/et_account_holder"
             style="@style/Font_family_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

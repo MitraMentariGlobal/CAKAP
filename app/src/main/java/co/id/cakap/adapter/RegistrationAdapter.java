@@ -54,6 +54,8 @@ public class RegistrationAdapter extends RecyclerView.Adapter<RegistrationAdapte
         RegistrationData registrationData = mFilteredList.get(position);
 
         holder.context = mContext;
+        holder.registrationData = registrationData;
+
         holder.mVariantOfKit.setText(registrationData.getVariant_of_kit());
         holder.mActivatioinCode.setText(registrationData.getActivation_code());
         holder.mMemberId.setText(registrationData.getMember_id());
@@ -110,6 +112,7 @@ public class RegistrationAdapter extends RecyclerView.Adapter<RegistrationAdapte
         TextView mDate;
 
         Context context;
+        RegistrationData registrationData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -118,7 +121,7 @@ public class RegistrationAdapter extends RecyclerView.Adapter<RegistrationAdapte
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new RegistrationActivityPresenter().getView().openDetailRegistration();
+            new RegistrationActivityPresenter().getView().openDetailRegistration(registrationData.getActivation_code(), registrationData.getMember_id());
         }
     }
 }

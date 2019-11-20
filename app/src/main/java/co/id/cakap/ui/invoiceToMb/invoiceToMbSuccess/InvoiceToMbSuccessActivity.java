@@ -65,6 +65,8 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
     CircleImageView mImgClose;
     @BindView(R.id.linear_remark)
     LinearLayout mLinearRemark;
+    @BindView(R.id.et_remark)
+    EditText mRemark;
 
     private String mTitle = "";
     private String mTransactionId = "INV - 123123123123123";

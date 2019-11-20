@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <include layout="@layout/title_back"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Data Recruiting -->
+            <LinearLayout
+                android:id="@+id/linear_data_recruiting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:text="RECRUITING DATA"
+                    android:layout_marginEnd="@dimen/radius_16"
+                    android:layout_marginTop="@dimen/radius_16"
+                    style="@style/TexViewFont"/>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginTop="@dimen/radius_8"
+                    android:layout_marginStart="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_16"/>
+
+                <include layout="@layout/member_data_recruiting"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+            <!-- Data Sponsor -->
+            <LinearLayout
+                android:id="@+id/linear_data_sponsor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:text="SPONSOR DATA"
+                    android:layout_marginEnd="@dimen/radius_16"
+                    style="@style/TexViewFont"/>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginTop="@dimen/radius_8"
+                    android:layout_marginStart="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_16"/>
+
+                <include layout="@layout/member_data_sponsor"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+            <!-- Data Pribadi -->
+            <LinearLayout
+                android:id="@+id/linear_data_pribadi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:text="PERSONAL DATA"
+                    android:layout_marginEnd="@dimen/radius_16"
+                    style="@style/TexViewFont"/>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginTop="@dimen/radius_8"
+                    android:layout_marginStart="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_16"/>
+
+                <include layout="@layout/member_data_pribadi"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+            <!-- Data Lainnya -->
+            <LinearLayout
+                android:id="@+id/linear_data_lainnya"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:text="OTHER DATA"
+                    android:layout_marginEnd="@dimen/radius_16"
+                    style="@style/TexViewFont"/>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginTop="@dimen/radius_8"
+                    android:layout_marginStart="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_16"/>
+
+                <include layout="@layout/member_data_lainnya"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+            <!-- Data Bank -->
+            <LinearLayout
+                android:id="@+id/linear_data_bank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:text="BANK DATA"
+                    android:layout_marginEnd="@dimen/radius_16"
+                    style="@style/TexViewFont"/>
+
+                <View
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginTop="@dimen/radius_8"
+                    android:layout_marginStart="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_16"/>
+
+                <include layout="@layout/member_data_bank"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="@dimen/radius_16"
+                android:background="@color/colorPrimaryDark">
+
+                <TextView
+                    android:id="@+id/text_process"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:text="@string/process_upper"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    style="@style/TexViewFont"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/main_progress_bar"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

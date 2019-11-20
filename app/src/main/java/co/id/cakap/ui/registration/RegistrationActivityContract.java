@@ -11,7 +11,7 @@ public class RegistrationActivityContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void setAdapter(List<RegistrationData> resultData);
-        void openDetailRegistration();
+        void openDetailRegistration(String activationCode, String member_id);
     }
 
     public interface UserActionListener{

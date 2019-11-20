@@ -14,14 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.reqInvoiceToBc.ReqInvoiceToBcActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.invoiceToMb.InvoiceToMbActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.cashbill.CashbillActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ui.detailRegistration.DetailRegistrationActivity"></activity>
+        <activity
+            android:name=".ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.reqInvoiceToBc.ReqInvoiceToBcActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.invoiceToMb.InvoiceToMbActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.cashbill.CashbillActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.registration.RegistrationActivity" />
 
         <service
@@ -45,8 +50,9 @@
         <!-- <meta-data -->
         <!-- android:name="com.google.firebase.messaging.default_notification_color" -->
         <!-- android:resource="@color/colorAccent" /> -->
-        <activity android:name=".ui.dashboard.DashboardActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />

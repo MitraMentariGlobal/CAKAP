@@ -28,5 +28,7 @@ public class Constant {
     public static final String TITLE_DETAIL = "title_detail";
     public static final String TRANSACTION_ID_DETAIL = "transaction_id_detail";
     public static final String PAYMENT_METHOD = "payment_method";
+    public static final String ACTIVATION_CODE = "activation_code";
+    public static final String MEMBER_ID = "member_id";
 }
 
