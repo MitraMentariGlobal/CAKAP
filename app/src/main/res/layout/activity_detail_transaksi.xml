@@ -193,7 +193,8 @@
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
                 </LinearLayout>
             </LinearLayout>
 

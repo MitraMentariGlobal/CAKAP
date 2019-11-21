@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/radius_10"
-                android:background="@drawable/period_background_style">
+                android:background="@drawable/spinner_background_style">
 
                 <Spinner
                     android:id="@+id/pick_up_delivery_spinner"

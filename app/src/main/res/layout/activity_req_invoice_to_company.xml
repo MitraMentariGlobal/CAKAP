@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/period_background_style">
+                    android:background="@drawable/spinner_background_style">
 
                     <Spinner
                         android:id="@+id/payment_method_spinner"

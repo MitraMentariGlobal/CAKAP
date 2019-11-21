@@ -1,123 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/radius_16">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_14"
-        android:text="Bank Name"
-        android:layout_marginBottom="@dimen/radius_4"
-        style="@style/TexViewFont"/>
+    android:background="@drawable/background_section_registration_style">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/et_gray_background_style">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_section_registration_style"
+        android:padding="@dimen/radius_16">
 
-        <Spinner
-            android:id="@+id/spinner_bank"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_14"
+            android:text="Bank Name"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_14"
-        android:text="Branch"
-        android:layout_marginTop="@dimen/radius_16"
-        android:layout_marginBottom="@dimen/radius_4"
-        style="@style/TexViewFont"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/et_gray_background_style">
-
-        <EditText
-            android:id="@+id/et_branch_name"
-            style="@style/Font_family_light"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:hint="Branch"
-            android:maxLines="1"
+            android:background="@drawable/spinner_background_style">
+
+            <Spinner
+                android:id="@+id/spinner_bank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="@color/black"
-            android:textColorHint="@color/curated_light"
             android:textSize="@dimen/text_14"
-            android:padding="@dimen/padding_12"
-            android:focusableInTouchMode="true"
-            android:focusable="true"/>
-    </LinearLayout>
+            android:text="Branch"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_14"
-        android:text="Account Holder's Name"
-        android:layout_marginTop="@dimen/radius_16"
-        android:layout_marginBottom="@dimen/radius_4"
-        style="@style/TexViewFont"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/et_gray_background_style">
-
-        <EditText
-            android:id="@+id/et_account_holder"
-            style="@style/Font_family_light"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:hint="Account Holder's Name"
-            android:maxLines="1"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_branch_name"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Branch"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="@color/black"
-            android:textColorHint="@color/curated_light"
             android:textSize="@dimen/text_14"
-            android:padding="@dimen/padding_12"
-            android:focusableInTouchMode="true"
-            android:focusable="true"/>
-    </LinearLayout>
+            android:text="Account Holder's Name"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_14"
-        android:text="Account Number"
-        android:layout_marginTop="@dimen/radius_16"
-        android:layout_marginBottom="@dimen/radius_4"
-        style="@style/TexViewFont"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/et_gray_background_style">
-
-        <EditText
-            android:id="@+id/et_aaccount_number"
-            style="@style/Font_family_light"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:hint="Account Number"
-            android:maxLines="1"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_account_holder"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Account Holder's Name"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:enabled="false"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="@color/black"
-            android:textColorHint="@color/curated_light"
             android:textSize="@dimen/text_14"
-            android:padding="@dimen/padding_12"
-            android:focusableInTouchMode="true"
-            android:focusable="true"/>
+            android:text="Account Number"
+            android:layout_marginTop="@dimen/radius_16"
+            android:layout_marginBottom="@dimen/radius_4"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_account_number"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:inputType="number"
+                android:hint="Account Number"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -203,7 +203,8 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_16"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
 
                     <View
                         android:layout_width="match_parent"

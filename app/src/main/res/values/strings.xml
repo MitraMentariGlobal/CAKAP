@@ -81,6 +81,26 @@
     <string name="back_to_home">Back to Home</string>
     <string name="this_transaction">%1$s this transaction?</string>
 
+    <string name="sex_male">Male</string>
+    <string name="sex_female">Female</string>
+
+    <string name="religion_islam">Islam</string>
+    <string name="religion_katolik">Katholik</string>
+    <string name="religion_kristen">Kristen</string>
+    <string name="religion_hindu">Hindu</string>
+    <string name="religion_budha">Budha</string>
+    <string name="religion_konghucu">Konghucu</string>
+
+    <string name="bank_bca">Bank Central Asia</string>
+    <string name="bank_mandiri">Bank Mandiri</string>
+    <string name="bank_bri">Bank Rakyat Indonesia</string>
+    <string name="bank_bni">Bank Negara Indonesia</string>
+    <string name="bank_bii">Bank International Indonesia</string>
+    <string name="bank_danamon">Bank Danamon</string>
+    <string name="bank_permata">Bank Permata</string>
+    <string name="bank_cimb">Bank CIMB Niaga</string>
+    <string name="bank_panin">Bank Panin</string>
+
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>
 
@@ -109,5 +129,33 @@
     <string-array name="payment_method_list">
         <item>@string/ewallet_item</item>
         <item>@string/transfer_item</item>
+    </string-array>
+
+    <string-array name="sex_list">
+        <item>@string/sex_male</item>
+        <item>@string/sex_female</item>
+    </string-array>
+
+    <string-array name="religion_list">
+        <item> - </item>
+        <item>@string/religion_islam</item>
+        <item>@string/religion_katolik</item>
+        <item>@string/religion_kristen</item>
+        <item>@string/religion_hindu</item>
+        <item>@string/religion_budha</item>
+        <item>@string/religion_konghucu</item>
+    </string-array>
+
+    <string-array name="bank_list">
+        <item> - </item>
+        <item>@string/bank_bca</item>
+        <item>@string/bank_mandiri</item>
+        <item>@string/bank_bri</item>
+        <item>@string/bank_bni</item>
+        <item>@string/bank_bii</item>
+        <item>@string/bank_danamon</item>
+        <item>@string/bank_permata</item>
+        <item>@string/bank_cimb</item>
+        <item>@string/bank_panin</item>
     </string-array>
 </resources>

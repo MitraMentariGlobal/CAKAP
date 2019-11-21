@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/pin_dialog_style"
+        android:background="@drawable/background_green_list_style"
         android:padding="@dimen/radius_16">
 
         <LinearLayout
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/period_background_style">
+                android:background="@drawable/spinner_background_style">
 
                 <Spinner
                     android:id="@+id/province_spinner"
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/period_background_style">
+                android:background="@drawable/spinner_background_style">
 
                 <Spinner
                     android:id="@+id/city_spinner"

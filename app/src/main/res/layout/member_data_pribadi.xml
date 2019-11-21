@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_section_registration_style">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="@dimen/radius_16">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +38,8 @@
                 android:textSize="@dimen/text_14"
                 android:padding="@dimen/padding_12"
                 android:focusableInTouchMode="false"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:enabled="false"/>
         </LinearLayout>
 
         <TextView
@@ -93,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
+                android:inputType="number"
                 android:hint="ID Card (KTP/SIM)"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -109,7 +113,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Sex"
+            android:text="Gender"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -117,7 +121,59 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/et_gray_background_style">
+            android:layout_marginTop="10dp"
+            android:background="@drawable/et_gray_background_style"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_sex_male"
+                    android:button="@null"
+                    android:checked="false"
+                    android:drawableStart="@drawable/ic_male"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:paddingTop="10dp"
+                    android:text="Male"
+                    android:textColor="@drawable/gender_text_color" />
+
+                <RadioButton
+                    android:id="@+id/radio_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_sex_female"
+                    android:button="@null"
+                    android:drawableStart="@drawable/ic_female"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    android:paddingTop="10dp"
+                    android:text="Female"
+                    android:textColor="@drawable/gender_text_color" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background_style">
 
             <Spinner
                 android:id="@+id/spinner_sex"
@@ -186,7 +242,8 @@
                 android:textSize="@dimen/text_14"
                 android:padding="@dimen/padding_12"
                 android:focusableInTouchMode="false"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:enabled="false"/>
         </LinearLayout>
 
         <TextView
@@ -203,7 +260,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/et_gray_background_style">
+            android:background="@drawable/spinner_background_style">
 
             <Spinner
                 android:id="@+id/spinner_religion"
@@ -233,6 +290,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
+                android:inputType="textEmailAddress"
                 android:hint="Email"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -265,6 +323,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
+                android:inputType="number"
                 android:hint="Phone Number"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -297,6 +356,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
+                android:inputType="number"
                 android:hint="Mobile Number"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -353,7 +413,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/et_gray_background_style">
+            android:background="@drawable/spinner_background_style">
 
             <Spinner
                 android:id="@+id/spinner_province"
@@ -375,7 +435,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/et_gray_background_style">
+            android:background="@drawable/spinner_background_style">
 
             <Spinner
                 android:id="@+id/spinner_city"
@@ -405,6 +465,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
+                android:inputType="number"
                 android:hint="Postal Code"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -443,8 +504,9 @@
                 android:textColorHint="@color/curated_light"
                 android:textSize="@dimen/text_14"
                 android:padding="@dimen/padding_12"
-                android:focusableInTouchMode="true"
-                android:focusable="true"/>
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

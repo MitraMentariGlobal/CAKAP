@@ -117,7 +117,8 @@
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
 
                 </RelativeLayout>
 
@@ -150,7 +151,8 @@
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
                 </LinearLayout>
 
                 <TextView
@@ -182,7 +184,8 @@
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
                 </LinearLayout>
 
                 <TextView
@@ -214,7 +217,8 @@
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
                 </LinearLayout>
 
                 <TextView
@@ -245,7 +249,8 @@
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
                 </LinearLayout>
 
                 <TextView
@@ -277,7 +282,8 @@
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
                         android:focusableInTouchMode="false"
-                        android:focusable="false"/>
+                        android:focusable="false"
+                        android:enabled="false"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -539,7 +545,8 @@
                                         android:textColorHint="@color/curated_light"
                                         android:textSize="@dimen/text_14"
                                         android:focusableInTouchMode="false"
-                                        android:focusable="false"/>
+                                        android:focusable="false"
+                                        android:enabled="false"/>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>

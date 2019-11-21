@@ -29,32 +29,38 @@
                 android:id="@+id/linear_data_recruiting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="@dimen/radius_16">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
-                    android:text="RECRUITING DATA"
-                    android:layout_marginEnd="@dimen/radius_16"
                     android:layout_marginTop="@dimen/radius_16"
-                    style="@style/TexViewFont"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="200dp"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginTop="@dimen/radius_8"
-                    android:layout_marginStart="@dimen/radius_16"
-                    android:layout_marginEnd="@dimen/radius_16"/>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/three_line" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold"
+                        android:text="RECRUITING DATA"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
 
                 <include layout="@layout/member_data_recruiting"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/radius_16"/>
             </LinearLayout>
 
             <!-- Data Sponsor -->
@@ -62,31 +68,38 @@
                 android:id="@+id/linear_data_sponsor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="@dimen/radius_16">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
-                    android:text="SPONSOR DATA"
-                    android:layout_marginEnd="@dimen/radius_16"
-                    style="@style/TexViewFont"/>
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="200dp"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginTop="@dimen/radius_8"
-                    android:layout_marginStart="@dimen/radius_16"
-                    android:layout_marginEnd="@dimen/radius_16"/>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/three_line" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold"
+                        android:text="SPONSOR DATA"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
 
                 <include layout="@layout/member_data_sponsor"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/radius_16"/>
             </LinearLayout>
 
             <!-- Data Pribadi -->
@@ -94,31 +107,38 @@
                 android:id="@+id/linear_data_pribadi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="@dimen/radius_16">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
-                    android:text="PERSONAL DATA"
-                    android:layout_marginEnd="@dimen/radius_16"
-                    style="@style/TexViewFont"/>
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="200dp"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginTop="@dimen/radius_8"
-                    android:layout_marginStart="@dimen/radius_16"
-                    android:layout_marginEnd="@dimen/radius_16"/>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/three_line" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold"
+                        android:text="PERSONAL DATA"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
 
                 <include layout="@layout/member_data_pribadi"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/radius_16"/>
             </LinearLayout>
 
             <!-- Data Lainnya -->
@@ -126,31 +146,38 @@
                 android:id="@+id/linear_data_lainnya"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="@dimen/radius_16">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
-                    android:text="OTHER DATA"
-                    android:layout_marginEnd="@dimen/radius_16"
-                    style="@style/TexViewFont"/>
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="200dp"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginTop="@dimen/radius_8"
-                    android:layout_marginStart="@dimen/radius_16"
-                    android:layout_marginEnd="@dimen/radius_16"/>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/three_line" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold"
+                        android:text="OTHER DATA"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
 
                 <include layout="@layout/member_data_lainnya"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/radius_16"/>
             </LinearLayout>
 
             <!-- Data Bank -->
@@ -158,31 +185,38 @@
                 android:id="@+id/linear_data_bank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="@dimen/radius_16">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/text_14"
-                    android:textStyle="bold"
-                    android:text="BANK DATA"
-                    android:layout_marginEnd="@dimen/radius_16"
-                    style="@style/TexViewFont"/>
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="200dp"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginTop="@dimen/radius_8"
-                    android:layout_marginStart="@dimen/radius_16"
-                    android:layout_marginEnd="@dimen/radius_16"/>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:tint="@color/colorPrimaryDark"
+                        android:src="@drawable/three_line" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_14"
+                        android:textStyle="bold"
+                        android:text="BANK DATA"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
 
                 <include layout="@layout/member_data_bank"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/radius_16"/>
             </LinearLayout>
 
             <LinearLayout
