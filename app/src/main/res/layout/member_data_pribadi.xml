@@ -48,7 +48,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Full Name"
+            android:text="Nama Lengkap"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Full Name"
+                android:hint="Nama Lengkap"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -80,7 +80,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="ID Card (KTP/SIM)"
+            android:text="Nomor KTP / SIM"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:inputType="number"
-                android:hint="ID Card (KTP/SIM)"
+                android:hint="Nomor KTP / SIM"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -113,7 +113,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Gender"
+            android:text="Jenis Kelamin"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -146,7 +146,7 @@
                     android:paddingLeft="24dp"
                     android:paddingRight="24dp"
                     android:paddingTop="10dp"
-                    android:text="Male"
+                    android:text="Laki - Laki"
                     android:textColor="@drawable/gender_text_color" />
 
                 <RadioButton
@@ -162,7 +162,7 @@
                     android:paddingLeft="24dp"
                     android:paddingRight="24dp"
                     android:paddingTop="10dp"
-                    android:text="Female"
+                    android:text="Perempuan"
                     android:textColor="@drawable/gender_text_color" />
 
             </RadioGroup>
@@ -187,7 +187,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Place Of Birth"
+            android:text="Tempat Lahir"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -203,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Place Of Birth"
+                android:hint="Tempat Lahir"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -219,7 +219,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Date Of Birth"
+            android:text="Tanggal Lahir"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -235,7 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Date Of Birth"
+                android:hint="Tanggal Lahir"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -252,7 +252,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Religion"
+            android:text="Agama"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -307,7 +307,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Phone Number"
+            android:text="Nomor Telepon"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -324,7 +324,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:inputType="number"
-                android:hint="Phone Number"
+                android:hint="Nomor Telepon"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -340,7 +340,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Mobile Number"
+            android:text="Nomor Handphone"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -357,7 +357,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:inputType="number"
-                android:hint="Mobile Number"
+                android:hint="Nomor Handphone"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -373,7 +373,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Address"
+            android:text="Alamat"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -389,7 +389,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Address"
+                android:hint="Alamat"
                 android:maxLines="5"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -405,7 +405,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Province"
+            android:text="Provinsi"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -427,7 +427,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="City"
+            android:text="Kota"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -449,7 +449,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Postal Code"
+            android:text="Kode Pos"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -466,7 +466,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:inputType="number"
-                android:hint="Postal Code"
+                android:hint="Kode Pos"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"

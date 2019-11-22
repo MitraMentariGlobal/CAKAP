@@ -17,7 +17,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Bank Name"
+            android:text="Nama Bank (Jika Ada)"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
 
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Branch"
+            android:text="Cabang"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Branch"
+                android:hint="Cabang"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -70,7 +70,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Account Holder's Name"
+            android:text="Nama Nasabah"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -86,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Account Holder's Name"
+                android:hint="Nama Nasabah"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -103,7 +103,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Account Number"
+            android:text="Nomor Rekening"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:inputType="number"
-                android:hint="Account Number"
+                android:hint="Nomor Rekening"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"

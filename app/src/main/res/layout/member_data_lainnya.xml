@@ -12,6 +12,7 @@
         android:padding="@dimen/radius_16">
 
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -22,6 +23,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -48,8 +50,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Heir Name"
-            android:layout_marginTop="@dimen/radius_16"
+            android:text="Nama Pewaris"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
 
@@ -64,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Heir Name"
+                android:hint="Nama Pewaris"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
@@ -80,7 +81,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="Relationship"
+            android:text="Hubungan"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -96,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="Relationship"
+                android:hint="Hubungan"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
