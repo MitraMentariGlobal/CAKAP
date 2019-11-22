@@ -225,11 +225,12 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
 
-            <EditText
+            <TextView
                 android:id="@+id/et_date_of_birth"
                 style="@style/Font_family_light"
                 android:layout_width="match_parent"
@@ -240,10 +241,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
                 android:textSize="@dimen/text_14"
-                android:padding="@dimen/padding_12"
-                android:focusableInTouchMode="false"
-                android:focusable="false"
-                android:enabled="false"/>
+                android:padding="@dimen/padding_12"/>
         </LinearLayout>
 
         <TextView

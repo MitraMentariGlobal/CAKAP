@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -25,9 +27,14 @@ import com.andrognito.pinlockview.IndicatorDots;
 import com.andrognito.pinlockview.PinLockListener;
 import com.andrognito.pinlockview.PinLockView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.inject.Inject;
 
@@ -42,12 +49,13 @@ import co.id.cakap.data.ItemSearchRegistrationData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
+import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.dialog.SearchRegistrationDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class DetailRegistrationActivity extends AppCompatActivity implements DetailRegistrationContract.View, AdapterView.OnItemSelectedListener {
+public class DetailRegistrationActivity extends AppCompatActivity implements DetailRegistrationContract.View, AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
     @Inject
     DetailRegistrationPresenter mDetailRegistrationPresenter;
 
@@ -82,7 +90,7 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     @BindView(R.id.et_place_of_birth)
     EditText mEtPob;
     @BindView(R.id.et_date_of_birth)
-    EditText mEtDob;
+    TextView mEtDob;
     @BindView(R.id.spinner_religion)
     Spinner mSpinnerReligion;
     @BindView(R.id.et_email)
@@ -128,6 +136,9 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     @BindView(R.id.relative_sponsor_id)
     RelativeLayout mRelativeSponsorId;
 
+    private int mDay;
+    private int mMonth;
+    private int mYear;
     private EditText mSearchEditText;
     private RecyclerView mRecyclerView;
     private Dialog mDialog;
@@ -388,5 +399,36 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        mDay = dayOfMonth;
+        mMonth = month + 1;
+        mYear = year;
+
+        String dob = mDay + "/" + mMonth + "/" + mYear;
+        mEtDob.setText(dob);
+    }
+
+    @OnClick(R.id.et_date_of_birth)
+    public void openDatePicker(View view) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = null;
+        String dob = mEtDob.getText().toString();
+
+        if (!dob.isEmpty()) {
+            try {
+                date = DateHelper.dateFormatSlash.parse(dob);
+                calendar.setTime(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        DatePickerDialog dialog = new DatePickerDialog(this, this,
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
     }
 }
