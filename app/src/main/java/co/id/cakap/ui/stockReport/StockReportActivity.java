@@ -7,6 +7,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import javax.inject.Inject;
 
@@ -15,6 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.SectionsActivityPagerAdapter;
+import co.id.cakap.adapter.SectionsStockPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
 import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
@@ -23,10 +28,12 @@ public class StockReportActivity extends AppCompatActivity implements StockRepor
     @Inject
     StockReportActivityPresenter mStockReportActivityPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
+    @BindView(R.id.view_pager)
+    ViewPager mViewPager;
+    @BindView(R.id.tabs)
+    TabLayout mTabLayout;
 
     private StockReportActivityContract.UserActionListener mUserActionListener;
 
@@ -53,17 +60,11 @@ public class StockReportActivity extends AppCompatActivity implements StockRepor
         mStockReportActivityPresenter.setView(this);
 
         mTitle.setText(getString(R.string.stock_report));
-        hideProgressBar();
-    }
 
-    @Override
-    public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
-    }
 
-    @Override
-    public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        SectionsStockPagerAdapter sectionsStockPagerAdapter = new SectionsStockPagerAdapter(this, getSupportFragmentManager());
+        mViewPager.setAdapter(sectionsStockPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override

@@ -36,6 +36,8 @@ import co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceT
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 import co.id.cakap.ui.stockReport.StockReportActivity;
+import co.id.cakap.ui.stockReport.stockCard.StockCardFragment;
+import co.id.cakap.ui.stockReport.stockUpdate.StockUpdateFragment;
 import dagger.Subcomponent;
 
 /**
@@ -83,4 +85,6 @@ public interface MainComponent {
     RestockInvoiceFragment inject(RestockInvoiceFragment restockInvoiceFragment);
     RestockReceiveStockFragment inject(RestockReceiveStockFragment restockReceiveStockFragment);
     RestockReqInvoiceFragment inject(RestockReqInvoiceFragment restockReqInvoiceFragment);
+    StockCardFragment inject(StockCardFragment stockCardFragment);
+    StockUpdateFragment inject(StockUpdateFragment stockUpdateFragment);
 }

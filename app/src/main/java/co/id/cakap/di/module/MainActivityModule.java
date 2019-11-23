@@ -79,6 +79,10 @@ import co.id.cakap.ui.splashScreen.SplashScreenActivity;
 import co.id.cakap.ui.splashScreen.SplashScreenPresenter;
 import co.id.cakap.ui.stockReport.StockReportActivity;
 import co.id.cakap.ui.stockReport.StockReportActivityPresenter;
+import co.id.cakap.ui.stockReport.stockCard.StockCardFragment;
+import co.id.cakap.ui.stockReport.stockCard.StockCardPresenter;
+import co.id.cakap.ui.stockReport.stockUpdate.StockUpdateFragment;
+import co.id.cakap.ui.stockReport.stockUpdate.StockUpdatePresenter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -124,6 +128,8 @@ public class MainActivityModule {
     private RestockInvoiceFragment restockInvoiceFragment;
     private RestockReceiveStockFragment restockReceiveStockFragment;
     private RestockReqInvoiceFragment restockReqInvoiceFragment;
+    private StockCardFragment stockCardFragment;
+    private StockUpdateFragment stockUpdateFragment;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
@@ -259,6 +265,14 @@ public class MainActivityModule {
 
     public MainActivityModule(RegistrationSuccessActivity registrationSuccessActivity) {
         this.registrationSuccessActivity = registrationSuccessActivity;
+    }
+
+    public MainActivityModule(StockCardFragment stockCardFragment) {
+        this.stockCardFragment = stockCardFragment;
+    }
+
+    public MainActivityModule(StockUpdateFragment stockUpdateFragment) {
+        this.stockUpdateFragment = stockUpdateFragment;
     }
 
     @Provides
@@ -503,5 +517,17 @@ public class MainActivityModule {
     @ActivityScope
     RegistrationSuccessPresenter provideRegistrationSuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new RegistrationSuccessPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    StockCardPresenter provideStockCardPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new StockCardPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    StockUpdatePresenter provideStockUpdatePresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new StockUpdatePresenter(mainRepository, dataModel);
     }
 }

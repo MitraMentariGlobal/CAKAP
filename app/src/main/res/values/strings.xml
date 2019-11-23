@@ -33,6 +33,7 @@
     <string name="search">Search</string>
     <string name="periode">Period</string>
     <string name="subtotal">Subtotal</string>
+    <string name="subtotal_upper">SUBTOTAL</string>
     <string name="daftar_produk">Product List </string>
     <string name="detail_transaksi">Detail Transaction</string>
     <string name="detail_registration">Detail Registration</string>
@@ -101,6 +102,8 @@
     <string name="bank_permata">Bank Permata</string>
     <string name="bank_cimb">Bank CIMB Niaga</string>
     <string name="bank_panin">Bank Panin</string>
+    <string name="stock_update">Update</string>
+    <string name="stock_card">Card</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>
