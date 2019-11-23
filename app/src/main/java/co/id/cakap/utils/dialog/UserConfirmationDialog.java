@@ -54,6 +54,12 @@ public class UserConfirmationDialog {
         textView.setText(context.getResources().getString(R.string.this_transaction, param));
     }
 
+    public void setTitleDialog() {
+        TextView textView = dialog.findViewById(R.id.txt_title);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(context.getResources().getString(R.string.pleasee_check_again));
+    }
+
     public void setNegativeAction() {
         TextView txtNo = dialog.findViewById(R.id.no_act_btn);
         TextView txtYes = dialog.findViewById(R.id.yes_act_btn);
@@ -72,5 +78,15 @@ public class UserConfirmationDialog {
         txtYes.setTextColor(context.getResources().getColor(R.color.white));
 
         txtNo.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+    }
+
+    public void setNegativeActionGreen() {
+        TextView txtNo = dialog.findViewById(R.id.no_act_btn);
+        TextView txtYes = dialog.findViewById(R.id.yes_act_btn);
+
+        txtNo.setBackground(context.getResources().getDrawable(R.drawable.background_yes_confirmation_style));
+        txtNo.setTextColor(context.getResources().getColor(R.color.white));
+
+        txtYes.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
     }
 }

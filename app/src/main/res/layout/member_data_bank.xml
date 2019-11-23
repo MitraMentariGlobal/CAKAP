@@ -22,6 +22,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_spinner_bank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_background_style">
@@ -30,6 +31,29 @@
                 android:id="@+id/spinner_bank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linear_et_bank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_bank"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Nama Bank"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"/>
         </LinearLayout>
 
         <TextView

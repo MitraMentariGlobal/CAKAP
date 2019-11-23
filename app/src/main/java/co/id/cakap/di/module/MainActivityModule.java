@@ -23,6 +23,8 @@ import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.omset.OmsetActivityPresenter;
+import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
+import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessPresenter;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivityPresenter;
 import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity;
@@ -108,6 +110,7 @@ public class MainActivityModule {
     private ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity;
     private ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity;
     private DetailRegistrationActivity detailRegistrationActivity;
+    private RegistrationSuccessActivity registrationSuccessActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -252,6 +255,10 @@ public class MainActivityModule {
 
     public MainActivityModule(DetailRegistrationActivity detailRegistrationActivity) {
         this.detailRegistrationActivity = detailRegistrationActivity;
+    }
+
+    public MainActivityModule(RegistrationSuccessActivity registrationSuccessActivity) {
+        this.registrationSuccessActivity = registrationSuccessActivity;
     }
 
     @Provides
@@ -490,5 +497,11 @@ public class MainActivityModule {
     @ActivityScope
     DetailRegistrationPresenter provideDetailRegistrationPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new DetailRegistrationPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    RegistrationSuccessPresenter provideRegistrationSuccessPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new RegistrationSuccessPresenter(mainRepository, dataModel);
     }
 }

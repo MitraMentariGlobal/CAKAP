@@ -66,6 +66,18 @@
         </RelativeLayout>
 
         <TextView
+            android:visibility="gone"
+            android:id="@+id/txt_error_rec_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="Silakan input minimal 3 karakter"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

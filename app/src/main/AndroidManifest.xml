@@ -82,6 +82,7 @@
         <activity android:name=".ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity" />
         <activity android:name=".ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity" />
         <activity android:name=".ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity" />
+        <activity android:name=".ui.registration.registrationSuccess.RegistrationSuccessActivity" />
     </application>
 
 </manifest>

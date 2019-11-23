@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginTop="@dimen/radius_32">
 
                 <TextView

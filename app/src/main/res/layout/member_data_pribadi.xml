@@ -123,10 +123,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/et_gray_background_style"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/radioGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -167,18 +167,30 @@
 
             </RadioGroup>
 
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/et_gender"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Jenis Kelamin"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:enabled="false"/>
+
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/spinner_background_style">
+            android:background="@drawable/et_gray_background_style">
 
-            <Spinner
-                android:id="@+id/spinner_sex"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <TextView
@@ -256,6 +268,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_spinner_religion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_background_style">
@@ -264,6 +277,29 @@
                 android:id="@+id/spinner_religion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linear_et_religion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_religion"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Agama"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"/>
         </LinearLayout>
 
         <TextView
@@ -409,6 +445,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_spinner_province"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_background_style">
@@ -417,6 +454,29 @@
                 android:id="@+id/spinner_province"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linear_et_province"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_province"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Provinsi"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"/>
         </LinearLayout>
 
         <TextView
@@ -431,6 +491,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_spinner_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_background_style">
@@ -439,6 +500,29 @@
                 android:id="@+id/spinner_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linear_et_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_city"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="Kota"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="false"
+                android:focusable="false"/>
         </LinearLayout>
 
         <TextView
@@ -466,6 +550,7 @@
                 android:inputType="number"
                 android:hint="Kode Pos"
                 android:maxLines="1"
+                android:maxLength="5"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"
                 android:textSize="@dimen/text_14"

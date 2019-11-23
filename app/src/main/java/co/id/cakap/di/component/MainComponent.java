@@ -8,6 +8,7 @@ import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
+import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
 import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity;
 import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
@@ -68,6 +69,7 @@ public interface MainComponent {
     ReqInvoiceToBcSuccessActivity inject(ReqInvoiceToBcSuccessActivity reqInvoiceToBcSuccessActivity);
     ReqInvoiceToCompanySuccessActivity inject(ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity);
     DetailRegistrationActivity inject(DetailRegistrationActivity detailRegistrationActivity);
+    RegistrationSuccessActivity inject(RegistrationSuccessActivity registrationSuccessActivity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

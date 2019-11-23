@@ -30,5 +30,6 @@ public class Constant {
     public static final String PAYMENT_METHOD = "payment_method";
     public static final String ACTIVATION_CODE = "activation_code";
     public static final String MEMBER_ID = "member_id";
+    public static final String REGISTRATION_DATA = "registration_data";
 }
 

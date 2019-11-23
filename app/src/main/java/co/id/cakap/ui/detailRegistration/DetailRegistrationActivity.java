@@ -46,13 +46,16 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.ActivityCashbillAdapter;
 import co.id.cakap.adapter.ItemSearchRegistrationAdapter;
 import co.id.cakap.data.ItemSearchRegistrationData;
+import co.id.cakap.data.RegistrationSuccessData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
+import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
 import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.dialog.SearchRegistrationDialog;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class DetailRegistrationActivity extends AppCompatActivity implements DetailRegistrationContract.View, AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
@@ -80,8 +83,6 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     EditText mEtFulllName;
     @BindView(R.id.et_id_card)
     EditText mEtIdCard;
-    @BindView(R.id.spinner_sex)
-    Spinner mSpinnerSex;
     @BindView(R.id.radio_male)
     RadioButton mRadioMale;
     @BindView(R.id.radio_female)
@@ -133,8 +134,12 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @BindView(R.id.relative_rec_id)
     RelativeLayout mRelativeRecId;
+    @BindView(R.id.txt_error_rec_id)
+    TextView mTxtErrorRecId;
     @BindView(R.id.relative_sponsor_id)
     RelativeLayout mRelativeSponsorId;
+    @BindView(R.id.txt_error_sponsor_id)
+    TextView mTxtErrorSponsorId;
 
     private int mDay;
     private int mMonth;
@@ -145,6 +150,7 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     private ItemSearchRegistrationAdapter mListAdapter;
     private String mActivationCode = "";
     private String mMemberId = "";
+    private RegistrationSuccessData mSuccessData;
     private List<String> mCityData = new ArrayList<>();
     private List<String> mProvinceData = new ArrayList<>();
     private DetailRegistrationContract.UserActionListener mUserActionListener;
@@ -183,6 +189,23 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
         setupOnFocusListenerName();
         initSpinner();
         hideProgressBar();
+
+
+
+
+        mEtFulllName.setText("test full name");
+        mEtIdCard.setText("3475639200129943");
+        mEtPob.setText("test tempat lahir");
+        mEtEmail.setText("test email");
+        mEtPhoneNumber.setText("021123456789");
+        mEtMobileNumber.setText("081987654321");
+        mEtAddress.setText("test address");
+        mEtPostalCode.setText("34321");
+        mEtHeirName.setText("test nama pewaris");
+        mEtRelationship.setText("test hubungan pewaris");
+        mEtBranchName.setText("test cabang");
+        mEtAccountHolder.setText("test full name");
+        mEtAccountNumber.setText("633764383847");
     }
 
     @Override
@@ -207,10 +230,12 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @OnClick(R.id.linear_search_rec_id)
     public void searchRecId(View view) {
-        if (mEtRecId.getText().length() == 0) {
+        if (mEtRecId.getText().length() < 3) {
             mRelativeRecId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorRecId.setVisibility(View.VISIBLE);
         } else {
             mRelativeRecId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorRecId.setVisibility(View.GONE);
             mUserActionListener.getDataRecId(mEtRecId.getText().toString());
             mEtRecId.setInputType(0);
         }
@@ -218,10 +243,12 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @OnClick(R.id.linear_search_sponsor_id)
     public void searchSponsorId(View view) {
-        if (mEtSponsorId.getText().length() == 0) {
+        if (mEtSponsorId.getText().length() < 3) {
             mRelativeSponsorId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorSponsorId.setVisibility(View.VISIBLE);
         } else {
             mRelativeSponsorId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorSponsorId.setVisibility(View.GONE);
             mUserActionListener.getDataSponsorId(mEtSponsorId.getText().toString());
             mEtSponsorId.setInputType(0);
         }
@@ -229,6 +256,68 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @OnClick(R.id.text_process)
     public void actionProcess(View view) {
+        UserConfirmationDialog utils = new UserConfirmationDialog();
+        Dialog dialog = utils.showDialog(this);
+        utils.setTitleDialog();
+        utils.setNegativeActionGreen();
+
+        TextView txtNo = (TextView) dialog.findViewById(R.id.no_act_btn);
+        txtNo.setText("Periksa Kembali");
+        dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Toast.makeText(DetailRegistrationActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        TextView txtYes = (TextView) dialog.findViewById(R.id.yes_act_btn);
+        txtYes.setText("Bersedia");
+        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                String gender = "";
+                if (mRadioMale.isChecked())
+                    gender = "Laki - Laki";
+                else
+                    gender = "Perempuan";
+
+                mSuccessData = new RegistrationSuccessData(
+                        mEtRecId.getText().toString(),
+                        mEtRecName.getText().toString(),
+                        mEtSponsorId.getText().toString(),
+                        mEtSponsorName.getText().toString(),
+                        mEtMemberId.getText().toString(),
+                        mEtFulllName.getText().toString(),
+                        mEtIdCard.getText().toString(),
+                        gender,
+                        mEtPob.getText().toString(),
+                        mEtDob.getText().toString(),
+                        mSpinnerReligion.getSelectedItem().toString(),
+                        mEtEmail.getText().toString(),
+                        mEtPhoneNumber.getText().toString(),
+                        mEtMobileNumber.getText().toString(),
+                        mEtAddress.getText().toString(),
+                        mSpinnerProvince.getSelectedItem().toString(),
+                        mSpinnerCity.getSelectedItem().toString(),
+                        mEtPostalCode.getText().toString(),
+                        mEtActivationCode.getText().toString(),
+                        mEtHeirName.getText().toString(),
+                        mEtRelationship.getText().toString(),
+                        mSpinnerBank.getSelectedItem().toString(),
+                        mEtBranchName.getText().toString(),
+                        mEtAccountHolder.getText().toString(),
+                        mEtAccountNumber.getText().toString()
+                );
+
+                openDialogPin();
+            }
+        });
+    }
+
+    public void openDialogPin() {
         PinDialog utils = new PinDialog();
         Dialog dialog = utils.showDialog(this);
 
@@ -241,9 +330,13 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
                 dialog.hide();
                 dialog.dismiss();
 
-//                Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
-//                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
-//                startActivity(intent);
+                Bundle b = new Bundle();
+                b.putParcelable(Constant.REGISTRATION_DATA, mSuccessData);
+
+                Intent intent = new Intent(getApplicationContext(), RegistrationSuccessActivity.class);
+                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.registration).toUpperCase());
+                intent.putExtra(Constant.REGISTRATION_DATA, b);
+                startActivity(intent);
             }
 
             @Override
@@ -341,16 +434,10 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     }
 
     public void initSpinner() {
-        mSpinnerSex.setOnItemSelectedListener(this);
         mSpinnerReligion.setOnItemSelectedListener(this);
         mSpinnerProvince.setOnItemSelectedListener(this);
         mSpinnerCity.setOnItemSelectedListener(this);
         mSpinnerBank.setOnItemSelectedListener(this);
-
-        ArrayAdapter<CharSequence> sexAdapter = ArrayAdapter.createFromResource(this,
-                R.array.sex_list, R.layout.item_spinner);
-        sexAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerSex.setAdapter(sexAdapter);
 
         ArrayAdapter<CharSequence> religionAdapter = ArrayAdapter.createFromResource(this,
                 R.array.religion_list, R.layout.item_spinner);
