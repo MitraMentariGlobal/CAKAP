@@ -1,32 +1,35 @@
 
-Ssquid:S1068]"5Remove this unused "dashboardActivity" private field.(„¤ûÎ8§öÑ‡å-
-Vsquid:S1068d"3Remove this unused "feeBcmbActivity" private field.(âï±îıÿÿÿÿ8½¨¼Šå-
-dsquid:S1068l"ARemove this unused "reqInvoiceToBcSuccessActivity" private field.(Ş¹“ìüÿÿÿÿ8ƒ²›çç-
-bsquid:S1068c"?Remove this unused "reqInvoiceToCompanyActivity" private field.(Ç©Ü‰ùÿÿÿÿ8û§è†å-
-Zsquid:S1068{"=Remove this unused "restockReqInvoiceFragment" private field.(ƒŞüh8×‚èŠå-
-Usquid:S1068`"7Remove this unused "invoiceToMbActivity" private field.(Œ†ä8—´Ì†å-
-^squid:S1068w"@Remove this unused "activityRekapBnsBcmbFragment" private field.(İä…È8Û„™áã-
-Tsquid:S1068f"1Remove this unused "omsetActivity" private field.(İ‡»Şûÿÿÿÿ8çÎÄŠå-
-Ysquid:S1068j";Remove this unused "cashbillSuccessActivity" private field.(¶±ŞŞ8‚òÍç-
-[squid:S1068a"8Remove this unused "registrationActivity" private field.(äùÖğÿÿÿÿÿ8÷¨é†å-
-^squid:S1068v";Remove this unused "activityInvToMbFragment" private field.(¤û‚îûÿÿÿÿ8Û„™áã-
-Qsquid:S1068s"3Remove this unused "restockFragment" private field.(œĞ±8¶´»·ã-
-Wsquid:S1068_"4Remove this unused "cashbillActivity" private field.(µ™ÕÉÿÿÿÿÿ8€™†å-
-`squid:S1068^"=Remove this unused "detailTransactionActivity" private field.(¢‰Î¥üÿÿÿÿ8¨ç‘Ñä-
-[squid:S1068r"8Remove this unused "notificationFragment" private field.(»î¾ıÿÿÿÿ8–öıÓä-
-Ssquid:S1068p"0Remove this unused "homeFragment" private field.(ëŒó¨üÿÿÿÿ8¤ ‚»â-
-\squid:S1068n">Remove this unused "detailRegistrationActivity" private field.(İé‹ï8¶½“Áè-
-]squid:S1068y":Remove this unused "restockInvoiceFragment" private field.(”àªáÿÿÿÿÿ8ê£İâã-
-bsquid:S1068z"?Remove this unused "restockReceiveStockFragment" private field.(‚ƒ·öÿÿÿÿÿ8ê£İâã-
-qsquid:S00117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¡®–8×‚èŠå-
-Usquid:S1068g"8Remove this unused "searchMemberActivity" private field.(Òòx8ã¡ÈŠå-
-Zsquid:S1068x"<Remove this unused "activityReqInvMbFragment" private field.(–İ€ö8Û„™áã-
-Wsquid:S1068q"4Remove this unused "activityFragment" private field.(ÄïÙüşÿÿÿÿ8œ‰¸·ã-
-_squid:S1068u"<Remove this unused "activityCashbillFragment" private field.(Ã”®èÿÿÿÿÿ8Ùü•áã-
-Xsquid:S1068e"5Remove this unused "myProfileActivity" private field.(½üûÿÿÿÿ8È¹ÁŠå-
-Usquid:S1068h"7Remove this unused "stockReportActivity" private field.(ñüü8×‚èŠå-
-asquid:S1068k">Remove this unused "invoiceToMbSuccessActivity" private field.(ã÷À»ùÿÿÿÿ8ƒ²›çç-
-Xsquid:S1068i":Remove this unused "pickUpDeliveryActivity" private field.(½†‡™8®óÕÀæ-
-Qsquid:S1068t"3Remove this unused "accountFragment" private field.(÷²Ö8±ÔÁ·ã-
-dsquid:S1068m"FRemove this unused "reqInvoiceToCompanySuccessActivity" private field.(¤£Áç8…“¤ìç-
-]squid:S1068b":Remove this unused "reqInvoiceToBcActivity" private field.( ÆÆúÿÿÿÿ8û§è†å-
+^squid:S1068~"@Remove this unused "activityRekapBnsBcmbFragment" private field.(İä…È8Û„™áã-
+dsquid:S1068s"FRemove this unused "reqInvoiceToCompanySuccessActivity" private field.(¤£Áç8…“¤ìç-
+]squid:S1068h":Remove this unused "reqInvoiceToBcActivity" private field.( ÆÆúÿÿÿÿ8û§è†å-
+Xsquid:S1068k"5Remove this unused "myProfileActivity" private field.(½üûÿÿÿÿ8È¹ÁŠå-
+^squid:S1068}";Remove this unused "activityInvToMbFragment" private field.(¤û‚îûÿÿÿÿ8Û„™áã-
+Zsquid:S1068"<Remove this unused "activityReqInvMbFragment" private field.(–İ€ö8Û„™áã-
+Tsquid:S1068l"1Remove this unused "omsetActivity" private field.(İ‡»Şûÿÿÿÿ8çÎÄŠå-
+Qsquid:S1068z"3Remove this unused "restockFragment" private field.(œĞ±8¶´»·ã-
+[squid:S1068‚"=Remove this unused "restockReqInvoiceFragment" private field.(ƒŞüh8×‚èŠå-
+Vsquid:S1068j"3Remove this unused "feeBcmbActivity" private field.(âï±îıÿÿÿÿ8½¨¼Šå-
+Xsquid:S1068o":Remove this unused "pickUpDeliveryActivity" private field.(½†‡™8®óÕÀæ-
+Wsquid:S1068e"4Remove this unused "cashbillActivity" private field.(µ™ÕÉÿÿÿÿÿ8€™†å-
+_squid:S1068|"<Remove this unused "activityCashbillFragment" private field.(Ã”®èÿÿÿÿÿ8Ùü•áã-
+]squid:S1068u"?Remove this unused "registrationSuccessActivity" private field.(·†¸ÿ8Ï¶µÏé-
+csquid:S1068"?Remove this unused "restockReceiveStockFragment" private field.(‚ƒ·öÿÿÿÿÿ8ê£İâã-
+Ysquid:S1068p";Remove this unused "cashbillSuccessActivity" private field.(¶±ŞŞ8‚òÍç-
+`squid:S1068d"=Remove this unused "detailTransactionActivity" private field.(¢‰Î¥üÿÿÿÿ8¨ç‘Ñä-
+Ssquid:S1068c"5Remove this unused "dashboardActivity" private field.(„¤ûÎ8§öÑ‡å-
+Qsquid:S1068{"3Remove this unused "accountFragment" private field.(÷²Ö8±ÔÁ·ã-
+Usquid:S1068f"7Remove this unused "invoiceToMbActivity" private field.(Œ†ä8—´Ì†å-
+Wsquid:S1068x"4Remove this unused "activityFragment" private field.(ÄïÙüşÿÿÿÿ8œ‰¸·ã-
+Usquid:S1068m"8Remove this unused "searchMemberActivity" private field.(Òòx8ã¡ÈŠå-
+asquid:S1068q">Remove this unused "invoiceToMbSuccessActivity" private field.(ã÷À»ùÿÿÿÿ8ƒ²›çç-
+bsquid:S1068i"?Remove this unused "reqInvoiceToCompanyActivity" private field.(Ç©Ü‰ùÿÿÿÿ8û§è†å-
+[squid:S1068y"8Remove this unused "notificationFragment" private field.(»î¾ıÿÿÿÿ8–öıÓä-
+Vsquid:S1068„"7Remove this unused "stockUpdateFragment" private field.(àÈ´©8¯§ÈÏé-
+dsquid:S1068r"ARemove this unused "reqInvoiceToBcSuccessActivity" private field.(Ş¹“ìüÿÿÿÿ8ƒ²›çç-
+Ysquid:S1068ƒ"5Remove this unused "stockCardFragment" private field.(™ñ¹öøÿÿÿÿ8» ´Ïé-
+^squid:S1068€":Remove this unused "restockInvoiceFragment" private field.(”àªáÿÿÿÿÿ8ê£İâã-
+qsquid:S00117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¡®–8×‚èŠå-
+[squid:S1068g"8Remove this unused "registrationActivity" private field.(äùÖğÿÿÿÿÿ8÷¨é†å-
+\squid:S1068t">Remove this unused "detailRegistrationActivity" private field.(İé‹ï8¶½“Áè-
+Ssquid:S1068w"0Remove this unused "homeFragment" private field.(ëŒó¨üÿÿÿÿ8¤ ‚»â-
+Usquid:S1068n"7Remove this unused "stockReportActivity" private field.(ñüü8×‚èŠå-
