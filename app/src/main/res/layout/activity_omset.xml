@@ -25,59 +25,67 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent" />
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/radius_10"
-            android:layout_marginEnd="@dimen/radius_10"
-            android:layout_marginBottom="@dimen/radius_10"
-            android:background="@drawable/item_detail_transaksi_style"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/main_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/radius_16"
-                android:layout_marginStart="@dimen/radius_8"
-                android:layout_marginEnd="@dimen/radius_8"
-                android:background="#dedede" />
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_16"
-                android:layout_marginBottom="@dimen/margin_top_16"
-                android:layout_marginStart="@dimen/radius_8"
-                android:layout_marginEnd="@dimen/radius_8"
-                android:gravity="end"
+                android:layout_marginStart="@dimen/radius_10"
+                android:layout_marginEnd="@dimen/radius_10"
+                android:layout_marginBottom="@dimen/radius_10"
+                android:background="@drawable/item_detail_transaksi_style"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_list"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_12"
-                    android:textStyle="bold"
-                    android:text="@string/subtotal_upper"
-                    style="@style/TexViewFont" />
+                    android:layout_marginTop="@dimen/radius_10"
+                    android:layout_marginBottom="@dimen/radius_16"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp" />
 
-                <TextView
-                    android:id="@+id/txt_total_amount"
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/radius_8"
+                    android:layout_marginEnd="@dimen/radius_8"
+                    android:background="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/radius_16"
-                    android:textSize="@dimen/text_12"
-                    android:textStyle="bold"
-                    android:text="IDR 100.000.000"
-                    style="@style/TexViewFont" />
+                    android:layout_marginTop="@dimen/margin_top_16"
+                    android:layout_marginBottom="@dimen/margin_top_16"
+                    android:layout_marginStart="@dimen/radius_8"
+                    android:layout_marginEnd="@dimen/radius_8"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="@string/subtotal_upper"
+                        style="@style/TexViewFont" />
+
+                    <TextView
+                        android:id="@+id/txt_total_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/radius_16"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="IDR 100.000.000"
+                        style="@style/TexViewFont" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
     <ProgressBar
