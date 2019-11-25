@@ -3,6 +3,8 @@ package co.id.cakap.di.component;
 import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
+import co.id.cakap.ui.changePassword.ChangePasswordActivity;
+import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
@@ -72,6 +74,8 @@ public interface MainComponent {
     ReqInvoiceToCompanySuccessActivity inject(ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity);
     DetailRegistrationActivity inject(DetailRegistrationActivity detailRegistrationActivity);
     RegistrationSuccessActivity inject(RegistrationSuccessActivity registrationSuccessActivity);
+    ChangePasswordActivity inject(ChangePasswordActivity changePasswordActivity);
+    ChangePinActivity inject(ChangePinActivity changePinActivity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

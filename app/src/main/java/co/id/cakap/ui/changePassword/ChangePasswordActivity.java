@@ -1,4 +1,4 @@
-package co.id.cakap.ui.myProfile;
+package co.id.cakap.ui.changePassword;
 
 import android.os.Bundle;
 import android.view.View;
@@ -16,24 +16,24 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.cashbill.CashbillActivityContract;
-import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
+import co.id.cakap.ui.myProfile.MyProfileActivityContract;
+import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
 
-public class MyProfileActivity extends AppCompatActivity implements MyProfileActivityContract.View{
+public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View{
     @Inject
-    MyProfileActivityPresenter mMyProfileActivityPresenter;
+    ChangePasswordPresenter mChangePasswordPresenter;
 
     @BindView(R.id.main_progress_bar)
     ProgressBar mProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
 
-    private MyProfileActivityContract.UserActionListener mUserActionListener;
+    private ChangePasswordContract.UserActionListener mUserActionListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+        setContentView(R.layout.activity_change_password);
         ButterKnife.bind(this);
 
         setupActivityComponent();
@@ -49,10 +49,10 @@ public class MyProfileActivity extends AppCompatActivity implements MyProfileAct
 
     @Override
     public void initializeData() {
-        mUserActionListener = mMyProfileActivityPresenter;
-        mMyProfileActivityPresenter.setView(this);
+        mUserActionListener = mChangePasswordPresenter;
+        mChangePasswordPresenter.setView(this);
 
-        mTitle.setText(getString(R.string.my_profile).toUpperCase());
+        mTitle.setText(getString(R.string.change_password).toUpperCase());
         hideProgressBar();
     }
 

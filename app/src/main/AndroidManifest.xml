@@ -83,6 +83,8 @@
         <activity android:name=".ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity" />
         <activity android:name=".ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity" />
         <activity android:name=".ui.registration.registrationSuccess.RegistrationSuccessActivity" />
+        <activity android:name=".ui.changePin.ChangePinActivity" />
+        <activity android:name=".ui.changePassword.ChangePasswordActivity" />
     </application>
 
 </manifest>

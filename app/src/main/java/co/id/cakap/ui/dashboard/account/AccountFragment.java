@@ -5,29 +5,41 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.changePassword.ChangePasswordActivity;
+import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.stockReport.StockReportActivity;
+import co.id.cakap.utils.Utils;
 
 public class AccountFragment extends Fragment implements AccountContract.View {
     @Inject
     AccountPresenter mAccountPresenter;
+
+    @BindView(R.id.card_settings)
+    CardView mCardSettings;
+    @BindView(R.id.txt_version)
+    TextView mTxtVersion;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -99,5 +111,27 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     @OnClick(R.id.account_search_member)
     public void accountSearchMember(View view) {
         startActivity(new Intent(getContext(), SearchMemberActivity.class));
+    }
+
+    @OnClick(R.id.arrow_settings)
+    public void arrowSettings(View view) {
+        Utils.expand(mCardSettings);
+    }
+
+    @OnClick(R.id.img_close)
+    public void arrowClose(View view) {
+        Utils.collapse(mCardSettings);
+    }
+
+    @OnClick(R.id.txt_change_password)
+    public void goToChangePassword(View view) {
+        Utils.collapse(mCardSettings);
+        startActivity(new Intent(getContext(), ChangePasswordActivity.class));
+    }
+
+    @OnClick(R.id.txt_change_pin)
+    public void goToChangePin(View view) {
+        Utils.collapse(mCardSettings);
+        startActivity(new Intent(getContext(), ChangePinActivity.class));
     }
 }

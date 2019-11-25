@@ -40,17 +40,10 @@ import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.ItemSearchStockCardAdapter;
-import co.id.cakap.adapter.RestockReqInvoiceAdapter;
 import co.id.cakap.adapter.StockCardAdapter;
-import co.id.cakap.adapter.StockUpdateAdapter;
 import co.id.cakap.data.ItemStockCard;
-import co.id.cakap.data.RestockReqInvoiceData;
 import co.id.cakap.data.StockCardData;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoiceContract;
-import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoicePresenter;
-import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.SearchDataDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -84,9 +77,10 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
 
     private View mView;
     private Unbinder mUnbinder;
-    private StockCardAdapter mListAdapter;
+    private RecyclerView mRecyclerViewSearch;
     private EditText mSearchEditText;
     private Dialog mDialog;
+    private StockCardAdapter mListAdapter;
     private ItemSearchStockCardAdapter mListSearchAdapter;
     private StockCardContract.UserActionListener mUserActionListener;
     private List<String> mYearData = new ArrayList<>();
@@ -169,13 +163,13 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
         mDialog = utils.showDialog(getContext());
 
         mSearchEditText = mDialog.findViewById(R.id.et_search);
-        mRecyclerView = mDialog.findViewById(R.id.main_list);
+        mRecyclerViewSearch = mDialog.findViewById(R.id.main_list);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerViewSearch.setLayoutManager(layoutManager);
         mListSearchAdapter = new ItemSearchStockCardAdapter(resultData, getContext());
-        mRecyclerView.setAdapter(mListSearchAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        mRecyclerViewSearch.setAdapter(mListSearchAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerViewSearch, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         setupOnFocusListener(mSearchEditText);
     }
 
@@ -243,7 +237,7 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
             public void afterTextChanged(Editable arg0) {
                 Logger.d("arg0 : " + arg0);
                 String text = editText.getText().toString().toLowerCase(Locale.getDefault());
-                if (mListAdapter != null) mListSearchAdapter.getFilter().filter(text);
+                if (mListSearchAdapter != null) mListSearchAdapter.getFilter().filter(text);
             }
 
             @Override

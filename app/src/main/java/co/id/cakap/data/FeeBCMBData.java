@@ -19,7 +19,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Data
 @Entity
-public class FeeData implements Parcelable {
+public class FeeBCMBData implements Parcelable {
     @SerializedName("total_omset_setelah_ppn")
     @Expose
     private String total_omset_setelah_ppn;
@@ -60,8 +60,12 @@ public class FeeData implements Parcelable {
     @Expose
     private String bonus_kit_v_bless;
 
+    @SerializedName("total_fee")
+    @Expose
+    private String total_fee;
+
     @Keep
-    public FeeData(
+    public FeeBCMBData(
             String total_omset_setelah_ppn,
             String total_omset_product_setelah_ppn,
             String total_stater_kit_regular,
@@ -71,7 +75,8 @@ public class FeeData implements Parcelable {
             String bonus_stater_kit_basic,
             String bonus_paket_kombinasi,
             String bonus_reff_mb,
-            String bonus_kit_v_bless
+            String bonus_kit_v_bless,
+            String total_fee
     ) {
         this.total_omset_setelah_ppn = total_omset_setelah_ppn;
         this.total_omset_product_setelah_ppn = total_omset_product_setelah_ppn;
@@ -83,9 +88,10 @@ public class FeeData implements Parcelable {
         this.bonus_paket_kombinasi = bonus_paket_kombinasi;
         this.bonus_reff_mb = bonus_reff_mb;
         this.bonus_kit_v_bless = bonus_kit_v_bless;
+        this.total_fee = total_fee;
     }
 
-    protected FeeData(Parcel in) {
+    protected FeeBCMBData(Parcel in) {
         total_omset_setelah_ppn = in.readString();
         total_omset_product_setelah_ppn = in.readString();
         total_stater_kit_regular = in.readString();
@@ -96,10 +102,11 @@ public class FeeData implements Parcelable {
         bonus_paket_kombinasi = in.readString();
         bonus_reff_mb = in.readString();
         bonus_kit_v_bless = in.readString();
+        total_fee = in.readString();
     }
 
-    @Generated(hash = 115736186)
-    public FeeData() {
+    @Generated(hash = 1066607655)
+    public FeeBCMBData() {
     }
 
     @Override
@@ -114,6 +121,7 @@ public class FeeData implements Parcelable {
         dest.writeString(bonus_paket_kombinasi);
         dest.writeString(bonus_reff_mb);
         dest.writeString(bonus_kit_v_bless);
+        dest.writeString(total_fee);
     }
 
     @Override
@@ -203,15 +211,23 @@ public class FeeData implements Parcelable {
         this.bonus_kit_v_bless = bonus_kit_v_bless;
     }
 
-    public static final Creator<FeeData> CREATOR = new Creator<FeeData>() {
+    public String getTotal_fee() {
+        return this.total_fee;
+    }
+
+    public void setTotal_fee(String total_fee) {
+        this.total_fee = total_fee;
+    }
+
+    public static final Creator<FeeBCMBData> CREATOR = new Creator<FeeBCMBData>() {
         @Override
-        public FeeData createFromParcel(Parcel in) {
-            return new FeeData(in);
+        public FeeBCMBData createFromParcel(Parcel in) {
+            return new FeeBCMBData(in);
         }
 
         @Override
-        public FeeData[] newArray(int size) {
-            return new FeeData[size];
+        public FeeBCMBData[] newArray(int size) {
+            return new FeeBCMBData[size];
         }
     };
 }

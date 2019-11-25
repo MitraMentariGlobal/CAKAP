@@ -1,258 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="?android:attr/actionBarSize"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <include layout="@layout/title_settings"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_settings"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/radius_10">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="@dimen/radius_32"
-            android:layout_marginTop="@dimen/radius_32">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_photos"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:clickable="true"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_account"/>
-
-            </RelativeLayout>
+            android:gravity="center"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_14"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/user_name"
+                    android:id="@+id/txt_version"
                     android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_14"
-                    android:text="BC007"
-                    android:textStyle="bold"
-                    android:textColor="@color/gray"
-                    style="@style/TexViewFont" />
-
-                <TextView
-                    android:id="@+id/account_name"
-                    android:background="@android:color/transparent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_14"
+                    android:textSize="@dimen/text_12"
                     android:textColor="@color/black"
-                    android:text="Pendekar Harus Menang"
+                    android:text="V1.0"
+                    android:textAlignment="textStart"
+                    android:layout_marginStart="@dimen/radius_16"
                     style="@style/TexViewFont" />
 
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/radius_4">
+
+                    <ImageView
+                        android:id="@+id/img_close"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentEnd="true"
+                        android:padding="@dimen/padding_16"
+                        android:src="@drawable/ic_close_green" />
+                </RelativeLayout>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txt_change_password"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/black"
+                android:text="Change Password"
+                android:textAlignment="center"
+                android:padding="@dimen/radius_16"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                style="@style/TexViewFont" />
+
+            <TextView
+                android:id="@+id/txt_change_pin"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/black"
+                android:text="Change Pin"
+                android:textAlignment="center"
+                android:padding="@dimen/radius_16"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                style="@style/TexViewFont" />
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/account_my_profile"
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?android:attr/actionBarSize"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/radius_32"
-            android:layout_marginTop="@dimen/radius_16"
-            android:layout_marginEnd="@dimen/radius_32"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/item_detail_transaksi_style">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="@dimen/radius_32">
 
-                <ImageView
-                    android:layout_width="@dimen/radius_24"
-                    android:layout_height="@dimen/radius_24"
-                    android:layout_marginEnd="@dimen/padding_16"
-                    android:src="@drawable/ic_my_profile" />
-
-                <TextView
-                    android:background="@android:color/transparent"
+                <RelativeLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_photos"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:clickable="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_account"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="@string/my_profile"
-                    style="@style/TexViewFont" />
+                    android:layout_marginTop="@dimen/padding_14"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_14"
+                        android:text="BC007"
+                        android:textStyle="bold"
+                        android:textColor="@color/gray"
+                        style="@style/TexViewFont" />
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_14"
+                        android:textColor="@color/black"
+                        android:text="Pendekar Harus Menang"
+                        style="@style/TexViewFont" />
+
+                </LinearLayout>
 
             </LinearLayout>
-        </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/account_fee_bcmb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/radius_32"
-            android:layout_marginTop="@dimen/radius_16"
-            android:layout_marginEnd="@dimen/radius_32"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/item_detail_transaksi_style">
-
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/account_my_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/radius_32"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginEnd="@dimen/radius_32"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/item_detail_transaksi_style">
 
-                <ImageView
-                    android:layout_width="@dimen/radius_24"
-                    android:layout_height="@dimen/radius_24"
-                    android:layout_marginEnd="@dimen/padding_16"
-                    android:src="@drawable/ic_fee" />
-
-                <TextView
-                    android:background="@android:color/transparent"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="@string/fee_bcmb"
-                    style="@style/TexViewFont" />
+                    android:padding="16dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
-        </FrameLayout>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:src="@drawable/ic_my_profile" />
 
-        <FrameLayout
-            android:id="@+id/account_stock_report"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/radius_32"
-            android:layout_marginTop="@dimen/radius_16"
-            android:layout_marginEnd="@dimen/radius_32"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/item_detail_transaksi_style">
+                    <TextView
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="@string/my_profile"
+                        style="@style/TexViewFont" />
 
-            <LinearLayout
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/account_fee_bcmb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/radius_32"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginEnd="@dimen/radius_32"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/item_detail_transaksi_style">
 
-                <ImageView
-                    android:layout_width="@dimen/radius_24"
-                    android:layout_height="@dimen/radius_24"
-                    android:layout_marginEnd="@dimen/padding_16"
-                    android:src="@drawable/ic_stock" />
-
-                <TextView
-                    android:background="@android:color/transparent"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="@string/stock_report"
-                    style="@style/TexViewFont" />
+                    android:padding="16dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
-        </FrameLayout>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:src="@drawable/ic_fee" />
 
-        <FrameLayout
-            android:id="@+id/account_omset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/radius_32"
-            android:layout_marginTop="@dimen/radius_16"
-            android:layout_marginEnd="@dimen/radius_32"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/item_detail_transaksi_style">
+                    <TextView
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="@string/fee_bcmb"
+                        style="@style/TexViewFont" />
 
-            <LinearLayout
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/account_stock_report"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/radius_32"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginEnd="@dimen/radius_32"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/item_detail_transaksi_style">
 
-                <ImageView
-                    android:layout_width="@dimen/radius_24"
-                    android:layout_height="@dimen/radius_24"
-                    android:layout_marginEnd="@dimen/padding_16"
-                    android:src="@drawable/ic_omset" />
-
-                <TextView
-                    android:background="@android:color/transparent"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="@string/omset"
-                    style="@style/TexViewFont" />
+                    android:padding="16dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
-        </FrameLayout>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:src="@drawable/ic_stock" />
 
-        <FrameLayout
-            android:id="@+id/account_search_member"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/radius_32"
-            android:layout_marginTop="@dimen/radius_16"
-            android:layout_marginEnd="@dimen/radius_32"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/item_detail_transaksi_style">
+                    <TextView
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="@string/stock_report"
+                        style="@style/TexViewFont" />
 
-            <LinearLayout
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/account_omset"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/radius_32"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginEnd="@dimen/radius_32"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/item_detail_transaksi_style">
 
-                <ImageView
-                    android:layout_width="@dimen/radius_24"
-                    android:layout_height="@dimen/radius_24"
-                    android:layout_marginEnd="@dimen/padding_16"
-                    android:src="@drawable/ic_loupe" />
-
-                <TextView
-                    android:background="@android:color/transparent"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:text="@string/search_member"
-                    style="@style/TexViewFont" />
+                    android:padding="16dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
-        </FrameLayout>
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:src="@drawable/ic_omset" />
 
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+                    <TextView
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="@string/omset"
+                        style="@style/TexViewFont" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/account_search_member"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/radius_32"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginEnd="@dimen/radius_32"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/item_detail_transaksi_style">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_24"
+                        android:layout_height="@dimen/radius_24"
+                        android:layout_marginEnd="@dimen/padding_16"
+                        android:src="@drawable/ic_loupe" />
+
+                    <TextView
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:text="@string/search_member"
+                        style="@style/TexViewFont" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

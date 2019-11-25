@@ -38,6 +38,8 @@
     <string name="detail_transaksi">Detail Transaction</string>
     <string name="detail_registration">Detail Registration</string>
     <string name="my_profile">My Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_pin">Change Pin</string>
     <string name="fee_bcmb">Fee BCMB</string>
     <string name="stock_report">Stock Report</string>
     <string name="search_member">Search Member</string>

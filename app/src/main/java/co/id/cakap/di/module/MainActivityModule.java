@@ -13,6 +13,10 @@ import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
+import co.id.cakap.ui.changePassword.ChangePasswordActivity;
+import co.id.cakap.ui.changePassword.ChangePasswordPresenter;
+import co.id.cakap.ui.changePin.ChangePinActivity;
+import co.id.cakap.ui.changePin.ChangePinPresenter;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationPresenter;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
@@ -115,6 +119,8 @@ public class MainActivityModule {
     private ReqInvoiceToCompanySuccessActivity reqInvoiceToCompanySuccessActivity;
     private DetailRegistrationActivity detailRegistrationActivity;
     private RegistrationSuccessActivity registrationSuccessActivity;
+    private ChangePasswordActivity changePasswordActivity;
+    private ChangePinActivity changePinActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -273,6 +279,14 @@ public class MainActivityModule {
 
     public MainActivityModule(StockUpdateFragment stockUpdateFragment) {
         this.stockUpdateFragment = stockUpdateFragment;
+    }
+
+    public MainActivityModule(ChangePasswordActivity changePasswordActivity) {
+        this.changePasswordActivity = changePasswordActivity;
+    }
+
+    public MainActivityModule(ChangePinActivity changePinActivity) {
+        this.changePinActivity = changePinActivity;
     }
 
     @Provides
@@ -529,5 +543,17 @@ public class MainActivityModule {
     @ActivityScope
     StockUpdatePresenter provideStockUpdatePresenter(MainRepository mainRepository, DataModel dataModel) {
         return new StockUpdatePresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ChangePasswordPresenter provideChangePasswordPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ChangePasswordPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    ChangePinPresenter provideChangePinPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ChangePinPresenter(mainRepository, dataModel);
     }
 }
