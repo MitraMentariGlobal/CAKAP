@@ -28,7 +28,6 @@ import com.andrognito.pinlockview.PinLockListener;
 import com.andrognito.pinlockview.PinLockView;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,18 +42,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
-import co.id.cakap.adapter.ActivityCashbillAdapter;
 import co.id.cakap.adapter.ItemSearchRegistrationAdapter;
 import co.id.cakap.data.ItemSearchRegistrationData;
 import co.id.cakap.data.RegistrationSuccessData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
 import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.PinDialog;
-import co.id.cakap.utils.dialog.SearchRegistrationDialog;
+import co.id.cakap.utils.dialog.SearchDataDialog;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -361,7 +358,7 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @Override
     public void openDialogSearchData(List<ItemSearchRegistrationData> resultData, int idFrom) {
-        SearchRegistrationDialog utils = new SearchRegistrationDialog();
+        SearchDataDialog utils = new SearchDataDialog();
         mDialog = utils.showDialog(this);
 
         mSearchEditText = mDialog.findViewById(R.id.et_search);

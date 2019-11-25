@@ -697,3 +697,15 @@ _
 /app/src/main/res/layout/fragment_stock_card.xml,8/4/84411fffe496cf80ea723c4f32d5e6163e9687d0
 a
 1app/src/main/res/layout/fragment_stock_update.xml,c/7/c7b39d97ad0e0d86f9157013820c4074b5c3b867
+n
+>app/src/main/java/co/id/cakap/adapter/SearchMemberAdapter.java,f/b/fbe381b0a4359813a056535499c2a14124aa9698
+x
+Happ/src/main/java/co/id/cakap/utils/dialog/DetailSearchMemberDialog.java,d/e/def743ea5cd3cf7de36972b4976d78e867d1e09f
+e
+5app/src/main/res/layout/item_search_member_detail.xml,2/4/24cca4c267681dc6597b012eebc59e981f83561b
+^
+.app/src/main/res/layout/item_search_member.xml,d/e/de66646a837ccd4f2afe3adc05e7a70b82a2f21c
+g
+7app/src/main/java/co/id/cakap/adapter/OmsetAdapter.java,9/a/9a4d94159fd4f0511b2a60579ee86863a163b82b
+[
++app/src/main/res/layout/item_list_omset.xml,0/4/041da654cebd82eae46c48eb3c7cdad5810a7d7f

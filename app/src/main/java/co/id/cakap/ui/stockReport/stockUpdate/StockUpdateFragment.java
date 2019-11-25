@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.StockUpdateAdapter;
 import co.id.cakap.data.StockCardData;
 import co.id.cakap.data.StockUpdateData;
 import co.id.cakap.di.module.MainActivityModule;
@@ -40,7 +41,7 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
 
     private View mView;
     private Unbinder mUnbinder;
-//    private RestockReqInvoiceAdapter mListAdapter;
+    private StockUpdateAdapter mListAdapter;
     private StockUpdateContract.UserActionListener mUserActionListener;
 
     @Nullable
@@ -76,8 +77,8 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
     public void setAdapter(List<StockUpdateData> resultData) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
-//        mListAdapter = new RestockReqInvoiceAdapter(resultData, getContext());
-//        mRecyclerView.setAdapter(mListAdapter);
+        mListAdapter = new StockUpdateAdapter(resultData, getContext());
+        mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         hideProgressBar();
     }

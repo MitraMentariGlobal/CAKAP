@@ -3,6 +3,7 @@ package co.id.cakap.ui.stockReport.stockCard;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+import co.id.cakap.data.ItemStockCard;
 import co.id.cakap.data.RestockReqInvoiceData;
 import co.id.cakap.data.StockCardData;
 import co.id.cakap.model.DataModel;
@@ -15,6 +16,7 @@ public class StockCardPresenter implements StockCardContract.UserActionListener 
     private static DataModel mDataModel;
 
     private ArrayList<StockCardData> arrayList;
+    private ArrayList<ItemStockCard> itemArrayList;
 
     public StockCardPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -40,7 +42,33 @@ public class StockCardPresenter implements StockCardContract.UserActionListener 
     @Override
     public void getData() {
         arrayList = new ArrayList<>();
-//        arrayList.add(new StockCardData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Pending"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
+        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
         getView().setAdapter(arrayList);
+    }
+
+    @Override
+    public void getItemProduct(String param) {
+        itemArrayList = new ArrayList<>();
+        itemArrayList.add(new ItemStockCard("BT01", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT02", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT03", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT04", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT05", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT06", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT07", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT08", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT09", "Blesstea Botol", "IDR 100.000.000"));
+        itemArrayList.add(new ItemStockCard("BT10", "Blesstea Botol", "IDR 100.000.000"));
+        getView().openDialogSearchData(itemArrayList);
     }
 }

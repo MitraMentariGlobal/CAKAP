@@ -59,7 +59,7 @@ public class StockReportActivity extends AppCompatActivity implements StockRepor
         mUserActionListener = mStockReportActivityPresenter;
         mStockReportActivityPresenter.setView(this);
 
-        mTitle.setText(getString(R.string.stock_report));
+        mTitle.setText(getString(R.string.stock_report).toUpperCase());
 
 
         SectionsStockPagerAdapter sectionsStockPagerAdapter = new SectionsStockPagerAdapter(this, getSupportFragmentManager());

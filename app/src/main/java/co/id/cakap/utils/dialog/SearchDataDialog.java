@@ -10,14 +10,14 @@ import android.view.WindowManager;
 import co.id.cakap.R;
 import co.id.cakap.utils.Utils;
 
-public class SearchRegistrationDialog {
+public class SearchDataDialog {
     private Dialog dialog;
 
     public Dialog showDialog(Context context) {
         if (!Utils.isAppInBackground(context)) {
             dialog = new Dialog(context);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
-            dialog.setContentView(R.layout.search_registration_data);
+            dialog.setContentView(R.layout.search_data);
             dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

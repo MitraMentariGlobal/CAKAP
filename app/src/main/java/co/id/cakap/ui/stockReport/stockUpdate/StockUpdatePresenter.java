@@ -40,7 +40,18 @@ public class StockUpdatePresenter implements StockUpdateContract.UserActionListe
     @Override
     public void getData() {
         arrayList = new ArrayList<>();
-//        arrayList.add(new StockCardData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Pending"));
+        arrayList.add(new StockUpdateData("BT01", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT02", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT03", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT04", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT05", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT06", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT07", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT08", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT09", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT10", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT11", "Blesstea Botol", "20", "10.000.000"));
+        arrayList.add(new StockUpdateData("BT12", "Blesstea Botol", "20", "10.000.000"));
         getView().setAdapter(arrayList);
     }
 }
