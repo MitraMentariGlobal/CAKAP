@@ -8,6 +8,46 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- Data Pendaftaran -->
+        <LinearLayout
+            android:id="@+id/linear_data_pendaftaran"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/radius_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/radius_16"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/radius_24"
+                    android:layout_height="@dimen/radius_24"
+                    android:layout_marginEnd="@dimen/padding_16"
+                    android:tint="@color/colorPrimaryDark"
+                    android:src="@drawable/three_line" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:text="REGISTRATION DATA"
+                    style="@style/TexViewFont"/>
+            </LinearLayout>
+
+            <include layout="@layout/member_data_pendaftaran"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/radius_16"/>
+        </LinearLayout>
+
         <!-- Data Recruiting -->
         <LinearLayout
             android:id="@+id/linear_data_recruiting"

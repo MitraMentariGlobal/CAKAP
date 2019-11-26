@@ -18,4 +18,9 @@ public class ChangePasswordPresenter implements ChangePasswordContract.UserActio
     public void setView(ChangePasswordContract.View view){
         mView = view;
     }
+
+    @Override
+    public void changeData(String oldPassword, String newPassword, String retypeNewPassword, String pin) {
+
+    }
 }

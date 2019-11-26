@@ -14,6 +14,184 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/radius_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Old Pin"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:id="@+id/linear_old_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_old_pin"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:inputType="numberPassword"
+                    android:hint="Old Pin"
+                    android:maxLines="1"
+                    android:maxLength="6"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_error_old_pin"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_14"
+                android:text="@string/field_required"
+                android:layout_marginStart="@dimen/radius_10"
+                style="@style/TexViewFont"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="New Pin"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:id="@+id/linear_new_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_new_pin"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:inputType="numberPassword"
+                    android:hint="New Pin"
+                    android:maxLines="1"
+                    android:maxLength="6"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_error_new_pin"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_14"
+                android:text="The field does not match"
+                android:layout_marginStart="@dimen/radius_10"
+                style="@style/TexViewFont"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Retype New Pin"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:id="@+id/linear_retype_new_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_retype_new_pin"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:inputType="numberPassword"
+                    android:hint="Retype New Pin"
+                    android:maxLines="1"
+                    android:maxLength="6"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_error_retype_new_pin"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_14"
+                android:text="The field does not match"
+                android:layout_marginStart="@dimen/radius_10"
+                style="@style/TexViewFont"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/text_submit"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="@string/submit_upper"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                style="@style/TexViewFont"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/main_progress_bar"
         android:layout_gravity="center"

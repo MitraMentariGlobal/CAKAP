@@ -106,6 +106,8 @@
     <string name="bank_panin">Bank Panin</string>
     <string name="stock_update">Update</string>
     <string name="stock_card">Card</string>
+    <string name="field_not_match">This field does not match</string>
+    <string name="field_required">This field is required</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

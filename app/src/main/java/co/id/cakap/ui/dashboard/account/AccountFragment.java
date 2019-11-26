@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import co.id.cakap.BuildConfig;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
@@ -41,8 +42,10 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     @BindView(R.id.txt_version)
     TextView mTxtVersion;
 
+    private boolean mIsExpand = false;
     private View mView;
     private Unbinder mUnbinder;
+    private String mVersion = "";
     private AccountContract.UserActionListener mUserActionListener;
 
     @Nullable
@@ -71,6 +74,9 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     public void initializeData() {
         mUserActionListener = mAccountPresenter;
         mAccountPresenter.setView(this);
+
+        mVersion = "v" + BuildConfig.VERSION_CODE + "." + BuildConfig.VERSION_NAME;
+        mTxtVersion.setText(mVersion);
     }
 
     @Override
@@ -116,22 +122,46 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     @OnClick(R.id.arrow_settings)
     public void arrowSettings(View view) {
         Utils.expand(mCardSettings);
+        mIsExpand = true;
     }
 
     @OnClick(R.id.img_close)
     public void arrowClose(View view) {
-        Utils.collapse(mCardSettings);
+        if (mIsExpand) {
+            Utils.collapse(mCardSettings);
+            mIsExpand = false;
+        }
     }
 
     @OnClick(R.id.txt_change_password)
     public void goToChangePassword(View view) {
-        Utils.collapse(mCardSettings);
+        if (mIsExpand) {
+            Utils.collapse(mCardSettings);
+            mIsExpand = false;
+        }
         startActivity(new Intent(getContext(), ChangePasswordActivity.class));
     }
 
     @OnClick(R.id.txt_change_pin)
     public void goToChangePin(View view) {
-        Utils.collapse(mCardSettings);
+        if (mIsExpand) {
+            Utils.collapse(mCardSettings);
+            mIsExpand = false;
+        }
         startActivity(new Intent(getContext(), ChangePinActivity.class));
+    }
+
+    @Override
+    public void onPause() {
+        if (mIsExpand) {
+            Utils.collapse(mCardSettings);
+            mIsExpand = false;
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }

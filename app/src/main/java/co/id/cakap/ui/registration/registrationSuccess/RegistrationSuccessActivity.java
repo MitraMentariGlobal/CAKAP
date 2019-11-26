@@ -28,6 +28,7 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivityContract;
 import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
+import co.id.cakap.utils.DateHelper;
 
 public class RegistrationSuccessActivity extends AppCompatActivity implements RegistrationSuccessContract.View{
     @Inject
@@ -141,6 +142,15 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
     @BindView(R.id.relative_sponsor_id)
     RelativeLayout mRelativeSponsorId;
 
+    @BindView(R.id.linear_data_pendaftaran)
+    LinearLayout mLinearDataPendaftaran;
+    @BindView(R.id.linear_tanggal_expired)
+    LinearLayout mLinearTanggalExpired;
+    @BindView(R.id.et_tanggal_daftar)
+    EditText mEtTanggalDaftar;
+    @BindView(R.id.et_bcmb_id_nama)
+    EditText mEtBCMBId;
+
     private String mTitle = "";
     private RegistrationSuccessData mSuccessData;
     private RegistrationSuccessContract.UserActionListener mUserActionListener;
@@ -207,6 +217,11 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
     }
 
     public void setSuccessInputData() {
+        mLinearDataPendaftaran.setVisibility(View.VISIBLE);
+        mLinearTanggalExpired.setVisibility(View.GONE);
+        mEtTanggalDaftar.setText(DateHelper.getTimeNow());
+//        mEtBCMBId.setText();
+
         mEtRecId.setEnabled(false);
         mEtRecId.setText(mSuccessData.getRecruiting_id());
         mEtRecId.setTextColor(getResources().getColor(R.color.curated_light));

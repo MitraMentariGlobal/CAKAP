@@ -87,7 +87,7 @@
                     android:id="@+id/txt_error_item_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_14"
                     android:text="Silakan input minimal 3 karakter"

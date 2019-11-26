@@ -18,4 +18,9 @@ public class ChangePinPresenter implements ChangePinContract.UserActionListener 
     public void setView(ChangePinContract.View view){
         mView = view;
     }
+
+    @Override
+    public void changeData(String oldPin, String newPin, String retypeNewPin) {
+
+    }
 }

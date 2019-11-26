@@ -85,7 +85,7 @@ public class DateHelper {
 
     public static String getTimeNow() {
         Calendar c = Calendar.getInstance();
-        return timeForPhotoName.format(c.getTime());
+        return dateFormatSlash.format(c.getTime());
     }
 
     public static String getTimeNowBackEnd() {
