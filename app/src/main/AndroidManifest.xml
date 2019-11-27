@@ -85,6 +85,8 @@
         <activity android:name=".ui.registration.registrationSuccess.RegistrationSuccessActivity" />
         <activity android:name=".ui.changePin.ChangePinActivity" />
         <activity android:name=".ui.changePassword.ChangePasswordActivity" />
+        <activity android:name=".ui.changePassword.changePasswordSuccess.ChangePasswordSuccessActivity" />
+        <activity android:name=".ui.changePin.changePinSuccess.ChangePinSuccessActivity" />
     </application>
 
 </manifest>

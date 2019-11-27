@@ -1,5 +1,6 @@
 package co.id.cakap.ui.changePassword;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.changePassword.changePasswordSuccess.ChangePasswordSuccessActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivityContract;
 import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
 
@@ -99,7 +101,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
 
     @Override
     public void setSuccessResponse() {
-
+        startActivity(new Intent(this, ChangePasswordSuccessActivity.class));
     }
 
     @Override

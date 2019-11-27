@@ -1,5 +1,7 @@
 package co.id.cakap.ui.myProfile;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +16,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -21,11 +27,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.data.ProfileData;
 import co.id.cakap.data.RegistrationSuccessData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
 import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
+import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
+import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
 import co.id.cakap.utils.DateHelper;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 public class MyProfileActivity extends AppCompatActivity implements MyProfileActivityContract.View{
     @Inject
@@ -153,7 +166,22 @@ public class MyProfileActivity extends AppCompatActivity implements MyProfileAct
     @BindView(R.id.txt_save_bottom)
     TextView mTxtSaveBottom;
 
-    private RegistrationSuccessData mSuccessData;
+    @BindView(R.id.linear_for_profile)
+    LinearLayout mLinearForProfile;
+    @BindView(R.id.linear_for_profile2)
+    LinearLayout mLinearForProfile2;
+    @BindView(R.id.et_npwp)
+    EditText mEtNpwp;
+    @BindView(R.id.et_pekerjaaan)
+    EditText mEtPekerjaan;
+    @BindView(R.id.et_whatsapp_number)
+    EditText mEtWhatsappNumber;
+    @BindView(R.id.spinner_status_pernikahan)
+    Spinner mSpinnerStatusPernikahan;
+    @BindView(R.id.spinner_jumlah_anak)
+    Spinner mSpinnerJumlahAnak;
+
+    private ProfileData mSuccessData;
     private MyProfileActivityContract.UserActionListener mUserActionListener;
 
     @Override
@@ -214,11 +242,71 @@ public class MyProfileActivity extends AppCompatActivity implements MyProfileAct
     }
 
     public void actionSave() {
+        UserConfirmationDialog utils = new UserConfirmationDialog();
+        Dialog dialog = utils.showDialog(this);
+        utils.setTitleChangeProfileDialog();
+        utils.setNegativeActionGreen();
 
+        TextView txtNo = (TextView) dialog.findViewById(R.id.no_act_btn);
+        txtNo.setText("Periksa Kembali");
+        dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Toast.makeText(MyProfileActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        TextView txtYes = (TextView) dialog.findViewById(R.id.yes_act_btn);
+        txtYes.setText("Bersedia");
+        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                openDialogPin();
+            }
+        });
+    }
+
+    public void openDialogPin() {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 
     public void setSuccessInputData() {
         mLinearDataPendaftaran.setVisibility(View.VISIBLE);
+        mLinearForProfile.setVisibility(View.VISIBLE);
+        mLinearForProfile2.setVisibility(View.VISIBLE);
 
         mEtRecId.setEnabled(false);
 //        mEtRecId.setText(mSuccessData.getRecruiting_id());

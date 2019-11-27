@@ -15,8 +15,10 @@ import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
 import co.id.cakap.ui.changePassword.ChangePasswordPresenter;
+import co.id.cakap.ui.changePassword.changePasswordSuccess.ChangePasswordSuccessActivity;
 import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.changePin.ChangePinPresenter;
+import co.id.cakap.ui.changePin.changePinSuccess.ChangePinSuccessActivity;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationPresenter;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
@@ -121,6 +123,8 @@ public class MainActivityModule {
     private RegistrationSuccessActivity registrationSuccessActivity;
     private ChangePasswordActivity changePasswordActivity;
     private ChangePinActivity changePinActivity;
+    private ChangePasswordSuccessActivity changePasswordSuccessActivity;
+    private ChangePinSuccessActivity changePinSuccessActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -287,6 +291,14 @@ public class MainActivityModule {
 
     public MainActivityModule(ChangePinActivity changePinActivity) {
         this.changePinActivity = changePinActivity;
+    }
+
+    public MainActivityModule(ChangePasswordSuccessActivity changePasswordSuccessActivity) {
+        this.changePasswordSuccessActivity = changePasswordSuccessActivity;
+    }
+
+    public MainActivityModule(ChangePinSuccessActivity changePinSuccessActivity) {
+        this.changePinSuccessActivity = changePinSuccessActivity;
     }
 
     @Provides

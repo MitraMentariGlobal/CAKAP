@@ -21,6 +21,6 @@ public class ChangePasswordPresenter implements ChangePasswordContract.UserActio
 
     @Override
     public void changeData(String oldPassword, String newPassword, String retypeNewPassword, String pin) {
-
+        mView.setSuccessResponse();
     }
 }

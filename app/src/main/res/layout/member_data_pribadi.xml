@@ -335,6 +335,125 @@
                 android:focusable="true"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linear_for_profile"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Npwp"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_npwp"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:inputType="number"
+                    android:hint="Npwp"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Pekerjaan"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_pekerjaaan"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="Pekerjaan"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Status Pernikahan"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:id="@+id/linear_spinner_status_pernikahan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_background_style">
+
+                <Spinner
+                    android:id="@+id/spinner_status_pernikahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Jumlah Anak"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:id="@+id/linear_spinner_jumlah_anak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinner_background_style">
+
+                <Spinner
+                    android:id="@+id/spinner_jumlah_anak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -366,6 +485,47 @@
                 android:padding="@dimen/padding_12"
                 android:focusableInTouchMode="true"
                 android:focusable="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_for_profile2"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Nomor Whatsapp"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_whatsapp_number"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:inputType="number"
+                    android:hint="Nomor Whatsapp"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"/>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView

@@ -21,6 +21,6 @@ public class ChangePinPresenter implements ChangePinContract.UserActionListener 
 
     @Override
     public void changeData(String oldPin, String newPin, String retypeNewPin) {
-
+        mView.setSuccessResponse();
     }
 }
