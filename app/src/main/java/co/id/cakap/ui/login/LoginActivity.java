@@ -1,5 +1,6 @@
 package co.id.cakap.ui.login;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +32,7 @@ import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.ForgotPasswordDialog;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
@@ -44,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @BindView(R.id.password_et)
     EditText mPassword;
     @BindView(R.id.login_btn)
-    Button mLoginButton;
+    FloatingActionButton mLoginButton;
 
     private LoginContract.UserActionListener mUserActionListener;
     private FirebaseAuth mAuth;
@@ -83,6 +86,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @OnClick(R.id.login_btn)
     public void userLoginAction(View view) {
         getAuthData(mUserId.getText().toString(), mPassword.getText().toString());
+    }
+
+    @OnClick(R.id.txt_forgot_password)
+    public void forgotPassword(View view) {
+        ForgotPasswordDialog utils = new ForgotPasswordDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        EditText userId = dialog.findViewById(R.id.user_id_et);
+
+        dialog.findViewById(R.id.txt_submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     public void getAuthData(String userId, String password) {

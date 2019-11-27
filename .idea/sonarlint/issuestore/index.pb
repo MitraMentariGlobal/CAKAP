@@ -745,3 +745,15 @@ _
 /app/src/main/res/layout/activity_change_pin.xml,f/4/f4c3ec7f02dafd801b68e58ac3985ff1e52d3547
 Z
 *app/src/main/res/layout/title_settings.xml,5/e/5e95b7d4a680e442a622b89b26d279ba7dfa19e1
+c
+3app/src/main/res/layout/member_data_pendaftaran.xml,d/4/d43e5cc751bf3a61ce6b56d8d770444f8def10da
+c
+3app/src/main/java/co/id/cakap/data/ProfileData.java,a/9/a9b132c6cd1e12511feb5cd168dc9c18d7fd23fe
+˜
+happ/src/main/java/co/id/cakap/ui/changePassword/changePasswordSuccess/ChangePasswordSuccessActivity.java,7/5/7520f01a55270aafc591225315e19ad0ec82f6a8
+‰
+Yapp/src/main/java/co/id/cakap/ui/changePin/changePinSuccess/ChangePinSuccessActivity.java,7/e/7ea37ca35b370f69634e601004df46a6c4fd20b6
+l
+<app/src/main/res/layout/activity_change_password_success.xml,3/4/343cffd78fde2cba0062bb0a48f013c319b1d16e
+g
+7app/src/main/res/layout/activity_change_pin_success.xml,1/9/19ed1dc488456ffb0159fbac44dbc4c93044ee97

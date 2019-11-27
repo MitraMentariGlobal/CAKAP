@@ -95,9 +95,9 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
                     Logger.e("error SharedPreferences : " + e.getMessage());
                     mUrlNotification = "";
                 }
-//                mUserActionListener.getData();
-                startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
-                finishActivity();
+                mUserActionListener.getData();
+//                startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
+//                finishActivity();
 
             }
         },2000);
