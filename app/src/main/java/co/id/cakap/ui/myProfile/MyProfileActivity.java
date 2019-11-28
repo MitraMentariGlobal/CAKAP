@@ -2,9 +2,12 @@ package co.id.cakap.ui.myProfile;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -19,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.andrognito.pinlockview.IndicatorDots;
 import com.andrognito.pinlockview.PinLockListener;
 import com.andrognito.pinlockview.PinLockView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import javax.inject.Inject;
 
@@ -37,10 +42,11 @@ import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
 import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
 import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
-public class MyProfileActivity extends AppCompatActivity implements MyProfileActivityContract.View{
+public class MyProfileActivity extends BottomDialogActivity implements MyProfileActivityContract.View{
     @Inject
     MyProfileActivityPresenter mMyProfileActivityPresenter;
 
