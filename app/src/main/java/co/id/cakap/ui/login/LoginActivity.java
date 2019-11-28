@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,11 +31,13 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.ForgotPasswordDialog;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View {
+public class LoginActivity extends BottomDialogActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
 
     @Inject
@@ -48,6 +51,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     EditText mPassword;
     @BindView(R.id.login_btn)
     FloatingActionButton mLoginButton;
+    @BindView(R.id.bottom_sheet)
+    View bottomSheet;
 
     private LoginContract.UserActionListener mUserActionListener;
     private FirebaseAuth mAuth;
@@ -99,6 +104,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                bottomSheetAlert(
+                        getResources().getDrawable(R.drawable.ic_success_forgot_password),
+                        getResources().getString(R.string.your_default_password)
+                );
             }
         });
     }
@@ -126,6 +135,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mAuth = FirebaseAuth.getInstance();
         mUserActionListener = mLoginPresenter;
         mLoginPresenter.setView(this);
+        mBehavior = BottomSheetBehavior.from(bottomSheet);
         hideProgressBar();
     }
 
@@ -152,9 +162,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void setSuccessResponse(String url) {
-        Intent intent = new Intent(this, HomeWebViewActivity.class);
-        intent.putExtra(Constant.URL_LINK, url);
-        startActivity(intent);
+//        Intent intent = new Intent(this, HomeWebViewActivity.class);
+//        intent.putExtra(Constant.URL_LINK, url);
+//        startActivity(intent);
+
+        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         finish();
     }
 }

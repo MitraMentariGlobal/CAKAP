@@ -17,13 +17,11 @@ import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.dashboard.DashboardActivity;
 
 public class ChangePinSuccessActivity extends AppCompatActivity {
-    @BindView(R.id.title_toolbar)
-    TextView mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_password_success);
+        setContentView(R.layout.activity_change_pin_success);
         ButterKnife.bind(this);
 
         setupActivityComponent();
@@ -38,7 +36,7 @@ public class ChangePinSuccessActivity extends AppCompatActivity {
     }
 
     public void initializeData() {
-        mTitle.setText(getString(R.string.change_pin).toUpperCase());
+
     }
 
     @OnClick(R.id.btn_close)

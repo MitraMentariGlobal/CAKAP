@@ -1,5 +1,6 @@
 package co.id.cakap.ui.changePassword;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 
 import javax.inject.Inject;
 
@@ -22,6 +27,8 @@ import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.changePassword.changePasswordSuccess.ChangePasswordSuccessActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivityContract;
 import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
 
 public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View{
     @Inject
@@ -38,8 +45,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     EditText mEtNewPassword;
     @BindView(R.id.et_retype_new_password)
     EditText mEtRetypeNewPassword;
-    @BindView(R.id.et_pin)
-    EditText mEtPin;
     @BindView(R.id.text_submit)
     TextView mTxtSubmit;
 
@@ -49,8 +54,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     TextView mTxtErrorNewPassword;
     @BindView(R.id.txt_error_retype_new_password)
     TextView mTxtErrorRetypeNewPassword;
-    @BindView(R.id.txt_error_pin)
-    TextView mTxtErrorPin;
 
     @BindView(R.id.linear_old_password)
     LinearLayout mLinearOldPassword;
@@ -58,8 +61,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     LinearLayout mLinearNewPassword;
     @BindView(R.id.linear_retype_new_password)
     LinearLayout mLinearRetypeNewPassword;
-    @BindView(R.id.linear_pin)
-    LinearLayout mLinearpin;
 
     private ChangePasswordContract.UserActionListener mUserActionListener;
 
@@ -123,12 +124,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
             mLinearRetypeNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
             mTxtErrorRetypeNewPassword.setVisibility(View.GONE);
 
-            mUserActionListener.changeData(
-                    mEtOldPassword.getText().toString(),
-                    mEtNewPassword.getText().toString(),
-                    mEtRetypeNewPassword.getText().toString(),
-                    mEtPin.getText().toString()
-            );
+            openDialogPin();
         } else {
             mLinearNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
             mTxtErrorNewPassword.setVisibility(View.VISIBLE);
@@ -136,5 +132,47 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
             mLinearRetypeNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
             mTxtErrorRetypeNewPassword.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void openDialogPin() {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mUserActionListener.changeData(
+                        mEtOldPassword.getText().toString(),
+                        mEtNewPassword.getText().toString(),
+                        mEtRetypeNewPassword.getText().toString(),
+                        pin
+                );
+
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 }

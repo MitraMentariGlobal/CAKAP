@@ -1,13 +1,9 @@
 package co.id.cakap.ui.myProfile;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -17,13 +13,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.andrognito.pinlockview.IndicatorDots;
 import com.andrognito.pinlockview.PinLockListener;
 import com.andrognito.pinlockview.PinLockView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import javax.inject.Inject;
 
@@ -33,14 +26,7 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.data.ProfileData;
-import co.id.cakap.data.RegistrationSuccessData;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.cashbill.CashbillActivityContract;
-import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
-import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
-import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
-import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.PinDialog;
@@ -54,6 +40,8 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     ProgressBar mProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
+    @BindView(R.id.bottom_sheet)
+    View bottomSheet;
 
     @BindView(R.id.et_rec_id)
     EditText mEtRecId;
@@ -211,6 +199,7 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     public void initializeData() {
         mUserActionListener = mMyProfileActivityPresenter;
         mMyProfileActivityPresenter.setView(this);
+        mBehavior = BottomSheetBehavior.from(bottomSheet);
 
         mTitle.setText(getString(R.string.my_profile).toUpperCase());
         setSuccessInputData();
@@ -287,6 +276,11 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
                 Logger.d("Pin complete: " + pin);
                 dialog.hide();
                 dialog.dismiss();
+
+                bottomSheetAlert(
+                        getResources().getDrawable(R.drawable.ic_success_forgot_password),
+                        getResources().getString(R.string.success_update_profile)
+                );
             }
 
             @Override

@@ -24,8 +24,6 @@ import co.id.cakap.ui.changePassword.ChangePasswordPresenter;
 import co.id.cakap.ui.dashboard.DashboardActivity;
 
 public class ChangePasswordSuccessActivity extends AppCompatActivity {
-    @BindView(R.id.title_toolbar)
-    TextView mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,7 @@ public class ChangePasswordSuccessActivity extends AppCompatActivity {
     }
 
     public void initializeData() {
-        mTitle.setText(getString(R.string.change_password).toUpperCase());
+
     }
 
     @OnClick(R.id.btn_close)

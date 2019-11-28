@@ -2,6 +2,7 @@ package co.id.cakap.utils.dialog;
 
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -20,6 +21,11 @@ public class BottomDialogActivity extends AppCompatActivity {
 
     public BottomSheetBehavior mBehavior;
     public BottomSheetDialog mBottomSheetDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     public void bottomSheetAlert(Drawable drawable, String message) {
         if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {

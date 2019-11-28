@@ -82,6 +82,7 @@
     <string name="transfer_item">Transfer</string>
     <string name="transaksi_berhasil">Thank you for your transaction.</string>
     <string name="back_to_home">Back to Home</string>
+    <string name="back_to_home_upper">BACK TO HOME</string>
     <string name="this_transaction">%1$s this transaction?</string>
     <string name="pleasee_check_again">Periksa kembali inputan anda, apakah Anda bersedia untuk melanjutkan transaksi ini?</string>
     <string name="pleasee_check_again_profile">Periksa kembali inputan anda, apakah Anda bersedia untuk merubah data?</string>
@@ -109,6 +110,8 @@
     <string name="stock_card">Card</string>
     <string name="field_not_match">This field does not match</string>
     <string name="field_required">This field is required</string>
+    <string name="your_default_password">Your default password would be sent to your mail</string>
+    <string name="success_update_profile">Update profile berhasil</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

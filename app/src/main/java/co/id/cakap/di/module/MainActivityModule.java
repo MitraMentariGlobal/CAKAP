@@ -337,7 +337,6 @@ public class MainActivityModule {
         return daoMaster.newSession();
     }
 
-
     @Provides
     @ActivityScope
     DataModel provideDataModel(DaoSession daoSession){

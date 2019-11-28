@@ -120,7 +120,8 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
         } else {
             intent.putExtra(Constant.URL_LINK, url);
         }
-        startActivity(intent);
+//        startActivity(intent);
+        startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
         finishActivity();
     }
 
