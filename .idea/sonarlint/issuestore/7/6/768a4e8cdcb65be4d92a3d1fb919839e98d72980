@@ -1,10 +1,12 @@
 
+Lsquid:S1481z")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8É€É‡ë-
+[squid:S1854z"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8É€É‡ë-
+Nsquid:S1481e"+Remove this unused "userId" local variable.(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
+Esquid:S1068)"'Remove this unused "TAG" private field.(Ô‹‡½8É€É‡ë-
 bsquid:UselessImportCheck	"2Remove this unused import 'android.widget.Button'.(²òıÿÿÿÿ8¿‘ìê-
-[squid:S1854q"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8úÎ˜×-
-Esquid:S1068&"'Remove this unused "TAG" private field.(Ô‹‡½8¡¡×-
-isquid:CommentedOutCodeLine;"<This block of commented-out lines of code should be removed.(è‚Ï·8ê¡ª×-
-qsquid:MaximumInheritanceDepth%"<This class has 6 parents which is greater than 5 authorized.(ËŞûÿÿÿÿ8¤ƒ½àÖ-
-Nsquid:S1481`"+Remove this unused "userId" local variable.(ÁÃ­’ùÿÿÿÿ8…ğÜíê-
-Fsquid:S1604k"(Make this anonymous inner class a lambda(Ûâ—Ş8úÎ˜×-
-Lsquid:S1481q")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8úÎ˜×-
-]squid:S1854`":Remove this useless assignment to local variable "userId".(ÁÃ­’ùÿÿÿÿ8¢ÍÜíê-
+Fsquid:S1604t"(Make this anonymous inner class a lambda(Ûâ—Ş8É€É‡ë-
+isquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(è‚Ï·8É€É‡ë-
+qsquid:MaximumInheritanceDepth("<This class has 7 parents which is greater than 5 authorized.(ü›¦úÿÿÿÿ8ú¯“ë-
+jsquid:CommentedOutCodeLine¥"<This block of commented-out lines of code should be removed.(Ïæ£ı8É€É‡ë-
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8¼Ç “ë-
+]squid:S1854e":Remove this useless assignment to local variable "userId".(ÁÃ­’ùÿÿÿÿ8É€É‡ë-

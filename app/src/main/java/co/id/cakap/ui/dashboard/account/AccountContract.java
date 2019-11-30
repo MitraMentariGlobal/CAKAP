@@ -6,9 +6,10 @@ public class AccountContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
+        void setSuccessResponse();
     }
 
     public interface UserActionListener {
-
+        void getData();
     }
 }

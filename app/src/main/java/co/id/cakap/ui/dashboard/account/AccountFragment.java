@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,9 @@ import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
 import co.id.cakap.ui.changePin.ChangePinActivity;
+import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
+import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
@@ -41,6 +44,8 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     CardView mCardSettings;
     @BindView(R.id.txt_version)
     TextView mTxtVersion;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
 
     private boolean mIsExpand = false;
     private View mView;
@@ -77,21 +82,30 @@ public class AccountFragment extends Fragment implements AccountContract.View {
 
         mVersion = "v" + BuildConfig.VERSION_CODE + "." + BuildConfig.VERSION_NAME;
         mTxtVersion.setText(mVersion);
+        hideProgressBar();
     }
 
     @Override
     public void showProgressBar() {
-
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void setErrorResponse(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setSuccessResponse() {
+        ((DashboardActivity) getActivity()).finish();
+        Intent i = new Intent(getContext(), LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 
     @OnClick(R.id.account_my_profile)
@@ -149,6 +163,12 @@ public class AccountFragment extends Fragment implements AccountContract.View {
             mIsExpand = false;
         }
         startActivity(new Intent(getContext(), ChangePinActivity.class));
+    }
+
+    @OnClick(R.id.txt_logout)
+    public void actionLogout(View view) {
+        showProgressBar();
+        mUserActionListener.getData();
     }
 
     @Override

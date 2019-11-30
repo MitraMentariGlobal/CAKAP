@@ -9,9 +9,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_settings"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:cardBackgroundColor="@color/white">
 
         <LinearLayout
@@ -78,6 +78,21 @@
                 android:textSize="@dimen/text_14"
                 android:textColor="@color/black"
                 android:text="Change Pin"
+                android:textAlignment="center"
+                android:padding="@dimen/radius_16"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                style="@style/TexViewFont" />
+
+            <TextView
+                android:id="@+id/txt_logout"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/black"
+                android:text="Log Out"
                 android:textAlignment="center"
                 android:padding="@dimen/radius_16"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -343,4 +358,18 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relative_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".6"
+        android:background="@color/white">
+
+        <ProgressBar
+            android:id="@+id/main_progress_bar"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

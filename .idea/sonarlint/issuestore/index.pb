@@ -777,3 +777,11 @@ n
 >app/src/main/res/drawable-v24/background_login_white_style.xml,0/6/0647cfe74f557c313ac8fae60842782e478165dd
 [
 +app/src/main/res/layout/forgot_password.xml,2/3/2353a3ee73ac4b6c749e0b981e7d67ece77e6d5b
+t
+Dapp/src/main/java/co/id/cakap/utils/dialog/BottomDialogActivity.java,2/4/244e49e09ce8f5ff88211ad574ecee9eca7634fd
+]
+-app/src/main/res/drawable/ic_new_password.xml,d/3/d3c6d8785b052e78170301e75c61c611d4fc3d55
+h
+8app/src/main/res/drawable/ic_success_forgot_password.xml,9/6/96a02b363c2d519c695ce3701dff9cf1436edf43
+b
+2app/src/main/res/layout/activity_bottom_dialog.xml,c/3/c310860ee726943c73c4efced8fb40f1cfbd4946
