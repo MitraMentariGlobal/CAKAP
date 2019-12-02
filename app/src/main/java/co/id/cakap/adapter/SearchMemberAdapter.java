@@ -47,7 +47,7 @@ public class SearchMemberAdapter extends RecyclerView.Adapter<SearchMemberAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_search_member, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_search_member_detail, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -60,7 +60,17 @@ public class SearchMemberAdapter extends RecyclerView.Adapter<SearchMemberAdapte
 
         holder.mMemberId.setText(searchMemberData.getMember_id());
         holder.mName.setText(searchMemberData.getNama_member());
+        holder.mKtp.setText(searchMemberData.getKtp());
         holder.mCity.setText(searchMemberData.getKota());
+        holder.mStatus.setText(searchMemberData.getStatus());
+        holder.mRecId.setText(searchMemberData.getRecruiting_id());
+        holder.mRecName.setText(searchMemberData.getRecruiting_name());
+        holder.mSponsorId.setText(searchMemberData.getSponsor_id());
+        holder.mSponsorName.setText(searchMemberData.getSponsor_name());
+
+        if (searchMemberData.getStatus().equals("INACTIVE")) {
+            holder.mStatus.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
     }
 
     @Override
@@ -107,8 +117,20 @@ public class SearchMemberAdapter extends RecyclerView.Adapter<SearchMemberAdapte
         TextView mMemberId;
         @BindView(R.id.txt_member_name)
         TextView mName;
+        @BindView(R.id.txt_ktp)
+        TextView mKtp;
         @BindView(R.id.txt_city)
         TextView mCity;
+        @BindView(R.id.txt_status)
+        TextView mStatus;
+        @BindView(R.id.txt_rec_id)
+        TextView mRecId;
+        @BindView(R.id.txt_rec_name)
+        TextView mRecName;
+        @BindView(R.id.txt_sponsor_id)
+        TextView mSponsorId;
+        @BindView(R.id.txt_sponsor_name)
+        TextView mSponsorName;
 
         Context context;
         SearchMemberData searchMemberData;
@@ -118,9 +140,9 @@ public class SearchMemberAdapter extends RecyclerView.Adapter<SearchMemberAdapte
             ButterKnife.bind(this, itemView);
         }
 
-        @OnClick(R.id.relative_parent)
-        public void openDetail() {
-            new SearchMemberActivityPresenter().getView().openDetailDialog(searchMemberData);
-        }
+//        @OnClick(R.id.relative_parent)
+//        public void openDetail() {
+//            new SearchMemberActivityPresenter().getView().openDetailDialog(searchMemberData);
+//        }
     }
 }
