@@ -114,16 +114,16 @@
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
                         android:drawableStart="@drawable/ic_key"
-                        android:drawableTint="@color/curated"
                         android:drawablePadding="@dimen/padding_8"
+                        android:drawableTint="@color/curated"
+                        android:focusableInTouchMode="true"
                         android:hint="@string/login_password"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="@dimen/padding_14"
                         android:textColor="@color/black"
                         android:textColorHint="@color/curated_light"
-                        android:textSize="@dimen/text_14"
-                        android:focusableInTouchMode="true"/>
+                        android:textSize="@dimen/text_14" />
                 </FrameLayout>
 
                 <androidx.cardview.widget.CardView
@@ -188,8 +188,31 @@
                     android:background="@drawable/background_login_button_style"
                     android:layout_gravity="end">
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/fab_margin"
+                        android:layout_marginBottom="@dimen/fab_margin"
+                        android:layout_marginStart="@dimen/fab_margin"
+                        android:background="@color/white"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
+
+                        <Button
+                            android:id="@+id/login_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/Font_family_regular"
+                            android:drawableEnd="@drawable/ic_enter"
+                            android:drawableTint="@color/colorPrimaryDark"
+                            android:background="@drawable/button_login_style"
+                            android:text="@string/login_btn"
+                            android:textColor="@color/colorPrimaryDark"/>
+
+                    </androidx.cardview.widget.CardView>
+
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/login_btn"
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top|end"

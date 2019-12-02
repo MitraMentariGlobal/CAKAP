@@ -38,7 +38,7 @@ public class SearchMemberActivityPresenter implements SearchMemberActivityContra
     }
 
     @Override
-    public void getData() {
+    public void getDataMember(String param) {
         arrayList = new ArrayList<>();
         arrayList.add(new SearchMemberData("00000021", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
         arrayList.add(new SearchMemberData("00000022", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));

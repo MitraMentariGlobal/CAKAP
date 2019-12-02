@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +51,7 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
     @BindView(R.id.password_et)
     EditText mPassword;
     @BindView(R.id.login_btn)
-    FloatingActionButton mLoginButton;
+    Button mLoginButton;
     @BindView(R.id.bottom_sheet)
     View bottomSheet;
 

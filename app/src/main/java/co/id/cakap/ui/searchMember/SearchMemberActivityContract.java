@@ -16,6 +16,6 @@ public class SearchMemberActivityContract {
 
     public interface UserActionListener{
         void setView(SearchMemberActivityContract.View view);
-        void getData();
+        void getDataMember(String param);
     }
 }

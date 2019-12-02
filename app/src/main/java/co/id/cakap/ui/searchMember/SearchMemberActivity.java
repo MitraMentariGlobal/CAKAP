@@ -6,7 +6,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +47,14 @@ public class SearchMemberActivity extends AppCompatActivity implements SearchMem
     RecyclerView mRecyclerView;
     @BindView(R.id.et_search)
     EditText mSearchEditText;
+    @BindView(R.id.et_member_id)
+    EditText mEtMemberId;
+    @BindView(R.id.relative_member_id)
+    RelativeLayout mRelativeMemberId;
+    @BindView(R.id.txt_error_member_id)
+    TextView mTxtErrorMemberId;
+    @BindView(R.id.linear_search)
+    LinearLayout mLinearSearch;
 
     private SearchMemberAdapter mListAdapter;
     private SearchMemberActivityContract.UserActionListener mUserActionListener;
@@ -70,9 +80,23 @@ public class SearchMemberActivity extends AppCompatActivity implements SearchMem
     public void initializeData() {
         mUserActionListener = mSearchMemberActivityPresenter;
         mSearchMemberActivityPresenter.setView(this);
-        mUserActionListener.getData();
+        hideProgressBar();
 
         mTitle.setText(getString(R.string.search_member).toUpperCase());
+        mLinearSearch.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.linear_search_member_id)
+    public void searchMemberId(View view) {
+        if (mEtMemberId.getText().length() < 3) {
+            mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorMemberId.setVisibility(View.VISIBLE);
+        } else {
+            mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorMemberId.setVisibility(View.GONE);
+            mUserActionListener.getDataMember(mEtMemberId.getText().toString());
+            mEtMemberId.setInputType(0);
+        }
     }
 
     @Override

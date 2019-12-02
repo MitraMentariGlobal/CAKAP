@@ -14,10 +14,75 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/recycler_view_search"
-        android:layout_height="match_parent"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relative_member_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/radius_10"
+            android:layout_marginEnd="@dimen/radius_10"
+            android:layout_marginTop="@dimen/radius_64"
+            android:layout_marginBottom="@dimen/radius_10"
+            android:background="@drawable/et_gray_background_style">
+
+            <EditText
+                android:id="@+id/et_member_id"
+                style="@style/Font_family_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/member_id"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/curated_light"
+                android:textSize="@dimen/text_14"
+                android:padding="@dimen/padding_12"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+
+            <LinearLayout
+                android:id="@+id/linear_search_member_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/submit_next_background"
+                android:gravity="center">
+
+                <ImageView
+                    android:background="@drawable/ic_loupe_white"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txt_error_member_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="Silakan input minimal 3 karakter"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
+
+        <include layout="@layout/recycler_view_search"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/main_progress_bar"
