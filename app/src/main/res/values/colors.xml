@@ -61,6 +61,7 @@
     <color name="blue_black_light">#516179</color>
     <color name="blue_grey_light">#A5B4C8</color>
     <color name="orange">#FFA500</color>
+    <color name="dark_orange">#FF8C00</color>
     <color name="yellow">#fff44f</color>
     <color name="brown">#b8860b</color>
 </resources>

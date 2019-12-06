@@ -78,6 +78,7 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="@dimen/text_14"
                                     android:textStyle="bold"
+                                    android:textColor="@color/colorPrimaryDark"
                                     android:text="INV - 123123123123123"
                                     style="@style/TexViewFont" />
                             </LinearLayout>
@@ -155,6 +156,7 @@
                                     android:layout_marginStart="@dimen/radius_16"
                                     android:textSize="@dimen/text_12"
                                     android:textStyle="bold"
+                                    android:textColor="@color/dark_orange"
                                     android:text="IDR 100.000.000"
                                     style="@style/TexViewFont" />
                             </LinearLayout>

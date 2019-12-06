@@ -36,6 +36,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_14"
                     android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="INV - 123123123123123"
                     style="@style/TexViewFont" />
             </LinearLayout>
@@ -68,7 +69,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
                     android:text="IDR 100.000.000"
                     style="@style/TexViewFont" />
 
@@ -76,7 +78,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
                     android:text=" / "
                     style="@style/TexViewFont" />
 
@@ -85,7 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
                     android:text="123"
                     style="@style/TexViewFont" />
 
@@ -93,7 +97,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
-                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
                     android:text="pv"
                     style="@style/TexViewFont" />
             </LinearLayout>
