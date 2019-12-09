@@ -25,6 +25,8 @@
             app:tabTextAppearance="@style/CustomTextAppearanceTab"
             app:tabIndicatorColor="@color/dark_orange"
             app:tabSelectedTextColor="@color/dark_orange"
+            app:tabPaddingStart="@dimen/radius_32"
+            app:tabPaddingEnd="@dimen/radius_32"
             app:tabMode="scrollable" />
     </com.google.android.material.appbar.AppBarLayout>
 

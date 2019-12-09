@@ -113,6 +113,10 @@
     <string name="your_default_password">Your default password would be sent to your mail</string>
     <string name="success_update_profile">Update profile berhasil</string>
 
+    <string name="bc_login">BC</string>
+    <string name="mb_login">MB</string>
+    <string name="member_login">Member</string>
+
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>
 

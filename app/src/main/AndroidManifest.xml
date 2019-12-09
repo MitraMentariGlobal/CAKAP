@@ -76,7 +76,6 @@
         <activity android:name=".ui.omset.OmsetActivity" />
         <activity android:name=".ui.searchMember.SearchMemberActivity" />
         <activity android:name=".ui.stockReport.StockReportActivity" />
-        <activity android:name=".ui.memberDetail.MemberDetailActivity" />
         <activity android:name=".ui.pickUpDelivery.PickUpDeliveryActivity" />
         <activity android:name=".ui.cashbill.cashbillSuccess.CashbillSuccessActivity" />
         <activity android:name=".ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity" />

@@ -218,14 +218,14 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:background="@android:color/transparent"
+                                    style="@style/TexViewFont"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:background="@android:color/transparent"
                                     android:gravity="center"
-                                    android:textSize="14sp"
                                     android:text="1.000.000.000"
-                                    style="@style/TexViewFont"/>
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:background="@android:color/transparent"
@@ -417,17 +417,17 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:background="@android:color/transparent"
+                        style="@style/TexViewFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_marginBottom="@dimen/radius_10"
+                        android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimaryDark"
                         android:text="@string/restock"
-                        style="@style/TexViewFont"/>
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
