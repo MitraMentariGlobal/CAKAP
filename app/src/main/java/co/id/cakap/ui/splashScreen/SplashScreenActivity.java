@@ -110,6 +110,8 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void goToHome(String url) {
+        Constant.LOGIN_DATA = "MB";
+        Constant.IS_HAVE_PARENT = false;
         Intent intent = new Intent(this, HomeWebViewActivity.class);
 
         if (mUrlNotification != null && mUrlNotification.length() > 0) {

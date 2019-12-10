@@ -2,7 +2,6 @@ package co.id.cakap.ui.stockReport;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,11 +17,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
-import co.id.cakap.adapter.SectionsActivityPagerAdapter;
 import co.id.cakap.adapter.SectionsStockPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.cashbill.CashbillActivityContract;
-import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
 
 public class StockReportActivity extends AppCompatActivity implements StockReportActivityContract.View{
     @Inject

@@ -22,11 +22,17 @@
     <string name="transaction">Transaction</string>
     <string name="registration">Registration</string>
     <string name="cashbill">Cashbill</string>
+    <string name="bonus_statement">Bonus Statement</string>
+    <string name="network_genealogy">Network Genealogy</string>
+    <string name="network_table">Network Table</string>
+    <string name="ebonus">EBonus</string>
+    <string name="downline_listing">Downline Listing</string>
+    <string name="monthly_point_report">Monthly Point Report </string>
     <string name="invoice_to_mb">Invoice To MB</string>
     <string name="req_invoice_to_com">Req Invoice To Company</string>
     <string name="req_invoice_to_bc">Req Invoice To BC</string>
     <string name="req_invoice_mb">Request Inv MB</string>
-    <string name="rekap_bns_bcmb">Recap Bns BCMB</string>
+    <string name="rekap_bns_bcmb">Rekap Bns BCMB</string>
     <string name="invoice">Invoice</string>
     <string name="req_invoice">Req Invoice</string>
     <string name="receive_stock">Receive Stock</string>
@@ -112,6 +118,7 @@
     <string name="field_required">This field is required</string>
     <string name="your_default_password">Your default password would be sent to your mail</string>
     <string name="success_update_profile">Update profile berhasil</string>
+    <string name="title_information">Information</string>
 
     <string name="bc_login">BC</string>
     <string name="mb_login">MB</string>

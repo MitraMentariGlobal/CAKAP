@@ -171,190 +171,390 @@
 
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/account_my_profile"
+            <LinearLayout
+                android:id="@+id/linear_member"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/radius_32"
-                android:layout_marginTop="@dimen/radius_16"
-                android:layout_marginEnd="@dimen/radius_32"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@drawable/item_detail_transaksi_style">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <FrameLayout
+                    android:id="@+id/account_my_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
 
-                    <ImageView
-                        android:layout_width="@dimen/radius_24"
-                        android:layout_height="@dimen/radius_24"
-                        android:layout_marginEnd="@dimen/padding_16"
-                        android:src="@drawable/ic_my_profile" />
-
-                    <TextView
-                        android:background="@android:color/transparent"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:text="@string/my_profile"
-                        style="@style/TexViewFont" />
+                        android:padding="16dp"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
-            </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_my_profile" />
 
-            <FrameLayout
-                android:id="@+id/account_fee_bcmb"
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/my_profile"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_network_genealogy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_my_profile" />
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/network_genealogy"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_network_table"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_my_profile" />
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/network_table"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_ebonus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_my_profile" />
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/ebonus"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_downline_listing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_my_profile" />
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/downline_listing"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_monthly_point_report"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_my_profile" />
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/monthly_point_report"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_bcmb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/radius_32"
-                android:layout_marginTop="@dimen/radius_16"
-                android:layout_marginEnd="@dimen/radius_32"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@drawable/item_detail_transaksi_style">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <FrameLayout
+                    android:id="@+id/account_fee_bcmb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
 
-                    <ImageView
-                        android:layout_width="@dimen/radius_24"
-                        android:layout_height="@dimen/radius_24"
-                        android:layout_marginEnd="@dimen/padding_16"
-                        android:src="@drawable/ic_fee" />
-
-                    <TextView
-                        android:background="@android:color/transparent"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:text="@string/fee_bcmb"
-                        style="@style/TexViewFont" />
+                        android:padding="16dp"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
-            </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_fee" />
 
-            <FrameLayout
-                android:id="@+id/account_stock_report"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/radius_32"
-                android:layout_marginTop="@dimen/radius_16"
-                android:layout_marginEnd="@dimen/radius_32"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@drawable/item_detail_transaksi_style">
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/fee_bcmb"
+                            style="@style/TexViewFont" />
 
-                <LinearLayout
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_stock_report"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
 
-                    <ImageView
-                        android:layout_width="@dimen/radius_24"
-                        android:layout_height="@dimen/radius_24"
-                        android:layout_marginEnd="@dimen/padding_16"
-                        android:src="@drawable/ic_stock" />
-
-                    <TextView
-                        android:background="@android:color/transparent"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:text="@string/stock_report"
-                        style="@style/TexViewFont" />
+                        android:padding="16dp"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
-            </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_stock" />
 
-            <FrameLayout
-                android:id="@+id/account_omset"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/radius_32"
-                android:layout_marginTop="@dimen/radius_16"
-                android:layout_marginEnd="@dimen/radius_32"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@drawable/item_detail_transaksi_style">
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/stock_report"
+                            style="@style/TexViewFont" />
 
-                <LinearLayout
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_omset"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
 
-                    <ImageView
-                        android:layout_width="@dimen/radius_24"
-                        android:layout_height="@dimen/radius_24"
-                        android:layout_marginEnd="@dimen/padding_16"
-                        android:src="@drawable/ic_omset" />
-
-                    <TextView
-                        android:background="@android:color/transparent"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:text="@string/omset"
-                        style="@style/TexViewFont" />
+                        android:padding="16dp"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
-            </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_omset" />
 
-            <FrameLayout
-                android:id="@+id/account_search_member"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/radius_32"
-                android:layout_marginTop="@dimen/radius_16"
-                android:layout_marginEnd="@dimen/radius_32"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="@drawable/item_detail_transaksi_style">
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/omset"
+                            style="@style/TexViewFont" />
 
-                <LinearLayout
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/account_search_member"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/radius_32"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_32"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/item_detail_transaksi_style">
 
-                    <ImageView
-                        android:layout_width="@dimen/radius_24"
-                        android:layout_height="@dimen/radius_24"
-                        android:layout_marginEnd="@dimen/padding_16"
-                        android:src="@drawable/ic_loupe" />
-
-                    <TextView
-                        android:background="@android:color/transparent"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        android:text="@string/search_member"
-                        style="@style/TexViewFont" />
+                        android:padding="16dp"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
-            </FrameLayout>
+                        <ImageView
+                            android:layout_width="@dimen/radius_24"
+                            android:layout_height="@dimen/radius_24"
+                            android:layout_marginEnd="@dimen/padding_16"
+                            android:src="@drawable/ic_loupe" />
+
+                        <TextView
+                            android:background="@android:color/transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:text="@string/search_member"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

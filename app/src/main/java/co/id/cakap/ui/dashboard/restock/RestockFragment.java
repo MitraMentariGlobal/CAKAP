@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.restock;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,12 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
-import co.id.cakap.adapter.SectionsRestockPagerAdapter;
+import co.id.cakap.adapter.SectionsRestockBCPagerAdapter;
+import co.id.cakap.adapter.SectionsRestockMBPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivity;
+import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RestockFragment extends Fragment implements RestockContract.View {
@@ -72,13 +77,31 @@ public class RestockFragment extends Fragment implements RestockContract.View {
 
         mTitle.setText(getContext().getResources().getString(R.string.restock).toUpperCase());
 
-        SectionsRestockPagerAdapter sectionsRestockPagerAdapter = new SectionsRestockPagerAdapter(getContext(), getChildFragmentManager());
-        mViewPager.setAdapter(sectionsRestockPagerAdapter);
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.bc_login))) {
+            SectionsRestockBCPagerAdapter sectionsRestockBCPagerAdapter = new SectionsRestockBCPagerAdapter(getContext(), getChildFragmentManager());
+            mViewPager.setAdapter(sectionsRestockBCPagerAdapter);
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.mb_login))) {
+            if (Constant.IS_HAVE_PARENT) {
+                SectionsRestockMBPagerAdapter sectionsRestockMBPagerAdapter = new SectionsRestockMBPagerAdapter(getContext(), getChildFragmentManager());
+                mViewPager.setAdapter(sectionsRestockMBPagerAdapter);
+            } else {
+                SectionsRestockBCPagerAdapter sectionsRestockBCPagerAdapter = new SectionsRestockBCPagerAdapter(getContext(), getChildFragmentManager());
+                mViewPager.setAdapter(sectionsRestockBCPagerAdapter);
+            }
+        }
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @OnClick(R.id.iv_add)
     public void actionAdd(View view) {
-        Toast.makeText(getContext(), "Add Invoice", Toast.LENGTH_SHORT).show();
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.bc_login))) {
+            startActivity(new Intent(getContext(), PickUpDeliveryActivity.class));
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.mb_login))) {
+            if (Constant.IS_HAVE_PARENT) {
+                startActivity(new Intent(getContext(), ReqInvoiceToBcActivity.class));
+            } else {
+                startActivity(new Intent(getContext(), PickUpDeliveryActivity.class));
+            }
+        }
     }
 }

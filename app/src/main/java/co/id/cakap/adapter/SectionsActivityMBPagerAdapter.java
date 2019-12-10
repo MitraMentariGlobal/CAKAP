@@ -14,18 +14,16 @@ import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbFragment
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbFragment;
 import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbFragment;
 
-public class SectionsActivityPagerAdapter extends FragmentPagerAdapter {
+public class SectionsActivityMBPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{
             R.string.cashbill,
-            R.string.req_invoice_mb,
-            R.string.invoice_to_mb,
             R.string.rekap_bns_bcmb
     };
     private final Context mContext;
 
-    public SectionsActivityPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsActivityMBPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
@@ -38,12 +36,6 @@ public class SectionsActivityPagerAdapter extends FragmentPagerAdapter {
                 fragment = new ActivityCashbillFragment();
                 break;
             case 1:
-                fragment = new ActivityReqInvMbFragment();
-                break;
-            case 2:
-                fragment = new ActivityInvToMbFragment();
-                break;
-            case 3:
                 fragment = new ActivityRekapBnsBcmbFragment();
                 break;
         }
@@ -60,6 +52,6 @@ public class SectionsActivityPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 2;
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import co.id.cakap.BuildConfig;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
 import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.dashboard.DashboardActivity;
@@ -46,6 +48,11 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     TextView mTxtVersion;
     @BindView(R.id.relative_progress_bar)
     RelativeLayout mRelativeProgressBar;
+
+    @BindView(R.id.linear_member)
+    LinearLayout mLinearMember;
+    @BindView(R.id.linear_bcmb)
+    LinearLayout mLinearBcmb;
 
     private boolean mIsExpand = false;
     private View mView;
@@ -82,6 +89,11 @@ public class AccountFragment extends Fragment implements AccountContract.View {
 
         mVersion = "v" + BuildConfig.VERSION_CODE + "." + BuildConfig.VERSION_NAME;
         mTxtVersion.setText(mVersion);
+
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
+            mLinearMember.setVisibility(View.VISIBLE);
+            mLinearBcmb.setVisibility(View.GONE);
+        }
         hideProgressBar();
     }
 
@@ -111,6 +123,31 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     @OnClick(R.id.account_my_profile)
     public void aaccountMyProfile(View view) {
         startActivity(new Intent(getContext(), MyProfileActivity.class));
+    }
+
+    @OnClick(R.id.account_network_genealogy)
+    public void aaccountNetworkGenealogy(View view) {
+
+    }
+
+    @OnClick(R.id.account_network_table)
+    public void aaccountNetworkTable(View view) {
+
+    }
+
+    @OnClick(R.id.account_ebonus)
+    public void aaccountEbonus(View view) {
+
+    }
+
+    @OnClick(R.id.account_downline_listing)
+    public void aaccountDownlineListing(View view) {
+
+    }
+
+    @OnClick(R.id.account_monthly_point_report)
+    public void aaccountMonthlyPointReport(View view) {
+
     }
 
     @OnClick(R.id.account_fee_bcmb)

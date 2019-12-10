@@ -3,6 +3,7 @@ package co.id.cakap.ui.dashboard;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
 import co.id.cakap.ui.dashboard.account.AccountFragment;
 import co.id.cakap.ui.dashboard.notification.NotificationFragment;
@@ -32,6 +34,9 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
 
     @BindView(R.id.bn_main)
     BottomNavigationView mBottomNavigationView;
+
+    @BindView(R.id.bn_main_member)
+    BottomNavigationView mBottomNavigationViewMember;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +58,15 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
     @Override
     public void initializeData() {
         loadFragment(new HomeFragment());
-        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
-        mBottomNavigationView.setItemIconTintList(null);
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
+            mBottomNavigationView.setVisibility(View.GONE);
+            mBottomNavigationViewMember.setVisibility(View.VISIBLE);
+            mBottomNavigationViewMember.setOnNavigationItemSelectedListener(this);
+            mBottomNavigationViewMember.setItemIconTintList(null);
+        } else {
+            mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+            mBottomNavigationView.setItemIconTintList(null);
+        }
     }
 
     @Override

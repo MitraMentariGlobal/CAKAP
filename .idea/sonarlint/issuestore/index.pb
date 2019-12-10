@@ -779,8 +779,6 @@ n
 +app/src/main/res/layout/forgot_password.xml,2/3/2353a3ee73ac4b6c749e0b981e7d67ece77e6d5b
 t
 Dapp/src/main/java/co/id/cakap/utils/dialog/BottomDialogActivity.java,2/4/244e49e09ce8f5ff88211ad574ecee9eca7634fd
-]
--app/src/main/res/drawable/ic_new_password.xml,d/3/d3c6d8785b052e78170301e75c61c611d4fc3d55
 h
 8app/src/main/res/drawable/ic_success_forgot_password.xml,9/6/96a02b363c2d519c695ce3701dff9cf1436edf43
 b
@@ -789,3 +787,7 @@ g
 7app/src/main/res/drawable/button_login_style_normal.xml,b/5/b59a736e99e2c8a4dbe25c3b28f7b1049612a0bd
 i
 9app/src/main/res/drawable/button_login_style_selected.xml,e/0/e0f585ce7924eb7db94ade5e03b692d65ec4a771
+c
+3app/src/main/res/drawable/ic_success_change_pin.xml,c/1/c172e8ce99b0f9b4ab8185946bf38128c076a25f
+h
+8app/src/main/res/drawable/ic_success_change_password.xml,1/8/185a8d1db6d88dd71bc551eea93cac0921225e29

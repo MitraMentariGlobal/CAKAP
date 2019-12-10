@@ -10,24 +10,18 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import co.id.cakap.R;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillFragment;
-import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbFragment;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbFragment;
-import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbFragment;
-import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoiceFragment;
-import co.id.cakap.ui.dashboard.restock.restockReceiveStock.RestockReceiveStockFragment;
-import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoiceFragment;
 
-public class SectionsRestockPagerAdapter extends FragmentPagerAdapter {
+public class SectionsActivityMemberPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{
-            R.string.invoice,
-            R.string.req_invoice,
-            R.string.receive_stock
+            R.string.cashbill,
+            R.string.bonus_statement
     };
     private final Context mContext;
 
-    public SectionsRestockPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsActivityMemberPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
@@ -37,13 +31,10 @@ public class SectionsRestockPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = new RestockInvoiceFragment();
+                fragment = new ActivityCashbillFragment();
                 break;
             case 1:
-                fragment = new RestockReqInvoiceFragment();
-                break;
-            case 2:
-                fragment = new RestockReceiveStockFragment();
+                fragment = new ActivityRekapBnsBcmbFragment();
                 break;
         }
         // getItem is called to instantiate the fragment for the given page.
@@ -59,6 +50,6 @@ public class SectionsRestockPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 }

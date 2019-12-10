@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import javax.inject.Inject;
@@ -22,8 +20,11 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.SectionsActivityMBPagerAdapter;
+import co.id.cakap.adapter.SectionsActivityMemberPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.adapter.SectionsActivityPagerAdapter;
+import co.id.cakap.adapter.SectionsActivityBCPagerAdapter;
+import co.id.cakap.helper.Constant;
 
 public class ActivityFragment extends Fragment implements ActivityContract.View {
     @Inject
@@ -69,8 +70,16 @@ public class ActivityFragment extends Fragment implements ActivityContract.View 
 
         mTitle.setText(getContext().getResources().getString(R.string.activity).toUpperCase());
 
-        SectionsActivityPagerAdapter sectionsActivityPagerAdapter = new SectionsActivityPagerAdapter(getContext(), getChildFragmentManager());
-        mViewPager.setAdapter(sectionsActivityPagerAdapter);
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.bc_login))) {
+            SectionsActivityBCPagerAdapter sectionsActivityBCPagerAdapter = new SectionsActivityBCPagerAdapter(getContext(), getChildFragmentManager());
+            mViewPager.setAdapter(sectionsActivityBCPagerAdapter);
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.mb_login))) {
+            SectionsActivityMBPagerAdapter sectionsActivityMBPagerAdapter = new SectionsActivityMBPagerAdapter(getContext(), getChildFragmentManager());
+            mViewPager.setAdapter(sectionsActivityMBPagerAdapter);
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
+            SectionsActivityMemberPagerAdapter sectionsActivityMemberPagerAdapter = new SectionsActivityMemberPagerAdapter(getContext(), getChildFragmentManager());
+            mViewPager.setAdapter(sectionsActivityMemberPagerAdapter);
+        }
         mTabLayout.setupWithViewPager(mViewPager);
     }
 }
