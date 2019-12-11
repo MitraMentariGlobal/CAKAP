@@ -2,15 +2,21 @@ package co.id.cakap.di.component;
 
 import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.bonusStatement.BonusStatementFragment;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
 import co.id.cakap.ui.changePassword.changePasswordSuccess.ChangePasswordSuccessActivity;
 import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.changePin.changePinSuccess.ChangePinSuccessActivity;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
+import co.id.cakap.ui.downlineListing.DownlineListingActivity;
+import co.id.cakap.ui.ebonus.EbonusActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
+import co.id.cakap.ui.monthlyPointReport.MonthlyPointReportActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
+import co.id.cakap.ui.networkGenealogy.NetworkGenealogyActivity;
+import co.id.cakap.ui.networkTable.NetworkTableActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
@@ -80,6 +86,11 @@ public interface MainComponent {
     ChangePinActivity inject(ChangePinActivity changePinActivity);
     ChangePasswordSuccessActivity inject(ChangePasswordSuccessActivity changePasswordSuccessActivity);
     ChangePinSuccessActivity inject(ChangePinSuccessActivity changePinSuccessActivity);
+    DownlineListingActivity inject(DownlineListingActivity downlineListingActivity);
+    EbonusActivity inject(EbonusActivity ebonusActivity);
+    MonthlyPointReportActivity inject(MonthlyPointReportActivity monthlyPointReportActivity);
+    NetworkGenealogyActivity inject(NetworkGenealogyActivity monthlyPointReportActivity);
+    NetworkTableActivity inject(NetworkTableActivity monthlyPointReportActivity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);
@@ -95,4 +106,5 @@ public interface MainComponent {
     RestockReqInvoiceFragment inject(RestockReqInvoiceFragment restockReqInvoiceFragment);
     StockCardFragment inject(StockCardFragment stockCardFragment);
     StockUpdateFragment inject(StockUpdateFragment stockUpdateFragment);
+    BonusStatementFragment inject(BonusStatementFragment bonusStatementFragment);
 }

@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.detailRegistration.DetailRegistrationActivity"></activity>
+        <activity android:name=".ui.monthlyPointReport.MonthlyPointReportActivity"></activity>
+        <activity android:name=".ui.downlineListing.DownlineListingActivity" />
+        <activity android:name=".ui.ebonus.EbonusActivity" />
+        <activity android:name=".ui.networkTable.NetworkTableActivity" />
+        <activity android:name=".ui.networkGenealogy.NetworkGenealogyActivity" />
+        <activity android:name=".ui.detailRegistration.DetailRegistrationActivity" />
         <activity
             android:name=".ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity"
             android:windowSoftInputMode="adjustPan" />

@@ -11,6 +11,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
+import co.id.cakap.ui.bonusStatement.BonusStatementFragment;
+import co.id.cakap.ui.bonusStatement.BonusStatementPresenter;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
@@ -21,12 +23,22 @@ import co.id.cakap.ui.changePin.ChangePinPresenter;
 import co.id.cakap.ui.changePin.changePinSuccess.ChangePinSuccessActivity;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationActivity;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationPresenter;
+import co.id.cakap.ui.downlineListing.DownlineListingActivity;
+import co.id.cakap.ui.downlineListing.DownlineListingPresenter;
+import co.id.cakap.ui.ebonus.EbonusActivity;
+import co.id.cakap.ui.ebonus.EbonusPresenter;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivityPresenter;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessPresenter;
+import co.id.cakap.ui.monthlyPointReport.MonthlyPointReportActivity;
+import co.id.cakap.ui.monthlyPointReport.MonthlyPointReportPresenter;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivityPresenter;
+import co.id.cakap.ui.networkGenealogy.NetworkGenealogyActivity;
+import co.id.cakap.ui.networkGenealogy.NetworkGenealogyPresenter;
+import co.id.cakap.ui.networkTable.NetworkTableActivity;
+import co.id.cakap.ui.networkTable.NetworkTablePresenter;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.omset.OmsetActivityPresenter;
 import co.id.cakap.ui.registration.registrationSuccess.RegistrationSuccessActivity;
@@ -125,6 +137,11 @@ public class MainActivityModule {
     private ChangePinActivity changePinActivity;
     private ChangePasswordSuccessActivity changePasswordSuccessActivity;
     private ChangePinSuccessActivity changePinSuccessActivity;
+    private DownlineListingActivity downlineListingActivity;
+    private EbonusActivity ebonusActivity;
+    private MonthlyPointReportActivity monthlyPointReportActivity;
+    private NetworkGenealogyActivity networkGenealogyActivity;
+    private NetworkTableActivity networkTableActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -140,6 +157,7 @@ public class MainActivityModule {
     private RestockReqInvoiceFragment restockReqInvoiceFragment;
     private StockCardFragment stockCardFragment;
     private StockUpdateFragment stockUpdateFragment;
+    private BonusStatementFragment bonusStatementFragment;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
@@ -203,6 +221,10 @@ public class MainActivityModule {
 
     public MainActivityModule(RestockReqInvoiceFragment restockReqInvoiceFragment) {
         this.restockReqInvoiceFragment = restockReqInvoiceFragment;
+    }
+
+    public MainActivityModule(BonusStatementFragment bonusStatementFragment) {
+        this.bonusStatementFragment = bonusStatementFragment;
     }
 
     public MainActivityModule(DetailTransactionActivity detailTransactionActivity) {
@@ -299,6 +321,26 @@ public class MainActivityModule {
 
     public MainActivityModule(ChangePinSuccessActivity changePinSuccessActivity) {
         this.changePinSuccessActivity = changePinSuccessActivity;
+    }
+
+    public MainActivityModule(DownlineListingActivity downlineListingActivity) {
+        this.downlineListingActivity = downlineListingActivity;
+    }
+
+    public MainActivityModule(EbonusActivity ebonusActivity) {
+        this.ebonusActivity = ebonusActivity;
+    }
+
+    public MainActivityModule(MonthlyPointReportActivity monthlyPointReportActivity) {
+        this.monthlyPointReportActivity = monthlyPointReportActivity;
+    }
+
+    public MainActivityModule(NetworkGenealogyActivity networkGenealogyActivity) {
+        this.networkGenealogyActivity = networkGenealogyActivity;
+    }
+
+    public MainActivityModule(NetworkTableActivity networkTableActivity) {
+        this.networkTableActivity = networkTableActivity;
     }
 
     @Provides
@@ -566,5 +608,41 @@ public class MainActivityModule {
     @ActivityScope
     ChangePinPresenter provideChangePinPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new ChangePinPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    DownlineListingPresenter provideDownlineListingPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new DownlineListingPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    EbonusPresenter provideEbonusPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new EbonusPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    MonthlyPointReportPresenter provideMonthlyPointReportPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new MonthlyPointReportPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    NetworkGenealogyPresenter provideNetworkGenealogyPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new NetworkGenealogyPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    NetworkTablePresenter provideNetworkTablePresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new NetworkTablePresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    BonusStatementPresenter provideBonusStatementPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new BonusStatementPresenter(mainRepository, dataModel);
     }
 }

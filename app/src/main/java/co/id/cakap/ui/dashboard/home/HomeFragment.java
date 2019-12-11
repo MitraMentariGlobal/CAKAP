@@ -32,6 +32,7 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.CustomViewPagerAdapter;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.networkGenealogy.NetworkGenealogyActivity;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivity;
 import co.id.cakap.ui.cashbill.CashbillActivity;
 import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
@@ -193,7 +194,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @OnClick(R.id.relative_cashbill)
     public void homeCashbill(View view) {
-        startActivity(new Intent(getContext(), CashbillActivity.class));
+        if (Constant.LOGIN_DATA.equals(getContext().getResources().getString(R.string.member_login))) {
+
+        } else {
+            startActivity(new Intent(getContext(), CashbillActivity.class));
+        }
     }
 
     @OnClick(R.id.relative_invoice_to_mb)
@@ -209,5 +214,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @OnClick(R.id.relative_req_inv_to_bc)
     public void homeReqInvToBc(View view) {
         startActivity(new Intent(getContext(), ReqInvoiceToBcActivity.class));
+    }
+
+    @OnClick(R.id.linear_network_genealogy)
+    public void networkGenealogy(View view) {
+        startActivity(new Intent(getContext(), NetworkGenealogyActivity.class));
     }
 }

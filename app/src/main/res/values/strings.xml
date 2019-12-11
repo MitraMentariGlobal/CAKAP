@@ -181,4 +181,8 @@
         <item>@string/bank_cimb</item>
         <item>@string/bank_panin</item>
     </string-array>
+    <string name="title_activity_network_genealogy">NetworkGenealogyActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

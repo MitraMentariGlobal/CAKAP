@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import co.id.cakap.R;
+import co.id.cakap.ui.bonusStatement.BonusStatementFragment;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillFragment;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbFragment;
 
@@ -34,7 +35,7 @@ public class SectionsActivityMemberPagerAdapter extends FragmentPagerAdapter {
                 fragment = new ActivityCashbillFragment();
                 break;
             case 1:
-                fragment = new ActivityRekapBnsBcmbFragment();
+                fragment = new BonusStatementFragment();
                 break;
         }
         // getItem is called to instantiate the fragment for the given page.

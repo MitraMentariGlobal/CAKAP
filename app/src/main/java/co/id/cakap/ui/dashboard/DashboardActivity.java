@@ -63,9 +63,11 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
             mBottomNavigationViewMember.setVisibility(View.VISIBLE);
             mBottomNavigationViewMember.setOnNavigationItemSelectedListener(this);
             mBottomNavigationViewMember.setItemIconTintList(null);
+//            mBottomNavigationViewMember.getMenu().findItem(R.id.home_menu).setChecked(true);
         } else {
             mBottomNavigationView.setOnNavigationItemSelectedListener(this);
             mBottomNavigationView.setItemIconTintList(null);
+//            mBottomNavigationView.getMenu().findItem(R.id.home_menu).setChecked(true);
         }
     }
 

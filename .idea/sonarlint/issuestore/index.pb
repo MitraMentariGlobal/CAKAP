@@ -155,10 +155,6 @@ Happ/src/main/java/co/id/cakap/ui/dashboard/restock/RestockPresenter.java,6/1/6
 ,app/src/main/res/layout/fragment_restock.xml,3/5/351b09f161634ac05a20a3814019fa6ad9a81f47
 b
 2app/src/test/java/co/id/cakap/ExampleUnitTest.java,c/1/c14eefe84df00e9718a7c3e6d0b8e101a2c3e81c
-w
-Gapp/src/main/java/co/id/cakap/adapter/SectionsActivityPagerAdapter.java,4/2/4251b74fa303a74196c953cbac72e25a77066986
-v
-Fapp/src/main/java/co/id/cakap/adapter/SectionsRestockPagerAdapter.java,a/0/a007b4c422dff4347c6eb0be8baafeef0d7efbe2
 ’
 bapp/src/main/java/co/id/cakap/ui/dashboard/activity/activityCashbill/ActivityCashbillContract.java,4/0/40c0214cfef2abfe82c39d0c6829cefcd09c074e
 ’
@@ -791,3 +787,15 @@ c
 3app/src/main/res/drawable/ic_success_change_pin.xml,c/1/c172e8ce99b0f9b4ab8185946bf38128c076a25f
 h
 8app/src/main/res/drawable/ic_success_change_password.xml,1/8/185a8d1db6d88dd71bc551eea93cac0921225e29
+y
+Iapp/src/main/java/co/id/cakap/adapter/SectionsActivityBCPagerAdapter.java,2/3/2331632dedee3ae2190d19b3b94f93d5bcdafad4
+y
+Iapp/src/main/java/co/id/cakap/adapter/SectionsActivityMBPagerAdapter.java,e/5/e5240948a29ea210094fc104bd13168be87d6483
+}
+Mapp/src/main/java/co/id/cakap/adapter/SectionsActivityMemberPagerAdapter.java,0/d/0d24123e2742760505521c056243bae16cea590d
+x
+Happ/src/main/java/co/id/cakap/adapter/SectionsRestockBCPagerAdapter.java,a/d/ad16365d4a6d35f0849c7fef6162007e92780b06
+x
+Happ/src/main/java/co/id/cakap/adapter/SectionsRestockMBPagerAdapter.java,7/6/7675aa2962c7c5fba47c29b0308d5ea019994af0
+f
+6app/src/main/res/menu/bottomnavigation_menu_member.xml,d/9/d900e09fed032eff12e6ef70f69a91c2c702cfec

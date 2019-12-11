@@ -30,9 +30,14 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
 import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.dashboard.DashboardActivity;
+import co.id.cakap.ui.downlineListing.DownlineListingActivity;
+import co.id.cakap.ui.ebonus.EbonusActivity;
 import co.id.cakap.ui.feeBCMB.FeeBcmbActivity;
 import co.id.cakap.ui.login.LoginActivity;
+import co.id.cakap.ui.monthlyPointReport.MonthlyPointReportActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
+import co.id.cakap.ui.networkGenealogy.NetworkGenealogyActivity;
+import co.id.cakap.ui.networkTable.NetworkTableActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.stockReport.StockReportActivity;
@@ -121,33 +126,33 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     }
 
     @OnClick(R.id.account_my_profile)
-    public void aaccountMyProfile(View view) {
+    public void accountMyProfile(View view) {
         startActivity(new Intent(getContext(), MyProfileActivity.class));
     }
 
     @OnClick(R.id.account_network_genealogy)
-    public void aaccountNetworkGenealogy(View view) {
-
+    public void accountNetworkGenealogy(View view) {
+        startActivity(new Intent(getContext(), NetworkGenealogyActivity.class));
     }
 
     @OnClick(R.id.account_network_table)
-    public void aaccountNetworkTable(View view) {
-
+    public void accountNetworkTable(View view) {
+        startActivity(new Intent(getContext(), NetworkTableActivity.class));
     }
 
     @OnClick(R.id.account_ebonus)
-    public void aaccountEbonus(View view) {
-
+    public void accountEbonus(View view) {
+        startActivity(new Intent(getContext(), EbonusActivity.class));
     }
 
     @OnClick(R.id.account_downline_listing)
-    public void aaccountDownlineListing(View view) {
-
+    public void accountDownlineListing(View view) {
+        startActivity(new Intent(getContext(), DownlineListingActivity.class));
     }
 
     @OnClick(R.id.account_monthly_point_report)
-    public void aaccountMonthlyPointReport(View view) {
-
+    public void accountMonthlyPointReport(View view) {
+        startActivity(new Intent(getContext(), MonthlyPointReportActivity.class));
     }
 
     @OnClick(R.id.account_fee_bcmb)
