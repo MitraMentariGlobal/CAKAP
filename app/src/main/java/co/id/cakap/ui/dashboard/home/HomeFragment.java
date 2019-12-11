@@ -53,6 +53,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     ProgressBar mProgressBar;
     @BindView(R.id.linear_ewallet)
     LinearLayout mLinearEwallet;
+    @BindView(R.id.linear_member_info)
+    LinearLayout mLinearMemberInfo;
 
     @BindView(R.id.txt_transaction)
     TextView mTxtTransaction;
@@ -166,6 +168,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             mRelativePaddingTransaction2.setVisibility(View.VISIBLE);
             mCardViewBonusStatement.setVisibility(View.VISIBLE);
             mlinearNetworkGenealogy.setVisibility(View.VISIBLE);
+            mLinearMemberInfo.setVisibility(View.VISIBLE);
         }
     }
 

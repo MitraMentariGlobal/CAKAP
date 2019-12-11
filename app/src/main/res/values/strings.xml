@@ -119,6 +119,7 @@
     <string name="your_default_password">Your default password would be sent to your mail</string>
     <string name="success_update_profile">Update profile berhasil</string>
     <string name="title_information">Information</string>
+    <string name="semangat_pagi">Semangat Pagi,</string>
 
     <string name="bc_login">BC</string>
     <string name="mb_login">MB</string>
