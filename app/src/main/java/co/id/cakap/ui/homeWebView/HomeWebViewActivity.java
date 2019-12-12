@@ -40,7 +40,7 @@ public class HomeWebViewActivity extends AppCompatActivity implements HomeWebVie
     @BindView(R.id.relative_progress_bar)
     RelativeLayout mRelativeProgressBar;
 
-    String mUrl = "";
+    private String mUrl = "";
     private HomeWebViewContract.UserActionListener mUserActionListener;
 
     @Override
@@ -83,7 +83,7 @@ public class HomeWebViewActivity extends AppCompatActivity implements HomeWebVie
         if (Build.VERSION.SDK_INT >= 26) {
             webSetting.setSafeBrowsingEnabled(false);
         }
-        mWebView.setWebViewClient(new CustomWebViewClient());
+        mWebView.setWebViewClient(new HomeWebViewClient());
         mWebView.loadUrl(mUrl);
     }
 

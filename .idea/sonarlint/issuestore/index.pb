@@ -847,3 +847,5 @@ b
 2app/src/main/res/layout/activity_network_table.xml,c/7/c7ad419ee38f1eef0efa88d53b91ba33c447629a
 d
 4app/src/main/res/layout/fragment_bonus_statement.xml,d/5/d53c12f6a32b304986f4f3d435a6f595bc192f3d
+\
+,app/src/main/res/drawable/green_progress.xml,c/5/c586994aa20a6cdcd94223c89669a41a126c2db5

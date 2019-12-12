@@ -1,6 +1,6 @@
-package co.id.cakap.ui.bonusStatement;
+package co.id.cakap.ui.dashboard.activity.activityBonusStatement;
 
-public class BonusStatementContract {
+public class ActivityBonusStatementContract {
     public interface View{
         void initializeData();
         void showProgressBar();
@@ -9,6 +9,6 @@ public class BonusStatementContract {
     }
 
     public interface UserActionListener{
-        void setView(BonusStatementContract.View view);
+        void setView(ActivityBonusStatementContract.View view);
     }
 }

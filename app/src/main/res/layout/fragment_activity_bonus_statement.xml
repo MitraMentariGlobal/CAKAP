@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/include_spinner_filter"
+                layout="@layout/spinner_filter_layout"
+                android:layout_marginStart="@dimen/radius_10"
+                android:layout_marginTop="@dimen/radius_10"
+                android:layout_marginEnd="@dimen/radius_10"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/radius_10"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Nama"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="HENNY SAMBUAGA, Dra"
+                            style="@style/TexViewFont" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="No. Id"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="0000011"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Alamat"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_alamat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="JL. APEL NO. 40 KOMP. MABAD I, LENTENG AGUNG, JAKARTA SELATAN"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Nomor Hp"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_nomor_hp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="081318691011"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Kode BC-MB"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_kode_bcmb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="0000008"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Tanggal Gabung"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_tgl_gabung"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="24 March 2008"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Posisi"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_posisi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="Diamond Director"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Sponsor"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_sponsor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="SRI AGUSTINI, Drg"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Sponsor Id"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_sponsor_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="0000008"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/radius_10"
+                        android:layout_height="@dimen/radius_10"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="@dimen/radius_8"
+                        android:src="@drawable/circle_green"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:textSize="@dimen/text_14"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="Posisi"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_posisi_sponsor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_13"
+                            android:textColor="@color/black"
+                            android:text="Senior Director"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/progress_bar_layout" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

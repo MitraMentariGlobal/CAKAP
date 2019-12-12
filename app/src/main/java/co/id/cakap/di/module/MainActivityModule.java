@@ -11,8 +11,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
-import co.id.cakap.ui.bonusStatement.BonusStatementFragment;
-import co.id.cakap.ui.bonusStatement.BonusStatementPresenter;
+import co.id.cakap.ui.dashboard.activity.activityBonusStatement.ActivityBonusStatementFragment;
+import co.id.cakap.ui.dashboard.activity.activityBonusStatement.ActivityBonusStatementPresenter;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessPresenter;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
@@ -157,7 +157,7 @@ public class MainActivityModule {
     private RestockReqInvoiceFragment restockReqInvoiceFragment;
     private StockCardFragment stockCardFragment;
     private StockUpdateFragment stockUpdateFragment;
-    private BonusStatementFragment bonusStatementFragment;
+    private ActivityBonusStatementFragment activityBonusStatementFragment;
 
     public MainActivityModule(SplashScreenActivity splashScreenActivity) {
         this.splashScreenActivity = splashScreenActivity;
@@ -223,8 +223,8 @@ public class MainActivityModule {
         this.restockReqInvoiceFragment = restockReqInvoiceFragment;
     }
 
-    public MainActivityModule(BonusStatementFragment bonusStatementFragment) {
-        this.bonusStatementFragment = bonusStatementFragment;
+    public MainActivityModule(ActivityBonusStatementFragment activityBonusStatementFragment) {
+        this.activityBonusStatementFragment = activityBonusStatementFragment;
     }
 
     public MainActivityModule(DetailTransactionActivity detailTransactionActivity) {
@@ -642,7 +642,7 @@ public class MainActivityModule {
 
     @Provides
     @ActivityScope
-    BonusStatementPresenter provideBonusStatementPresenter(MainRepository mainRepository, DataModel dataModel) {
-        return new BonusStatementPresenter(mainRepository, dataModel);
+    ActivityBonusStatementPresenter provideBonusStatementPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new ActivityBonusStatementPresenter(mainRepository, dataModel);
     }
 }

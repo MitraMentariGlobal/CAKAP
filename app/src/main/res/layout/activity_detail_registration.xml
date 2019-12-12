@@ -54,10 +54,7 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <ProgressBar
-        android:id="@+id/main_progress_bar"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include
+        layout="@layout/progress_bar_layout" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

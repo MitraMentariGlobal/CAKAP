@@ -2,7 +2,7 @@ package co.id.cakap.di.component;
 
 import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.bonusStatement.BonusStatementFragment;
+import co.id.cakap.ui.dashboard.activity.activityBonusStatement.ActivityBonusStatementFragment;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
 import co.id.cakap.ui.changePassword.changePasswordSuccess.ChangePasswordSuccessActivity;
@@ -106,5 +106,5 @@ public interface MainComponent {
     RestockReqInvoiceFragment inject(RestockReqInvoiceFragment restockReqInvoiceFragment);
     StockCardFragment inject(StockCardFragment stockCardFragment);
     StockUpdateFragment inject(StockUpdateFragment stockUpdateFragment);
-    BonusStatementFragment inject(BonusStatementFragment bonusStatementFragment);
+    ActivityBonusStatementFragment inject(ActivityBonusStatementFragment activityBonusStatementFragment);
 }
