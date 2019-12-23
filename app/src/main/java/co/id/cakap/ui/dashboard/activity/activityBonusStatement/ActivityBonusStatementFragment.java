@@ -78,7 +78,6 @@ public class ActivityBonusStatementFragment extends Fragment implements Activity
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         if (mView == null) {
             mView = inflater.inflate(R.layout.fragment_activity_bonus_statement, container, false);
             mUnbinder = ButterKnife.bind(this, mView);

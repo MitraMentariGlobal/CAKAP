@@ -34,9 +34,10 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
 
     @BindView(R.id.bn_main)
     BottomNavigationView mBottomNavigationView;
-
     @BindView(R.id.bn_main_member)
     BottomNavigationView mBottomNavigationViewMember;
+
+    private DashboardContract.UserActionListener mUserActionListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,23 +58,31 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
 
     @Override
     public void initializeData() {
+        mUserActionListener = mDashboardPresenter;
+        mDashboardPresenter.setView(this);
+
         loadFragment(new HomeFragment());
+
         if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
             mBottomNavigationView.setVisibility(View.GONE);
             mBottomNavigationViewMember.setVisibility(View.VISIBLE);
             mBottomNavigationViewMember.setOnNavigationItemSelectedListener(this);
             mBottomNavigationViewMember.setItemIconTintList(null);
-//            mBottomNavigationViewMember.getMenu().findItem(R.id.home_menu).setChecked(true);
         } else {
             mBottomNavigationView.setOnNavigationItemSelectedListener(this);
             mBottomNavigationView.setItemIconTintList(null);
-//            mBottomNavigationView.getMenu().findItem(R.id.home_menu).setChecked(true);
         }
     }
 
     @Override
     public void setErrorResponse(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void moveToActivity(int index) {
+        loadFragment(ActivityFragment.newInstance(index));
+        mBottomNavigationViewMember.getMenu().findItem(R.id.activity_menu).setChecked(true);
     }
 
     @Override
@@ -104,7 +113,7 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
                 fragment = new HomeFragment();
                 break;
             case R.id.activity_menu:
-                fragment = new ActivityFragment();
+                fragment = ActivityFragment.newInstance(0);
                 break;
             case R.id.restock_menu:
                 fragment = new RestockFragment();

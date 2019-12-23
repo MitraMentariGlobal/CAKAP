@@ -1,13 +1,13 @@
 
-’squid:UselessImportCheck"bRemove this unused import 'com.google.android.material.floatingactionbutton.FloatingActionButton'.(ôˆêãÿÿÿÿÿ8®¡Õ±ì-
-Fsquid:S1604u"(Make this anonymous inner class a lambda(Ûâ—Þ8É€É‡ë-
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8¼Ç “ë-
+isquid:CommentedOutCodeLineA"<This block of commented-out lines of code should be removed.(è‚Ï·8É€É‡ë-
+Lsquid:S1481{")Remove this unused "user" local variable.(©Í”äýÿÿÿÿ8É€É‡ë-
 jsquid:CommentedOutCodeLine¦"<This block of commented-out lines of code should be removed.(Ïæ£ý8É€É‡ë-
+Esquid:S1068*"'Remove this unused "TAG" private field.(Ô‹‡½8É€É‡ë-
+Fsquid:S1604u"(Make this anonymous inner class a lambda(Ûâ—Þ8É€É‡ë-
+qsquid:MaximumInheritanceDepth)"<This class has 7 parents which is greater than 5 authorized.(üŽ›¦úÿÿÿÿ8ú¯“ë-
+nsquid:UselessImportCheck">Remove this unused import 'androidx.cardview.widget.CardView'.(ðÒ³ãýÿÿÿÿ8“‘ï±ì-
+]squid:S1854f":Remove this useless assignment to local variable "userId".(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
 [squid:S1854{"8Remove this useless assignment to local variable "user".(©Í”äýÿÿÿÿ8É€É‡ë-
 Nsquid:S1481f"+Remove this unused "userId" local variable.(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
-isquid:CommentedOutCodeLineA"<This block of commented-out lines of code should be removed.(è‚Ï·8É€É‡ë-
-nsquid:UselessImportCheck">Remove this unused import 'androidx.cardview.widget.CardView'.(ðÒ³ãýÿÿÿÿ8“‘ï±ì-
-Lsquid:S1481{")Remove this unused "user" local variable.(©Í”äýÿÿÿÿ8É€É‡ë-
-Esquid:S1068*"'Remove this unused "TAG" private field.(Ô‹‡½8É€É‡ë-
-]squid:S1854f":Remove this useless assignment to local variable "userId".(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
-qsquid:MaximumInheritanceDepth)"<This class has 7 parents which is greater than 5 authorized.(üŽ›¦úÿÿÿÿ8ú¯“ë-
-psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8¼Ç “ë-
+’squid:UselessImportCheck"bRemove this unused import 'com.google.android.material.floatingactionbutton.FloatingActionButton'.(ôˆêãÿÿÿÿÿ8®¡Õ±ì-

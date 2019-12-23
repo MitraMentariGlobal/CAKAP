@@ -40,6 +40,24 @@ public class ActivityFragment extends Fragment implements ActivityContract.View 
     private View mView;
     private Unbinder mUnbinder;
     private ActivityContract.UserActionListener mUserActionListener;
+    private int mPage = 0;
+
+    public static ActivityFragment newInstance(int page) {
+        ActivityFragment fragment = new ActivityFragment();
+
+        Bundle b = new Bundle();
+        b.putInt(Constant.MOVE_PAGE_ACTIVITY, page);
+
+        fragment.setArguments(b);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPage = getArguments().getInt(Constant.MOVE_PAGE_ACTIVITY);
+    }
 
     @Nullable
     @Override
@@ -80,6 +98,15 @@ public class ActivityFragment extends Fragment implements ActivityContract.View 
             SectionsActivityMemberPagerAdapter sectionsActivityMemberPagerAdapter = new SectionsActivityMemberPagerAdapter(getContext(), getChildFragmentManager());
             mViewPager.setAdapter(sectionsActivityMemberPagerAdapter);
         }
+
+        if (mPage != 0)
+            selectPage(mPage);
+
         mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+    void selectPage(int pageIndex){
+        mTabLayout.setScrollPosition(pageIndex,0f,true);
+        mViewPager.setCurrentItem(pageIndex);
     }
 }

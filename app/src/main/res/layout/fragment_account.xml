@@ -237,7 +237,7 @@
                             android:layout_width="@dimen/radius_24"
                             android:layout_height="@dimen/radius_24"
                             android:layout_marginEnd="@dimen/padding_16"
-                            android:src="@drawable/ic_my_profile" />
+                            android:src="@drawable/ic_network_geneology" />
 
                         <TextView
                             android:background="@android:color/transparent"
@@ -274,7 +274,7 @@
                             android:layout_width="@dimen/radius_24"
                             android:layout_height="@dimen/radius_24"
                             android:layout_marginEnd="@dimen/padding_16"
-                            android:src="@drawable/ic_my_profile" />
+                            android:src="@drawable/ic_network_table" />
 
                         <TextView
                             android:background="@android:color/transparent"
@@ -311,7 +311,7 @@
                             android:layout_width="@dimen/radius_24"
                             android:layout_height="@dimen/radius_24"
                             android:layout_marginEnd="@dimen/padding_16"
-                            android:src="@drawable/ic_my_profile" />
+                            android:src="@drawable/ic_ebonus" />
 
                         <TextView
                             android:background="@android:color/transparent"
@@ -348,7 +348,7 @@
                             android:layout_width="@dimen/radius_24"
                             android:layout_height="@dimen/radius_24"
                             android:layout_marginEnd="@dimen/padding_16"
-                            android:src="@drawable/ic_my_profile" />
+                            android:src="@drawable/ic_downline_listing" />
 
                         <TextView
                             android:background="@android:color/transparent"
@@ -385,7 +385,7 @@
                             android:layout_width="@dimen/radius_24"
                             android:layout_height="@dimen/radius_24"
                             android:layout_marginEnd="@dimen/padding_16"
-                            android:src="@drawable/ic_my_profile" />
+                            android:src="@drawable/ic_monthly_point_report" />
 
                         <TextView
                             android:background="@android:color/transparent"

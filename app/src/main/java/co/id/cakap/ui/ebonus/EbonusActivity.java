@@ -29,21 +29,16 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.EbonusAdapter;
 import co.id.cakap.adapter.ItemSearchEbonusAdapter;
-import co.id.cakap.adapter.ItemSearchStockCardAdapter;
-import co.id.cakap.adapter.StockCardAdapter;
 import co.id.cakap.data.EbonusData;
 import co.id.cakap.data.ItemEbonusCard;
-import co.id.cakap.data.ItemStockCard;
-import co.id.cakap.data.StockCardData;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.downlineListing.DownlineListingContract;
-import co.id.cakap.ui.stockReport.stockCard.StockCardContract;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.SearchDataDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -54,8 +49,10 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
 
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
+    @BindView(R.id.title_toolbar)
+    TextView mTitle;
     @BindView(R.id.month_spinner)
     Spinner mMonthSpinner;
     @BindView(R.id.year_spinner)
@@ -87,6 +84,7 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ebonus);
+        ButterKnife.bind(this);
 
         setupActivityComponent();
         initializeData();
@@ -103,6 +101,7 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
     public void initializeData() {
         mUserActionListener = mEbonusPresenter;
         mEbonusPresenter.setView(this);
+        mTitle.setText(getString(R.string.ebonus).toUpperCase());
 
         initSpinner();
         hideProgressBar();
@@ -136,12 +135,12 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -213,16 +212,6 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
         }
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
     private void setupOnFocusListener(EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -244,5 +233,20 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @OnClick(R.id.arrow_back)
+    public void arrowBack(View view) {
+        super.onBackPressed();
     }
 }

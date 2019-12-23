@@ -3,23 +3,22 @@ package co.id.cakap.ui.networkGenealogy;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
@@ -30,6 +29,8 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
     @Inject
     NetworkGenealogyPresenter mNetworkGenealogyPresenter;
 
+    @BindView(R.id.title_toolbar)
+    TextView mTitle;
     @BindView(R.id.relative_member_id)
     RelativeLayout mRelativeMemberId;
     @BindView(R.id.et_mb_id)
@@ -50,6 +51,7 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_network_genealogy);
+        ButterKnife.bind(this);
 
         setupActivityComponent();
         initializeData();
@@ -66,16 +68,7 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
     public void initializeData() {
         mUserActionListener = mNetworkGenealogyPresenter;
         mNetworkGenealogyPresenter.setView(this);
-
-        WebSettings webSetting = mWebView.getSettings();
-        webSetting.setJavaScriptEnabled(true);
-        webSetting.setDomStorageEnabled(true);
-        webSetting.setDisplayZoomControls(true);
-        if (Build.VERSION.SDK_INT >= 26) {
-            webSetting.setSafeBrowsingEnabled(false);
-        }
-        mWebView.setWebViewClient(new NetworkGenealogyWebViewClient());
-        mWebView.loadUrl(mUrl);
+        mTitle.setText(getString(R.string.network_genealogy).toUpperCase());
     }
 
     @Override
@@ -96,6 +89,16 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
     @Override
     public void setData(NetworkGenealogyData networkGenealogyData) {
         mName.setText(networkGenealogyData.getUser_name());
+
+        WebSettings webSetting = mWebView.getSettings();
+        webSetting.setJavaScriptEnabled(true);
+        webSetting.setDomStorageEnabled(true);
+        webSetting.setDisplayZoomControls(true);
+        if (Build.VERSION.SDK_INT >= 26) {
+            webSetting.setSafeBrowsingEnabled(false);
+        }
+        mWebView.setWebViewClient(new NetworkGenealogyWebViewClient());
+        mWebView.loadUrl(mUrl);
     }
 
     @OnClick(R.id.linear_submit)
@@ -110,4 +113,8 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
         }
     }
 
+    @OnClick(R.id.arrow_back)
+    public void arrowBack(View view) {
+        super.onBackPressed();
+    }
 }
