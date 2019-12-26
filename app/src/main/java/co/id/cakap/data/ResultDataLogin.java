@@ -23,18 +23,24 @@ public class ResultDataLogin implements Parcelable {
     @Expose
     private String url;
 
+    @SerializedName("role")
+    @Expose
+    private String role;
+
     @SerializedName("session_token")
     @Expose
     private String session_token;
 
     protected ResultDataLogin(Parcel in) {
         url = in.readString();
+        role = in.readString();
         session_token = in.readString();
     }
 
-    @Generated(hash = 2072942856)
-    public ResultDataLogin(String url, String session_token) {
+    @Generated(hash = 1795545469)
+    public ResultDataLogin(String url, String role, String session_token) {
         this.url = url;
+        this.role = role;
         this.session_token = session_token;
     }
 
@@ -45,6 +51,7 @@ public class ResultDataLogin implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(url);
+        dest.writeString(role);
         dest.writeString(session_token);
     }
 
@@ -59,6 +66,14 @@ public class ResultDataLogin implements Parcelable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getSession_token() {

@@ -1,5 +1,7 @@
 package co.id.cakap.ui.splashScreen;
 
+import co.id.cakap.network.ApiResponseLogin;
+
 public class SplashScreenContract {
     public interface View{
         void initializeData();
@@ -13,6 +15,7 @@ public class SplashScreenContract {
     }
 
     public interface UserActionListener{
+        void saveData(ApiResponseLogin apiResponseLogin);
         void setView(SplashScreenContract.View view);
         void getData();
     }

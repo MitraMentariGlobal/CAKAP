@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.ResultDataLogin;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.repository.MainRepository;
@@ -50,9 +51,12 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
                     public void onNext(ApiResponseLogin apiResponseLogin) {
                         Logger.d("=====>>>>>");
                         Logger.d("message : " + apiResponseLogin.getMessages());
+                        Logger.d("role : " + apiResponseLogin.getResult().getRole());
                         Logger.d("url : " + apiResponseLogin.getResult().getUrl());
                         Logger.d("session token : " + apiResponseLogin.getResult().getSession_token());
                         Logger.d("<<<<<=====");
+
+                        saveData(apiResponseLogin);
                         mView.goToHome(apiResponseLogin.getResult().getUrl());
                     }
 
@@ -76,5 +80,11 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
                         Logger.d("onComplete");
                     }
                 });
+    }
+
+    @Override
+    public void saveData(ApiResponseLogin apiResponseLogin) {
+        Constant.LOGIN_DATA = apiResponseLogin.getResult().getRole();
+        mDataModel.insertResultDataLogin(apiResponseLogin.getResult());
     }
 }

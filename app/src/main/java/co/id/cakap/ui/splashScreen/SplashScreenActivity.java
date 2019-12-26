@@ -76,8 +76,6 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void initializeData() {
-        Constant.LOGIN_DATA = "mem";
-
         mAuth = FirebaseAuth.getInstance();
         mUserActionListener = mSplashScreenPresenter;
         mSplashScreenPresenter.setView(this);
