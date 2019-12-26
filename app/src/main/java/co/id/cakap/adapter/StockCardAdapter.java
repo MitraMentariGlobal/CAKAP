@@ -17,7 +17,7 @@ import co.id.cakap.data.StockCardData;
 import co.id.cakap.data.StockUpdateData;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

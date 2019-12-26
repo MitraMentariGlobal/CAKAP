@@ -11,7 +11,7 @@ import lombok.Data;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

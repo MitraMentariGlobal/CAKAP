@@ -24,7 +24,7 @@ import co.id.cakap.data.ItemShopCompanyData;
 import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivityPresenter;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

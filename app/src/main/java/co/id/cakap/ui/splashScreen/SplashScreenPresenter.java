@@ -5,7 +5,7 @@ import java.util.List;
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
-import co.id.cakap.network.ApiResponseSession;
+import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
@@ -45,14 +45,15 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
 
     private void checkSession(FirebaseTokenData firebaseTokenData, ResultDataLogin resultDataLogin) {
         mMainRepository.postCheckLogin(firebaseTokenData.getFcmToken(), resultDataLogin.getSession_token())
-                .subscribe(new ResourceSubscriber<ApiResponseSession>() {
+                .subscribe(new ResourceSubscriber<ApiResponseLogin>() {
                     @Override
-                    public void onNext(ApiResponseSession apiResponseSession) {
+                    public void onNext(ApiResponseLogin apiResponseLogin) {
                         Logger.d("=====>>>>>");
-                        Logger.d("message : " + apiResponseSession.getMessages());
-                        Logger.d("url : " + apiResponseSession.getResult().getUrl());
+                        Logger.d("message : " + apiResponseLogin.getMessages());
+                        Logger.d("url : " + apiResponseLogin.getResult().getUrl());
+                        Logger.d("session token : " + apiResponseLogin.getResult().getSession_token());
                         Logger.d("<<<<<=====");
-                        mView.goToHome(apiResponseSession.getResult().getUrl());
+                        mView.goToHome(apiResponseLogin.getResult().getUrl());
                     }
 
                     @Override

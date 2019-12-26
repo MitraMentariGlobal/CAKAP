@@ -20,7 +20,7 @@ import co.id.cakap.data.RestockReqInvoiceData;
 import co.id.cakap.ui.dashboard.restock.restockReqInvoice.RestockReqInvoicePresenter;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

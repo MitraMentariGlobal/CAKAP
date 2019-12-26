@@ -18,7 +18,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

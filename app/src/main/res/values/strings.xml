@@ -124,9 +124,9 @@
     <string name="mark_all_read">Mark all as read</string>
     <string name="delete_all">Delete all</string>
 
-    <string name="bc_login">BC</string>
-    <string name="mb_login">MB</string>
-    <string name="member_login">Member</string>
+    <string name="bc_login">stc</string>
+    <string name="mb_login">mstc</string>
+    <string name="member_login">mem</string>
 
     <string name="title_1">Cool card</string>
     <string name="title_2">Ok card</string>

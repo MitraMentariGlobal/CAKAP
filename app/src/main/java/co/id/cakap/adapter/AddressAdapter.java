@@ -25,7 +25,7 @@ import co.id.cakap.utils.Logger;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

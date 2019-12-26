@@ -3,7 +3,7 @@ package co.id.cakap.model;
 import co.id.cakap.data.DaoSession;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

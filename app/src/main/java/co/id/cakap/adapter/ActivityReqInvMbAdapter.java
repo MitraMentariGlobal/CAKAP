@@ -22,7 +22,7 @@ import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbPresen
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

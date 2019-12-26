@@ -51,7 +51,7 @@ import co.id.cakap.ui.stockReport.stockUpdate.StockUpdateFragment;
 import dagger.Subcomponent;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

@@ -13,14 +13,14 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 
 public interface NetworkService {
     @FormUrlEncoded
     @POST("check_session")
-    Flowable<ApiResponseSession> postCheckLogin(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+    Flowable<ApiResponseLogin> postCheckLogin(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                 @Field(Constant.BODY_FCM_TOKEN) String fcmToken,
                                                 @Field(Constant.BODY_SESSION_TOKEN) String sessionToken);

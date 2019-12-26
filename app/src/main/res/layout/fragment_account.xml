@@ -254,6 +254,7 @@
 
                 <FrameLayout
                     android:id="@+id/account_network_table"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/radius_32"

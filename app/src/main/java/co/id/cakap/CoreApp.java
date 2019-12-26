@@ -8,7 +8,7 @@ import co.id.cakap.di.module.AppModule;
 import co.id.cakap.di.module.NetworkModule;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 
