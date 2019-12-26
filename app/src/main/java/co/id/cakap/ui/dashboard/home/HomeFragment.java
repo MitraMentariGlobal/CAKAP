@@ -30,6 +30,7 @@ import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.CustomViewPagerAdapter;
+import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.DashboardPresenter;
@@ -40,6 +41,7 @@ import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.registration.RegistrationActivity;
 import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.widget.CustomRecyclerViewPager;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
@@ -93,6 +95,15 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @BindView(R.id.linear_restock)
     LinearLayout mLinearRestock;
 
+    @BindView(R.id.txt_member_name)
+    TextView mTxtMemberName;
+    @BindView(R.id.txt_member_id)
+    TextView mTxtMemberId;
+    @BindView(R.id.txt_posisi)
+    TextView mTxtPosisi;
+    @BindView(R.id.txt_bonus)
+    TextView mTxtBonus;
+
     private View mView;
     private Unbinder mUnbinder;
     private Calendar mCalendar;
@@ -123,14 +134,22 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
-    public void setAdapter() {
+    public void setAdapter(ResultDataLogin resultDataLogin) {
+        mRunningText.setText(resultDataLogin.getRunning_text());
+        mRunningText.setSelected(true);
+
         DisplayMetrics metrics = getDisplayMetrics();
         List<String> metalList = Arrays.asList(
-                "https://asset-apac.unileversolutions.com/content/dam/unilever/lipton_international/global/general_image/worldtea_teatype_black_tea_img1_1460x593-1382286.jpg.ulenscale.1024x415.jpg"
+                resultDataLogin.getGambar()
         );
         CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(metrics, metalList, getContext());
         mRecyclerView.setAdapter(customViewPagerAdapter);
 //        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
+
+        mTxtMemberName.setText(resultDataLogin.getNama());
+        mTxtMemberId.setText(resultDataLogin.getMember_id());
+        mTxtPosisi.setText(resultDataLogin.getPosisi());
+        mTxtBonus.setText("Rp. " + Utils.priceFromString(resultDataLogin.getBonus()));
 
         hideProgressBar();
     }
@@ -140,8 +159,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mUserActionListener = mHomePresenter;
         mHomePresenter.setView(this);
         mUserActionListener.getData();
-        mRunningText.setText("SEMANGAT PAGI MITRA BLESSTEA........ APA KABAR..... MANTAP. BLESSTEA .... PASTI. CAKAP.... YES..... ");
-        mRunningText.setSelected(true);
         mCalendar = Calendar.getInstance();
         int days = mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
