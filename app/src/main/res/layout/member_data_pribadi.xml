@@ -430,6 +430,30 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linear_status_pernikahan"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_status_pernikahan"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="Status Pernikahan"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:enabled="false"/>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -451,6 +475,30 @@
                     android:id="@+id/spinner_jumlah_anak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_jumlah_anak"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_jumlah_anak"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="Jumlah Anak"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:enabled="false"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -719,37 +767,45 @@
                 android:focusable="true"/>
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/linear_activation_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_14"
-            android:text="Activation Code"
-            android:layout_marginTop="@dimen/radius_16"
-            android:layout_marginBottom="@dimen/radius_4"
-            style="@style/TexViewFont"/>
+            android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/et_gray_background_style">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:text="Activation Code"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_marginBottom="@dimen/radius_4"
+                style="@style/TexViewFont"/>
 
-            <EditText
-                android:id="@+id/et_activation_code"
-                style="@style/Font_family_light"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:hint="Activation Code"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textColorHint="@color/curated_light"
-                android:textSize="@dimen/text_14"
-                android:padding="@dimen/padding_12"
-                android:focusableInTouchMode="false"
-                android:focusable="false"
-                android:enabled="false"/>
+                android:background="@drawable/et_gray_background_style">
+
+                <EditText
+                    android:id="@+id/et_activation_code"
+                    style="@style/Font_family_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="Activation Code"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/curated_light"
+                    android:textSize="@dimen/text_14"
+                    android:padding="@dimen/padding_12"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:enabled="false"/>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

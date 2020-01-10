@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -45,8 +46,8 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
 
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.month_spinner)
     Spinner mMonthSpinner;
     @BindView(R.id.year_spinner)
@@ -100,12 +101,12 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override

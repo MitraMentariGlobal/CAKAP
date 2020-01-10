@@ -8,6 +8,8 @@ import java.util.List;
 import co.id.cakap.data.DaoSession;
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.FirebaseTokenDataDao;
+import co.id.cakap.data.NotificationData;
+import co.id.cakap.data.NotificationDataDao;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.data.ResultDataLoginDao;
 
@@ -19,11 +21,13 @@ import co.id.cakap.data.ResultDataLoginDao;
 public class DataModel extends BaseModel {
     private ResultDataLoginDao mResultDataLoginDao;
     private FirebaseTokenDataDao mFirebaseTokenDataDao;
+    private NotificationDataDao mNotificationDataDao;
 
     public DataModel(DaoSession daoSession) {
         super(daoSession);
         mResultDataLoginDao = daoSession.getResultDataLoginDao();
         mFirebaseTokenDataDao = daoSession.getFirebaseTokenDataDao();
+        mNotificationDataDao = daoSession.getNotificationDataDao();
     }
 
     public void insertResultDataLogin(ResultDataLogin resultDataLogin){
@@ -48,5 +52,17 @@ public class DataModel extends BaseModel {
 
     public void deleteFirebaseTokenData() {
         mFirebaseTokenDataDao.deleteAll();
+    }
+
+    public void insertNotificationData(NotificationData notificationData){
+        mNotificationDataDao.insertOrReplace(notificationData);
+    }
+
+    public List<NotificationData> getAllNotificationData() {
+        return mNotificationDataDao.loadAll();
+    }
+
+    public void deleteNotificationData() {
+        mNotificationDataDao.deleteAll();
     }
 }

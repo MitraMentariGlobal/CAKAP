@@ -63,10 +63,24 @@ android {
             buildConfigField 'String', 'ENDPOINT_CONTENT_TYPE', endpointProperties['endpoint_content_type']
             buildConfigField 'String', 'CONTENT_TYPE_TEXT', endpointProperties['content_type_text']
             buildConfigField 'String', 'CAKAP_KEY_TEXT', endpointProperties['cakap_key_text']
-            buildConfigField 'String', 'BODY_USER_ID', endpointProperties['body_user_id']
+
+            buildConfigField 'String', 'GET_GROUP_ID', endpointProperties['get_group_id']
+            buildConfigField 'String', 'GET_GROUP_ID_MEMBER', endpointProperties['get_group_id_member']
+            buildConfigField 'String', 'GET_GROUP_ID_BC', endpointProperties['get_group_id_bc']
+            buildConfigField 'String', 'GET_GROUP_ID_MB', endpointProperties['get_group_id_mb']
+
+            buildConfigField 'String', 'BODY_USER_NAME', endpointProperties['body_user_name']
             buildConfigField 'String', 'BODY_PASSWORD', endpointProperties['body_password']
             buildConfigField 'String', 'BODY_FCM_TOKEN', endpointProperties['body_fcm_token']
             buildConfigField 'String', 'BODY_SESSION_TOKEN', endpointProperties['body_session_token']
+            buildConfigField 'String', 'BODY_OLD_PASSWORD', endpointProperties['body_old_password']
+            buildConfigField 'String', 'BODY_NEW_PASSWORD', endpointProperties['body_new_password']
+            buildConfigField 'String', 'BODY_RETYPE_NEW_PASSWORD', endpointProperties['body_retype_new_password']
+            buildConfigField 'String', 'BODY_PIN', endpointProperties['body_pin']
+            buildConfigField 'String', 'BODY_OLD_PIN', endpointProperties['body_old_pin']
+            buildConfigField 'String', 'BODY_NEW_PIN', endpointProperties['body_new_pin']
+            buildConfigField 'String', 'BODY_RETYPE_NEW_PIN', endpointProperties['body_retype_new_pin']
+            buildConfigField 'String', 'BODY_USER_ID', endpointProperties['body_user_id']
         }
     }
 

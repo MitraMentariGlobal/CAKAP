@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +28,8 @@ public class ChangePinActivity extends AppCompatActivity implements ChangePinCon
     @Inject
     ChangePinPresenter mChangePinPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
 
@@ -85,12 +86,12 @@ public class ChangePinActivity extends AppCompatActivity implements ChangePinCon
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -103,6 +104,51 @@ public class ChangePinActivity extends AppCompatActivity implements ChangePinCon
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void setErrorOldPin(boolean isError) {
+        if (isError) {
+            mLinearOldPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorOldPin.setVisibility(View.VISIBLE);
+        } else {
+            mLinearOldPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorOldPin.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorNewPin(boolean isError, boolean isFilled) {
+        if (isError) {
+            mLinearNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorNewPin.setVisibility(View.VISIBLE);
+
+            if (isFilled)
+                mTxtErrorNewPin.setText(getString(R.string.field_not_match));
+            else
+                mTxtErrorNewPin.setText(getString(R.string.field_required));
+
+        } else {
+            mLinearNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorNewPin.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorRetypeNewPin(boolean isError, boolean isFilled) {
+        if (isError) {
+            mLinearRetypeNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorRetypeNewPin.setVisibility(View.VISIBLE);
+
+            if (isFilled)
+                mTxtErrorRetypeNewPin.setText(getString(R.string.field_not_match));
+            else
+                mTxtErrorRetypeNewPin.setText(getString(R.string.field_required));
+
+        } else {
+            mLinearRetypeNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorRetypeNewPin.setVisibility(View.GONE);
+        }
+    }
+
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
@@ -110,24 +156,6 @@ public class ChangePinActivity extends AppCompatActivity implements ChangePinCon
 
     @OnClick(R.id.text_submit)
     public void actionSubmit(View view) {
-        if (mEtNewPin.getText().toString().equals(mEtRetypeNewPin.getText().toString())) {
-            mLinearNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mTxtErrorNewPin.setVisibility(View.GONE);
-
-            mLinearRetypeNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mTxtErrorRetypeNewPin.setVisibility(View.GONE);
-
-            mUserActionListener.changeData(
-                    mEtOldPin.getText().toString(),
-                    mEtNewPin.getText().toString(),
-                    mEtRetypeNewPin.getText().toString()
-            );
-        } else {
-            mLinearNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
-            mTxtErrorNewPin.setVisibility(View.VISIBLE);
-
-            mLinearRetypeNewPin.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
-            mTxtErrorRetypeNewPin.setVisibility(View.VISIBLE);
-        }
+        mUserActionListener.checkData(mEtOldPin.getText().toString(), mEtNewPin.getText().toString(), mEtRetypeNewPin.getText().toString());
     }
 }

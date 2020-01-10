@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,8 +43,8 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
 
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -91,12 +92,12 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override

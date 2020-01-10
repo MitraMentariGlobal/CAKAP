@@ -52,8 +52,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     CustomRecyclerViewPager mRecyclerView;
     @BindView(R.id.running_text)
     TextView mRunningText;
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.linear_ewallet)
     LinearLayout mLinearEwallet;
     @BindView(R.id.linear_member_info)
@@ -104,6 +104,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @BindView(R.id.txt_bonus)
     TextView mTxtBonus;
 
+    @BindView(R.id.txt_sisa_pv)
+    TextView mTxtSisaPv;
+    @BindView(R.id.txt_pv)
+    TextView mTxtPv;
+    @BindView(R.id.pv_progress_bar)
+    ProgressBar mPvProgressBar;
+
     private View mView;
     private Unbinder mUnbinder;
     private Calendar mCalendar;
@@ -131,27 +138,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
                 .getAppComponent()
                 .plus(new MainActivityModule(this))
                 .inject(this);
-    }
-
-    @Override
-    public void setAdapter(ResultDataLogin resultDataLogin) {
-        mRunningText.setText(resultDataLogin.getRunning_text());
-        mRunningText.setSelected(true);
-
-        DisplayMetrics metrics = getDisplayMetrics();
-        List<String> metalList = Arrays.asList(
-                resultDataLogin.getGambar()
-        );
-        CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(metrics, metalList, getContext());
-        mRecyclerView.setAdapter(customViewPagerAdapter);
-//        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
-
-        mTxtMemberName.setText(resultDataLogin.getNama());
-        mTxtMemberId.setText(resultDataLogin.getMember_id());
-        mTxtPosisi.setText(resultDataLogin.getPosisi());
-        mTxtBonus.setText("Rp. " + Utils.priceFromString(resultDataLogin.getBonus()));
-
-        hideProgressBar();
     }
 
     @Override
@@ -191,13 +177,43 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
+    public void setAdapter(ResultDataLogin resultDataLogin) {
+        mRunningText.setText(resultDataLogin.getRunning_text());
+        mRunningText.setSelected(true);
+
+        DisplayMetrics metrics = getDisplayMetrics();
+        List<String> metalList = Arrays.asList(
+                resultDataLogin.getGambar()
+        );
+        CustomViewPagerAdapter customViewPagerAdapter = new CustomViewPagerAdapter(metrics, metalList, getContext());
+        mRecyclerView.setAdapter(customViewPagerAdapter);
+//        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
+
+        mTxtMemberName.setText(resultDataLogin.getNama());
+        mTxtMemberId.setText(resultDataLogin.getMember_id());
+        mTxtPosisi.setText(resultDataLogin.getPosisi());
+        mTxtBonus.setText("Rp. " + Utils.priceFromString(resultDataLogin.getBonus()));
+
+        int pvMax = Integer.parseInt(resultDataLogin.getPv_max());
+        int pvTupo = Integer.parseInt(resultDataLogin.getPv_tupo());
+        String sisaPv = String.valueOf(pvMax - pvTupo);
+
+        mPvProgressBar.setMax(pvMax);
+        mPvProgressBar.setProgress(pvTupo);
+        mTxtSisaPv.setText(sisaPv + " PV left to complete your tupo");
+        mTxtPv.setText(pvTupo + " PV");
+
+        hideProgressBar();
+    }
+
+    @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     private DisplayMetrics getDisplayMetrics() {

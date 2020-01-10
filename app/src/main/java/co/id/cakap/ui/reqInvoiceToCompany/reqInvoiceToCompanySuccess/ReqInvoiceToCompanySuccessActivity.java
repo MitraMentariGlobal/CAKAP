@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,8 +42,8 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     @Inject
     ReqInvoiceToCompanySuccessPresenter mReqInvoiceToCompanySuccessPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
     @BindView(R.id.title_toolbar)
@@ -132,12 +133,12 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.txt_copy_nominal)

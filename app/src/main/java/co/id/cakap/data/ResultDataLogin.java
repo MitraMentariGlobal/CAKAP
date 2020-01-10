@@ -47,6 +47,10 @@ public class ResultDataLogin implements Parcelable {
     @Expose
     private String nama;
 
+    @SerializedName("username")
+    @Expose
+    private String username;
+
     @SerializedName("member_id")
     @Expose
     private String member_id;
@@ -75,6 +79,7 @@ public class ResultDataLogin implements Parcelable {
         running_text = in.readString();
         gambar = in.readString();
         nama = in.readString();
+        username = in.readString();
         member_id = in.readString();
         posisi = in.readString();
         bonus = in.readString();
@@ -82,10 +87,11 @@ public class ResultDataLogin implements Parcelable {
         pv_tupo = in.readString();
     }
 
-    @Generated(hash = 1205854644)
+    @Generated(hash = 670082296)
     public ResultDataLogin(String url, String role, String session_token,
             String update_profile, String running_text, String gambar, String nama,
-            String member_id, String posisi, String bonus, String pv_max, String pv_tupo) {
+            String username, String member_id, String posisi, String bonus, String pv_max,
+            String pv_tupo) {
         this.url = url;
         this.role = role;
         this.session_token = session_token;
@@ -93,6 +99,7 @@ public class ResultDataLogin implements Parcelable {
         this.running_text = running_text;
         this.gambar = gambar;
         this.nama = nama;
+        this.username = username;
         this.member_id = member_id;
         this.posisi = posisi;
         this.bonus = bonus;
@@ -113,6 +120,7 @@ public class ResultDataLogin implements Parcelable {
         dest.writeString(running_text);
         dest.writeString(gambar);
         dest.writeString(nama);
+        dest.writeString(username);
         dest.writeString(member_id);
         dest.writeString(posisi);
         dest.writeString(bonus);
@@ -179,6 +187,14 @@ public class ResultDataLogin implements Parcelable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMember_id() {

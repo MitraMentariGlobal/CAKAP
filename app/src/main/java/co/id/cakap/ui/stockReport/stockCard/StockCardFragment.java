@@ -54,8 +54,8 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
 
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.month_spinner)
     Spinner mMonthSpinner;
     @BindView(R.id.year_spinner)
@@ -144,12 +144,12 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override

@@ -50,7 +50,6 @@
                     android:inputType="numberPassword"
                     android:hint="Old Pin"
                     android:maxLines="1"
-                    android:maxLength="6"
                     android:textColor="@color/black"
                     android:textColorHint="@color/curated_light"
                     android:textSize="@dimen/text_14"

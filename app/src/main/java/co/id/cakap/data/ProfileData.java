@@ -20,11 +20,27 @@ import lombok.Data;
 @Data
 @Entity
 public class ProfileData implements Parcelable {
-    @SerializedName("recruiting_id")
+    @SerializedName("joindate")
+    @Expose
+    private String tanggal_daftar;
+
+    @SerializedName("expired")
+    @Expose
+    private String tanggal_expired;
+
+    @SerializedName("no_stc")
+    @Expose
+    private String stockist_id;
+
+    @SerializedName("namastc")
+    @Expose
+    private String stockist_name;
+
+    @SerializedName("enroller_id")
     @Expose
     private String recruiting_id;
 
-    @SerializedName("recruiting_name")
+    @SerializedName("namaenroller")
     @Expose
     private String recruiting_name;
 
@@ -32,31 +48,31 @@ public class ProfileData implements Parcelable {
     @Expose
     private String sponsor_id;
 
-    @SerializedName("sponsor_name")
+    @SerializedName("namasponsor")
     @Expose
     private String sponsor_name;
 
-    @SerializedName("member_id")
+    @SerializedName("id")
     @Expose
     private String member_id;
 
-    @SerializedName("full_name")
+    @SerializedName("nama")
     @Expose
     private String full_name;
 
-    @SerializedName("id_card")
+    @SerializedName("noktp")
     @Expose
     private String id_card;
 
-    @SerializedName("gender")
+    @SerializedName("jk")
     @Expose
     private String gender;
 
-    @SerializedName("pob")
+    @SerializedName("tempatlahir")
     @Expose
     private String pob;
 
-    @SerializedName("dob")
+    @SerializedName("ftgllahir")
     @Expose
     private String dob;
 
@@ -68,80 +84,84 @@ public class ProfileData implements Parcelable {
     @Expose
     private String email;
 
-    @SerializedName("npwp")
+    @SerializedName("nonpwp")
     @Expose
     private String npwp;
 
-    @SerializedName("pekerjaan")
+    @SerializedName("office")
     @Expose
     private String pekerjaan;
 
-    @SerializedName("status_pernikahan")
+    @SerializedName("menikah")
     @Expose
     private String status_pernikahan;
 
-    @SerializedName("jumlah_anak")
+    @SerializedName("anak")
     @Expose
     private String jumlah_anak;
 
-    @SerializedName("phone_number")
+    @SerializedName("telp")
     @Expose
     private String phone_number;
 
-    @SerializedName("whatsapp_number")
-    @Expose
-    private String whatsapp_number;
+//    @SerializedName("whatsapp_number")
+//    @Expose
+//    private String whatsapp_number;
 
-    @SerializedName("mobile_number")
+    @SerializedName("hp")
     @Expose
     private String mobile_number;
 
-    @SerializedName("address")
+    @SerializedName("alamat")
     @Expose
     private String address;
 
-    @SerializedName("province")
+    @SerializedName("propinsi")
     @Expose
     private String province;
 
-    @SerializedName("city")
+    @SerializedName("kota")
     @Expose
     private String city;
 
-    @SerializedName("postal_code")
+    @SerializedName("kodepos")
     @Expose
     private String postal_code;
 
-    @SerializedName("activation_code")
-    @Expose
-    private String activation_code;
+//    @SerializedName("activation_code")
+//    @Expose
+//    private String activation_code;
 
-    @SerializedName("nama_pewaris")
+    @SerializedName("ahliwaris")
     @Expose
     private String nama_pewaris;
 
-    @SerializedName("relationship")
+    @SerializedName("hubungan")
     @Expose
     private String relationship;
 
-    @SerializedName("bank_name")
+    @SerializedName("namabank")
     @Expose
     private String bank_name;
 
-    @SerializedName("branch")
+    @SerializedName("area")
     @Expose
     private String branch;
 
-    @SerializedName("account_holder_name")
+    @SerializedName("namanasabah")
     @Expose
     private String account_holder_name;
 
-    @SerializedName("account_number")
+    @SerializedName("no")
     @Expose
     private String account_number;
 
     @Keep
     public ProfileData(
+            String tanggal_daftar,
+            String tanggal_expired,
+            String stockist_id,
+            String stockist_name,
             String recruiting_id,
             String recruiting_name,
             String sponsor_id,
@@ -159,13 +179,13 @@ public class ProfileData implements Parcelable {
             String status_pernikahan,
             String jumlah_anak,
             String phone_number,
-            String whatsapp_number,
+//            String whatsapp_number,
             String mobile_number,
             String address,
             String province,
             String city,
             String postal_code,
-            String activation_code,
+//            String activation_code,
             String nama_pewaris,
             String relationship,
             String bank_name,
@@ -190,13 +210,13 @@ public class ProfileData implements Parcelable {
         this.status_pernikahan = status_pernikahan;
         this.jumlah_anak = jumlah_anak;
         this.phone_number = phone_number;
-        this.whatsapp_number = whatsapp_number;
+//        this.whatsapp_number = whatsapp_number;
         this.mobile_number = mobile_number;
         this.address = address;
         this.province = province;
         this.city = city;
         this.postal_code = postal_code;
-        this.activation_code = activation_code;
+//        this.activation_code = activation_code;
         this.nama_pewaris = nama_pewaris;
         this.relationship = relationship;
         this.bank_name = bank_name;
@@ -223,13 +243,13 @@ public class ProfileData implements Parcelable {
         status_pernikahan = in.readString();
         jumlah_anak = in.readString();
         phone_number = in.readString();
-        whatsapp_number = in.readString();
+//        whatsapp_number = in.readString();
         mobile_number = in.readString();
         address = in.readString();
         province = in.readString();
         city = in.readString();
         postal_code = in.readString();
-        activation_code = in.readString();
+//        activation_code = in.readString();
         nama_pewaris = in.readString();
         relationship = in.readString();
         bank_name = in.readString();
@@ -244,6 +264,10 @@ public class ProfileData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(tanggal_daftar);
+        dest.writeString(tanggal_expired);
+        dest.writeString(stockist_id);
+        dest.writeString(stockist_name);
         dest.writeString(recruiting_id);
         dest.writeString(recruiting_name);
         dest.writeString(sponsor_id);
@@ -261,13 +285,11 @@ public class ProfileData implements Parcelable {
         dest.writeString(status_pernikahan);
         dest.writeString(jumlah_anak);
         dest.writeString(phone_number);
-        dest.writeString(whatsapp_number);
         dest.writeString(mobile_number);
         dest.writeString(address);
         dest.writeString(province);
         dest.writeString(city);
         dest.writeString(postal_code);
-        dest.writeString(activation_code);
         dest.writeString(nama_pewaris);
         dest.writeString(relationship);
         dest.writeString(bank_name);
@@ -279,6 +301,38 @@ public class ProfileData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getTanggal_daftar() {
+        return this.tanggal_daftar;
+    }
+
+    public void setTanggal_daftar(String tanggal_daftar) {
+        this.tanggal_daftar = tanggal_daftar;
+    }
+
+    public String getTanggal_expired() {
+        return this.tanggal_expired;
+    }
+
+    public void setTanggal_expired(String tanggal_expired) {
+        this.tanggal_expired = tanggal_expired;
+    }
+
+    public String getStockist_id() {
+        return this.stockist_id;
+    }
+
+    public void setStockist_id(String stockist_id) {
+        this.stockist_id = stockist_id;
+    }
+
+    public String getStockist_name() {
+        return this.stockist_name;
+    }
+
+    public void setStockist_name(String stockist_name) {
+        this.stockist_name = stockist_name;
     }
 
     public String getRecruiting_id() {
@@ -417,14 +471,6 @@ public class ProfileData implements Parcelable {
         this.phone_number = phone_number;
     }
 
-    public String getWhatsapp_number() {
-        return this.whatsapp_number;
-    }
-
-    public void setWhatsapp_number(String whatsapp_number) {
-        this.whatsapp_number = whatsapp_number;
-    }
-
     public String getMobile_number() {
         return this.mobile_number;
     }
@@ -463,14 +509,6 @@ public class ProfileData implements Parcelable {
 
     public void setPostal_code(String postal_code) {
         this.postal_code = postal_code;
-    }
-
-    public String getActivation_code() {
-        return this.activation_code;
-    }
-
-    public void setActivation_code(String activation_code) {
-        this.activation_code = activation_code;
     }
 
     public String getNama_pewaris() {

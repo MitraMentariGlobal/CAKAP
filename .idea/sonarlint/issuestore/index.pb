@@ -61,12 +61,8 @@ k
 ;app/src/main/java/co/id/cakap/network/ApiResponseLogin.java,7/f/7f0aa31c0305a65c69fd0050679a6acf0a33c6e0
 _
 /app/src/main/java/co/id/cakap/utils/Logger.java,4/d/4d94d5de646e0203a8b6debcde4ab6f0efc8a575
-m
-=app/src/main/java/co/id/cakap/network/ApiResponseSession.java,7/8/78aa6365e7820271f60921f66ca2c0c5b1a3b83e
 i
 9app/src/main/java/co/id/cakap/data/FirebaseTokenData.java,9/a/9af3327d1f55b708477749b7e96f390546260900
-i
-9app/src/main/java/co/id/cakap/data/ResultDataSession.java,f/b/fba0762c16f1c095615c397a16252018dfe526cd
 ^
 .app/src/main/java/co/id/cakap/utils/Utils.java,4/a/4abd1d997839294b07a358ddc90b7be6af361b42
 R

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +35,8 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Inject
     ChangePasswordPresenter mChangePasswordPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
 
@@ -92,12 +93,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -110,6 +111,51 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void setErrorOldPassword(boolean isError) {
+        if (isError) {
+            mLinearOldPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorOldPassword.setVisibility(View.VISIBLE);
+        } else {
+            mLinearOldPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorOldPassword.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorNewPassword(boolean isError, boolean isFilled) {
+        if (isError) {
+            mLinearNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorNewPassword.setVisibility(View.VISIBLE);
+
+            if (isFilled)
+                mTxtErrorNewPassword.setText(getString(R.string.field_not_match));
+            else
+                mTxtErrorNewPassword.setText(getString(R.string.field_required));
+
+        } else {
+            mLinearNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorNewPassword.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorRetypeNewPassword(boolean isError, boolean isFilled) {
+        if (isError) {
+            mLinearRetypeNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorRetypeNewPassword.setVisibility(View.VISIBLE);
+
+            if (isFilled)
+                mTxtErrorRetypeNewPassword.setText(getString(R.string.field_not_match));
+            else
+                mTxtErrorRetypeNewPassword.setText(getString(R.string.field_required));
+
+        } else {
+            mLinearRetypeNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorRetypeNewPassword.setVisibility(View.GONE);
+        }
+    }
+
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
@@ -117,23 +163,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
 
     @OnClick(R.id.text_submit)
     public void actionSubmit(View view) {
-        if (mEtNewPassword.getText().toString().equals(mEtRetypeNewPassword.getText().toString())) {
-            mLinearNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mTxtErrorNewPassword.setVisibility(View.GONE);
-
-            mLinearRetypeNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mTxtErrorRetypeNewPassword.setVisibility(View.GONE);
-
-            openDialogPin();
-        } else {
-            mLinearNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
-            mTxtErrorNewPassword.setVisibility(View.VISIBLE);
-
-            mLinearRetypeNewPassword.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
-            mTxtErrorRetypeNewPassword.setVisibility(View.VISIBLE);
-        }
+        mUserActionListener.checkData(mEtOldPassword.getText().toString(), mEtNewPassword.getText().toString(), mEtRetypeNewPassword.getText().toString());
     }
 
+    @Override
     public void openDialogPin() {
         PinDialog utils = new PinDialog();
         Dialog dialog = utils.showDialog(this);

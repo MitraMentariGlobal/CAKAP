@@ -39,8 +39,8 @@ public class SearchMemberActivity extends AppCompatActivity implements SearchMem
     @Inject
     SearchMemberActivityPresenter mSearchMemberActivityPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
     @BindView(R.id.main_list)
@@ -101,12 +101,12 @@ public class SearchMemberActivity extends AppCompatActivity implements SearchMem
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override

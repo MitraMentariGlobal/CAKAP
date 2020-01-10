@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +41,8 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     @Inject
     PickUpDeliveryActivityPresenter mPickUpDeliveryActivityPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
     @BindView(R.id.pick_up_delivery_spinner)
@@ -93,12 +94,12 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override

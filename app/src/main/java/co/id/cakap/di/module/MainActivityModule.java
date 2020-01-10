@@ -522,16 +522,19 @@ public class MainActivityModule {
     FeeBcmbActivityPresenter provideFeeBcmbActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new FeeBcmbActivityPresenter(mainRepository, dataModel);
     }
+
     @Provides
     @ActivityScope
     MyProfileActivityPresenter provideMyProfileActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new MyProfileActivityPresenter(mainRepository, dataModel);
     }
+
     @Provides
     @ActivityScope
     OmsetActivityPresenter provideOmsetActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new OmsetActivityPresenter(mainRepository, dataModel);
     }
+
     @Provides
     @ActivityScope
     SearchMemberActivityPresenter provideSearchMemberActivityPresenter(MainRepository mainRepository, DataModel dataModel) {

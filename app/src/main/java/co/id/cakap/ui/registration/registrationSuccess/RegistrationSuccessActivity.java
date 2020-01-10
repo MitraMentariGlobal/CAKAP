@@ -34,8 +34,8 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
     @Inject
     RegistrationSuccessPresenter mRegistrationSuccessPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitleToolbar;
 
@@ -148,8 +148,8 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
     LinearLayout mLinearTanggalExpired;
     @BindView(R.id.et_tanggal_daftar)
     EditText mEtTanggalDaftar;
-    @BindView(R.id.et_bcmb_id_nama)
-    EditText mEtBCMBId;
+    @BindView(R.id.et_stockist_id_nama)
+    EditText mEtStockistIdName;
 
     private String mTitle = "";
     private RegistrationSuccessData mSuccessData;
@@ -190,12 +190,12 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override

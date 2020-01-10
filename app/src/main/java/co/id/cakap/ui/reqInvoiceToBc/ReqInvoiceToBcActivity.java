@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,8 +47,8 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
     @Inject
     ReqInvoiceToBcActivityPresenter mReqInvoiceToBcActivityPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
     @BindView(R.id.main_list)
@@ -102,12 +103,12 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override

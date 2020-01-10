@@ -36,12 +36,23 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @Inject
     MyProfileActivityPresenter mMyProfileActivityPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
     @BindView(R.id.bottom_sheet)
     View bottomSheet;
+
+    @BindView(R.id.linear_data_pendaftaran)
+    LinearLayout mLinearDataPendaftaran;
+    @BindView(R.id.linear_tanggal_expired)
+    LinearLayout mLinearTanggalExpired;
+    @BindView(R.id.et_tanggal_daftar)
+    EditText mEtTanggalDaftar;
+    @BindView(R.id.et_tanggal_expired)
+    EditText mEtTanggalExpired;
+    @BindView(R.id.et_stockist_id_nama)
+    EditText mEtStockistIdNama;
 
     @BindView(R.id.et_rec_id)
     EditText mEtRecId;
@@ -110,6 +121,8 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
 
     @BindView(R.id.et_postal_code)
     EditText mEtPostalCode;
+    @BindView(R.id.linear_activation_code)
+    LinearLayout mLinearActivationCode;
     @BindView(R.id.et_activation_code)
     EditText mEtActivationCode;
 
@@ -146,15 +159,6 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @BindView(R.id.relative_sponsor_id)
     RelativeLayout mRelativeSponsorId;
 
-    @BindView(R.id.linear_data_pendaftaran)
-    LinearLayout mLinearDataPendaftaran;
-    @BindView(R.id.linear_tanggal_expired)
-    LinearLayout mLinearTanggalExpired;
-    @BindView(R.id.et_tanggal_daftar)
-    EditText mEtTanggalDaftar;
-    @BindView(R.id.et_bcmb_id_nama)
-    EditText mEtBCMBId;
-
     @BindView(R.id.txt_save_top)
     TextView mTxtSaveTop;
     @BindView(R.id.txt_save_bottom)
@@ -170,12 +174,26 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     EditText mEtPekerjaan;
     @BindView(R.id.et_whatsapp_number)
     EditText mEtWhatsappNumber;
+
+    @BindView(R.id.linear_spinner_status_pernikahan)
+    LinearLayout mLinearSpinnerStatusPernikahan;
     @BindView(R.id.spinner_status_pernikahan)
     Spinner mSpinnerStatusPernikahan;
+    @BindView(R.id.linear_status_pernikahan)
+    LinearLayout mLinearStatusPernikahan;
+    @BindView(R.id.et_status_pernikahan)
+    EditText mEtStatusPernikahan;
+
+    @BindView(R.id.linear_spinner_jumlah_anak)
+    LinearLayout mLinearSpinnerJumlahAnak;
     @BindView(R.id.spinner_jumlah_anak)
     Spinner mSpinnerJumlahAnak;
+    @BindView(R.id.linear_jumlah_anak)
+    LinearLayout mLinearJumlahAnak;
+    @BindView(R.id.et_jumlah_anak)
+    EditText mEtJumlahAnak;
 
-    private ProfileData mSuccessData;
+    private ProfileData mProfileData;
     private MyProfileActivityContract.UserActionListener mUserActionListener;
 
     @Override
@@ -202,23 +220,29 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mBehavior = BottomSheetBehavior.from(bottomSheet);
 
         mTitle.setText(getString(R.string.my_profile).toUpperCase());
-        setSuccessInputData();
-        hideProgressBar();
+        mUserActionListener.getProfileData();
     }
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void setErrorResponse(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setData(ProfileData profileData) {
+        mProfileData = profileData;
+
+        setSuccessInputData();
     }
 
     @OnClick(R.id.arrow_back)
@@ -248,7 +272,6 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Toast.makeText(MyProfileActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -306,118 +329,149 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     public void setSuccessInputData() {
         mLinearDataPendaftaran.setVisibility(View.VISIBLE);
         mLinearForProfile.setVisibility(View.VISIBLE);
-        mLinearForProfile2.setVisibility(View.VISIBLE);
+//        mLinearForProfile2.setVisibility(View.VISIBLE);
+
+        mEtTanggalDaftar.setEnabled(false);
+        mEtTanggalDaftar.setText(mProfileData.getTanggal_daftar());
+        mEtTanggalDaftar.setTextColor(getResources().getColor(R.color.curated_light));
+
+        mEtTanggalExpired.setEnabled(false);
+        mEtTanggalExpired.setText(mProfileData.getTanggal_expired());
+        mEtTanggalExpired.setTextColor(getResources().getColor(R.color.curated_light));
+
+        mEtStockistIdNama.setEnabled(false);
+        mEtStockistIdNama.setText(mProfileData.getStockist_id() + " / " + mProfileData.getStockist_name());
+        mEtStockistIdNama.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtRecId.setEnabled(false);
-//        mEtRecId.setText(mSuccessData.getRecruiting_id());
+        mEtRecId.setText(mProfileData.getRecruiting_id());
         mEtRecId.setTextColor(getResources().getColor(R.color.curated_light));
         mSearchRecId.setVisibility(View.GONE);
 
         mEtRecName.setEnabled(false);
-//        mEtRecName.setText(mSuccessData.getRecruiting_name());
+        mEtRecName.setText(mProfileData.getRecruiting_name());
         mEtRecName.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtSponsorId.setEnabled(false);
-//        mEtSponsorId.setText(mSuccessData.getSponsor_id());
+        mEtSponsorId.setText(mProfileData.getSponsor_id());
         mEtSponsorId.setTextColor(getResources().getColor(R.color.curated_light));
         mSearchSponsorId.setVisibility(View.GONE);
 
         mEtSponsorName.setEnabled(false);
-//        mEtSponsorName.setText(mSuccessData.getSponsor_name());
+        mEtSponsorName.setText(mProfileData.getSponsor_name());
         mEtSponsorName.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtMemberId.setEnabled(false);
-//        mEtMemberId.setText(mSuccessData.getMember_id());
+        mEtMemberId.setText(mProfileData.getMember_id());
         mEtMemberId.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtFulllName.setEnabled(false);
-//        mEtFulllName.setText(mSuccessData.getFull_name());
+        mEtFulllName.setText(mProfileData.getFull_name());
         mEtFulllName.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtIdCard.setEnabled(false);
-//        mEtIdCard.setText(mSuccessData.getId_card());
+        mEtIdCard.setText(mProfileData.getId_card());
         mEtIdCard.setTextColor(getResources().getColor(R.color.curated_light));
 
-//        mRadioGroupGender.setVisibility(View.GONE);
-//        mEtGender.setVisibility(View.VISIBLE);
-//        mEtGender.setEnabled(false);
-//        mEtGender.setText(mSuccessData.getGender());
-//        mEtGender.setTextColor(getResources().getColor(R.color.curated_light));
+        mRadioGroupGender.setVisibility(View.GONE);
+        mEtGender.setVisibility(View.VISIBLE);
+        mEtGender.setEnabled(false);
+        mEtGender.setText(mProfileData.getGender());
+        mEtGender.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mEtPob.setEnabled(false);
-//        mEtPob.setText(mSuccessData.getPob());
+        mEtPob.setText(mProfileData.getPob());
 //        mEtPob.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtDob.setEnabled(false);
-//        mEtDob.setText(mSuccessData.getDob());
+        mEtDob.setText(mProfileData.getDob());
         mEtDob.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mLinearSpinnerReligion.setVisibility(View.GONE);
 //        mLinearEtReligion.setVisibility(View.VISIBLE);
 //        mEtReligion.setEnabled(false);
-//        mEtReligion.setText(mSuccessData.getReligion());
+//        mEtReligion.setText(mProfileData.getReligion());
 //        mEtReligion.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mEtEmail.setEnabled(false);
-//        mEtEmail.setText(mSuccessData.getEmail());
+        mEtEmail.setText(mProfileData.getEmail());
 //        mEtEmail.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mEtNpwp.setEnabled(false);
+        mEtNpwp.setText(mProfileData.getNpwp());
+        mEtNpwp.setTextColor(getResources().getColor(R.color.curated_light));
+
+        mEtPekerjaan.setEnabled(false);
+        mEtPekerjaan.setText(mProfileData.getPekerjaan());
+        mEtPekerjaan.setTextColor(getResources().getColor(R.color.curated_light));
+
+        mLinearSpinnerStatusPernikahan.setVisibility(View.GONE);
+        mLinearStatusPernikahan.setVisibility(View.VISIBLE);
+        mEtStatusPernikahan.setText(mProfileData.getStatus_pernikahan());
+
+        mLinearSpinnerJumlahAnak.setVisibility(View.GONE);
+        mLinearJumlahAnak.setVisibility(View.VISIBLE);
+        mEtJumlahAnak.setText(mProfileData.getJumlah_anak());
+
 //        mEtPhoneNumber.setEnabled(false);
-//        mEtPhoneNumber.setText(mSuccessData.getPhone_number());
+        mEtPhoneNumber.setText(mProfileData.getPhone_number());
 //        mEtPhoneNumber.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mEtMobileNumber.setEnabled(false);
-//        mEtMobileNumber.setText(mSuccessData.getMobile_number());
+        mEtMobileNumber.setText(mProfileData.getMobile_number());
 //        mEtMobileNumber.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtAddress.setEnabled(false);
-//        mEtAddress.setText(mSuccessData.getAddress());
+        mEtAddress.setText(mProfileData.getAddress());
         mEtAddress.setTextColor(getResources().getColor(R.color.curated_light));
 
-//        mLinearSpinnerProvince.setVisibility(View.GONE);
-//        mLinearEtProvince.setVisibility(View.VISIBLE);
-//        mEtProvince.setEnabled(false);
-//        mEtProvince.setText(mSuccessData.getProvince());
-//        mEtProvince.setTextColor(getResources().getColor(R.color.curated_light));
+        mLinearSpinnerProvince.setVisibility(View.GONE);
+        mLinearEtProvince.setVisibility(View.VISIBLE);
+        mEtProvince.setEnabled(false);
+        mEtProvince.setText(mProfileData.getProvince());
+        mEtProvince.setTextColor(getResources().getColor(R.color.curated_light));
 
-//        mLinearSpinnerCity.setVisibility(View.GONE);
-//        mLinearEtCity.setVisibility(View.VISIBLE);
-//        mEtCity.setEnabled(false);
-//        mEtCity.setText(mSuccessData.getCity());
-//        mEtCity.setTextColor(getResources().getColor(R.color.curated_light));
+        mLinearSpinnerCity.setVisibility(View.GONE);
+        mLinearEtCity.setVisibility(View.VISIBLE);
+        mEtCity.setEnabled(false);
+        mEtCity.setText(mProfileData.getCity());
+        mEtCity.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mEtPostalCode.setEnabled(false);
-//        mEtPostalCode.setText(mSuccessData.getPostal_code());
+        mEtPostalCode.setText(mProfileData.getPostal_code());
 //        mEtPostalCode.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mEtActivationCode.setEnabled(false);
-//        mEtActivationCode.setText(mSuccessData.getActivation_code());
-        mEtActivationCode.setTextColor(getResources().getColor(R.color.curated_light));
+        mLinearActivationCode.setVisibility(View.GONE);
+//        mEtActivationCode.setEnabled(false);
+//        mEtActivationCode.setText(mProfileData.getActivation_code());
+//        mEtActivationCode.setTextColor(getResources().getColor(R.color.curated_light));
 
+        String[] ahliWaris = mProfileData.getNama_pewaris().split(";");
 //        mEtHeirName.setEnabled(false);
-//        mEtHeirName.setText(mSuccessData.getNama_pewaris());
+        mEtHeirName.setText(ahliWaris[0]);
 //        mEtHeirName.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mEtRelationship.setEnabled(false);
-//        mEtRelationship.setText(mSuccessData.getRelationship());
+//        mEtRelationship.setText(mProfileData.getRelationship());
+        mEtRelationship.setText(ahliWaris[1]);
 //        mEtRelationship.setTextColor(getResources().getColor(R.color.curated_light));
 
         mLinearSpinnerBank.setVisibility(View.GONE);
         mLinearEtBank.setVisibility(View.VISIBLE);
         mEtBank.setEnabled(false);
-//        mEtBank.setText(mSuccessData.getBank_name());
+        mEtBank.setText(mProfileData.getBank_name());
         mEtBank.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtBranchName.setEnabled(false);
-//        mEtBranchName.setText(mSuccessData.getBranch());
+        mEtBranchName.setText(mProfileData.getBranch());
         mEtBranchName.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtAccountHolder.setEnabled(false);
-//        mEtAccountHolder.setText(mSuccessData.getAccount_holder_name());
+        mEtAccountHolder.setText(mProfileData.getAccount_holder_name());
         mEtAccountHolder.setTextColor(getResources().getColor(R.color.curated_light));
 
         mEtAccountNumber.setEnabled(false);
-//        mEtAccountNumber.setText(mSuccessData.getAccount_number());
+        mEtAccountNumber.setText(mProfileData.getAccount_number());
         mEtAccountNumber.setTextColor(getResources().getColor(R.color.curated_light));
     }
 }

@@ -1,3 +1,4 @@
 
-Fsquid:S1148R"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8£Ëóí×-
-Ksquid:S1604)"(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
+Ksquid:S1604*"(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
+Fsquid:S1148U"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8£Ëóí×-
+Tsquid:S2696j"6Make the enclosing method "static" or remove this set.(ªĞËµ8º‰í”ô-

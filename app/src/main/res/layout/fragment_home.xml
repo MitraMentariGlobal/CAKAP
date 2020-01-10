@@ -342,6 +342,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/txt_sisa_pv"
                         android:background="@android:color/transparent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -350,7 +351,6 @@
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="50 PV left to complete your tupo"
                         android:layout_marginTop="@dimen/radius_16"
                         style="@style/TexViewFont"/>
 
@@ -362,16 +362,16 @@
                         android:background="@drawable/background_green_list_style">
 
                         <ProgressBar
-                            android:id="@+id/progressBar"
+                            android:id="@+id/pv_progress_bar"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/radius_2"
                             android:max="100"
-                            android:progress="50"
                             android:progressDrawable="@drawable/green_progress"/>
 
                         <TextView
+                            android:id="@+id/txt_pv"
                             android:background="@android:color/transparent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -380,7 +380,6 @@
                             android:textStyle="bold"
                             android:textColor="@color/dark_orange"
                             android:layout_marginTop="@dimen/radius_2"
-                            android:text="50 PV"
                             style="@style/TexViewFont"/>
                     </RelativeLayout>
 

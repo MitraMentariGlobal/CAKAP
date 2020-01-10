@@ -2,14 +2,20 @@ package co.id.cakap.ui.dashboard.notification;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,13 +42,21 @@ public class NotificationFragment extends Fragment implements NotificationContra
     TextView mTitle;
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
+    @BindView(R.id.notification_toolbar)
+    Toolbar mToolbar;
 
     private View mView;
     private Unbinder mUnbinder;
     private NotificationAdapter mListAdapter;
     private NotificationContract.UserActionListener mUserActionListener;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -50,6 +64,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
         if (mView == null) {
             mView = inflater.inflate(R.layout.fragment_notification, container, false);
             mUnbinder = ButterKnife.bind(this, mView);
+            ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
 
             setupActivityComponent();
             initializeData();
@@ -72,6 +87,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
         mNotificationPresenter.setView(this);
         mUserActionListener.getData();
 
+        mToolbar.setTitle("");
         mTitle.setText(getContext().getResources().getString(R.string.notification).toUpperCase());
     }
 
@@ -87,16 +103,41 @@ public class NotificationFragment extends Fragment implements NotificationContra
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void setErrorResponse(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.action_bar_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_mark_read:
+                setErrorResponse("action_mark_read");
+                return true;
+
+            case R.id.action_delete_all:
+                setErrorResponse("action_delete_all");
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

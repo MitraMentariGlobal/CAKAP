@@ -89,7 +89,7 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14"
-            android:text="BCMB ID / Nama"
+            android:text="Stockiest ID / Nama"
             android:layout_marginTop="@dimen/radius_16"
             android:layout_marginBottom="@dimen/radius_4"
             style="@style/TexViewFont"/>
@@ -100,12 +100,12 @@
             android:background="@drawable/et_gray_background_style">
 
             <EditText
-                android:id="@+id/et_bcmb_id_nama"
+                android:id="@+id/et_stockist_id_nama"
                 style="@style/Font_family_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                android:hint="BCMB ID / Nama"
+                android:hint="Stockiest ID / Nama"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textColorHint="@color/curated_light"

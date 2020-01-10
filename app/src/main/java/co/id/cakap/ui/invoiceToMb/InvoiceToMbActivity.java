@@ -49,8 +49,8 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
     @Inject
     InvoiceToMbActivityPresenter mInvoiceToMbActivityPresenter;
 
-    @BindView(R.id.main_progress_bar)
-    ProgressBar mProgressBar;
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
     @BindView(R.id.linear_expand_collapse)
@@ -118,12 +118,12 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
 
     @Override
     public void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
+        mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
