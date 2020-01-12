@@ -40,6 +40,10 @@ public class Utils {
         return dp * (context.getResources().getDisplayMetrics().density);
     }
 
+    public static boolean isEmailValid(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     public static void expand(final View v) {
         int matchParentMeasureSpec = View.MeasureSpec.makeMeasureSpec(((View) v.getParent()).getWidth(), View.MeasureSpec.EXACTLY);
         int wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);

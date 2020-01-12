@@ -8,8 +8,12 @@ import java.util.List;
 import co.id.cakap.data.DaoSession;
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.FirebaseTokenDataDao;
+import co.id.cakap.data.JenisKelaminData;
+import co.id.cakap.data.JenisKelaminDataDao;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.data.NotificationDataDao;
+import co.id.cakap.data.ReligionData;
+import co.id.cakap.data.ReligionDataDao;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.data.ResultDataLoginDao;
 
@@ -22,12 +26,16 @@ public class DataModel extends BaseModel {
     private ResultDataLoginDao mResultDataLoginDao;
     private FirebaseTokenDataDao mFirebaseTokenDataDao;
     private NotificationDataDao mNotificationDataDao;
+    private JenisKelaminDataDao mJenisKelaminDataDao;
+    private ReligionDataDao mReligionDataDao;
 
     public DataModel(DaoSession daoSession) {
         super(daoSession);
         mResultDataLoginDao = daoSession.getResultDataLoginDao();
         mFirebaseTokenDataDao = daoSession.getFirebaseTokenDataDao();
         mNotificationDataDao = daoSession.getNotificationDataDao();
+        mJenisKelaminDataDao = daoSession.getJenisKelaminDataDao();
+        mReligionDataDao = daoSession.getReligionDataDao();
     }
 
     public void insertResultDataLogin(ResultDataLogin resultDataLogin){
@@ -64,5 +72,29 @@ public class DataModel extends BaseModel {
 
     public void deleteNotificationData() {
         mNotificationDataDao.deleteAll();
+    }
+
+    public void insertJenisKelaminData(JenisKelaminData jenisKelaminData){
+        mJenisKelaminDataDao.insertOrReplace(jenisKelaminData);
+    }
+
+    public List<JenisKelaminData> getAllJenisKelaminData() {
+        return mJenisKelaminDataDao.loadAll();
+    }
+
+    public void deleteJenisKelaminData() {
+        mJenisKelaminDataDao.deleteAll();
+    }
+
+    public void insertReligionData(ReligionData religionData){
+        mReligionDataDao.insertOrReplace(religionData);
+    }
+
+    public List<ReligionData> getAllReligionData() {
+        return mReligionDataDao.loadAll();
+    }
+
+    public void deleteReligionData() {
+        mReligionDataDao.deleteAll();
     }
 }

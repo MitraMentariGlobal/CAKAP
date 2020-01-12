@@ -96,6 +96,10 @@ public class ProfileData implements Parcelable {
     @Expose
     private String status_pernikahan;
 
+    @SerializedName("suami")
+    @Expose
+    private String suami;
+
     @SerializedName("anak")
     @Expose
     private String jumlah_anak;
@@ -103,6 +107,10 @@ public class ProfileData implements Parcelable {
     @SerializedName("telp")
     @Expose
     private String phone_number;
+
+    @SerializedName("fax")
+    @Expose
+    private String fax;
 
 //    @SerializedName("whatsapp_number")
 //    @Expose
@@ -124,6 +132,10 @@ public class ProfileData implements Parcelable {
     @Expose
     private String city;
 
+    @SerializedName("kota_id")
+    @Expose
+    private String city_id;
+
     @SerializedName("kodepos")
     @Expose
     private String postal_code;
@@ -139,6 +151,10 @@ public class ProfileData implements Parcelable {
     @SerializedName("hubungan")
     @Expose
     private String relationship;
+
+    @SerializedName("bank_id")
+    @Expose
+    private String bank_id;
 
     @SerializedName("namabank")
     @Expose
@@ -177,17 +193,21 @@ public class ProfileData implements Parcelable {
             String npwp,
             String pekerjaan,
             String status_pernikahan,
+            String suami,
             String jumlah_anak,
             String phone_number,
+            String fax,
 //            String whatsapp_number,
             String mobile_number,
             String address,
             String province,
             String city,
+            String city_id,
             String postal_code,
 //            String activation_code,
             String nama_pewaris,
             String relationship,
+            String bank_id,
             String bank_name,
             String branch,
             String account_holder_name,
@@ -208,17 +228,21 @@ public class ProfileData implements Parcelable {
         this.npwp = npwp;
         this.pekerjaan = pekerjaan;
         this.status_pernikahan = status_pernikahan;
+        this.suami = suami;
         this.jumlah_anak = jumlah_anak;
         this.phone_number = phone_number;
+        this.fax = fax;
 //        this.whatsapp_number = whatsapp_number;
         this.mobile_number = mobile_number;
         this.address = address;
         this.province = province;
         this.city = city;
+        this.city_id = city_id;
         this.postal_code = postal_code;
 //        this.activation_code = activation_code;
         this.nama_pewaris = nama_pewaris;
         this.relationship = relationship;
+        this.bank_id = bank_id;
         this.bank_name = bank_name;
         this.branch = branch;
         this.account_holder_name = account_holder_name;
@@ -226,6 +250,10 @@ public class ProfileData implements Parcelable {
     }
 
     protected ProfileData(Parcel in) {
+        tanggal_daftar = in.readString();
+        tanggal_expired = in.readString();
+        stockist_id = in.readString();
+        stockist_name = in.readString();
         recruiting_id = in.readString();
         recruiting_name = in.readString();
         sponsor_id = in.readString();
@@ -241,25 +269,23 @@ public class ProfileData implements Parcelable {
         npwp = in.readString();
         pekerjaan = in.readString();
         status_pernikahan = in.readString();
+        suami = in.readString();
         jumlah_anak = in.readString();
         phone_number = in.readString();
-//        whatsapp_number = in.readString();
+        fax = in.readString();
         mobile_number = in.readString();
         address = in.readString();
         province = in.readString();
         city = in.readString();
+        city_id = in.readString();
         postal_code = in.readString();
-//        activation_code = in.readString();
         nama_pewaris = in.readString();
         relationship = in.readString();
+        bank_id = in.readString();
         bank_name = in.readString();
         branch = in.readString();
         account_holder_name = in.readString();
         account_number = in.readString();
-    }
-
-    @Generated(hash = 1246655349)
-    public ProfileData() {
     }
 
     @Override
@@ -283,15 +309,19 @@ public class ProfileData implements Parcelable {
         dest.writeString(npwp);
         dest.writeString(pekerjaan);
         dest.writeString(status_pernikahan);
+        dest.writeString(suami);
         dest.writeString(jumlah_anak);
         dest.writeString(phone_number);
+        dest.writeString(fax);
         dest.writeString(mobile_number);
         dest.writeString(address);
         dest.writeString(province);
         dest.writeString(city);
+        dest.writeString(city_id);
         dest.writeString(postal_code);
         dest.writeString(nama_pewaris);
         dest.writeString(relationship);
+        dest.writeString(bank_id);
         dest.writeString(bank_name);
         dest.writeString(branch);
         dest.writeString(account_holder_name);
@@ -301,262 +331,6 @@ public class ProfileData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
-    }
-
-    public String getTanggal_daftar() {
-        return this.tanggal_daftar;
-    }
-
-    public void setTanggal_daftar(String tanggal_daftar) {
-        this.tanggal_daftar = tanggal_daftar;
-    }
-
-    public String getTanggal_expired() {
-        return this.tanggal_expired;
-    }
-
-    public void setTanggal_expired(String tanggal_expired) {
-        this.tanggal_expired = tanggal_expired;
-    }
-
-    public String getStockist_id() {
-        return this.stockist_id;
-    }
-
-    public void setStockist_id(String stockist_id) {
-        this.stockist_id = stockist_id;
-    }
-
-    public String getStockist_name() {
-        return this.stockist_name;
-    }
-
-    public void setStockist_name(String stockist_name) {
-        this.stockist_name = stockist_name;
-    }
-
-    public String getRecruiting_id() {
-        return this.recruiting_id;
-    }
-
-    public void setRecruiting_id(String recruiting_id) {
-        this.recruiting_id = recruiting_id;
-    }
-
-    public String getRecruiting_name() {
-        return this.recruiting_name;
-    }
-
-    public void setRecruiting_name(String recruiting_name) {
-        this.recruiting_name = recruiting_name;
-    }
-
-    public String getSponsor_id() {
-        return this.sponsor_id;
-    }
-
-    public void setSponsor_id(String sponsor_id) {
-        this.sponsor_id = sponsor_id;
-    }
-
-    public String getSponsor_name() {
-        return this.sponsor_name;
-    }
-
-    public void setSponsor_name(String sponsor_name) {
-        this.sponsor_name = sponsor_name;
-    }
-
-    public String getMember_id() {
-        return this.member_id;
-    }
-
-    public void setMember_id(String member_id) {
-        this.member_id = member_id;
-    }
-
-    public String getFull_name() {
-        return this.full_name;
-    }
-
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
-    }
-
-    public String getId_card() {
-        return this.id_card;
-    }
-
-    public void setId_card(String id_card) {
-        this.id_card = id_card;
-    }
-
-    public String getGender() {
-        return this.gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getPob() {
-        return this.pob;
-    }
-
-    public void setPob(String pob) {
-        this.pob = pob;
-    }
-
-    public String getDob() {
-        return this.dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-
-    public String getReligion() {
-        return this.religion;
-    }
-
-    public void setReligion(String religion) {
-        this.religion = religion;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNpwp() {
-        return this.npwp;
-    }
-
-    public void setNpwp(String npwp) {
-        this.npwp = npwp;
-    }
-
-    public String getPekerjaan() {
-        return this.pekerjaan;
-    }
-
-    public void setPekerjaan(String pekerjaan) {
-        this.pekerjaan = pekerjaan;
-    }
-
-    public String getStatus_pernikahan() {
-        return this.status_pernikahan;
-    }
-
-    public void setStatus_pernikahan(String status_pernikahan) {
-        this.status_pernikahan = status_pernikahan;
-    }
-
-    public String getJumlah_anak() {
-        return this.jumlah_anak;
-    }
-
-    public void setJumlah_anak(String jumlah_anak) {
-        this.jumlah_anak = jumlah_anak;
-    }
-
-    public String getPhone_number() {
-        return this.phone_number;
-    }
-
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
-    }
-
-    public String getMobile_number() {
-        return this.mobile_number;
-    }
-
-    public void setMobile_number(String mobile_number) {
-        this.mobile_number = mobile_number;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getProvince() {
-        return this.province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPostal_code() {
-        return this.postal_code;
-    }
-
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
-    }
-
-    public String getNama_pewaris() {
-        return this.nama_pewaris;
-    }
-
-    public void setNama_pewaris(String nama_pewaris) {
-        this.nama_pewaris = nama_pewaris;
-    }
-
-    public String getRelationship() {
-        return this.relationship;
-    }
-
-    public void setRelationship(String relationship) {
-        this.relationship = relationship;
-    }
-
-    public String getBank_name() {
-        return this.bank_name;
-    }
-
-    public void setBank_name(String bank_name) {
-        this.bank_name = bank_name;
-    }
-
-    public String getBranch() {
-        return this.branch;
-    }
-
-    public void setBranch(String branch) {
-        this.branch = branch;
-    }
-
-    public String getAccount_holder_name() {
-        return this.account_holder_name;
-    }
-
-    public void setAccount_holder_name(String account_holder_name) {
-        this.account_holder_name = account_holder_name;
-    }
-
-    public String getAccount_number() {
-        return this.account_number;
-    }
-
-    public void setAccount_number(String account_number) {
-        this.account_number = account_number;
     }
 
     public static final Creator<ProfileData> CREATOR = new Creator<ProfileData>() {

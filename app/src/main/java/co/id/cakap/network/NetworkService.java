@@ -2,6 +2,8 @@ package co.id.cakap.network;
 
 import java.util.Map;
 
+import co.id.cakap.data.JenisKelaminData;
+import co.id.cakap.data.ReligionData;
 import co.id.cakap.helper.Constant;
 import io.reactivex.Flowable;
 import retrofit2.http.Body;
@@ -66,5 +68,45 @@ public interface NetworkService {
                                                     @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                     @Query("userid") String userId,
                                                     @Query("group_id") String groupId);
+
+    @GET("jk")
+    Flowable<ApiResponseJenisKelamin> getJenisKelamin(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                      @Header(Constant.CAKAP_KEY_TEXT) String authorization);
+
+    @GET("religion")
+    Flowable<ApiResponseReligion> getReligion(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                              @Header(Constant.CAKAP_KEY_TEXT) String authorization);
+
+    @FormUrlEncoded
+    @POST("changepin_member")
+    Flowable<ApiResponseChangePin> postUpdateProfile(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                     @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                     @Field(Constant.BODY_NO_KTP) String noKtp,
+                                                     @Field(Constant.BODY_ALAMAT) String alamat,
+                                                     @Field(Constant.BODY_KODE_POS) String kodePos,
+                                                     @Field(Constant.BODY_NPWP) String npwp,
+                                                     @Field(Constant.BODY_STATUS_PERNIKAHAN) String statusPernikahan,
+                                                     @Field(Constant.BODY_SUAMI) String suami,
+                                                     @Field(Constant.BODY_RELIGION) String religion,
+                                                     @Field(Constant.BODY_ANAK) String anak,
+                                                     @Field(Constant.BODY_PEKERJAAN) String pekerjaan,
+                                                     @Field(Constant.BODY_HUBUNGAN) String hubungan,
+                                                     @Field(Constant.BODY_AHLI_WARIS) String ahliWaris,
+                                                     @Field(Constant.BODY_CITY) String city,
+                                                     @Field(Constant.BODY_EMAIL) String email,
+                                                     @Field(Constant.BODY_TEMPAT_LAHIR) String pob,
+                                                     @Field(Constant.BODY_JENIS_KELAMIN) String gender,
+                                                     @Field(Constant.BODY_DATE) String date,
+                                                     @Field(Constant.BODY_HP) String hp,
+                                                     @Field(Constant.BODY_TELP) String telp,
+                                                     @Field(Constant.BODY_FAX) String fax,
+                                                     @Field(Constant.BODY_KOTA_ID) String kotaId,
+                                                     @Field(Constant.BODY_PROVINCE) String province,
+                                                     @Field(Constant.BODY_BANK_ID) String bankId,
+                                                     @Field(Constant.BODY_NOREK) String norek,
+                                                     @Field(Constant.BODY_CABANG) String cabang,
+                                                     @Field(Constant.BODY_AREA) String area,
+                                                     @Field(Constant.BODY_USER_NAME) String username,
+                                                     @Field(Constant.BODY_PIN) String pin);
 
 }

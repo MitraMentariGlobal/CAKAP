@@ -3,6 +3,8 @@ package co.id.cakap.ui.myProfile;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -18,6 +20,9 @@ import com.andrognito.pinlockview.PinLockListener;
 import com.andrognito.pinlockview.PinLockView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -25,14 +30,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.ProfileData;
+import co.id.cakap.data.ReligionData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
-public class MyProfileActivity extends BottomDialogActivity implements MyProfileActivityContract.View{
+public class MyProfileActivity extends BottomDialogActivity implements MyProfileActivityContract.View, AdapterView.OnItemSelectedListener {
     @Inject
     MyProfileActivityPresenter mMyProfileActivityPresenter;
 
@@ -78,8 +85,12 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     RadioButton mRadioMale;
     @BindView(R.id.radio_female)
     RadioButton mRadioFemale;
+    @BindView(R.id.linear_place_of_birth)
+    LinearLayout mLinearPlaceOfBirth;
     @BindView(R.id.et_place_of_birth)
     EditText mEtPob;
+    @BindView(R.id.txt_error_place_of_birth)
+    TextView mTxtErrorPlaceOfBirth;
     @BindView(R.id.et_date_of_birth)
     TextView mEtDob;
 
@@ -91,13 +102,30 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     LinearLayout mLinearEtReligion;
     @BindView(R.id.et_religion)
     EditText mEtReligion;
+    @BindView(R.id.txt_error_religion)
+    TextView mTxtErrorReligion;
 
+    @BindView(R.id.linear_email)
+    LinearLayout mLinearEmail;
     @BindView(R.id.et_email)
     EditText mEtEmail;
+    @BindView(R.id.txt_error_email)
+    TextView mTxtErrorEmail;
+
+    @BindView(R.id.linear_phone_number)
+    LinearLayout mLinearPhoneNumber;
     @BindView(R.id.et_phone_number)
     EditText mEtPhoneNumber;
+    @BindView(R.id.txt_error_phone_number)
+    TextView mTxtErrorPhoneNumber;
+
+    @BindView(R.id.linear_mobile_number)
+    LinearLayout mLinearMobileNumber;
     @BindView(R.id.et_mobile_number)
     EditText mEtMobileNumber;
+    @BindView(R.id.txt_error_mobile_number)
+    TextView mTxtErrorMobileNumber;
+
     @BindView(R.id.et_address)
     EditText mEtAddress;
 
@@ -119,8 +147,13 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @BindView(R.id.et_city)
     EditText mEtCity;
 
+    @BindView(R.id.linear_postal_code)
+    LinearLayout mLinearPostalCode;
     @BindView(R.id.et_postal_code)
     EditText mEtPostalCode;
+    @BindView(R.id.txt_error_postal_code)
+    TextView mTxtErrorPostalCode;
+
     @BindView(R.id.linear_activation_code)
     LinearLayout mLinearActivationCode;
     @BindView(R.id.et_activation_code)
@@ -128,10 +161,20 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
 
     @BindView(R.id.et_couple_name)
     EditText mEtCoupleName;
+
+    @BindView(R.id.linear_heir_name)
+    LinearLayout mLinearHeirName;
     @BindView(R.id.et_heir_name)
     EditText mEtHeirName;
+    @BindView(R.id.txt_error_heir_name)
+    TextView mTxtErrorHeirName;
+
+    @BindView(R.id.linear_relatoinship)
+    LinearLayout mLinearRelationship;
     @BindView(R.id.et_relationship)
     EditText mEtRelationship;
+    @BindView(R.id.txt_error_relationship)
+    TextView mTxtErrorRelationship;
 
     @BindView(R.id.linear_spinner_bank)
     LinearLayout mLinearSpinnerBank;
@@ -194,6 +237,7 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     EditText mEtJumlahAnak;
 
     private ProfileData mProfileData;
+    private List<JenisKelaminData> mJenisKelaminDataList;
     private MyProfileActivityContract.UserActionListener mUserActionListener;
 
     @Override
@@ -220,7 +264,7 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mBehavior = BottomSheetBehavior.from(bottomSheet);
 
         mTitle.setText(getString(R.string.my_profile).toUpperCase());
-        mUserActionListener.getProfileData();
+        mUserActionListener.getJenisKelamin();
     }
 
     @Override
@@ -239,10 +283,121 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     }
 
     @Override
-    public void setData(ProfileData profileData) {
+    public void setProfileData(ProfileData profileData) {
         mProfileData = profileData;
 
         setSuccessInputData();
+    }
+
+    @Override
+    public void setJenisKelaminData(List<JenisKelaminData> jenisKelaminDataList) {
+        mJenisKelaminDataList = jenisKelaminDataList;
+        mRadioMale.setText(jenisKelaminDataList.get(0).getId());
+        mRadioFemale.setText(jenisKelaminDataList.get(1).getId());
+    }
+
+    @Override
+    public void setReligionData(List<String> religionDataList) {
+        mSpinnerReligion.setOnItemSelectedListener(this);
+        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(this,
+                R.layout.item_spinner, android.R.id.text1, religionDataList);
+        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerReligion.setAdapter(provinceAdapter);
+
+    }
+
+    @Override
+    public void setErrorPob(boolean isError) {
+        if (isError) {
+            mLinearPlaceOfBirth.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorPlaceOfBirth.setVisibility(View.VISIBLE);
+        } else {
+            mLinearPlaceOfBirth.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorPlaceOfBirth.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorReligion(boolean isError) {
+        if (isError) {
+            mLinearSpinnerReligion.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorReligion.setVisibility(View.VISIBLE);
+        } else {
+            mLinearSpinnerReligion.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorReligion.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorEmail(boolean isError, boolean isFilled) {
+        if (isError) {
+            mLinearEmail.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorEmail.setVisibility(View.VISIBLE);
+
+            if (isFilled)
+                mTxtErrorEmail.setText(getString(R.string.field_not_match));
+            else
+                mTxtErrorEmail.setText(getString(R.string.field_required));
+
+        } else {
+            mLinearEmail.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorEmail.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorHp(boolean isError) {
+        if (isError) {
+            mLinearMobileNumber.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorMobileNumber.setVisibility(View.VISIBLE);
+        } else {
+            mLinearMobileNumber.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorMobileNumber.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorTelp(boolean isError) {
+        if (isError) {
+            mLinearPhoneNumber.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorPhoneNumber.setVisibility(View.VISIBLE);
+        } else {
+            mLinearPhoneNumber.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorPhoneNumber.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorKodePos(boolean isError) {
+        if (isError) {
+            mLinearPostalCode.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorPostalCode.setVisibility(View.VISIBLE);
+        } else {
+            mLinearPostalCode.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorPostalCode.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorNamaPewaris(boolean isError) {
+        if (isError) {
+            mLinearHeirName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorHeirName.setVisibility(View.VISIBLE);
+        } else {
+            mLinearHeirName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorHeirName.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorHubungan(boolean isError) {
+        if (isError) {
+            mLinearRelationship.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorRelationship.setVisibility(View.VISIBLE);
+        } else {
+            mLinearRelationship.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorRelationship.setVisibility(View.GONE);
+        }
     }
 
     @OnClick(R.id.arrow_back)
@@ -252,15 +407,22 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
 
     @OnClick(R.id.txt_save_top)
     public void saveTop(View view) {
-        actionSave();
+        checkData();
     }
 
     @OnClick(R.id.txt_save_bottom)
     public void saveBottom(View view) {
-        actionSave();
+        checkData();
     }
 
-    public void actionSave() {
+    public void checkData() {
+        mUserActionListener.checkData(mEtPob.getText().toString(), mSpinnerReligion.getSelectedItem().toString(), mEtEmail.getText().toString(),
+                mEtMobileNumber.getText().toString(), mEtPhoneNumber.getText().toString(), mEtPostalCode.getText().toString(),
+                mEtHeirName.getText().toString(), mEtRelationship.getText().toString());
+    }
+
+    @Override
+    public void openDialogCheck() {
         UserConfirmationDialog utils = new UserConfirmationDialog();
         Dialog dialog = utils.showDialog(this);
         utils.setTitleChangeProfileDialog();
@@ -287,6 +449,14 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         });
     }
 
+    @Override
+    public void openSuccessBottomSheet() {
+        bottomSheetAlert(
+                getResources().getDrawable(R.drawable.ic_success_forgot_password),
+                getResources().getString(R.string.success_update_profile)
+        );
+    }
+
     public void openDialogPin() {
         PinDialog utils = new PinDialog();
         Dialog dialog = utils.showDialog(this);
@@ -300,10 +470,20 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
                 dialog.hide();
                 dialog.dismiss();
 
-                bottomSheetAlert(
-                        getResources().getDrawable(R.drawable.ic_success_forgot_password),
-                        getResources().getString(R.string.success_update_profile)
-                );
+                showProgressBar();
+
+                String gender = "";
+                if (mRadioMale.isChecked())
+                    gender = mRadioMale.getText().toString();
+                else
+                    gender = mRadioFemale.getText().toString();
+
+                mUserActionListener.sendProfileData(mEtIdCard.getText().toString(), mEtAddress.getText().toString(), mEtPostalCode.getText().toString(),
+                        mEtNpwp.getText().toString(), mEtStatusPernikahan.getText().toString(), mProfileData.getSuami(), mSpinnerReligion.getSelectedItem().toString(),
+                        mEtJumlahAnak.getText().toString(), mEtPekerjaan.getText().toString(), mEtRelationship.getText().toString(), mEtHeirName.getText().toString(),
+                        mEtCity.getText().toString(), mEtEmail.getText().toString(), mEtPob.getText().toString(), gender, "", mEtMobileNumber.getText().toString(),
+                        mEtPhoneNumber.getText().toString(), mProfileData.getFax(), mProfileData.getCity_id(), mEtProvince.getText().toString(), mProfileData.getBank_id(),
+                        mEtAccountNumber.getText().toString(), "", mEtBranchName.getText().toString(), pin);
             }
 
             @Override
@@ -373,11 +553,17 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtIdCard.setText(mProfileData.getId_card());
         mEtIdCard.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mRadioGroupGender.setVisibility(View.GONE);
-        mEtGender.setVisibility(View.VISIBLE);
-        mEtGender.setEnabled(false);
-        mEtGender.setText(mProfileData.getGender());
-        mEtGender.setTextColor(getResources().getColor(R.color.curated_light));
+//        mRadioGroupGender.setVisibility(View.GONE);
+//        mEtGender.setVisibility(View.VISIBLE);
+//        mEtGender.setEnabled(false);
+//        mEtGender.setText(mProfileData.getGender());
+//        mEtGender.setTextColor(getResources().getColor(R.color.curated_light));
+
+        if (mProfileData.getGender().equals(mJenisKelaminDataList.get(0).getId())) {
+            mRadioMale.setChecked(true);
+        } else {
+            mRadioFemale.setChecked(true);
+        }
 
 //        mEtPob.setEnabled(false);
         mEtPob.setText(mProfileData.getPob());
@@ -392,6 +578,12 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
 //        mEtReligion.setEnabled(false);
 //        mEtReligion.setText(mProfileData.getReligion());
 //        mEtReligion.setTextColor(getResources().getColor(R.color.curated_light));
+
+        for (int i = 0; i < mSpinnerReligion.getAdapter().getCount(); i++) {
+            if(mSpinnerReligion.getAdapter().getItem(i).toString().contains(String.valueOf(mProfileData.getReligion()))) {
+                mSpinnerReligion.setSelection(i);
+            }
+        }
 
 //        mEtEmail.setEnabled(false);
         mEtEmail.setText(mProfileData.getEmail());
@@ -408,10 +600,12 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mLinearSpinnerStatusPernikahan.setVisibility(View.GONE);
         mLinearStatusPernikahan.setVisibility(View.VISIBLE);
         mEtStatusPernikahan.setText(mProfileData.getStatus_pernikahan());
+        mEtStatusPernikahan.setTextColor(getResources().getColor(R.color.curated_light));
 
         mLinearSpinnerJumlahAnak.setVisibility(View.GONE);
         mLinearJumlahAnak.setVisibility(View.VISIBLE);
         mEtJumlahAnak.setText(mProfileData.getJumlah_anak());
+        mEtJumlahAnak.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mEtPhoneNumber.setEnabled(false);
         mEtPhoneNumber.setText(mProfileData.getPhone_number());
@@ -473,5 +667,15 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtAccountNumber.setEnabled(false);
         mEtAccountNumber.setText(mProfileData.getAccount_number());
         mEtAccountNumber.setTextColor(getResources().getColor(R.color.curated_light));
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -189,19 +189,21 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mRecyclerView.setAdapter(customViewPagerAdapter);
 //        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL);
 
-        mTxtMemberName.setText(resultDataLogin.getNama());
-        mTxtMemberId.setText(resultDataLogin.getMember_id());
-        mTxtPosisi.setText(resultDataLogin.getPosisi());
-        mTxtBonus.setText("Rp. " + Utils.priceFromString(resultDataLogin.getBonus()));
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
+            mTxtMemberName.setText(resultDataLogin.getNama());
+            mTxtMemberId.setText(resultDataLogin.getMember_id());
+            mTxtPosisi.setText(resultDataLogin.getPosisi());
+            mTxtBonus.setText("Rp. " + Utils.priceFromString(resultDataLogin.getBonus()));
 
-        int pvMax = Integer.parseInt(resultDataLogin.getPv_max());
-        int pvTupo = Integer.parseInt(resultDataLogin.getPv_tupo());
-        String sisaPv = String.valueOf(pvMax - pvTupo);
+            int pvMax = Integer.parseInt(resultDataLogin.getPv_max());
+            int pvTupo = Integer.parseInt(resultDataLogin.getPv_tupo());
+            String sisaPv = String.valueOf(pvMax - pvTupo);
 
-        mPvProgressBar.setMax(pvMax);
-        mPvProgressBar.setProgress(pvTupo);
-        mTxtSisaPv.setText(sisaPv + " PV left to complete your tupo");
-        mTxtPv.setText(pvTupo + " PV");
+            mPvProgressBar.setMax(pvMax);
+            mPvProgressBar.setProgress(pvTupo);
+            mTxtSisaPv.setText(sisaPv + " PV left to complete your tupo");
+            mTxtPv.setText(pvTupo + " PV");
+        }
 
         hideProgressBar();
     }

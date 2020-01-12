@@ -1,11 +1,15 @@
 package co.id.cakap.repository;
 
+import co.id.cakap.data.JenisKelaminData;
+import co.id.cakap.data.ReligionData;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.network.ApiResponseChangePassword;
 import co.id.cakap.network.ApiResponseChangePin;
+import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
 import co.id.cakap.network.ApiResponseProfileData;
+import co.id.cakap.network.ApiResponseReligion;
 import co.id.cakap.network.NetworkService;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -53,6 +57,30 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseProfileData> getProfileData(String userId, String groupId) {
         return networkService.getProfileData(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, groupId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseJenisKelamin> getJenisKelamin() {
+        return networkService.getJenisKelamin(Constant.CONTENT_TYPE, Constant.CAKAP_KEY)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseReligion> getReligion() {
+        return networkService.getReligion(Constant.CONTENT_TYPE, Constant.CAKAP_KEY)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseChangePin> postUpdateProfile(
+            String noKtp, String alamat, String kodePos, String npwp, String statusPernikahan, String suami, String religion, String anak,
+            String pekerjaan, String hubungan, String ahliWaris, String city, String email, String pob, String gender, String date,
+            String hp, String telp, String fax, String kotaId, String province, String bankId, String norek, String cabang, String area,
+            String username, String pin) {
+        return networkService.postUpdateProfile(
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, noKtp, alamat, kodePos, npwp, statusPernikahan, suami, religion, anak, pekerjaan,
+                hubungan, ahliWaris, city, email, pob, gender, date, hp, telp, fax, kotaId, province, bankId, norek, cabang, area, username, pin)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

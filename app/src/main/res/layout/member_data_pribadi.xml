@@ -205,6 +205,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_place_of_birth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -224,6 +225,18 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_error_place_of_birth"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -303,6 +316,18 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_error_religion"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -314,6 +339,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -334,6 +360,18 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_error_email"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <LinearLayout
             android:id="@+id/linear_for_profile"
@@ -514,6 +552,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_phone_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -534,6 +573,18 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_error_phone_number"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <LinearLayout
             android:id="@+id/linear_for_profile2"
@@ -588,6 +639,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_mobile_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -608,6 +660,18 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_error_mobile_number"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -745,6 +809,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_postal_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -766,6 +831,18 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_error_postal_code"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <LinearLayout
             android:id="@+id/linear_activation_code"

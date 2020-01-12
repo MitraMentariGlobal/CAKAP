@@ -459,10 +459,10 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
         mProvinceData.add("Kalimantan Timur");
         mProvinceData.add("Sulawesi Utara");
 
-        ArrayAdapter<String> provinceeAdapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(this,
                 R.layout.item_spinner, android.R.id.text1, mProvinceData);
-        provinceeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerProvince.setAdapter(provinceeAdapter);
+        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerProvince.setAdapter(provinceAdapter);
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(this,
                 R.layout.item_spinner, android.R.id.text1, mCityData);
