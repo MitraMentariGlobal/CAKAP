@@ -21,6 +21,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_member_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -54,6 +55,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -86,6 +88,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_id_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -392,6 +395,7 @@
                 style="@style/TexViewFont"/>
 
             <LinearLayout
+                android:id="@+id/linear_npwp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_gray_background_style">
@@ -413,39 +417,47 @@
                     android:focusable="true"/>
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/linear_pekerjaan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_14"
-                android:text="Pekerjaan"
-                android:layout_marginTop="@dimen/radius_16"
-                android:layout_marginBottom="@dimen/radius_4"
-                style="@style/TexViewFont"/>
+                android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_gray_background_style">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14"
+                    android:text="Pekerjaan"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginBottom="@dimen/radius_4"
+                    style="@style/TexViewFont"/>
 
-                <EditText
-                    android:id="@+id/et_pekerjaaan"
-                    style="@style/Font_family_light"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:hint="Pekerjaan"
-                    android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/curated_light"
-                    android:textSize="@dimen/text_14"
-                    android:padding="@dimen/padding_12"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true"/>
+                    android:background="@drawable/et_gray_background_style">
+
+                    <EditText
+                        android:id="@+id/et_pekerjaaan"
+                        style="@style/Font_family_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Pekerjaan"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/curated_light"
+                        android:textSize="@dimen/text_14"
+                        android:padding="@dimen/padding_12"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"/>
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_status_pernikahan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -493,6 +505,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_jumlah_anak"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -685,6 +698,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">

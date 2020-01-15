@@ -17,7 +17,7 @@ import lombok.Data;
  * Android Developer
  */
 
-@Data
+//@Data
 @Entity
 public class ProfileData implements Parcelable {
     @SerializedName("joindate")
@@ -72,9 +72,13 @@ public class ProfileData implements Parcelable {
     @Expose
     private String pob;
 
-    @SerializedName("ftgllahir")
+    @SerializedName("tgllahir")
     @Expose
     private String dob;
+
+    @SerializedName("ftgllahir")
+    @Expose
+    private String fdob;
 
     @SerializedName("religion")
     @Expose
@@ -84,9 +88,13 @@ public class ProfileData implements Parcelable {
     @Expose
     private String email;
 
-    @SerializedName("nonpwp")
+    @SerializedName("npwp")
     @Expose
     private String npwp;
+
+    @SerializedName("nonpwp")
+    @Expose
+    private String nonpwp;
 
     @SerializedName("office")
     @Expose
@@ -95,6 +103,10 @@ public class ProfileData implements Parcelable {
     @SerializedName("menikah")
     @Expose
     private String status_pernikahan;
+
+    @SerializedName("mnkh")
+    @Expose
+    private String status_mnkh;
 
     @SerializedName("suami")
     @Expose
@@ -188,11 +200,14 @@ public class ProfileData implements Parcelable {
             String gender,
             String pob,
             String dob,
+            String fdob,
             String religion,
             String email,
             String npwp,
+            String nonpwp,
             String pekerjaan,
             String status_pernikahan,
+            String status_mnkh,
             String suami,
             String jumlah_anak,
             String phone_number,
@@ -223,11 +238,14 @@ public class ProfileData implements Parcelable {
         this.gender = gender;
         this.pob = pob;
         this.dob = dob;
+        this.fdob = fdob;
         this.religion = religion;
         this.email = email;
         this.npwp = npwp;
+        this.nonpwp = nonpwp;
         this.pekerjaan = pekerjaan;
         this.status_pernikahan = status_pernikahan;
+        this.status_mnkh = status_mnkh;
         this.suami = suami;
         this.jumlah_anak = jumlah_anak;
         this.phone_number = phone_number;
@@ -264,11 +282,14 @@ public class ProfileData implements Parcelable {
         gender = in.readString();
         pob = in.readString();
         dob = in.readString();
+        fdob = in.readString();
         religion = in.readString();
         email = in.readString();
         npwp = in.readString();
+        nonpwp = in.readString();
         pekerjaan = in.readString();
         status_pernikahan = in.readString();
+        status_mnkh = in.readString();
         suami = in.readString();
         jumlah_anak = in.readString();
         phone_number = in.readString();
@@ -288,6 +309,10 @@ public class ProfileData implements Parcelable {
         account_number = in.readString();
     }
 
+    @Generated(hash = 1246655349)
+    public ProfileData() {
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(tanggal_daftar);
@@ -304,11 +329,14 @@ public class ProfileData implements Parcelable {
         dest.writeString(gender);
         dest.writeString(pob);
         dest.writeString(dob);
+        dest.writeString(fdob);
         dest.writeString(religion);
         dest.writeString(email);
         dest.writeString(npwp);
+        dest.writeString(nonpwp);
         dest.writeString(pekerjaan);
         dest.writeString(status_pernikahan);
+        dest.writeString(status_mnkh);
         dest.writeString(suami);
         dest.writeString(jumlah_anak);
         dest.writeString(phone_number);
@@ -331,6 +359,318 @@ public class ProfileData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getTanggal_daftar() {
+        return this.tanggal_daftar;
+    }
+
+    public void setTanggal_daftar(String tanggal_daftar) {
+        this.tanggal_daftar = tanggal_daftar;
+    }
+
+    public String getTanggal_expired() {
+        return this.tanggal_expired;
+    }
+
+    public void setTanggal_expired(String tanggal_expired) {
+        this.tanggal_expired = tanggal_expired;
+    }
+
+    public String getStockist_id() {
+        return this.stockist_id;
+    }
+
+    public void setStockist_id(String stockist_id) {
+        this.stockist_id = stockist_id;
+    }
+
+    public String getStockist_name() {
+        return this.stockist_name;
+    }
+
+    public void setStockist_name(String stockist_name) {
+        this.stockist_name = stockist_name;
+    }
+
+    public String getRecruiting_id() {
+        return this.recruiting_id;
+    }
+
+    public void setRecruiting_id(String recruiting_id) {
+        this.recruiting_id = recruiting_id;
+    }
+
+    public String getRecruiting_name() {
+        return this.recruiting_name;
+    }
+
+    public void setRecruiting_name(String recruiting_name) {
+        this.recruiting_name = recruiting_name;
+    }
+
+    public String getSponsor_id() {
+        return this.sponsor_id;
+    }
+
+    public void setSponsor_id(String sponsor_id) {
+        this.sponsor_id = sponsor_id;
+    }
+
+    public String getSponsor_name() {
+        return this.sponsor_name;
+    }
+
+    public void setSponsor_name(String sponsor_name) {
+        this.sponsor_name = sponsor_name;
+    }
+
+    public String getMember_id() {
+        return this.member_id;
+    }
+
+    public void setMember_id(String member_id) {
+        this.member_id = member_id;
+    }
+
+    public String getFull_name() {
+        return this.full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
+    public String getId_card() {
+        return this.id_card;
+    }
+
+    public void setId_card(String id_card) {
+        this.id_card = id_card;
+    }
+
+    public String getGender() {
+        return this.gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPob() {
+        return this.pob;
+    }
+
+    public void setPob(String pob) {
+        this.pob = pob;
+    }
+
+    public String getDob() {
+        return this.dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getFdob() {
+        return this.fdob;
+    }
+
+    public void setFdob(String fdob) {
+        this.fdob = fdob;
+    }
+
+    public String getReligion() {
+        return this.religion;
+    }
+
+    public void setReligion(String religion) {
+        this.religion = religion;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNpwp() {
+        return this.npwp;
+    }
+
+    public void setNpwp(String npwp) {
+        this.npwp = npwp;
+    }
+
+    public String getNonpwp() {
+        return this.nonpwp;
+    }
+
+    public void setNonpwp(String nonpwp) {
+        this.nonpwp = nonpwp;
+    }
+
+    public String getPekerjaan() {
+        return this.pekerjaan;
+    }
+
+    public void setPekerjaan(String pekerjaan) {
+        this.pekerjaan = pekerjaan;
+    }
+
+    public String getStatus_pernikahan() {
+        return this.status_pernikahan;
+    }
+
+    public void setStatus_pernikahan(String status_pernikahan) {
+        this.status_pernikahan = status_pernikahan;
+    }
+
+    public String getStatus_mnkh() {
+        return this.status_mnkh;
+    }
+
+    public void setStatus_mnkh(String status_mnkh) {
+        this.status_mnkh = status_mnkh;
+    }
+
+    public String getSuami() {
+        return this.suami;
+    }
+
+    public void setSuami(String suami) {
+        this.suami = suami;
+    }
+
+    public String getJumlah_anak() {
+        return this.jumlah_anak;
+    }
+
+    public void setJumlah_anak(String jumlah_anak) {
+        this.jumlah_anak = jumlah_anak;
+    }
+
+    public String getPhone_number() {
+        return this.phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getFax() {
+        return this.fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getMobile_number() {
+        return this.mobile_number;
+    }
+
+    public void setMobile_number(String mobile_number) {
+        this.mobile_number = mobile_number;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getProvince() {
+        return this.province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity_id() {
+        return this.city_id;
+    }
+
+    public void setCity_id(String city_id) {
+        this.city_id = city_id;
+    }
+
+    public String getPostal_code() {
+        return this.postal_code;
+    }
+
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
+    }
+
+    public String getNama_pewaris() {
+        return this.nama_pewaris;
+    }
+
+    public void setNama_pewaris(String nama_pewaris) {
+        this.nama_pewaris = nama_pewaris;
+    }
+
+    public String getRelationship() {
+        return this.relationship;
+    }
+
+    public void setRelationship(String relationship) {
+        this.relationship = relationship;
+    }
+
+    public String getBank_id() {
+        return this.bank_id;
+    }
+
+    public void setBank_id(String bank_id) {
+        this.bank_id = bank_id;
+    }
+
+    public String getBank_name() {
+        return this.bank_name;
+    }
+
+    public void setBank_name(String bank_name) {
+        this.bank_name = bank_name;
+    }
+
+    public String getBranch() {
+        return this.branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public String getAccount_holder_name() {
+        return this.account_holder_name;
+    }
+
+    public void setAccount_holder_name(String account_holder_name) {
+        this.account_holder_name = account_holder_name;
+    }
+
+    public String getAccount_number() {
+        return this.account_number;
+    }
+
+    public void setAccount_number(String account_number) {
+        this.account_number = account_number;
     }
 
     public static final Creator<ProfileData> CREATOR = new Creator<ProfileData>() {

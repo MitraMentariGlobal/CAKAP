@@ -152,7 +152,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_14"
-                        android:text="BC007"
                         android:textStyle="bold"
                         android:textColor="@color/gray"
                         style="@style/TexViewFont" />
@@ -164,7 +163,6 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_14"
                         android:textColor="@color/black"
-                        android:text="Pendekar Harus Menang"
                         style="@style/TexViewFont" />
 
                 </LinearLayout>

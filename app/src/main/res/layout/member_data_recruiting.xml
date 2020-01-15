@@ -89,6 +89,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_rec_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">

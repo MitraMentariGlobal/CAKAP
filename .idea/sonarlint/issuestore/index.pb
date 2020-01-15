@@ -949,3 +949,11 @@ d
 4app/src/main/res/drawable/submit_next_background.xml,6/4/64bfe3d7931939377b53fdba43192414dc67827d
 q
 Aapp/src/main/java/co/id/cakap/network/ApiResponseProfileData.java,5/b/5b3bdcd14286bfe42de4ebcdeedab545f2111461
+h
+8app/src/main/java/co/id/cakap/data/JenisKelaminData.java,b/2/b2c96b74c21f84b5ffaa7602f09ce4be6bfd6864
+d
+4app/src/main/java/co/id/cakap/data/ReligionData.java,c/8/c85aee16bdba3e56e8b1ba24f9da3e96a147ea61
+r
+Bapp/src/main/java/co/id/cakap/network/ApiResponseJenisKelamin.java,a/9/a9d4538aa4e73282f858a2f8dd7eb22f7c464c0d
+n
+>app/src/main/java/co/id/cakap/network/ApiResponseReligion.java,1/2/125dfd0997d81bf8a033a21a265ba598101a6159

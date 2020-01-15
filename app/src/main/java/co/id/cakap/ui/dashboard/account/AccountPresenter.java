@@ -30,6 +30,17 @@ public class AccountPresenter implements AccountContract.UserActionListener {
     }
 
     @Override
+    public void getLoginData() {
+        try {
+            mResultDataLoginList = mDataModel.getAllResultDataLogin();
+            mView.setLoginData(mResultDataLoginList.get(0));
+        } catch (Exception e) {
+            Logger.e("can't get data from model: " + e.getMessage());
+            mView.setSuccessResponse();
+        }
+    }
+
+    @Override
     public void getData() {
         try {
             mFirebaseTokenDataList = mDataModel.getAllFirebaseTokenData();

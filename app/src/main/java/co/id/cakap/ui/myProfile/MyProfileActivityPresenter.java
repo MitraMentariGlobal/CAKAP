@@ -12,6 +12,7 @@ import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseReligion;
+import co.id.cakap.network.ApiResponseUpdateProfile;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
 import co.id.cakap.utils.Logger;
@@ -227,16 +228,22 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
     }
 
     @Override
-    public void sendProfileData(String noKtp, String alamat, String kodePos, String npwp, String statusPernikahan, String suami, String religion, String anak, String pekerjaan, String hubungan, String ahliWaris, String city, String email, String pob, String gender, String date, String hp, String telp, String fax, String kotaId, String province, String bankId, String norek, String cabang, String area, String pin) {
+    public void sendProfileData(String noKtp, String alamat, String kodePos, String npwpId, String npwp, String statusPernikahan,
+                                String suami, String religion, String anak, String pekerjaan, String hubungan, String ahliWaris,
+                                String city, String email, String pob, String gender, String date, String hp, String telp, String fax,
+                                String kotaId, String province, String bankAcc, String bankId, String norek, String cabang, String area,
+                                String nama, String pin) {
         mView.showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postUpdateProfile(noKtp, alamat, kodePos, npwp, statusPernikahan, suami, religion, anak, pekerjaan, hubungan, ahliWaris, city, email, pob, gender, date, hp, telp, fax, kotaId, province, bankId, norek, cabang, area, mResultDataLogin.getUsername(), pin)
-                .subscribe(new ResourceSubscriber<ApiResponseChangePin>() {
+        mMainRepository.postUpdateProfile(noKtp, alamat, kodePos, npwpId, npwp, statusPernikahan, suami, religion, anak, pekerjaan,
+                hubungan, ahliWaris, city, email, pob, gender, date, hp, telp, fax, kotaId, province, bankAcc, bankId, norek, cabang,
+                area, mResultDataLogin.getUsername(), nama, pin)
+                .subscribe(new ResourceSubscriber<ApiResponseUpdateProfile>() {
                     @Override
-                    public void onNext(ApiResponseChangePin apiResponseChangePin) {
+                    public void onNext(ApiResponseUpdateProfile apiResponseUpdateProfile) {
                         Logger.d("=====>>>>>");
-                        Logger.d("message : " + apiResponseChangePin.getMessages());
+                        Logger.d("message : " + apiResponseUpdateProfile.getMessages());
                         Logger.d("<<<<<=====");
 
                         mView.hideProgressBar();

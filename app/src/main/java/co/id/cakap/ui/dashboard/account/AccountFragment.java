@@ -24,6 +24,7 @@ import butterknife.Unbinder;
 import co.id.cakap.BuildConfig;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
@@ -50,6 +51,10 @@ public class AccountFragment extends Fragment implements AccountContract.View {
     CardView mCardSettings;
     @BindView(R.id.txt_version)
     TextView mTxtVersion;
+    @BindView(R.id.user_name)
+    TextView mTxtUserName;
+    @BindView(R.id.account_name)
+    TextView mTxtAccountName;
     @BindView(R.id.relative_progress_bar)
     RelativeLayout mRelativeProgressBar;
 
@@ -91,6 +96,7 @@ public class AccountFragment extends Fragment implements AccountContract.View {
         mUserActionListener = mAccountPresenter;
         mAccountPresenter.setView(this);
 
+        mUserActionListener.getLoginData();
         mVersion = "v" + BuildConfig.VERSION_CODE + "." + BuildConfig.VERSION_NAME;
         mTxtVersion.setText(mVersion);
 
@@ -122,6 +128,12 @@ public class AccountFragment extends Fragment implements AccountContract.View {
         Intent i = new Intent(getContext(), LoginActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
+    }
+
+    @Override
+    public void setLoginData(ResultDataLogin resultDataLogin) {
+        mTxtUserName.setText(resultDataLogin.getMember_id());
+        mTxtAccountName.setText(resultDataLogin.getNama());
     }
 
     @OnClick(R.id.account_my_profile)

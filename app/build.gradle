@@ -84,6 +84,7 @@ android {
             buildConfigField 'String', 'BODY_NO_KTP', endpointProperties['body_no_ktp']
             buildConfigField 'String', 'BODY_ALAMAT', endpointProperties['body_alamat']
             buildConfigField 'String', 'BODY_KODE_POS', endpointProperties['body_kode_pos']
+            buildConfigField 'String', 'BODY_NPWP_ID', endpointProperties['body_npwp_id']
             buildConfigField 'String', 'BODY_NPWP', endpointProperties['body_npwp']
             buildConfigField 'String', 'BODY_STATUS_PERNIKAHAN', endpointProperties['body_status_pernikahan']
             buildConfigField 'String', 'BODY_SUAMI', endpointProperties['body_suami']
@@ -102,10 +103,12 @@ android {
             buildConfigField 'String', 'BODY_FAX', endpointProperties['body_fax']
             buildConfigField 'String', 'BODY_KOTA_ID', endpointProperties['body_kota_id']
             buildConfigField 'String', 'BODY_PROVINCE', endpointProperties['body_province']
+            buildConfigField 'String', 'BODY_BANK_ACC', endpointProperties['body_bank_acc']
             buildConfigField 'String', 'BODY_BANK_ID', endpointProperties['body_bank_id']
             buildConfigField 'String', 'BODY_NOREK', endpointProperties['body_norek']
             buildConfigField 'String', 'BODY_CABANG', endpointProperties['body_cabang']
             buildConfigField 'String', 'BODY_AREA', endpointProperties['body_area']
+            buildConfigField 'String', 'BODY_NAMA', endpointProperties['body_nama']
         }
     }
 

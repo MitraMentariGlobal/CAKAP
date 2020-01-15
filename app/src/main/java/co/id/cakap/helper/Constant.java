@@ -37,6 +37,7 @@ public class Constant {
     public static final String BODY_NO_KTP = BuildConfig.BODY_NO_KTP;
     public static final String BODY_ALAMAT = BuildConfig.BODY_ALAMAT;
     public static final String BODY_KODE_POS = BuildConfig.BODY_KODE_POS;
+    public static final String BODY_NPWP_ID = BuildConfig.BODY_NPWP_ID;
     public static final String BODY_NPWP = BuildConfig.BODY_NPWP;
     public static final String BODY_STATUS_PERNIKAHAN = BuildConfig.BODY_STATUS_PERNIKAHAN;
     public static final String BODY_SUAMI = BuildConfig.BODY_SUAMI;
@@ -55,10 +56,12 @@ public class Constant {
     public static final String BODY_FAX = BuildConfig.BODY_FAX;
     public static final String BODY_KOTA_ID = BuildConfig.BODY_KOTA_ID;
     public static final String BODY_PROVINCE = BuildConfig.BODY_PROVINCE;
+    public static final String BODY_BANK_ACC = BuildConfig.BODY_BANK_ACC;
     public static final String BODY_BANK_ID = BuildConfig.BODY_BANK_ID;
     public static final String BODY_NOREK = BuildConfig.BODY_NOREK;
     public static final String BODY_CABANG = BuildConfig.BODY_CABANG;
     public static final String BODY_AREA = BuildConfig.BODY_AREA;
+    public static final String BODY_NAMA = BuildConfig.BODY_NAMA;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;

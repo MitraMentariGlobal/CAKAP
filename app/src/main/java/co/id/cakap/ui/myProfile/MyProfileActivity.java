@@ -34,6 +34,7 @@ import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.ProfileData;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.PinDialog;
@@ -52,29 +53,46 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
 
     @BindView(R.id.linear_data_pendaftaran)
     LinearLayout mLinearDataPendaftaran;
+    @BindView(R.id.linear_tanggal_daftar)
+    LinearLayout mLinearTanggalDaftar;
     @BindView(R.id.linear_tanggal_expired)
     LinearLayout mLinearTanggalExpired;
+    @BindView(R.id.linear_tanggal_expired2)
+    LinearLayout mLinearTanggalExpired2;
     @BindView(R.id.et_tanggal_daftar)
     EditText mEtTanggalDaftar;
     @BindView(R.id.et_tanggal_expired)
     EditText mEtTanggalExpired;
+
+    @BindView(R.id.linear_stockist_id_nama)
+    LinearLayout mLinearStockistIdNama;
     @BindView(R.id.et_stockist_id_nama)
     EditText mEtStockistIdNama;
 
     @BindView(R.id.et_rec_id)
     EditText mEtRecId;
+    @BindView(R.id.linear_rec_name)
+    LinearLayout mLinearRecName;
     @BindView(R.id.et_rec_name)
     EditText mEtRecName;
 
     @BindView(R.id.et_sponsor_id)
     EditText mEtSponsorId;
+    @BindView(R.id.linear_sponsor_name)
+    LinearLayout mLinearSponsorName;
     @BindView(R.id.et_sponsor_name)
     EditText mEtSponsorName;
 
+    @BindView(R.id.linear_member_id)
+    LinearLayout mLinearMemberId;
     @BindView(R.id.et_member_id)
     EditText mEtMemberId;
+    @BindView(R.id.linear_full_name)
+    LinearLayout mLinearFullName;
     @BindView(R.id.et_full_name)
     EditText mEtFulllName;
+    @BindView(R.id.linear_id_card)
+    LinearLayout mLinearIdCard;
     @BindView(R.id.et_id_card)
     EditText mEtIdCard;
     @BindView(R.id.et_gender)
@@ -91,6 +109,8 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     EditText mEtPob;
     @BindView(R.id.txt_error_place_of_birth)
     TextView mTxtErrorPlaceOfBirth;
+    @BindView(R.id.linear_date)
+    LinearLayout mLinearDate;
     @BindView(R.id.et_date_of_birth)
     TextView mEtDob;
 
@@ -126,6 +146,8 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @BindView(R.id.txt_error_mobile_number)
     TextView mTxtErrorMobileNumber;
 
+    @BindView(R.id.linear_address)
+    LinearLayout mLinearAddress;
     @BindView(R.id.et_address)
     EditText mEtAddress;
 
@@ -185,10 +207,16 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @BindView(R.id.et_bank)
     EditText mEtBank;
 
+    @BindView(R.id.linear_branch_name)
+    LinearLayout mLinearBranchName;
     @BindView(R.id.et_branch_name)
     EditText mEtBranchName;
+    @BindView(R.id.linear_account_holder)
+    LinearLayout mLinearAAccountHolder;
     @BindView(R.id.et_account_holder)
     EditText mEtAccountHolder;
+    @BindView(R.id.linear_account_name)
+    LinearLayout mLinearAccounName;
     @BindView(R.id.et_account_number)
     EditText mEtAccountNumber;
 
@@ -213,11 +241,17 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     LinearLayout mLinearForProfile2;
     @BindView(R.id.et_npwp)
     EditText mEtNpwp;
+    @BindView(R.id.linear_npwp)
+    LinearLayout mLinearNpwp;
+    @BindView(R.id.linear_pekerjaan)
+    LinearLayout mLinearPekerjaan;
     @BindView(R.id.et_pekerjaaan)
     EditText mEtPekerjaan;
     @BindView(R.id.et_whatsapp_number)
     EditText mEtWhatsappNumber;
 
+    @BindView(R.id.txt_status_pernikahan)
+    TextView mTxtStatusPernikahan;
     @BindView(R.id.linear_spinner_status_pernikahan)
     LinearLayout mLinearSpinnerStatusPernikahan;
     @BindView(R.id.spinner_status_pernikahan)
@@ -227,6 +261,8 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @BindView(R.id.et_status_pernikahan)
     EditText mEtStatusPernikahan;
 
+    @BindView(R.id.txt_jumlah_anak)
+    TextView mTxtJumlahAnak;
     @BindView(R.id.linear_spinner_jumlah_anak)
     LinearLayout mLinearSpinnerJumlahAnak;
     @BindView(R.id.spinner_jumlah_anak)
@@ -478,12 +514,12 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
                 else
                     gender = mRadioFemale.getText().toString();
 
-                mUserActionListener.sendProfileData(mEtIdCard.getText().toString(), mEtAddress.getText().toString(), mEtPostalCode.getText().toString(),
-                        mEtNpwp.getText().toString(), mEtStatusPernikahan.getText().toString(), mProfileData.getSuami(), mSpinnerReligion.getSelectedItem().toString(),
-                        mEtJumlahAnak.getText().toString(), mEtPekerjaan.getText().toString(), mEtRelationship.getText().toString(), mEtHeirName.getText().toString(),
-                        mEtCity.getText().toString(), mEtEmail.getText().toString(), mEtPob.getText().toString(), gender, "", mEtMobileNumber.getText().toString(),
-                        mEtPhoneNumber.getText().toString(), mProfileData.getFax(), mProfileData.getCity_id(), mEtProvince.getText().toString(), mProfileData.getBank_id(),
-                        mEtAccountNumber.getText().toString(), "", mEtBranchName.getText().toString(), pin);
+//                mUserActionListener.sendProfileData(mEtIdCard.getText().toString(), mEtAddress.getText().toString(), mEtPostalCode.getText().toString(),
+//                        mEtNpwp.getText().toString(), mProfileData.getStatus_mnkh(), mProfileData.getSuami(), mSpinnerReligion.getSelectedItem().toString(),
+//                        mEtJumlahAnak.getText().toString(), mEtPekerjaan.getText().toString(), mEtRelationship.getText().toString(), mEtHeirName.getText().toString(),
+//                        mEtCity.getText().toString(), mEtEmail.getText().toString(), mEtPob.getText().toString(), gender, mProfileData.getDob(), mEtMobileNumber.getText().toString(),
+//                        mEtPhoneNumber.getText().toString(), mProfileData.getFax(), mProfileData.getCity_id(), mEtProvince.getText().toString(), mProfileData.getBank_id(),
+//                        mEtAccountNumber.getText().toString(), mEtBranchName.getText().toString(), mEtBranchName.getText().toString(), pin);
             }
 
             @Override
@@ -511,44 +547,64 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mLinearForProfile.setVisibility(View.VISIBLE);
 //        mLinearForProfile2.setVisibility(View.VISIBLE);
 
+        mLinearTanggalDaftar.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtTanggalDaftar.setPadding(0,0,0,0);
         mEtTanggalDaftar.setEnabled(false);
         mEtTanggalDaftar.setText(mProfileData.getTanggal_daftar());
         mEtTanggalDaftar.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearTanggalExpired2.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtTanggalExpired.setPadding(0,0,0,0);
         mEtTanggalExpired.setEnabled(false);
         mEtTanggalExpired.setText(mProfileData.getTanggal_expired());
         mEtTanggalExpired.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearStockistIdNama.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtStockistIdNama.setPadding(0,0,0,0);
         mEtStockistIdNama.setEnabled(false);
         mEtStockistIdNama.setText(mProfileData.getStockist_id() + " / " + mProfileData.getStockist_name());
         mEtStockistIdNama.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mRelativeRecId.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtRecId.setPadding(0,0,0,0);
         mEtRecId.setEnabled(false);
         mEtRecId.setText(mProfileData.getRecruiting_id());
         mEtRecId.setTextColor(getResources().getColor(R.color.curated_light));
         mSearchRecId.setVisibility(View.GONE);
 
+        mLinearRecName.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtRecName.setPadding(0,0,0,0);
         mEtRecName.setEnabled(false);
         mEtRecName.setText(mProfileData.getRecruiting_name());
         mEtRecName.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mRelativeSponsorId.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtSponsorId.setPadding(0,0,0,0);
         mEtSponsorId.setEnabled(false);
         mEtSponsorId.setText(mProfileData.getSponsor_id());
         mEtSponsorId.setTextColor(getResources().getColor(R.color.curated_light));
         mSearchSponsorId.setVisibility(View.GONE);
 
+        mLinearSponsorName.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtSponsorName.setPadding(0,0,0,0);
         mEtSponsorName.setEnabled(false);
         mEtSponsorName.setText(mProfileData.getSponsor_name());
         mEtSponsorName.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearMemberId.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtMemberId.setPadding(0,0,0,0);
         mEtMemberId.setEnabled(false);
         mEtMemberId.setText(mProfileData.getMember_id());
         mEtMemberId.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearFullName.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtFulllName.setPadding(0,0,0,0);
         mEtFulllName.setEnabled(false);
         mEtFulllName.setText(mProfileData.getFull_name());
         mEtFulllName.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearIdCard.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtIdCard.setPadding(0,0,0,0);
         mEtIdCard.setEnabled(false);
         mEtIdCard.setText(mProfileData.getId_card());
         mEtIdCard.setTextColor(getResources().getColor(R.color.curated_light));
@@ -569,6 +625,8 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtPob.setText(mProfileData.getPob());
 //        mEtPob.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearDate.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtDob.setPadding(0,0,0,0);
         mEtDob.setEnabled(false);
         mEtDob.setText(mProfileData.getDob());
         mEtDob.setTextColor(getResources().getColor(R.color.curated_light));
@@ -589,23 +647,28 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtEmail.setText(mProfileData.getEmail());
 //        mEtEmail.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearNpwp.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtNpwp.setPadding(0,0,0,0);
         mEtNpwp.setEnabled(false);
-        mEtNpwp.setText(mProfileData.getNpwp());
+        mEtNpwp.setText(mProfileData.getNonpwp());
         mEtNpwp.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mEtPekerjaan.setEnabled(false);
-        mEtPekerjaan.setText(mProfileData.getPekerjaan());
-        mEtPekerjaan.setTextColor(getResources().getColor(R.color.curated_light));
+        mLinearPekerjaan.setVisibility(View.GONE);
+//        mEtPekerjaan.setEnabled(false);
+//        mEtPekerjaan.setText(mProfileData.getPekerjaan());
+//        mEtPekerjaan.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mTxtStatusPernikahan.setVisibility(View.GONE);
         mLinearSpinnerStatusPernikahan.setVisibility(View.GONE);
-        mLinearStatusPernikahan.setVisibility(View.VISIBLE);
-        mEtStatusPernikahan.setText(mProfileData.getStatus_pernikahan());
-        mEtStatusPernikahan.setTextColor(getResources().getColor(R.color.curated_light));
+        mLinearStatusPernikahan.setVisibility(View.GONE);
+//        mEtStatusPernikahan.setText(mProfileData.getStatus_pernikahan());
+//        mEtStatusPernikahan.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mTxtJumlahAnak.setVisibility(View.GONE);
         mLinearSpinnerJumlahAnak.setVisibility(View.GONE);
-        mLinearJumlahAnak.setVisibility(View.VISIBLE);
-        mEtJumlahAnak.setText(mProfileData.getJumlah_anak());
-        mEtJumlahAnak.setTextColor(getResources().getColor(R.color.curated_light));
+        mLinearJumlahAnak.setVisibility(View.GONE);
+//        mEtJumlahAnak.setText(mProfileData.getJumlah_anak());
+//        mEtJumlahAnak.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mEtPhoneNumber.setEnabled(false);
         mEtPhoneNumber.setText(mProfileData.getPhone_number());
@@ -615,25 +678,33 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtMobileNumber.setText(mProfileData.getMobile_number());
 //        mEtMobileNumber.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearAddress.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtAddress.setPadding(0,0,0,0);
         mEtAddress.setEnabled(false);
         mEtAddress.setText(mProfileData.getAddress());
         mEtAddress.setTextColor(getResources().getColor(R.color.curated_light));
 
         mLinearSpinnerProvince.setVisibility(View.GONE);
         mLinearEtProvince.setVisibility(View.VISIBLE);
+        mLinearEtProvince.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtProvince.setPadding(0,0,0,0);
         mEtProvince.setEnabled(false);
         mEtProvince.setText(mProfileData.getProvince());
         mEtProvince.setTextColor(getResources().getColor(R.color.curated_light));
 
         mLinearSpinnerCity.setVisibility(View.GONE);
         mLinearEtCity.setVisibility(View.VISIBLE);
+        mLinearEtCity.setBackgroundColor(getResources().getColor(R.color.transparent));
+        mEtCity.setPadding(0,0,0,0);
         mEtCity.setEnabled(false);
         mEtCity.setText(mProfileData.getCity());
         mEtCity.setTextColor(getResources().getColor(R.color.curated_light));
 
-//        mEtPostalCode.setEnabled(false);
+        mLinearPostalCode.getResources().getColor(R.color.transparent);
+        mEtPostalCode.setPadding(0,0,0,0);
+        mEtPostalCode.setEnabled(false);
         mEtPostalCode.setText(mProfileData.getPostal_code());
-//        mEtPostalCode.setTextColor(getResources().getColor(R.color.curated_light));
+        mEtPostalCode.setTextColor(getResources().getColor(R.color.curated_light));
 
         mLinearActivationCode.setVisibility(View.GONE);
 //        mEtActivationCode.setEnabled(false);
@@ -652,18 +723,26 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
 
         mLinearSpinnerBank.setVisibility(View.GONE);
         mLinearEtBank.setVisibility(View.VISIBLE);
+        mLinearEtBank.getResources().getColor(R.color.transparent);
+        mEtBank.setPadding(0,0,0,0);
         mEtBank.setEnabled(false);
         mEtBank.setText(mProfileData.getBank_name());
         mEtBank.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearBranchName.getResources().getColor(R.color.transparent);
+        mEtBranchName.setPadding(0,0,0,0);
         mEtBranchName.setEnabled(false);
         mEtBranchName.setText(mProfileData.getBranch());
         mEtBranchName.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearAAccountHolder.getResources().getColor(R.color.transparent);
+        mEtAccountHolder.setPadding(0,0,0,0);
         mEtAccountHolder.setEnabled(false);
         mEtAccountHolder.setText(mProfileData.getAccount_holder_name());
         mEtAccountHolder.setTextColor(getResources().getColor(R.color.curated_light));
 
+        mLinearAccounName.getResources().getColor(R.color.transparent);
+        mEtAccountNumber.setPadding(0,0,0,0);
         mEtAccountNumber.setEnabled(false);
         mEtAccountNumber.setText(mProfileData.getAccount_number());
         mEtAccountNumber.setTextColor(getResources().getColor(R.color.curated_light));

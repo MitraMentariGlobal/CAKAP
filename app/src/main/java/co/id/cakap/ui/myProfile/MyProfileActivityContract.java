@@ -34,9 +34,10 @@ public class MyProfileActivityContract {
         void getProfileData();
         void checkData(String pob, String religion, String email, String hp, String telp, String kodePos, String namaPewaris, String hubungan);
         void sendProfileData(
-                String noKtp, String alamat, String kodePos, String npwp, String statusPernikahan, String suami, String religion, String anak,
-                String pekerjaan, String hubungan, String ahliWaris, String city, String email, String pob, String gender, String date,
-                String hp, String telp, String fax, String kotaId, String province, String bankId, String norek, String cabang, String area,
-                String pin);
+                String noKtp, String alamat, String kodePos, String npwpId, String npwp, String statusPernikahan,
+                String suami, String religion, String anak, String pekerjaan, String hubungan, String ahliWaris,
+                String city, String email, String pob, String gender, String date, String hp, String telp, String fax,
+                String kotaId, String province, String bankAcc, String bankId, String norek, String cabang, String area,
+                String nama, String pin);
     }
 }

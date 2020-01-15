@@ -10,6 +10,7 @@ import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseReligion;
+import co.id.cakap.network.ApiResponseUpdateProfile;
 import co.id.cakap.network.NetworkService;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -73,14 +74,15 @@ public class MainRepository extends BaseRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Flowable<ApiResponseChangePin> postUpdateProfile(
-            String noKtp, String alamat, String kodePos, String npwp, String statusPernikahan, String suami, String religion, String anak,
-            String pekerjaan, String hubungan, String ahliWaris, String city, String email, String pob, String gender, String date,
-            String hp, String telp, String fax, String kotaId, String province, String bankId, String norek, String cabang, String area,
-            String username, String pin) {
+    public Flowable<ApiResponseUpdateProfile> postUpdateProfile(
+            String noKtp, String alamat, String kodePos, String npwpId, String npwp, String statusPernikahan, String suami,
+            String religion, String anak, String pekerjaan, String hubungan, String ahliWaris, String city, String email,
+            String pob, String gender, String date, String hp, String telp, String fax, String kotaId, String province, String bankAcc,
+            String bankId, String norek, String cabang, String area, String username, String nama, String pin) {
         return networkService.postUpdateProfile(
-                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, noKtp, alamat, kodePos, npwp, statusPernikahan, suami, religion, anak, pekerjaan,
-                hubungan, ahliWaris, city, email, pob, gender, date, hp, telp, fax, kotaId, province, bankId, norek, cabang, area, username, pin)
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, noKtp, alamat, kodePos, npwpId, npwp, statusPernikahan, suami, religion,
+                anak, pekerjaan, hubungan, ahliWaris, city, email, pob, gender, date, hp, telp, fax, kotaId, province, bankAcc, nama,
+                bankId, norek, cabang, area, username, pin)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -22,6 +22,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_tanggal_daftar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
@@ -61,6 +62,7 @@
                 style="@style/TexViewFont"/>
 
             <LinearLayout
+                android:id="@+id/linear_tanggal_expired2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_gray_background_style">
@@ -95,6 +97,7 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
+            android:id="@+id/linear_stockist_id_nama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
