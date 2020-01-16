@@ -74,7 +74,6 @@ public class HomeWebViewPresenter implements HomeWebViewContract.UserActionListe
 
                     @Override
                     public void onComplete() {
-                        mView.hideProgressBar();
                         Logger.d("onComplete");
                     }
                 });

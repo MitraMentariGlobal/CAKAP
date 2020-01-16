@@ -64,7 +64,6 @@ public class ChangePasswordPresenter implements ChangePasswordContract.UserActio
 
                     @Override
                     public void onComplete() {
-                        mView.hideProgressBar();
                         Logger.d("onComplete");
                     }
                 });

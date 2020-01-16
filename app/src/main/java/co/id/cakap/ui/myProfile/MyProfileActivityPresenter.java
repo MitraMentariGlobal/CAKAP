@@ -3,11 +3,13 @@ package co.id.cakap.ui.myProfile;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.id.cakap.data.BankData;
 import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
+import co.id.cakap.network.ApiResponseBank;
 import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseProfileData;
@@ -70,7 +72,6 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
 
                     @Override
                     public void onComplete() {
-                        mView.hideProgressBar();
                         Logger.d("onComplete");
                     }
                 });
@@ -107,7 +108,43 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
 
                     @Override
                     public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void getBank() {
+        mView.showProgressBar();
+
+        mDataModel.deleteBankData();
+        mMainRepository.getBank()
+                .subscribe(new ResourceSubscriber<ApiResponseBank>() {
+                    @Override
+                    public void onNext(ApiResponseBank apiResponseBank) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseBank.getData());
+                        Logger.d("<<<<<=====");
+
+                        saveBankData(apiResponseBank.getData());
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
                         mView.hideProgressBar();
+                        mView.setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
                         Logger.d("onComplete");
                     }
                 });
@@ -124,7 +161,6 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
                         Logger.d("message : " + apiResponseProfileData.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.hideProgressBar();
                         mView.setProfileData(apiResponseProfileData.getData());
                     }
 
@@ -144,23 +180,26 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
 
                     @Override
                     public void onComplete() {
-                        mView.hideProgressBar();
                         Logger.d("onComplete");
                     }
                 });
     }
 
     @Override
-    public void checkData(String pob, String religion, String email, String hp, String telp, String kodePos, String namaPewaris, String hubungan) {
+    public void checkData(String pob, String dob, String email, String hp, String telp, String kodePos,
+                          String namaPewaris, String hubungan, String cabang, String norek,
+                          boolean isFilledBank, boolean isFilledDob, boolean isFilledPostalCode) {
         List<ReligionData> religionData = mDataModel.getAllReligionData();
         boolean isCheckPob = false;
-        boolean isCheckReligion = false;
+        boolean isCheckDob = false;
         boolean isCheckEmail = false;
         boolean isCheckHp = false;
         boolean isCheckTelp = false;
         boolean isCheckKodePos = false;
         boolean isCheckNamaPewaris = false;
         boolean isCheckHubungan = false;
+        boolean isCheckCabang = false;
+        boolean isCheckNorek = false;
 
         if (pob.length() == 0) {
             mView.setErrorPob(true);
@@ -169,11 +208,15 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
             isCheckPob = true;
         }
 
-        if (religion.equals(religionData.get(0).getAgama())) {
-            mView.setErrorReligion(true);
+        if (isFilledDob) {
+            isCheckDob = true;
         } else {
-            mView.setErrorReligion(false);
-            isCheckReligion = true;
+            if (dob.length() == 0) {
+                mView.setErrorDob(true);
+            } else {
+                mView.setErrorDob(false);
+                isCheckDob = true;
+            }
         }
 
         if (email.length() == 0) {
@@ -201,12 +244,20 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
             isCheckTelp = true;
         }
 
-//            if (kodePos.length() == 0) {
-//                mView.setErrorKodePos(true);
-//            } else {
-//                mView.setErrorKodePos(false);
-//                isCheckKodePos = true;
-//            }
+        if (isFilledPostalCode) {
+            isCheckKodePos = true;
+        } else {
+            if (kodePos.length() == 0) {
+                mView.setErrorKodePos(true, false);
+            } else {
+                if (kodePos.length() < 5) {
+                    mView.setErrorKodePos(true, true);
+                } else {
+                    mView.setErrorKodePos(false, true);
+                    isCheckKodePos = true;
+                }
+            }
+        }
 
         if (namaPewaris.length() == 0) {
             mView.setErrorNamaPewaris(true);
@@ -222,13 +273,35 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
             isCheckHubungan = true;
         }
 
-        if (isCheckPob && isCheckReligion && isCheckEmail && isCheckHp && isCheckTelp && isCheckNamaPewaris && isCheckHubungan) {
+        if (isFilledBank) {
+            isCheckCabang = true;
+            isCheckNorek = true;
+        } else {
+            if (cabang.length() == 0) {
+                mView.setErrorCabang(true);
+            } else {
+                mView.setErrorCabang(false);
+                isCheckCabang = true;
+            }
+
+            if (norek.length() == 0) {
+                mView.setErrorNorek(true);
+            } else {
+                mView.setErrorNorek(false);
+                isCheckNorek = true;
+            }
+        }
+
+        if (isCheckPob && isCheckDob && isCheckEmail && isCheckHp && isCheckTelp && isCheckKodePos &&
+                isCheckNamaPewaris && isCheckHubungan && isCheckCabang && isCheckNorek) {
             mView.openDialogCheck();
+        } else {
+            mView.setErrorResponse("Some field are required!");
         }
     }
 
     @Override
-    public void sendProfileData(String noKtp, String alamat, String kodePos, String npwpId, String npwp, String statusPernikahan,
+    public void sendProfileData(String noKtp, String alamat, String kodePos, String npwp, String statusPernikahan,
                                 String suami, String religion, String anak, String pekerjaan, String hubungan, String ahliWaris,
                                 String city, String email, String pob, String gender, String date, String hp, String telp, String fax,
                                 String kotaId, String province, String bankAcc, String bankId, String norek, String cabang, String area,
@@ -236,7 +309,7 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
         mView.showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postUpdateProfile(noKtp, alamat, kodePos, npwpId, npwp, statusPernikahan, suami, religion, anak, pekerjaan,
+        mMainRepository.postUpdateProfile(noKtp, alamat, kodePos, npwp, statusPernikahan, suami, religion, anak, pekerjaan,
                 hubungan, ahliWaris, city, email, pob, gender, date, hp, telp, fax, kotaId, province, bankAcc, bankId, norek, cabang,
                 area, mResultDataLogin.getUsername(), nama, pin)
                 .subscribe(new ResourceSubscriber<ApiResponseUpdateProfile>() {
@@ -246,7 +319,8 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
                         Logger.d("message : " + apiResponseUpdateProfile.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.hideProgressBar();
+//                        mView.hideProgressBar();
+                        getProfileData();
                         mView.openSuccessBottomSheet();
                     }
 
@@ -266,7 +340,6 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
 
                     @Override
                     public void onComplete() {
-                        mView.hideProgressBar();
                         Logger.d("onComplete");
                     }
                 });
@@ -289,5 +362,18 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
         }
 
         mView.setReligionData(religion);
+    }
+
+    private void saveBankData(List<BankData> bankDataList) {
+        ArrayList<String> bankName = new ArrayList<>();
+        ArrayList<String> bankId = new ArrayList<>();
+
+        for (int i = 0; i < bankDataList.size(); i++) {
+            mDataModel.insertBankData(bankDataList.get(i));
+            bankId.add(bankDataList.get(i).getId());
+            bankName.add(bankDataList.get(i).getName());
+        }
+
+        mView.setBankData(bankName, bankId);
     }
 }

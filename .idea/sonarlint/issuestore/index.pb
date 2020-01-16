@@ -957,3 +957,5 @@ r
 Bapp/src/main/java/co/id/cakap/network/ApiResponseJenisKelamin.java,a/9/a9d4538aa4e73282f858a2f8dd7eb22f7c464c0d
 n
 >app/src/main/java/co/id/cakap/network/ApiResponseReligion.java,1/2/125dfd0997d81bf8a033a21a265ba598101a6159
+s
+Capp/src/main/java/co/id/cakap/network/ApiResponseUpdateProfile.java,2/7/2733217a2486844e4a3bfc18182b3fd74bb9831e

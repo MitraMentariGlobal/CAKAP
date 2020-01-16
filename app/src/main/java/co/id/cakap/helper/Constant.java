@@ -37,7 +37,6 @@ public class Constant {
     public static final String BODY_NO_KTP = BuildConfig.BODY_NO_KTP;
     public static final String BODY_ALAMAT = BuildConfig.BODY_ALAMAT;
     public static final String BODY_KODE_POS = BuildConfig.BODY_KODE_POS;
-    public static final String BODY_NPWP_ID = BuildConfig.BODY_NPWP_ID;
     public static final String BODY_NPWP = BuildConfig.BODY_NPWP;
     public static final String BODY_STATUS_PERNIKAHAN = BuildConfig.BODY_STATUS_PERNIKAHAN;
     public static final String BODY_SUAMI = BuildConfig.BODY_SUAMI;

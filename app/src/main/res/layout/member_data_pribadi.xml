@@ -253,13 +253,13 @@
             style="@style/TexViewFont"/>
 
         <LinearLayout
-            android:id="@+id/linear_date"
+            android:id="@+id/linear_date_of_birth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/et_gray_background_style">
 
             <TextView
-                android:id="@+id/et_date_of_birth"
+                android:id="@+id/txt_date_of_birth"
                 style="@style/Font_family_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -271,6 +271,18 @@
                 android:textSize="@dimen/text_14"
                 android:padding="@dimen/padding_12"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_error_date_of_birth"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <TextView
             android:layout_width="wrap_content"

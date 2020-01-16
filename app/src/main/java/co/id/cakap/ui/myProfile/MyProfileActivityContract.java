@@ -17,24 +17,30 @@ public class MyProfileActivityContract {
         void setProfileData(ProfileData profileData);
         void setJenisKelaminData(List<JenisKelaminData> jenisKelaminDataList);
         void setReligionData(List<String> religionDataList);
+        void setBankData(List<String> bankDataList, List<String> bankIdList);
         void setErrorPob(boolean isError);
-        void setErrorReligion(boolean isError);
+        void setErrorDob(boolean isError);
         void setErrorEmail(boolean isError, boolean isFilled);
         void setErrorHp(boolean isError);
         void setErrorTelp(boolean isError);
-        void setErrorKodePos(boolean isError);
+        void setErrorKodePos(boolean isError, boolean isFilled);
         void setErrorNamaPewaris(boolean isError);
         void setErrorHubungan(boolean isError);
+        void setErrorCabang(boolean isError);
+        void setErrorNorek(boolean isError);
     }
 
     public interface UserActionListener{
         void setView(MyProfileActivityContract.View view);
         void getJenisKelamin();
         void getReligion();
+        void getBank();
         void getProfileData();
-        void checkData(String pob, String religion, String email, String hp, String telp, String kodePos, String namaPewaris, String hubungan);
+        void checkData(String pob, String dob, String email, String hp, String telp, String kodePos,
+                       String namaPewaris, String hubungan, String cabang, String norek,
+                       boolean isFilledBank, boolean isFilledDob, boolean isFilledPostalCode);
         void sendProfileData(
-                String noKtp, String alamat, String kodePos, String npwpId, String npwp, String statusPernikahan,
+                String noKtp, String alamat, String kodePos, String npwp, String statusPernikahan,
                 String suami, String religion, String anak, String pekerjaan, String hubungan, String ahliWaris,
                 String city, String email, String pob, String gender, String date, String hp, String telp, String fax,
                 String kotaId, String province, String bankAcc, String bankId, String norek, String cabang, String area,

@@ -95,7 +95,6 @@ public class LoginPresenter implements LoginContract.UserActionListener {
 
                     @Override
                     public void onComplete() {
-                        mView.hideProgressBar();
                         Logger.d("onComplete");
                     }
                 });

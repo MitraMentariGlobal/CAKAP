@@ -87,8 +87,8 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @BindView(R.id.et_place_of_birth)
     EditText mEtPob;
-    @BindView(R.id.et_date_of_birth)
-    TextView mEtDob;
+    @BindView(R.id.txt_date_of_birth)
+    TextView mTxtDob;
     @BindView(R.id.spinner_religion)
     Spinner mSpinnerReligion;
     @BindView(R.id.et_email)
@@ -291,7 +291,7 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
                         mEtIdCard.getText().toString(),
                         gender,
                         mEtPob.getText().toString(),
-                        mEtDob.getText().toString(),
+                        mTxtDob.getText().toString(),
                         mSpinnerReligion.getSelectedItem().toString(),
                         mEtEmail.getText().toString(),
                         mEtPhoneNumber.getText().toString(),
@@ -491,19 +491,19 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
         mMonth = month + 1;
         mYear = year;
 
-        String dob = mDay + "/" + mMonth + "/" + mYear;
-        mEtDob.setText(dob);
+        String dob = mDay + "-" + mMonth + "-" + mYear;
+        mTxtDob.setText(dob);
     }
 
-    @OnClick(R.id.et_date_of_birth)
+    @OnClick(R.id.txt_date_of_birth)
     public void openDatePicker(View view) {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         Date date = null;
-        String dob = mEtDob.getText().toString();
+        String dob = mTxtDob.getText().toString();
 
         if (!dob.isEmpty()) {
             try {
-                date = DateHelper.dateFormatSlash.parse(dob);
+                date = DateHelper.dateFormatFrontEnd.parse(dob);
                 calendar.setTime(date);
             } catch (ParseException e) {
                 e.printStackTrace();

@@ -5,6 +5,8 @@ package co.id.cakap.model;
 
 import java.util.List;
 
+import co.id.cakap.data.BankData;
+import co.id.cakap.data.BankDataDao;
 import co.id.cakap.data.DaoSession;
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.FirebaseTokenDataDao;
@@ -28,6 +30,7 @@ public class DataModel extends BaseModel {
     private NotificationDataDao mNotificationDataDao;
     private JenisKelaminDataDao mJenisKelaminDataDao;
     private ReligionDataDao mReligionDataDao;
+    private BankDataDao mBankDataDao;
 
     public DataModel(DaoSession daoSession) {
         super(daoSession);
@@ -36,6 +39,7 @@ public class DataModel extends BaseModel {
         mNotificationDataDao = daoSession.getNotificationDataDao();
         mJenisKelaminDataDao = daoSession.getJenisKelaminDataDao();
         mReligionDataDao = daoSession.getReligionDataDao();
+        mBankDataDao = daoSession.getBankDataDao();
     }
 
     public void insertResultDataLogin(ResultDataLogin resultDataLogin){
@@ -96,5 +100,17 @@ public class DataModel extends BaseModel {
 
     public void deleteReligionData() {
         mReligionDataDao.deleteAll();
+    }
+
+    public void insertBankData(BankData bankData){
+        mBankDataDao.insertOrReplace(bankData);
+    }
+
+    public List<BankData> getAllBankData() {
+        return mBankDataDao.loadAll();
+    }
+
+    public void deleteBankData() {
+        mBankDataDao.deleteAll();
     }
 }

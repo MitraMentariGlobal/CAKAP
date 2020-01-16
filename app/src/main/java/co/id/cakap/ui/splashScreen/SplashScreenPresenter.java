@@ -45,6 +45,7 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
     }
 
     private void checkSession(FirebaseTokenData firebaseTokenData, ResultDataLogin resultDataLogin) {
+        mDataModel.deleteResultDataLogin();
         mMainRepository.postCheckLogin(firebaseTokenData.getFcmToken(), resultDataLogin.getSession_token())
                 .subscribe(new ResourceSubscriber<ApiResponseLogin>() {
                     @Override

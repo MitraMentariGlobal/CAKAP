@@ -84,7 +84,6 @@ android {
             buildConfigField 'String', 'BODY_NO_KTP', endpointProperties['body_no_ktp']
             buildConfigField 'String', 'BODY_ALAMAT', endpointProperties['body_alamat']
             buildConfigField 'String', 'BODY_KODE_POS', endpointProperties['body_kode_pos']
-            buildConfigField 'String', 'BODY_NPWP_ID', endpointProperties['body_npwp_id']
             buildConfigField 'String', 'BODY_NPWP', endpointProperties['body_npwp']
             buildConfigField 'String', 'BODY_STATUS_PERNIKAHAN', endpointProperties['body_status_pernikahan']
             buildConfigField 'String', 'BODY_SUAMI', endpointProperties['body_suami']

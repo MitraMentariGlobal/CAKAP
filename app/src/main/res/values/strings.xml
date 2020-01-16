@@ -116,6 +116,7 @@
     <string name="stock_update">Update</string>
     <string name="stock_card">Card</string>
     <string name="field_not_match">This field does not match</string>
+    <string name="minimum_5">Minimum 5 character</string>
     <string name="field_required">This field is required</string>
     <string name="your_default_password">Your default password would be sent to your mail</string>
     <string name="success_update_profile">Update profile berhasil</string>

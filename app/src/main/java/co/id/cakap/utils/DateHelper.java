@@ -9,20 +9,22 @@ import java.util.TimeZone;
 public class DateHelper {
 
     public static SimpleDateFormat backend_sdf, backend_sdf_notime;
-    public static SimpleDateFormat dateFormatSlash;
+    public static SimpleDateFormat dateFormatFrontEnd;
 
     static {
         backend_sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
 
         backend_sdf_notime = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
-        dateFormatSlash = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        dateFormatFrontEnd = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
     }
 
-    public static String formatBackend(String strDate)  {
+    public static String changeToFormatBackend(String oldDate)  {
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            Date date = dateFormatSlash.parse(strDate);
-            return dateFormatSlash.format(date);
+            Date date = newDateFormat.parse(oldDate);
+            newDateFormat.applyPattern("yyyy-MM-dd");
+            return newDateFormat.format(date);
         } catch (Exception e) {
             System.out.println("* date parse error " + e.getMessage());
             return "";
@@ -31,7 +33,7 @@ public class DateHelper {
 
     public static String getTimeNow() {
         Calendar c = Calendar.getInstance();
-        return dateFormatSlash.format(c.getTime());
+        return dateFormatFrontEnd.format(c.getTime());
     }
 
     public static String getTimeNowBackEnd() {

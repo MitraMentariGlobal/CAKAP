@@ -1,10 +1,13 @@
 package co.id.cakap.ui.myProfile;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -20,8 +23,12 @@ import com.andrognito.pinlockview.PinLockListener;
 import com.andrognito.pinlockview.PinLockView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.inject.Inject;
 
@@ -40,7 +47,7 @@ import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
-public class MyProfileActivity extends BottomDialogActivity implements MyProfileActivityContract.View, AdapterView.OnItemSelectedListener {
+public class MyProfileActivity extends BottomDialogActivity implements MyProfileActivityContract.View, AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener  {
     @Inject
     MyProfileActivityPresenter mMyProfileActivityPresenter;
 
@@ -109,10 +116,12 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     EditText mEtPob;
     @BindView(R.id.txt_error_place_of_birth)
     TextView mTxtErrorPlaceOfBirth;
-    @BindView(R.id.linear_date)
-    LinearLayout mLinearDate;
-    @BindView(R.id.et_date_of_birth)
-    TextView mEtDob;
+    @BindView(R.id.linear_date_of_birth)
+    LinearLayout mLinearDateOfBirth;
+    @BindView(R.id.txt_date_of_birth)
+    TextView mTxtDob;
+    @BindView(R.id.txt_error_date_of_birth)
+    TextView mTxtErrorDateOfBirth;
 
     @BindView(R.id.linear_spinner_religion)
     LinearLayout mLinearSpinnerReligion;
@@ -211,14 +220,20 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     LinearLayout mLinearBranchName;
     @BindView(R.id.et_branch_name)
     EditText mEtBranchName;
+    @BindView(R.id.txt_error_branch_name)
+    TextView mTxtErrorBranchName;
+
     @BindView(R.id.linear_account_holder)
     LinearLayout mLinearAAccountHolder;
     @BindView(R.id.et_account_holder)
     EditText mEtAccountHolder;
-    @BindView(R.id.linear_account_name)
-    LinearLayout mLinearAccounName;
+
+    @BindView(R.id.linear_account_number)
+    LinearLayout mLinearAccountNumber;
     @BindView(R.id.et_account_number)
     EditText mEtAccountNumber;
+    @BindView(R.id.txt_error_account_number)
+    TextView mTxtErrorAccountNumber;
 
     @BindView(R.id.linear_search_rec_id)
     LinearLayout mSearchRecId;
@@ -272,7 +287,15 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @BindView(R.id.et_jumlah_anak)
     EditText mEtJumlahAnak;
 
+    private int mDay;
+    private int mMonth;
+    private int mYear;
+    private boolean mIsFilledBank = false;
+    private boolean mIsFilledDob = false;
+    private boolean mIsFilledPostalCode = false;
+    private String mBankId = "";
     private ProfileData mProfileData;
+    private List<String> mBankIdList;
     private List<JenisKelaminData> mJenisKelaminDataList;
     private MyProfileActivityContract.UserActionListener mUserActionListener;
 
@@ -322,7 +345,18 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     public void setProfileData(ProfileData profileData) {
         mProfileData = profileData;
 
-        setSuccessInputData();
+        try {
+            if (Integer.parseInt(mProfileData.getBank_id()) == 0) {
+                mIsFilledBank = false;
+                mUserActionListener.getBank();
+            } else {
+                mIsFilledBank = true;
+                setSuccessInputData();
+            }
+        } catch (Exception e) {
+            mIsFilledBank = true;
+            setSuccessInputData();
+        }
     }
 
     @Override
@@ -339,7 +373,18 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
                 R.layout.item_spinner, android.R.id.text1, religionDataList);
         provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerReligion.setAdapter(provinceAdapter);
+    }
 
+    @Override
+    public void setBankData(List<String> bankDataList, List<String> bankIdList) {
+        mBankIdList = bankIdList;
+        mSpinnerBank.setOnItemSelectedListener(this);
+        ArrayAdapter<String> bankAdapter = new ArrayAdapter<String>(this,
+                R.layout.item_spinner, android.R.id.text1, bankDataList);
+        bankAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerBank.setAdapter(bankAdapter);
+
+        setSuccessInputData();
     }
 
     @Override
@@ -354,13 +399,13 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     }
 
     @Override
-    public void setErrorReligion(boolean isError) {
+    public void setErrorDob(boolean isError) {
         if (isError) {
-            mLinearSpinnerReligion.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
-            mTxtErrorReligion.setVisibility(View.VISIBLE);
+            mLinearDateOfBirth.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorDateOfBirth.setVisibility(View.VISIBLE);
         } else {
-            mLinearSpinnerReligion.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mTxtErrorReligion.setVisibility(View.GONE);
+            mLinearDateOfBirth.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorDateOfBirth.setVisibility(View.GONE);
         }
     }
 
@@ -404,10 +449,15 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     }
 
     @Override
-    public void setErrorKodePos(boolean isError) {
+    public void setErrorKodePos(boolean isError, boolean isFilled) {
         if (isError) {
             mLinearPostalCode.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
             mTxtErrorPostalCode.setVisibility(View.VISIBLE);
+
+            if (isFilled)
+                mTxtErrorEmail.setText(getString(R.string.minimum_5));
+            else
+                mTxtErrorEmail.setText(getString(R.string.field_required));
         } else {
             mLinearPostalCode.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
             mTxtErrorPostalCode.setVisibility(View.GONE);
@@ -436,6 +486,28 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         }
     }
 
+    @Override
+    public void setErrorCabang(boolean isError) {
+        if (isError) {
+            mLinearBranchName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorBranchName.setVisibility(View.VISIBLE);
+        } else {
+            mLinearBranchName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorBranchName.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorNorek(boolean isError) {
+        if (isError) {
+            mLinearAccountNumber.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorAccountNumber.setVisibility(View.VISIBLE);
+        } else {
+            mLinearAccountNumber.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorAccountNumber.setVisibility(View.GONE);
+        }
+    }
+
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
@@ -452,9 +524,10 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     }
 
     public void checkData() {
-        mUserActionListener.checkData(mEtPob.getText().toString(), mSpinnerReligion.getSelectedItem().toString(), mEtEmail.getText().toString(),
+        mUserActionListener.checkData(mEtPob.getText().toString(), mTxtDob.getText().toString(), mEtEmail.getText().toString(),
                 mEtMobileNumber.getText().toString(), mEtPhoneNumber.getText().toString(), mEtPostalCode.getText().toString(),
-                mEtHeirName.getText().toString(), mEtRelationship.getText().toString());
+                mEtHeirName.getText().toString(), mEtRelationship.getText().toString(), mEtBranchName.getText().toString(),
+                mEtAccountNumber.getText().toString(), mIsFilledBank, mIsFilledDob, mIsFilledPostalCode);
     }
 
     @Override
@@ -514,12 +587,15 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
                 else
                     gender = mRadioFemale.getText().toString();
 
-//                mUserActionListener.sendProfileData(mEtIdCard.getText().toString(), mEtAddress.getText().toString(), mEtPostalCode.getText().toString(),
-//                        mEtNpwp.getText().toString(), mProfileData.getStatus_mnkh(), mProfileData.getSuami(), mSpinnerReligion.getSelectedItem().toString(),
-//                        mEtJumlahAnak.getText().toString(), mEtPekerjaan.getText().toString(), mEtRelationship.getText().toString(), mEtHeirName.getText().toString(),
-//                        mEtCity.getText().toString(), mEtEmail.getText().toString(), mEtPob.getText().toString(), gender, mProfileData.getDob(), mEtMobileNumber.getText().toString(),
-//                        mEtPhoneNumber.getText().toString(), mProfileData.getFax(), mProfileData.getCity_id(), mEtProvince.getText().toString(), mProfileData.getBank_id(),
-//                        mEtAccountNumber.getText().toString(), mEtBranchName.getText().toString(), mEtBranchName.getText().toString(), pin);
+                mUserActionListener.sendProfileData(mEtIdCard.getText().toString(), mEtAddress.getText().toString(),
+                        mEtPostalCode.getText().toString(), mEtNpwp.getText().toString(), mProfileData.getStatus_mnkh(),
+                        mProfileData.getSuami(), mSpinnerReligion.getSelectedItem().toString(), mEtJumlahAnak.getText().toString(),
+                        mEtPekerjaan.getText().toString(), mEtRelationship.getText().toString(), mEtHeirName.getText().toString(),
+                        mEtCity.getText().toString(), mEtEmail.getText().toString(), mEtPob.getText().toString(), gender,
+                        DateHelper.changeToFormatBackend(mTxtDob.getText().toString()), mEtMobileNumber.getText().toString(),
+                        mEtPhoneNumber.getText().toString(), mProfileData.getFax(), mProfileData.getCity_id(),
+                        mEtProvince.getText().toString(), mProfileData.getBank_id(), mBankId, mEtAccountNumber.getText().toString(),
+                        mEtBranchName.getText().toString(), mEtBranchName.getText().toString(), mEtFulllName.getText().toString(), pin);
             }
 
             @Override
@@ -625,11 +701,16 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtPob.setText(mProfileData.getPob());
 //        mEtPob.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mLinearDate.setBackgroundColor(getResources().getColor(R.color.transparent));
-        mEtDob.setPadding(0,0,0,0);
-        mEtDob.setEnabled(false);
-        mEtDob.setText(mProfileData.getDob());
-        mEtDob.setTextColor(getResources().getColor(R.color.curated_light));
+        if (!mProfileData.getDob().equals("0000-00-00")) {
+            mLinearDateOfBirth.setBackgroundColor(getResources().getColor(R.color.transparent));
+            mTxtDob.setPadding(0,0,0,0);
+            mTxtDob.setEnabled(false);
+            mTxtDob.setText(mProfileData.getFdob());
+            mIsFilledDob = true;
+        } else {
+            mIsFilledDob = false;
+        }
+//        mTxtDob.setTextColor(getResources().getColor(R.color.curated_light));
 
 //        mLinearSpinnerReligion.setVisibility(View.GONE);
 //        mLinearEtReligion.setVisibility(View.VISIBLE);
@@ -700,11 +781,16 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtCity.setText(mProfileData.getCity());
         mEtCity.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mLinearPostalCode.getResources().getColor(R.color.transparent);
-        mEtPostalCode.setPadding(0,0,0,0);
-        mEtPostalCode.setEnabled(false);
-        mEtPostalCode.setText(mProfileData.getPostal_code());
-        mEtPostalCode.setTextColor(getResources().getColor(R.color.curated_light));
+        if (mProfileData.getPostal_code().length() >= 5) {
+            mLinearPostalCode.setBackgroundColor(getResources().getColor(R.color.transparent));
+            mEtPostalCode.setPadding(0,0,0,0);
+            mEtPostalCode.setEnabled(false);
+            mEtPostalCode.setText(mProfileData.getPostal_code());
+            mEtPostalCode.setTextColor(getResources().getColor(R.color.curated_light));
+            mIsFilledPostalCode = true;
+        } else {
+            mIsFilledPostalCode = false;
+        }
 
         mLinearActivationCode.setVisibility(View.GONE);
 //        mEtActivationCode.setEnabled(false);
@@ -721,40 +807,90 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
         mEtRelationship.setText(ahliWaris[1]);
 //        mEtRelationship.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mLinearSpinnerBank.setVisibility(View.GONE);
-        mLinearEtBank.setVisibility(View.VISIBLE);
-        mLinearEtBank.getResources().getColor(R.color.transparent);
-        mEtBank.setPadding(0,0,0,0);
-        mEtBank.setEnabled(false);
-        mEtBank.setText(mProfileData.getBank_name());
-        mEtBank.setTextColor(getResources().getColor(R.color.curated_light));
+        if (!mIsFilledBank) {
+            mLinearSpinnerBank.setVisibility(View.VISIBLE);
+            mLinearEtBank.setVisibility(View.GONE);
 
-        mLinearBranchName.getResources().getColor(R.color.transparent);
-        mEtBranchName.setPadding(0,0,0,0);
-        mEtBranchName.setEnabled(false);
-        mEtBranchName.setText(mProfileData.getBranch());
-        mEtBranchName.setTextColor(getResources().getColor(R.color.curated_light));
+            mEtBranchName.setEnabled(true);
+            mEtAccountHolder.setEnabled(false);
+            mEtAccountHolder.setText(mProfileData.getFull_name());
+            mEtAccountHolder.setTextColor(getResources().getColor(R.color.curated_light));
+            mEtAccountNumber.setEnabled(true);
+        } else {
+            mLinearSpinnerBank.setVisibility(View.GONE);
+            mLinearEtBank.setVisibility(View.VISIBLE);
+            mLinearEtBank.setBackgroundColor(getResources().getColor(R.color.transparent));
+            mEtBank.setPadding(0, 0, 0, 0);
+            mEtBank.setEnabled(false);
+            mEtBank.setText(mProfileData.getBank_name());
+            mEtBank.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mLinearAAccountHolder.getResources().getColor(R.color.transparent);
-        mEtAccountHolder.setPadding(0,0,0,0);
-        mEtAccountHolder.setEnabled(false);
-        mEtAccountHolder.setText(mProfileData.getAccount_holder_name());
-        mEtAccountHolder.setTextColor(getResources().getColor(R.color.curated_light));
+            mLinearBranchName.setBackgroundColor(getResources().getColor(R.color.transparent));
+            mEtBranchName.setPadding(0,0,0,0);
+            mEtBranchName.setEnabled(false);
+            mEtBranchName.setText(mProfileData.getBranch());
+            mEtBranchName.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mLinearAccounName.getResources().getColor(R.color.transparent);
-        mEtAccountNumber.setPadding(0,0,0,0);
-        mEtAccountNumber.setEnabled(false);
-        mEtAccountNumber.setText(mProfileData.getAccount_number());
-        mEtAccountNumber.setTextColor(getResources().getColor(R.color.curated_light));
+            mLinearAAccountHolder.setBackgroundColor(getResources().getColor(R.color.transparent));
+            mEtAccountHolder.setPadding(0,0,0,0);
+            mEtAccountHolder.setEnabled(false);
+            mEtAccountHolder.setText(mProfileData.getAccount_holder_name());
+            mEtAccountHolder.setTextColor(getResources().getColor(R.color.curated_light));
+
+            mLinearAccountNumber.setBackgroundColor(getResources().getColor(R.color.transparent));
+            mEtAccountNumber.setPadding(0,0,0,0);
+            mEtAccountNumber.setEnabled(false);
+            mEtAccountNumber.setText(mProfileData.getAccount_number());
+            mEtAccountNumber.setTextColor(getResources().getColor(R.color.curated_light));
+        }
+
+        hideProgressBar();
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        switch (parent.getId()) {
+            case R.id.spinner_bank:
+                mBankId = mBankIdList.get(position);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        mDay = dayOfMonth;
+        mMonth = month + 1;
+        mYear = year;
+
+        String dob = mDay + "-" + mMonth + "-" + mYear;
+        mTxtDob.setText(dob);
+    }
+
+    @OnClick(R.id.txt_date_of_birth)
+    public void openDatePicker(View view) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Date date = null;
+        String dob = mTxtDob.getText().toString();
+
+        if (!dob.isEmpty()) {
+            try {
+                date = DateHelper.dateFormatFrontEnd.parse(dob);
+                calendar.setTime(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        DatePickerDialog dialog = new DatePickerDialog(this, this,
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
     }
 }

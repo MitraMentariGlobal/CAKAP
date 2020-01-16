@@ -65,8 +65,8 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
     RadioButton mRadioFemale;
     @BindView(R.id.et_place_of_birth)
     EditText mEtPob;
-    @BindView(R.id.et_date_of_birth)
-    TextView mEtDob;
+    @BindView(R.id.txt_date_of_birth)
+    TextView mTxtDob;
 
     @BindView(R.id.linear_spinner_religion)
     LinearLayout mLinearSpinnerReligion;
@@ -262,9 +262,9 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
         mEtPob.setText(mSuccessData.getPob());
         mEtPob.setTextColor(getResources().getColor(R.color.curated_light));
 
-        mEtDob.setEnabled(false);
-        mEtDob.setText(mSuccessData.getDob());
-        mEtDob.setTextColor(getResources().getColor(R.color.curated_light));
+        mTxtDob.setEnabled(false);
+        mTxtDob.setText(mSuccessData.getDob());
+        mTxtDob.setTextColor(getResources().getColor(R.color.curated_light));
 
         mLinearSpinnerReligion.setVisibility(View.GONE);
         mLinearEtReligion.setVisibility(View.VISIBLE);
