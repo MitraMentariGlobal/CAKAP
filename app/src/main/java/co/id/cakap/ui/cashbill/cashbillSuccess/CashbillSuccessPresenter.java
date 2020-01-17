@@ -3,10 +3,8 @@ package co.id.cakap.ui.cashbill.cashbillSuccess;
 import java.util.ArrayList;
 
 import co.id.cakap.data.CashbillSuccessData;
-import co.id.cakap.data.DetailTransaksiData;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.repository.MainRepository;
-import co.id.cakap.ui.detailTransaction.DetailTransactionContract;
 
 public class CashbillSuccessPresenter implements CashbillSuccessContract.UserActionListener {
     private static CashbillSuccessContract.View mView;

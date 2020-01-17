@@ -19,58 +19,76 @@ import lombok.Data;
 
 @Data
 @Entity
-public class DetailTransaksiData implements Parcelable {
-    @SerializedName("item_code")
+public class DetailTransactionData implements Parcelable {
+    @SerializedName("item_id")
     @Expose
     private String item_code;
 
-    @SerializedName("item_name")
+    @SerializedName("name")
     @Expose
     private String item_name;
 
-    @SerializedName("price")
+    @SerializedName("fharga")
     @Expose
     private String price;
 
-    @SerializedName("pv")
+    @SerializedName("fpv")
     @Expose
     private String pv;
 
-    @SerializedName("qty")
+    @SerializedName("fqty")
     @Expose
     private String qty;
 
-    @SerializedName("sub_total")
+    @SerializedName("fsubtotal")
     @Expose
     private String sub_total;
 
-    @SerializedName("sub_total_pv")
+    @SerializedName("fsubtotals")
+    @Expose
+    private String sub_totals;
+
+    @SerializedName("fsubtotalpv")
     @Expose
     private String sub_total_pv;
 
-    @Keep
-    public DetailTransaksiData(String item_code, String item_name, String price, String pv, String qty, String sub_total, String sub_total_pv) {
-        this.item_code = item_code;
-        this.item_name = item_name;
-        this.price = price;
-        this.pv = pv;
-        this.qty = qty;
-        this.sub_total = sub_total;
-        this.sub_total_pv = sub_total_pv;
-    }
+//    @Keep
+//    public DetailTransactionData(String item_code, String item_name, String price, String pv, String qty, String sub_total, String sub_total_pv) {
+//        this.item_code = item_code;
+//        this.item_name = item_name;
+//        this.price = price;
+//        this.pv = pv;
+//        this.qty = qty;
+//        this.sub_total = sub_total;
+//        this.sub_total_pv = sub_total_pv;
+//    }
 
-    protected DetailTransaksiData(Parcel in) {
+    protected DetailTransactionData(Parcel in) {
         item_code = in.readString();
         item_name = in.readString();
         price = in.readString();
         pv = in.readString();
         qty = in.readString();
         sub_total = in.readString();
+        sub_totals = in.readString();
         sub_total_pv = in.readString();
     }
 
-    @Generated(hash = 1744238950)
-    public DetailTransaksiData() {
+    @Generated(hash = 244861625)
+    public DetailTransactionData(String item_code, String item_name, String price, String pv, String qty, String sub_total, String sub_totals,
+            String sub_total_pv) {
+        this.item_code = item_code;
+        this.item_name = item_name;
+        this.price = price;
+        this.pv = pv;
+        this.qty = qty;
+        this.sub_total = sub_total;
+        this.sub_totals = sub_totals;
+        this.sub_total_pv = sub_total_pv;
+    }
+
+    @Generated(hash = 243614715)
+    public DetailTransactionData() {
     }
 
     @Override
@@ -81,6 +99,7 @@ public class DetailTransaksiData implements Parcelable {
         dest.writeString(pv);
         dest.writeString(qty);
         dest.writeString(sub_total);
+        dest.writeString(sub_totals);
         dest.writeString(sub_total_pv);
     }
 
@@ -137,6 +156,14 @@ public class DetailTransaksiData implements Parcelable {
         this.sub_total = sub_total;
     }
 
+    public String getSub_totals() {
+        return this.sub_totals;
+    }
+
+    public void setSub_totals(String sub_totals) {
+        this.sub_totals = sub_totals;
+    }
+
     public String getSub_total_pv() {
         return this.sub_total_pv;
     }
@@ -145,15 +172,15 @@ public class DetailTransaksiData implements Parcelable {
         this.sub_total_pv = sub_total_pv;
     }
 
-    public static final Creator<DetailTransaksiData> CREATOR = new Creator<DetailTransaksiData>() {
+    public static final Creator<DetailTransactionData> CREATOR = new Creator<DetailTransactionData>() {
         @Override
-        public DetailTransaksiData createFromParcel(Parcel in) {
-            return new DetailTransaksiData(in);
+        public DetailTransactionData createFromParcel(Parcel in) {
+            return new DetailTransactionData(in);
         }
 
         @Override
-        public DetailTransaksiData[] newArray(int size) {
-            return new DetailTransaksiData[size];
+        public DetailTransactionData[] newArray(int size) {
+            return new DetailTransactionData[size];
         }
     };
 }

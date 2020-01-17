@@ -115,4 +115,20 @@ public interface NetworkService {
                                                          @Field(Constant.BODY_NAMA) String nama,
                                                          @Field(Constant.BODY_PIN) String pin);
 
+    @FormUrlEncoded
+    @POST("cashbill_member")
+    Flowable<ApiResponseActivityCashbill> postActivityCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                               @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                               @Field(Constant.BODY_USER_ID) String userId,
+                                                               @Field(Constant.BODY_TAHUN) String tahun,
+                                                               @Field(Constant.BODY_BULAN) String bulan,
+                                                               @Field(Constant.GET_GROUP_ID) String groupId);
+
+    @FormUrlEncoded
+    @POST("cashbill_member")
+    Flowable<ApiResponseDetailTransaction> postDetailTransaction(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                 @Field(Constant.BODY_ID) String id);
+
+
 }

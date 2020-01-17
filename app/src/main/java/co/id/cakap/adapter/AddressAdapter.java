@@ -4,14 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,9 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.AddressData;
-import co.id.cakap.data.DetailTransaksiData;
 import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivityPresenter;
-import co.id.cakap.utils.Logger;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**

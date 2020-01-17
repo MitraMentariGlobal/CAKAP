@@ -40,16 +40,16 @@ public class ActivityCashbillPresenter implements ActivityCashbillContract.UserA
     @Override
     public void getData() {
         arrayList = new ArrayList<>();
-        arrayList.add(new ActivityCashbillData("INV - 123123123123123", "2342432", "Nama Member 1", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 456789", "4566575643", "Nama Member 2", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 1111111111111", "74456544", "Nama Member 3", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 2222222222", "564578687", "Nama Member 4", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 3333333333333", "2497868", "Nama Member 5", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 444444444", "8567675", "Nama Member 6", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 5555555", "454654", "Nama Member 7", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 66666666", "45676879", "Nama Member 8", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 77777777777", "900897897", "Nama Member 9", "IDR 100.000.000", "123", "28 Jan 2020"));
-        arrayList.add(new ActivityCashbillData("INV - 888888888", "78987078", "Nama Member 10", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 123123123123123", "2342432", "Nama Member 1", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 456789", "4566575643", "Nama Member 2", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 1111111111111", "74456544", "Nama Member 3", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 2222222222", "564578687", "Nama Member 4", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 3333333333333", "2497868", "Nama Member 5", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 444444444", "8567675", "Nama Member 6", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 5555555", "454654", "Nama Member 7", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 66666666", "45676879", "Nama Member 8", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 77777777777", "900897897", "Nama Member 9", "IDR 100.000.000", "123", "28 Jan 2020"));
+//        arrayList.add(new ActivityCashbillData("INV - 888888888", "78987078", "Nama Member 10", "IDR 100.000.000", "123", "28 Jan 2020"));
         getView().setAdapter(arrayList);
     }
 }

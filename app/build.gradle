@@ -108,6 +108,9 @@ android {
             buildConfigField 'String', 'BODY_CABANG', endpointProperties['body_cabang']
             buildConfigField 'String', 'BODY_AREA', endpointProperties['body_area']
             buildConfigField 'String', 'BODY_NAMA', endpointProperties['body_nama']
+            buildConfigField 'String', 'BODY_TAHUN', endpointProperties['body_tahun']
+            buildConfigField 'String', 'BODY_BULAN', endpointProperties['body_bulan']
+            buildConfigField 'String', 'BODY_ID', endpointProperties['body_id']
         }
     }
 

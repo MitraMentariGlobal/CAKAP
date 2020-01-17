@@ -3,9 +3,11 @@ package co.id.cakap.repository;
 import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.network.ApiResponseActivityCashbill;
 import co.id.cakap.network.ApiResponseBank;
 import co.id.cakap.network.ApiResponseChangePassword;
 import co.id.cakap.network.ApiResponseChangePin;
+import co.id.cakap.network.ApiResponseDetailTransaction;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
@@ -90,6 +92,20 @@ public class MainRepository extends BaseRepository {
                 Constant.CONTENT_TYPE, Constant.CAKAP_KEY, noKtp, alamat, kodePos, npwp, statusPernikahan, suami, religion,
                 anak, pekerjaan, hubungan, ahliWaris, city, email, pob, gender, date, hp, telp, fax, kotaId, province, bankAcc,
                 bankId, norek, cabang, area, username, nama, pin)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseActivityCashbill> postActivityCashbill(String userId, String tahun, String bulan, String groupId) {
+        return networkService.postActivityCashbill(
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan, groupId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseDetailTransaction> postDetailTransaction(String id) {
+        return networkService.postDetailTransaction(
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -14,7 +14,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.data.CashbillSuccessData;
-import co.id.cakap.data.DetailTransaksiData;
 
 /**
  * Created by Laksamana Guntur Dzulfikar

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +12,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import co.id.cakap.R;
-import co.id.cakap.data.ActivityInvToMbData;
-import co.id.cakap.data.DetailTransaksiData;
-import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
+import co.id.cakap.data.DetailTransactionData;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -25,11 +21,11 @@ import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresente
  */
 
 public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksiAdapter.ViewHolder> {
-    private List<DetailTransaksiData> mResultData;
+    private List<DetailTransactionData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public DetailTransaksiAdapter(List<DetailTransaksiData> resultData, Context context){
+    public DetailTransaksiAdapter(List<DetailTransactionData> resultData, Context context){
         mResultData = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -44,16 +40,16 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        DetailTransaksiData detailTransaksiData = mResultData.get(position);
+        DetailTransactionData detailTransactionData = mResultData.get(position);
 
         holder.context = mContext;
-        holder.mItemCode.setText(detailTransaksiData.getItem_code());
-        holder.mItemName.setText(detailTransaksiData.getItem_name());
-        holder.mPrice.setText(detailTransaksiData.getPrice());
-        holder.mTotalPv.setText(detailTransaksiData.getPv());
-        holder.mQty.setText(detailTransaksiData.getQty());
-        holder.mSubTotal.setText(detailTransaksiData.getSub_total());
-        holder.mSubTotalPv.setText(detailTransaksiData.getSub_total_pv());
+        holder.mItemCode.setText(detailTransactionData.getItem_code());
+        holder.mItemName.setText(detailTransactionData.getItem_name());
+        holder.mPrice.setText(detailTransactionData.getPrice());
+        holder.mTotalPv.setText(detailTransactionData.getPv());
+        holder.mQty.setText(detailTransactionData.getQty());
+        holder.mSubTotal.setText(detailTransactionData.getSub_total());
+        holder.mSubTotalPv.setText(detailTransactionData.getSub_total_pv());
     }
 
     @Override

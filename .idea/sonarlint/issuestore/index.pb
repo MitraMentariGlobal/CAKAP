@@ -959,3 +959,7 @@ n
 >app/src/main/java/co/id/cakap/network/ApiResponseReligion.java,1/2/125dfd0997d81bf8a033a21a265ba598101a6159
 s
 Capp/src/main/java/co/id/cakap/network/ApiResponseUpdateProfile.java,2/7/2733217a2486844e4a3bfc18182b3fd74bb9831e
+`
+0app/src/main/java/co/id/cakap/data/BankData.java,3/6/36301950316ae9145678496f5dd31429bfc34a01
+j
+:app/src/main/java/co/id/cakap/network/ApiResponseBank.java,b/7/b77568e3078ca88c46e3ce8a608a5df48b2ee24f

@@ -2,9 +2,7 @@ package co.id.cakap.ui.cashbill.cashbillSuccess;
 
 import java.util.List;
 
-import co.id.cakap.adapter.CashbillSuccessAdapter;
 import co.id.cakap.data.CashbillSuccessData;
-import co.id.cakap.data.DetailTransaksiData;
 
 public class CashbillSuccessContract {
     public interface View {

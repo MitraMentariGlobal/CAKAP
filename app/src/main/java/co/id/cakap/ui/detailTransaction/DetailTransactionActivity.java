@@ -3,7 +3,6 @@ package co.id.cakap.ui.detailTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +22,7 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.DetailTransaksiAdapter;
-import co.id.cakap.data.DetailTransaksiData;
+import co.id.cakap.data.DetailTransactionData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -84,7 +83,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     }
 
     @Override
-    public void setAdapter(List<DetailTransaksiData> resultData) {
+    public void setAdapter(List<DetailTransactionData> resultData) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);

@@ -17,10 +17,10 @@ import lombok.Data;
  * Android Developer
  */
 
-@Data
+//@Data
 @Entity
 public class ActivityCashbillData implements Parcelable {
-    @SerializedName("transaction_id")
+    @SerializedName("inv")
     @Expose
     private String transaction_id;
 
@@ -28,31 +28,39 @@ public class ActivityCashbillData implements Parcelable {
     @Expose
     private String member_id;
 
-    @SerializedName("name")
+    @SerializedName("nama")
     @Expose
     private String name;
 
-    @SerializedName("total_amount")
+    @SerializedName("ftotalharga")
     @Expose
     private String total_amount;
 
-    @SerializedName("total_pv")
+    @SerializedName("ftotalpv")
     @Expose
     private String total_pv;
 
-    @SerializedName("date")
+    @SerializedName("tgl")
     @Expose
     private String date;
 
-    @Keep
-    public ActivityCashbillData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date) {
-        this.transaction_id = transaction_id;
-        this.member_id = member_id;
-        this.name = name;
-        this.total_amount = total_amount;
-        this.total_pv = total_pv;
-        this.date = date;
-    }
+    @SerializedName("tgls")
+    @Expose
+    private String dates;
+
+    @SerializedName("remark")
+    @Expose
+    private String remark;
+
+//    @Keep
+//    public ActivityCashbillData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date) {
+//        this.transaction_id = transaction_id;
+//        this.member_id = member_id;
+//        this.name = name;
+//        this.total_amount = total_amount;
+//        this.total_pv = total_pv;
+//        this.date = date;
+//    }
 
     protected ActivityCashbillData(Parcel in) {
         transaction_id = in.readString();
@@ -61,27 +69,25 @@ public class ActivityCashbillData implements Parcelable {
         total_amount = in.readString();
         total_pv = in.readString();
         date = in.readString();
+        dates = in.readString();
+        remark = in.readString();
+    }
+
+    @Generated(hash = 1394047719)
+    public ActivityCashbillData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date,
+            String dates, String remark) {
+        this.transaction_id = transaction_id;
+        this.member_id = member_id;
+        this.name = name;
+        this.total_amount = total_amount;
+        this.total_pv = total_pv;
+        this.date = date;
+        this.dates = dates;
+        this.remark = remark;
     }
 
     @Generated(hash = 998928684)
     public ActivityCashbillData() {
-    }
-
-    public static final Creator<ActivityCashbillData> CREATOR = new Creator<ActivityCashbillData>() {
-        @Override
-        public ActivityCashbillData createFromParcel(Parcel in) {
-            return new ActivityCashbillData(in);
-        }
-
-        @Override
-        public ActivityCashbillData[] newArray(int size) {
-            return new ActivityCashbillData[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     @Override
@@ -92,6 +98,13 @@ public class ActivityCashbillData implements Parcelable {
         dest.writeString(total_amount);
         dest.writeString(total_pv);
         dest.writeString(date);
+        dest.writeString(dates);
+        dest.writeString(remark);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public String getTransaction_id() {
@@ -141,4 +154,32 @@ public class ActivityCashbillData implements Parcelable {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getDates() {
+        return this.dates;
+    }
+
+    public void setDates(String dates) {
+        this.dates = dates;
+    }
+
+    public String getRemark() {
+        return this.remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public static final Creator<ActivityCashbillData> CREATOR = new Creator<ActivityCashbillData>() {
+        @Override
+        public ActivityCashbillData createFromParcel(Parcel in) {
+            return new ActivityCashbillData(in);
+        }
+
+        @Override
+        public ActivityCashbillData[] newArray(int size) {
+            return new ActivityCashbillData[size];
+        }
+    };
 }
