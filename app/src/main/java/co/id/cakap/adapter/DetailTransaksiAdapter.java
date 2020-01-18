@@ -43,12 +43,12 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
         DetailTransactionData detailTransactionData = mResultData.get(position);
 
         holder.context = mContext;
-        holder.mItemCode.setText(detailTransactionData.getItem_code());
+        holder.mItemCode.setText(detailTransactionData.getItem_code() + " - " + detailTransactionData.getItem_name());
         holder.mItemName.setText(detailTransactionData.getItem_name());
-        holder.mPrice.setText(detailTransactionData.getPrice());
+        holder.mPrice.setText("IDR " + detailTransactionData.getPrice());
         holder.mTotalPv.setText(detailTransactionData.getPv());
         holder.mQty.setText(detailTransactionData.getQty());
-        holder.mSubTotal.setText(detailTransactionData.getSub_total());
+        holder.mSubTotal.setText("IDR " + detailTransactionData.getSub_total());
         holder.mSubTotalPv.setText(detailTransactionData.getSub_total_pv());
     }
 

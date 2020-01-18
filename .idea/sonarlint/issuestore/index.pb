@@ -265,8 +265,6 @@ U
 %app/src/main/res/drawable/ic_back.xml,0/3/038479b72a34d99d1c27091171c6e567e8906fe8
 q
 Aapp/src/main/java/co/id/cakap/adapter/DetailTransaksiAdapter.java,8/c/8c861b006ea964605ae5203cc2576f78e2b38b75
-k
-;app/src/main/java/co/id/cakap/data/DetailTransaksiData.java,6/8/68ed71f91f8fea0e9e37bbefb525f1bad26b440b
 ‚
 Rapp/src/main/java/co/id/cakap/ui/detailTransaction/DetailTransactionPresenter.java,1/0/1044047b2cef66988ce12084ec7ac903421eb58d
 m
@@ -963,3 +961,9 @@ Capp/src/main/java/co/id/cakap/network/ApiResponseUpdateProfile.java,2/7/273321
 0app/src/main/java/co/id/cakap/data/BankData.java,3/6/36301950316ae9145678496f5dd31429bfc34a01
 j
 :app/src/main/java/co/id/cakap/network/ApiResponseBank.java,b/7/b77568e3078ca88c46e3ce8a608a5df48b2ee24f
+m
+=app/src/main/java/co/id/cakap/data/DetailTransactionData.java,c/7/c78268a109dd4f22183c4b6a0d336bc4eb3197b3
+v
+Fapp/src/main/java/co/id/cakap/network/ApiResponseActivityCashbill.java,6/7/67f66ecb825ce3f48b748497169ec10de8d836cd
+w
+Gapp/src/main/java/co/id/cakap/network/ApiResponseDetailTransaction.java,8/4/84865353c57858713175144d6238c7a775f31778

@@ -17,9 +17,13 @@ import lombok.Data;
  * Android Developer
  */
 
-//@Data
+@Data
 @Entity
 public class ActivityCashbillData implements Parcelable {
+    @SerializedName("id")
+    @Expose
+    private String item_id;
+
     @SerializedName("inv")
     @Expose
     private String transaction_id;
@@ -63,6 +67,7 @@ public class ActivityCashbillData implements Parcelable {
 //    }
 
     protected ActivityCashbillData(Parcel in) {
+        item_id = in.readString();
         transaction_id = in.readString();
         member_id = in.readString();
         name = in.readString();
@@ -73,9 +78,10 @@ public class ActivityCashbillData implements Parcelable {
         remark = in.readString();
     }
 
-    @Generated(hash = 1394047719)
-    public ActivityCashbillData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date,
-            String dates, String remark) {
+    @Generated(hash = 1227616761)
+    public ActivityCashbillData(String item_id, String transaction_id, String member_id, String name, String total_amount, String total_pv,
+            String date, String dates, String remark) {
+        this.item_id = item_id;
         this.transaction_id = transaction_id;
         this.member_id = member_id;
         this.name = name;
@@ -92,6 +98,7 @@ public class ActivityCashbillData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(item_id);
         dest.writeString(transaction_id);
         dest.writeString(member_id);
         dest.writeString(name);
@@ -105,6 +112,14 @@ public class ActivityCashbillData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getItem_id() {
+        return this.item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 
     public String getTransaction_id() {

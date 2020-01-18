@@ -13,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -66,8 +67,8 @@ public interface NetworkService {
     @GET("member_profile")
     Flowable<ApiResponseProfileData> getProfileData(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                     @Header(Constant.CAKAP_KEY_TEXT) String authorization,
-                                                    @Query("userid") String userId,
-                                                    @Query("group_id") String groupId);
+                                                    @Query(Constant.BODY_USER_ID) String userId,
+                                                    @Query(Constant.GET_GROUP_ID) String groupId);
 
     @GET("jk")
     Flowable<ApiResponseJenisKelamin> getJenisKelamin(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
@@ -116,7 +117,7 @@ public interface NetworkService {
                                                          @Field(Constant.BODY_PIN) String pin);
 
     @FormUrlEncoded
-    @POST("cashbill_member")
+    @POST("cashbill")
     Flowable<ApiResponseActivityCashbill> postActivityCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                @Field(Constant.BODY_USER_ID) String userId,
@@ -125,8 +126,9 @@ public interface NetworkService {
                                                                @Field(Constant.GET_GROUP_ID) String groupId);
 
     @FormUrlEncoded
-    @POST("cashbill_member")
-    Flowable<ApiResponseDetailTransaction> postDetailTransaction(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+    @POST()
+    Flowable<ApiResponseDetailTransaction> postDetailTransaction(@Url String url,
+                                                                 @Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                  @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                  @Field(Constant.BODY_ID) String id);
 

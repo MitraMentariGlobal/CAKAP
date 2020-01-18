@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityCashbillData;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.login.LoginActivity;
 import co.id.cakap.utils.Logger;
@@ -57,13 +58,18 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
     public void onBindViewHolder(ViewHolder holder, int position) {
         ActivityCashbillData activityCashbillData = mFilteredList.get(position);
 
+        if (Constant.LOGIN_DATA.equals(mContext.getResources().getString(R.string.member_login))) {
+            holder.mItemCancel.setVisibility(View.GONE);
+        }
+
         holder.context = mContext;
+        holder.activityCashbillData = activityCashbillData;
         holder.mTotalPv.setText(activityCashbillData.getTotal_pv());
         holder.mTransactionId.setText(activityCashbillData.getTransaction_id());
         holder.mDate.setText(activityCashbillData.getDate());
-        holder.mMemberId.setText(activityCashbillData.getMember_id());
+        holder.mMemberId.setText(activityCashbillData.getMember_id() + " - " + activityCashbillData.getName());
         holder.mName.setText(activityCashbillData.getName());
-        holder.mTotalAmount.setText(activityCashbillData.getTotal_amount());
+        holder.mTotalAmount.setText("IDR " + activityCashbillData.getTotal_amount());
     }
 
     @Override
@@ -124,6 +130,7 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
         ImageView mItemVerified;
 
         Context context;
+        ActivityCashbillData activityCashbillData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -134,7 +141,7 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityCashbillPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+            new ActivityCashbillPresenter().getView().openDetailTransaction(activityCashbillData);
         }
 
         @OnClick(R.id.item_cancel)

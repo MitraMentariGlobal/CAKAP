@@ -113,8 +113,9 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     public void initializeData() {
         mUserActionListener = mActivityCashbillPresenter;
         mActivityCashbillPresenter.setView(this);
-        mUserActionListener.getData();
+
         initSpinner();
+        mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -143,6 +144,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
         setupOnFocusListener(mSearchEditText);
         setupFab();
+
         hideProgressBar();
     }
 
@@ -162,10 +164,16 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     }
 
     @Override
-    public void openDetailTransaction(String transactionId) {
+    public void openDetailTransaction(ActivityCashbillData activityCashbillData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.cashbill));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
+        intent.putExtra(Constant.ITEM_ID_DETAIL, activityCashbillData.getItem_id());
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityCashbillData.getTransaction_id());
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, activityCashbillData.getMember_id());
+        intent.putExtra(Constant.NAME_DETAIL, activityCashbillData.getName());
+        intent.putExtra(Constant.DATE_DETAIL, activityCashbillData.getDate());
+        intent.putExtra(Constant.TOTAL_DETAIL, activityCashbillData.getTotal_amount());
+        intent.putExtra(Constant.REMARK_DETAIL, activityCashbillData.getRemark());
         startActivity(intent);
     }
 
@@ -272,7 +280,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

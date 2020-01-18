@@ -1,5 +1,7 @@
 package co.id.cakap.ui.myProfile;
 
+import android.content.Context;
+
 import java.util.List;
 
 import co.id.cakap.data.JenisKelaminData;
@@ -31,7 +33,7 @@ public class MyProfileActivityContract {
     }
 
     public interface UserActionListener{
-        void setView(MyProfileActivityContract.View view);
+        void setView(MyProfileActivityContract.View view, Context context);
         void getJenisKelamin();
         void getReligion();
         void getBank();

@@ -18,6 +18,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import co.id.cakap.BuildConfig;
+import co.id.cakap.R;
+import co.id.cakap.helper.Constant;
 import okhttp3.ResponseBody;
 
 public class Utils {
@@ -133,5 +135,16 @@ public class Utils {
         }
 
         return isInBackground;
+    }
+
+    public static String getGroupId(Context context) {
+        if (Constant.LOGIN_DATA.equals(context.getResources().getString(R.string.bc_login))) {
+            return Constant.GET_GROUP_ID_BC;
+        } else if (Constant.LOGIN_DATA.equals(context.getResources().getString(R.string.mb_login))) {
+            return Constant.GET_GROUP_ID_MB;
+        } else if (Constant.LOGIN_DATA.equals(context.getResources().getString(R.string.member_login))) {
+            return Constant.GET_GROUP_ID_MEMBER;
+        }
+        return "";
     }
 }

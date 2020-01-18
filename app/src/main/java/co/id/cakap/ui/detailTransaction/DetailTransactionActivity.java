@@ -3,6 +3,7 @@ package co.id.cakap.ui.detailTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,12 +43,32 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     @BindView(R.id.title)
     TextView mTitleText;
     @BindView(R.id.txt_transaction_id)
-    TextView mTransactionIdText;
+    TextView mTxtTransactionId;
+    @BindView(R.id.txt_member_id)
+    TextView mTxtMemberId;
+    @BindView(R.id.txt_name)
+    TextView mTxtName;
+    @BindView(R.id.txt_date)
+    TextView mTxtDate;
+    @BindView(R.id.txt_total_amount)
+    TextView mTxtTotalAmount;
+    @BindView(R.id.et_remark)
+    EditText mEtRemark;
+
+
+
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
 
     private String mTitle = "";
+    private String mItemId = "";
     private String mTransactionId = "";
+    private String mMemberId = "";
+    private String mName = "";
+    private String mDate = "";
+    private String mTotal = "";
+    private String mRemark = "";
+
     private DetailTransaksiAdapter mListAdapter;
     private DetailTransactionContract.UserActionListener mUserActionListener;
 
@@ -72,14 +93,29 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     public void initializeData() {
         mUserActionListener = mDetailTransactionPresenter;
         mDetailTransactionPresenter.setView(this);
-        mUserActionListener.getData();
+
+        showProgressBar();
 
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
+        mItemId = intent.getStringExtra(Constant.ITEM_ID_DETAIL);
         mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
+        mMemberId = intent.getStringExtra(Constant.MEMBER_ID_DETAIL);
+        mName = intent.getStringExtra(Constant.NAME_DETAIL);
+        mDate = intent.getStringExtra(Constant.DATE_DETAIL);
+        mTotal = intent.getStringExtra(Constant.TOTAL_DETAIL);
+        mRemark = intent.getStringExtra(Constant.REMARK_DETAIL);
+
         mTitleText.setText(mTitle);
-        mTransactionIdText.setText(mTransactionId);
+        mTxtTransactionId.setText(mTransactionId);
+        mTxtMemberId.setText(mMemberId + " - " + mName);
+        mTxtName.setText(mName);
+        mTxtDate.setText(mDate);
+        mTxtTotalAmount.setText("IDR " + mTotal);
+        mEtRemark.setText(mRemark);
         mTitleToolbar.setText(getString(R.string.detail_transaksi).toUpperCase());
+
+        mUserActionListener.getData(mItemId);
     }
 
     @Override

@@ -64,6 +64,8 @@ android {
             buildConfigField 'String', 'CONTENT_TYPE_TEXT', endpointProperties['content_type_text']
             buildConfigField 'String', 'CAKAP_KEY_TEXT', endpointProperties['cakap_key_text']
 
+            buildConfigField 'String', 'END_URL_DETAIL_CASHBILL', endpointProperties['end_url_detail_cashbill']
+
             buildConfigField 'String', 'GET_GROUP_ID', endpointProperties['get_group_id']
             buildConfigField 'String', 'GET_GROUP_ID_MEMBER', endpointProperties['get_group_id_member']
             buildConfigField 'String', 'GET_GROUP_ID_BC', endpointProperties['get_group_id_bc']

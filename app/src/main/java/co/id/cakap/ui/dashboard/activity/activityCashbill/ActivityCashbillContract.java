@@ -1,5 +1,7 @@
 package co.id.cakap.ui.dashboard.activity.activityCashbill;
 
+import android.content.Context;
+
 import java.util.List;
 
 import co.id.cakap.data.ActivityCashbillData;
@@ -11,10 +13,10 @@ public class ActivityCashbillContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void openDetailTransaction(String transactionId);
+        void openDetailTransaction(ActivityCashbillData activityCashbillData);
     }
 
     public interface UserActionListener {
-        void getData();
+        void getData(Context context, String tahun, String bulan);
     }
 }

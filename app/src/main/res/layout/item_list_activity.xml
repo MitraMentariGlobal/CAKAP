@@ -22,6 +22,7 @@
             android:id="@+id/detailData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="80dp"
             android:layout_centerVertical="true"
             android:orientation="vertical">
 
@@ -53,10 +54,11 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_13"
                     android:textColor="@color/black"
-                    android:text="BC123"
+                    android:text="BC123 - Nama Sub Stockist Nama Sub Stockist Nama Sub Stockist"
                     style="@style/TexViewFont" />
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_13"
@@ -66,6 +68,7 @@
 
                 <TextView
                     android:id="@+id/txt_name"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_13"

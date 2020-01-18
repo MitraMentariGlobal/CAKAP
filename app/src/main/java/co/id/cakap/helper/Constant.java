@@ -17,6 +17,8 @@ public class Constant {
     public static String LOGIN_DATA = "";
     public static boolean IS_HAVE_PARENT = false;
 
+    public static final String END_URL_DETAIL_CASHBILL = BuildConfig.END_URL_DETAIL_CASHBILL;
+
     public static final String GET_GROUP_ID = BuildConfig.GET_GROUP_ID;
     public static final String GET_GROUP_ID_MEMBER = BuildConfig.GET_GROUP_ID_MEMBER;
     public static final String GET_GROUP_ID_BC = BuildConfig.GET_GROUP_ID_BC;
@@ -72,7 +74,13 @@ public class Constant {
 
     public static final String URL_LINK = "url_link";
     public static final String TITLE_DETAIL = "title_detail";
+    public static final String ITEM_ID_DETAIL = "item_id_detail";
     public static final String TRANSACTION_ID_DETAIL = "transaction_id_detail";
+    public static final String MEMBER_ID_DETAIL = "member_id_detail";
+    public static final String NAME_DETAIL = "name_detail";
+    public static final String DATE_DETAIL = "date_detail";
+    public static final String TOTAL_DETAIL = "total_detail";
+    public static final String REMARK_DETAIL = "remark_detail";
     public static final String PAYMENT_METHOD = "payment_method";
     public static final String ACTIVATION_CODE = "activation_code";
     public static final String MEMBER_ID = "member_id";

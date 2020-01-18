@@ -103,9 +103,9 @@ public class MainRepository extends BaseRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Flowable<ApiResponseDetailTransaction> postDetailTransaction(String id) {
+    public Flowable<ApiResponseDetailTransaction> postDetailTransaction(String url, String id) {
         return networkService.postDetailTransaction(
-                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
+                url, Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

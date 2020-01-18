@@ -1,5 +1,7 @@
 package co.id.cakap.ui.myProfile;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
     private MainRepository mMainRepository;
     private DataModel mDataModel;
     private ResultDataLogin mResultDataLogin;
+    private static Context mContext;
 
     public MyProfileActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -35,8 +38,9 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
     }
 
     @Override
-    public void setView(MyProfileActivityContract.View view){
+    public void setView(MyProfileActivityContract.View view, Context context){
         mView = view;
+        mContext = context;
     }
 
     @Override
@@ -153,7 +157,7 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
     @Override
     public void getProfileData() {
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.getProfileData(mResultDataLogin.getMember_id(), Constant.GET_GROUP_ID_MEMBER)
+        mMainRepository.getProfileData(mResultDataLogin.getMember_id(), Utils.getGroupId(mContext))
                 .subscribe(new ResourceSubscriber<ApiResponseProfileData>() {
                     @Override
                     public void onNext(ApiResponseProfileData apiResponseProfileData) {

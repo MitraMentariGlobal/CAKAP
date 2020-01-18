@@ -319,7 +319,7 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @Override
     public void initializeData() {
         mUserActionListener = mMyProfileActivityPresenter;
-        mMyProfileActivityPresenter.setView(this);
+        mMyProfileActivityPresenter.setView(this, this);
         mBehavior = BottomSheetBehavior.from(bottomSheet);
 
         mTitle.setText(getString(R.string.my_profile).toUpperCase());
