@@ -15,6 +15,7 @@
             android:id="@+id/notification_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:title=""
             android:theme="@style/MainMenu"
             android:background="@color/colorPrimaryDark"
             app:popupTheme="@style/Theme.Design.Light">
@@ -35,6 +36,62 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?android:attr/actionBarSize"/>
+
+    <LinearLayout
+        android:id="@+id/linear_empty_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/appbar_padding"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:background="@drawable/ic_live_chat"
+                android:scaleType="centerCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/radius_16"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textAlignment="center"
+                android:text="You're all caught up!"
+                style="@style/TexViewFont"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textAlignment="center"
+                android:layout_marginTop="@dimen/radius_8"
+                android:text="Check back later for new notifications"
+                style="@style/TexViewFont"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <include
         layout="@layout/progress_bar_layout" />

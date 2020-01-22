@@ -39,6 +39,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import co.id.cakap.R;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.splashScreen.SplashScreenActivity;
+import co.id.cakap.utils.DateHelper;
 
 /**
  * NOTE: There can only be one service in each app that receives FCM messages. If multiple
@@ -186,6 +187,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(String title, String messageBody, String url) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor sharedPrefEd = sharedPreferences.edit();
+        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_TITLE, title);
+        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_BODY, messageBody);
+        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_DATE, DateHelper.getTimeNow());
+        sharedPrefEd.putInt(Constant.FIREBASE_NOTIFICATION_MOVE, 1);
         sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_URL, url);
         sharedPrefEd.apply();
 

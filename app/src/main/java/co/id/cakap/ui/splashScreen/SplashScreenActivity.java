@@ -110,7 +110,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
     @Override
     public void goToHome(String url) {
-        Constant.IS_HAVE_PARENT = false;
+        Constant.IS_HAVE_PARENT = false; // data mb yang punya bc
         Intent intent = new Intent(this, HomeWebViewActivity.class);
 
         if (mUrlNotification != null && mUrlNotification.length() > 0) {
@@ -122,6 +122,7 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
             intent.putExtra(Constant.URL_LINK, url);
         }
 //        startActivity(intent);
+
         startActivity(new Intent(SplashScreenActivity.this, DashboardActivity.class));
         finishActivity();
     }

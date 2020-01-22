@@ -25,7 +25,37 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:layout_marginBottom="@dimen/fab_margin"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:layout_alignParentEnd="true"
+                    app:cardBackgroundColor="@color/colorPrimaryDark"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="0dp">
+
+                    <Button
+                        android:id="@+id/download_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Font_family_regular"
+                        android:layout_margin="@dimen/padding_1"
+                        android:drawableTint="@color/colorPrimaryDark"
+                        android:background="@drawable/button_login_style"
+                        android:text="@string/download"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/radius_10"
@@ -414,6 +444,7 @@
 
             <WebView
                 android:id="@+id/webView"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>

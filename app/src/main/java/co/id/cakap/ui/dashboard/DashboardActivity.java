@@ -1,7 +1,9 @@
 package co.id.cakap.ui.dashboard;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import co.id.cakap.ui.dashboard.notification.NotificationFragment;
 import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
 import co.id.cakap.ui.dashboard.activity.ActivityFragment;
+import co.id.cakap.utils.Logger;
 
 public class DashboardActivity extends AppCompatActivity implements DashboardContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
     @Inject
@@ -37,6 +40,10 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
     @BindView(R.id.bn_main_member)
     BottomNavigationView mBottomNavigationViewMember;
 
+    private static final int TIME_DELAY = 1500;
+    private static long back_pressed;
+    private int mMoveNotification = 0;
+    private SharedPreferences mSharedPreferences;
     private DashboardContract.UserActionListener mUserActionListener;
 
     @Override
@@ -60,8 +67,20 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
     public void initializeData() {
         mUserActionListener = mDashboardPresenter;
         mDashboardPresenter.setView(this);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        loadFragment(new HomeFragment());
+        try {
+            mMoveNotification = mSharedPreferences.getInt(Constant.FIREBASE_NOTIFICATION_MOVE, 0);
+        } catch (Exception e) {
+            Logger.e("error SharedPreferences : " + e.getMessage());
+            mMoveNotification = 0;
+        }
+
+        if (mMoveNotification == 1) {
+            moveToNotification();
+        } else {
+            loadFragment(new HomeFragment());
+        }
 
         if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
             mBottomNavigationView.setVisibility(View.GONE);
@@ -83,6 +102,11 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
     public void moveToActivity(int index) {
         loadFragment(ActivityFragment.newInstance(index));
         mBottomNavigationViewMember.getMenu().findItem(R.id.activity_menu).setChecked(true);
+    }
+
+    public void moveToNotification() {
+        loadFragment(new NotificationFragment());
+        mBottomNavigationViewMember.getMenu().findItem(R.id.notification_menu).setChecked(true);
     }
 
     @Override
@@ -127,5 +151,15 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
         }
         return loadFragment(fragment);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + TIME_DELAY > System.currentTimeMillis()) {
+            System.exit(0);
+        } else {
+            setErrorResponse("Tekan sekali lagi untuk keluar");
+        }
+        back_pressed = System.currentTimeMillis();
     }
 }

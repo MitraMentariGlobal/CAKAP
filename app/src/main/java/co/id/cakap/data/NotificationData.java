@@ -32,17 +32,23 @@ public class NotificationData implements Parcelable {
     @Expose
     private String date;
 
+    @SerializedName("is_read")
+    @Expose
+    private boolean isRead;
+
     @Keep
-    public NotificationData(String notification_title, String notification_desc, String date) {
+    public NotificationData(String notification_title, String notification_desc, String date, boolean isRead) {
         this.notification_title = notification_title;
         this.notification_desc = notification_desc;
         this.date = date;
+        this.isRead = isRead;
     }
 
     protected NotificationData(Parcel in) {
         notification_title = in.readString();
         notification_desc = in.readString();
         date = in.readString();
+        isRead = in.readByte() != 0;
     }
 
     @Generated(hash = 759109176)
@@ -54,6 +60,7 @@ public class NotificationData implements Parcelable {
         dest.writeString(notification_title);
         dest.writeString(notification_desc);
         dest.writeString(date);
+        dest.writeByte((byte) (isRead ? 1 : 0));
     }
 
     @Override
@@ -83,6 +90,14 @@ public class NotificationData implements Parcelable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean getIsRead() {
+        return this.isRead;
+    }
+
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
     public static final Creator<NotificationData> CREATOR = new Creator<NotificationData>() {

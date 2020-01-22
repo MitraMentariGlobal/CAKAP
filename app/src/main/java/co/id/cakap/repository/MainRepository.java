@@ -5,6 +5,7 @@ import co.id.cakap.data.ReligionData;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.network.ApiResponseActivityCashbill;
 import co.id.cakap.network.ApiResponseBank;
+import co.id.cakap.network.ApiResponseBonusStatementData;
 import co.id.cakap.network.ApiResponseChangePassword;
 import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
@@ -106,6 +107,13 @@ public class MainRepository extends BaseRepository {
     public Flowable<ApiResponseDetailTransaction> postDetailTransaction(String url, String id) {
         return networkService.postDetailTransaction(
                 url, Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseBonusStatementData> postActivityBonusStatement(String userId, String tahun, String bulan) {
+        return networkService.postActivityBonusStatement(
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -1,5 +1,7 @@
 package co.id.cakap.ui.splashScreen;
 
+import android.content.SharedPreferences;
+
 import co.id.cakap.network.ApiResponseLogin;
 
 public class SplashScreenContract {

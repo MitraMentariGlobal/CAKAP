@@ -59,6 +59,8 @@ android {
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TOKEN', endpointProperties['firebase_notification_token']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TITLE', endpointProperties['firebase_notification_title']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_BODY', endpointProperties['firebase_notification_body']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_DATE', endpointProperties['firebase_notification_date']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_MOVE', endpointProperties['firebase_notification_move']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_URL', endpointProperties['firebase_notification_url']
             buildConfigField 'String', 'ENDPOINT_CONTENT_TYPE', endpointProperties['endpoint_content_type']
             buildConfigField 'String', 'CONTENT_TYPE_TEXT', endpointProperties['content_type_text']

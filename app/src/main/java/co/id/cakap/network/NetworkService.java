@@ -132,5 +132,13 @@ public interface NetworkService {
                                                                  @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                  @Field(Constant.BODY_ID) String id);
 
+    @FormUrlEncoded
+    @POST("bonus_statement")
+    Flowable<ApiResponseBonusStatementData> postActivityBonusStatement(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                     @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                     @Field(Constant.BODY_USER_ID) String userId,
+                                                                     @Field(Constant.BODY_TAHUN) String tahun,
+                                                                     @Field(Constant.BODY_BULAN) String bulan);
+
 
 }

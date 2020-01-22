@@ -1,6 +1,9 @@
 package co.id.cakap.ui.dashboard.account;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import javax.inject.Inject;
@@ -41,7 +46,9 @@ import co.id.cakap.ui.networkTable.NetworkTableActivity;
 import co.id.cakap.ui.omset.OmsetActivity;
 import co.id.cakap.ui.searchMember.SearchMemberActivity;
 import co.id.cakap.ui.stockReport.StockReportActivity;
+import co.id.cakap.utils.PDFTools;
 import co.id.cakap.utils.Utils;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 public class AccountFragment extends Fragment implements AccountContract.View {
     @Inject
@@ -220,8 +227,31 @@ public class AccountFragment extends Fragment implements AccountContract.View {
 
     @OnClick(R.id.txt_logout)
     public void actionLogout(View view) {
-        showProgressBar();
-        mUserActionListener.getData();
+        openDialogLogout();
+    }
+
+    private void openDialogLogout() {
+        UserConfirmationDialog utils = new UserConfirmationDialog();
+        Dialog dialog = utils.showDialog(getContext());
+        utils.setTitleLogout();
+        utils.setNegativeAction();
+
+        dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                showProgressBar();
+                mUserActionListener.getData();
+            }
+        });
     }
 
     @Override

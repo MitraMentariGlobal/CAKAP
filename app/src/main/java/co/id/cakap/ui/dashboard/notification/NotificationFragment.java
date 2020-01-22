@@ -1,12 +1,16 @@
 package co.id.cakap.ui.dashboard.notification;
 
+import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +36,7 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.NotificationAdapter;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class NotificationFragment extends Fragment implements NotificationContract.View {
@@ -46,10 +51,13 @@ public class NotificationFragment extends Fragment implements NotificationContra
     RelativeLayout mRelativeProgressBar;
     @BindView(R.id.notification_toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.linear_empty_notifications)
+    LinearLayout mLinearEmptyNotifications;
 
     private View mView;
     private Unbinder mUnbinder;
     private NotificationAdapter mListAdapter;
+    private SharedPreferences mSharedPreferences;
     private NotificationContract.UserActionListener mUserActionListener;
 
     @Override
@@ -64,7 +72,6 @@ public class NotificationFragment extends Fragment implements NotificationContra
         if (mView == null) {
             mView = inflater.inflate(R.layout.fragment_notification, container, false);
             mUnbinder = ButterKnife.bind(this, mView);
-            ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
 
             setupActivityComponent();
             initializeData();
@@ -85,7 +92,8 @@ public class NotificationFragment extends Fragment implements NotificationContra
     public void initializeData() {
         mUserActionListener = mNotificationPresenter;
         mNotificationPresenter.setView(this);
-        mUserActionListener.getData();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mUserActionListener.getData(mSharedPreferences);
 
         mToolbar.setTitle("");
         mTitle.setText(getContext().getResources().getString(R.string.notification).toUpperCase());
@@ -93,11 +101,18 @@ public class NotificationFragment extends Fragment implements NotificationContra
 
     @Override
     public void setAdapter(List<NotificationData> resultData) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(layoutManager);
-        mListAdapter = new NotificationAdapter(resultData, getContext());
-        mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        if (resultData.isEmpty()) {
+            mRecyclerView.setVisibility(View.GONE);
+            mLinearEmptyNotifications.setVisibility(View.VISIBLE);
+        } else {
+            ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+            mRecyclerView.setLayoutManager(layoutManager);
+            mListAdapter = new NotificationAdapter(resultData, getContext());
+            mRecyclerView.setAdapter(mListAdapter);
+            OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        }
         hideProgressBar();
     }
 
@@ -130,7 +145,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
                 return true;
 
             case R.id.action_delete_all:
-                setErrorResponse("action_delete_all");
+                openDialogNotification();
                 return true;
 
             default:
@@ -139,5 +154,28 @@ public class NotificationFragment extends Fragment implements NotificationContra
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    private void openDialogNotification() {
+        UserConfirmationDialog utils = new UserConfirmationDialog();
+        Dialog dialog = utils.showDialog(getContext());
+        utils.setTitleDeleteAllNotification();
+        utils.setNegativeAction();
+
+        dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                showProgressBar();
+                mUserActionListener.deleteAllNotification(mListAdapter);
+            }
+        });
     }
 }

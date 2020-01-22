@@ -13,6 +13,8 @@ public class Constant {
     public static String FIREBASE_NOTIFICATION_TOKEN = BuildConfig.FIREBASE_NOTIFICATION_TOKEN;
     public static String FIREBASE_NOTIFICATION_TITLE = BuildConfig.FIREBASE_NOTIFICATION_TITLE;
     public static String FIREBASE_NOTIFICATION_BODY = BuildConfig.FIREBASE_NOTIFICATION_BODY;
+    public static String FIREBASE_NOTIFICATION_DATE = BuildConfig.FIREBASE_NOTIFICATION_DATE;
+    public static String FIREBASE_NOTIFICATION_MOVE = BuildConfig.FIREBASE_NOTIFICATION_MOVE;
     public static String FIREBASE_NOTIFICATION_URL = BuildConfig.FIREBASE_NOTIFICATION_URL;
     public static String LOGIN_DATA = "";
     public static boolean IS_HAVE_PARENT = false;

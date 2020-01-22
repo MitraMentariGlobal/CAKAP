@@ -1,8 +1,11 @@
 package co.id.cakap.ui.splashScreen;
 
+import android.content.SharedPreferences;
+
 import java.util.List;
 
 import co.id.cakap.data.FirebaseTokenData;
+import co.id.cakap.data.NotificationData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;

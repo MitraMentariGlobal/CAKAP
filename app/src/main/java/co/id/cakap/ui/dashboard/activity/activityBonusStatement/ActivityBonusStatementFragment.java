@@ -1,9 +1,13 @@
 package co.id.cakap.ui.dashboard.activity.activityBonusStatement;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,6 +17,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,11 +34,15 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.data.ActivityBonusStatementData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.PDFTools;
 
 public class ActivityBonusStatementFragment extends Fragment implements ActivityBonusStatementContract.View, AdapterView.OnItemSelectedListener {
     @Inject
@@ -68,12 +77,15 @@ public class ActivityBonusStatementFragment extends Fragment implements Activity
     TextView mTxtSponsorId;
     @BindView(R.id.txt_posisi_sponsor)
     TextView mTxtPosisiSponsor;
+    @BindView(R.id.download_btn)
+    Button mDownloadBtn;
 
     private String mUrl = "http://aplikasicakap.co.id";
     private View mView;
     private Unbinder mUnbinder;
     private ActivityBonusStatementContract.UserActionListener mUserActionListener;
     private List<String> mYearData = new ArrayList<>();
+    private static ActivityBonusStatementData mActivityBonusStatementData;
 
     @Nullable
     @Override
@@ -175,5 +187,67 @@ public class ActivityBonusStatementFragment extends Fragment implements Activity
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @OnClick(R.id.download_btn)
+    public void downloadAction(View view) {
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+//        checkPermissionStorage();
+    }
+
+    @Override
+    public void checkPermissionStorage(ActivityBonusStatementData activityBonusStatementData) {
+        mActivityBonusStatementData = activityBonusStatementData;
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+            } else {
+                // No explanation needed; request the permission
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        1);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            // Permission has already been granted
+            Logger.i("Permission has already been granted");
+            PDFTools.showPDFUrl(getContext(), mActivityBonusStatementData.getLink(), mActivityBonusStatementData.getFile_name());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Logger.i("Permission was granted");
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    PDFTools.showPDFUrl(getContext(), mActivityBonusStatementData.getLink(), mActivityBonusStatementData.getFile_name());
+                } else {
+                    Logger.e("Permission denied");
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
     }
 }

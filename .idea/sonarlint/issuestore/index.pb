@@ -967,3 +967,9 @@ v
 Fapp/src/main/java/co/id/cakap/network/ApiResponseActivityCashbill.java,6/7/67f66ecb825ce3f48b748497169ec10de8d836cd
 w
 Gapp/src/main/java/co/id/cakap/network/ApiResponseDetailTransaction.java,8/4/84865353c57858713175144d6238c7a775f31778
+a
+1app/src/main/java/co/id/cakap/utils/PDFTools.java,4/9/49eecc57d34a57a8e2c141014df3d58ef22a3314
+x
+Happ/src/main/java/co/id/cakap/network/ApiResponseBonusStatementData.java,5/b/5b98c6e2d29665237be096e518798625e8b7c501
+r
+Bapp/src/main/java/co/id/cakap/data/ActivityBonusStatementData.java,e/2/e20279f2ffecee2907682e19ca9d5a27c0b9a9c2

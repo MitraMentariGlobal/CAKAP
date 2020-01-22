@@ -66,6 +66,18 @@ public class UserConfirmationDialog {
         textView.setText(context.getResources().getString(R.string.pleasee_check_again_profile));
     }
 
+    public void setTitleLogout() {
+        TextView textView = dialog.findViewById(R.id.txt_title);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(context.getResources().getString(R.string.dialog_log_out));
+    }
+
+    public void setTitleDeleteAllNotification() {
+        TextView textView = dialog.findViewById(R.id.txt_title);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(context.getResources().getString(R.string.dialog_delete_notification));
+    }
+
     public void setNegativeAction() {
         TextView txtNo = dialog.findViewById(R.id.no_act_btn);
         TextView txtYes = dialog.findViewById(R.id.yes_act_btn);
