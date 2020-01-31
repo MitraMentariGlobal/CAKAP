@@ -85,6 +85,7 @@ android {
             buildConfigField 'String', 'BODY_NEW_PIN', endpointProperties['body_new_pin']
             buildConfigField 'String', 'BODY_RETYPE_NEW_PIN', endpointProperties['body_retype_new_pin']
             buildConfigField 'String', 'BODY_USER_ID', endpointProperties['body_user_id']
+            buildConfigField 'String', 'BODY_MEMBER_ID', endpointProperties['body_member_id']
             buildConfigField 'String', 'BODY_NO_KTP', endpointProperties['body_no_ktp']
             buildConfigField 'String', 'BODY_ALAMAT', endpointProperties['body_alamat']
             buildConfigField 'String', 'BODY_KODE_POS', endpointProperties['body_kode_pos']

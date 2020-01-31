@@ -3,11 +3,15 @@ package co.id.cakap.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.Keep;
 
 import lombok.Data;
@@ -20,6 +24,10 @@ import lombok.Data;
 @Data
 @Entity
 public class NotificationData implements Parcelable {
+    @PrimaryKey
+    @Id(autoincrement = true)
+    Long id;
+
     @SerializedName("notification_title")
     @Expose
     private String notification_title;
@@ -45,10 +53,25 @@ public class NotificationData implements Parcelable {
     }
 
     protected NotificationData(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
         notification_title = in.readString();
         notification_desc = in.readString();
         date = in.readString();
         isRead = in.readByte() != 0;
+    }
+
+    @Generated(hash = 1314555022)
+    public NotificationData(Long id, String notification_title, String notification_desc, String date,
+            boolean isRead) {
+        this.id = id;
+        this.notification_title = notification_title;
+        this.notification_desc = notification_desc;
+        this.date = date;
+        this.isRead = isRead;
     }
 
     @Generated(hash = 759109176)
@@ -57,6 +80,12 @@ public class NotificationData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
         dest.writeString(notification_title);
         dest.writeString(notification_desc);
         dest.writeString(date);
@@ -66,6 +95,14 @@ public class NotificationData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNotification_title() {

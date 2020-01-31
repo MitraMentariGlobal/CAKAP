@@ -70,6 +70,10 @@ public class DataModel extends BaseModel {
         mNotificationDataDao.insertOrReplace(notificationData);
     }
 
+    public void updateNotificationData(NotificationData notificationData){
+        mNotificationDataDao.update(notificationData);
+    }
+
     public List<NotificationData> getAllNotificationData() {
         return mNotificationDataDao.loadAll();
     }

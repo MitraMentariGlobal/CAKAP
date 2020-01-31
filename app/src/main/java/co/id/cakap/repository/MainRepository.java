@@ -1,6 +1,7 @@
 package co.id.cakap.repository;
 
 import co.id.cakap.data.JenisKelaminData;
+import co.id.cakap.data.NetworkGenealogyData;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.network.ApiResponseActivityCashbill;
@@ -12,6 +13,7 @@ import co.id.cakap.network.ApiResponseDetailTransaction;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
+import co.id.cakap.network.ApiResponseNetworkGeneology;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseReligion;
 import co.id.cakap.network.ApiResponseUpdateProfile;
@@ -114,6 +116,13 @@ public class MainRepository extends BaseRepository {
     public Flowable<ApiResponseBonusStatementData> postActivityBonusStatement(String userId, String tahun, String bulan) {
         return networkService.postActivityBonusStatement(
                 Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseNetworkGeneology> postNetworkGenealogy(String userId, String memberId) {
+        return networkService.postNetworkGenealogy(
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, memberId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -11,15 +11,16 @@ import co.id.cakap.data.NotificationData;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.repository.MainRepository;
+import co.id.cakap.utils.Logger;
 
 public class NotificationPresenter implements NotificationContract.UserActionListener {
     private static WeakReference<NotificationContract.View> mView;
-    private MainRepository mMainRepository;
-    private DataModel mDataModel;
-    private NotificationData mNotificationData;
-    private String mTitle = "";
-    private String mBody = "";
-    private String mDate = "";
+    private static MainRepository mMainRepository;
+    private static DataModel mDataModel;
+    private static NotificationData mNotificationData;
+    private static String mTitle = "";
+    private static String mBody = "";
+    private static String mDate = "";
     private int mMoveNotification = 0;
 
     private List<NotificationData> arrayList;
@@ -27,6 +28,10 @@ public class NotificationPresenter implements NotificationContract.UserActionLis
     public NotificationPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
         mDataModel = dataModel;
+    }
+
+    public NotificationPresenter() {
+
     }
 
     public void setView(NotificationContract.View view){
@@ -43,28 +48,50 @@ public class NotificationPresenter implements NotificationContract.UserActionLis
 
     @Override
     public void getData(SharedPreferences sharedPreferences) {
-        mMoveNotification = sharedPreferences.getInt(Constant.FIREBASE_NOTIFICATION_MOVE, 0);
-        mTitle = sharedPreferences.getString(Constant.FIREBASE_NOTIFICATION_TITLE, "");
-        mBody = sharedPreferences.getString(Constant.FIREBASE_NOTIFICATION_BODY, "");
-        mDate = sharedPreferences.getString(Constant.FIREBASE_NOTIFICATION_DATE, "");
+//        mMoveNotification = sharedPreferences.getInt(Constant.FIREBASE_NOTIFICATION_MOVE, 0);
+//        mTitle = sharedPreferences.getString(Constant.FIREBASE_NOTIFICATION_TITLE, "");
+//        mBody = sharedPreferences.getString(Constant.FIREBASE_NOTIFICATION_BODY, "");
+//        mDate = sharedPreferences.getString(Constant.FIREBASE_NOTIFICATION_DATE, "");
+//
+//        if (mMoveNotification == 1) {
+//            mNotificationData = new NotificationData(mTitle, mBody, mDate, false);
+//            mDataModel.insertNotificationData(mNotificationData);
+//
+//            SharedPreferences.Editor sharedPrefEd = sharedPreferences.edit();
+//            sharedPrefEd.putInt(Constant.FIREBASE_NOTIFICATION_MOVE, 0);
+//            sharedPrefEd.apply();
+//        }
+//
+//        arrayList = mDataModel.getAllNotificationData();
+//        getView().setAdapter(arrayList);
 
-        if (mMoveNotification == 1) {
-            mNotificationData = new NotificationData(mTitle, mBody, mDate, false);
-            mDataModel.insertNotificationData(mNotificationData);
 
-            SharedPreferences.Editor sharedPrefEd = sharedPreferences.edit();
-            sharedPrefEd.putInt(Constant.FIREBASE_NOTIFICATION_MOVE, 0);
-            sharedPrefEd.apply();
-        }
+        arrayList = new ArrayList<>();
+        arrayList.add(new NotificationData("Title Notification 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 4", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 6", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 7", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 8", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
+        arrayList.add(new NotificationData("Title Notification 9", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "28 Jan 2020", false));
 
-        arrayList = mDataModel.getAllNotificationData();
         getView().setAdapter(arrayList);
     }
 
     @Override
-    public void deleteAllNotification(NotificationAdapter notificationAdapter) {
+    public void deleteAllNotification() {
         mDataModel.deleteNotificationData();
-        notificationAdapter.notifyDataSetChanged();
+        getView().updateList();
         getView().hideProgressBar();
+    }
+
+    @Override
+    public void changeReadStatus(NotificationData notificationData, int position) {
+        notificationData.setIsRead(true);
+        Logger.i("id : " + notificationData.getId());
+//        mDataModel.updateNotificationData(notificationData);
+        getView().updateList();
     }
 }

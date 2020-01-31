@@ -20,23 +20,21 @@ import lombok.Data;
 @Data
 @Entity
 public class NetworkGenealogyData implements Parcelable {
-    @SerializedName("user_code")
+    @SerializedName("link")
     @Expose
-    private String user_code;
+    private String link;
 
-    @SerializedName("user_name")
-    @Expose
-    private String user_name;
-
-    @Keep
-    public NetworkGenealogyData(String user_code, String user_name) {
-        this.user_code = user_code;
-        this.user_name = user_name;
-    }
+//    @SerializedName("user_name")
+//    @Expose
+//    private String user_name;
 
     protected NetworkGenealogyData(Parcel in) {
-        user_code = in.readString();
-        user_name = in.readString();
+        link = in.readString();
+    }
+
+    @Generated(hash = 603937524)
+    public NetworkGenealogyData(String link) {
+        this.link = link;
     }
 
     @Generated(hash = 538777502)
@@ -45,8 +43,7 @@ public class NetworkGenealogyData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(user_code);
-        dest.writeString(user_name);
+        dest.writeString(link);
     }
 
     @Override
@@ -54,20 +51,12 @@ public class NetworkGenealogyData implements Parcelable {
         return 0;
     }
 
-    public String getUser_code() {
-        return this.user_code;
+    public String getLink() {
+        return this.link;
     }
 
-    public void setUser_code(String user_code) {
-        this.user_code = user_code;
-    }
-
-    public String getUser_name() {
-        return this.user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public static final Creator<NetworkGenealogyData> CREATOR = new Creator<NetworkGenealogyData>() {

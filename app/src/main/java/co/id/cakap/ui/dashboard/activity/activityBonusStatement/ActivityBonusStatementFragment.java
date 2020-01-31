@@ -2,6 +2,7 @@ package co.id.cakap.ui.dashboard.activity.activityBonusStatement;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -121,7 +123,26 @@ public class ActivityBonusStatementFragment extends Fragment implements Activity
         if (Build.VERSION.SDK_INT >= 26) {
             webSetting.setSafeBrowsingEnabled(false);
         }
-        mWebView.setWebViewClient(new ActivityBonusStatementWebViewClient());
+
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                showProgressBar();
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                hideProgressBar();
+                super.onPageFinished(view, url);
+            }
+        });
         mWebView.loadUrl(mUrl);
 
         initSpinner();

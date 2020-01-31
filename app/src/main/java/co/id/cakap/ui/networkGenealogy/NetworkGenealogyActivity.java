@@ -1,5 +1,6 @@
 package co.id.cakap.ui.networkGenealogy;
 
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -44,7 +46,6 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
     @BindView(R.id.relative_progress_bar)
     RelativeLayout mRelativeProgressBar;
 
-    private String mUrl = "http://aplikasicakap.co.id";
     private NetworkGenealogyContract.UserActionListener mUserActionListener;
 
     @Override
@@ -88,7 +89,7 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
 
     @Override
     public void setData(NetworkGenealogyData networkGenealogyData) {
-        mName.setText(networkGenealogyData.getUser_name());
+//        mName.setText(networkGenealogyData.getUser_name());
 
         WebSettings webSetting = mWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);
@@ -97,8 +98,29 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
         if (Build.VERSION.SDK_INT >= 26) {
             webSetting.setSafeBrowsingEnabled(false);
         }
-        mWebView.setWebViewClient(new NetworkGenealogyWebViewClient());
-        mWebView.loadUrl(mUrl);
+
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                showProgressBar();
+                super.onPageStarted(view, url, favicon);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                hideProgressBar();
+                super.onPageFinished(view, url);
+            }
+        });
+        mWebView.loadUrl(networkGenealogyData.getLink());
+
+        hideProgressBar();
     }
 
     @OnClick(R.id.linear_submit)
@@ -108,7 +130,7 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
         } else {
             mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
             mUserActionListener.getData(mMbId.getText().toString());
-            mMbId.setInputType(0);
+//            mMbId.setInputType(0);
 //            showProgressBar();
         }
     }

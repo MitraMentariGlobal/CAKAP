@@ -14,10 +14,12 @@ public class NotificationContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
+        void updateList();
     }
 
     public interface UserActionListener {
         void getData(SharedPreferences sharedPreferences);
-        void deleteAllNotification(NotificationAdapter notificationAdapter);
+        void deleteAllNotification();
+        void changeReadStatus(NotificationData notificationData, int position);
     }
 }

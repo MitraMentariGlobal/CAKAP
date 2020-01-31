@@ -120,7 +120,9 @@
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/radius_10"
+                android:layout_marginEnd="@dimen/radius_10"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

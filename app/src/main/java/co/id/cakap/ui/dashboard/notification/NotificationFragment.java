@@ -106,6 +106,8 @@ public class NotificationFragment extends Fragment implements NotificationContra
             mLinearEmptyNotifications.setVisibility(View.VISIBLE);
         } else {
             ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearEmptyNotifications.setVisibility(View.GONE);
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             mRecyclerView.setLayoutManager(layoutManager);
@@ -129,6 +131,11 @@ public class NotificationFragment extends Fragment implements NotificationContra
     @Override
     public void setErrorResponse(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void updateList() {
+        mListAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -174,7 +181,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
             public void onClick(View v) {
                 dialog.dismiss();
                 showProgressBar();
-                mUserActionListener.deleteAllNotification(mListAdapter);
+                mUserActionListener.deleteAllNotification();
             }
         });
     }

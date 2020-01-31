@@ -38,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_12"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:lines="1"
                     android:ellipsize="end"
                     android:text="Lorem ipsum dolor sit amet."

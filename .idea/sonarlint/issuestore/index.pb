@@ -973,3 +973,7 @@ x
 Happ/src/main/java/co/id/cakap/network/ApiResponseBonusStatementData.java,5/b/5b98c6e2d29665237be096e518798625e8b7c501
 r
 Bapp/src/main/java/co/id/cakap/data/ActivityBonusStatementData.java,e/2/e20279f2ffecee2907682e19ca9d5a27c0b9a9c2
+Z
+*app/src/main/res/drawable/ic_live_chat.xml,6/8/68c04ec012e0263c47e826b917a6c0bf1a4598ac
+W
+'app/src/main/res/xml/provider_paths.xml,4/7/47d5b10e2dfabe53d7e7fe6bca04311cadff1990

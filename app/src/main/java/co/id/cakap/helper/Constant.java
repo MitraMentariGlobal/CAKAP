@@ -38,6 +38,7 @@ public class Constant {
     public static final String BODY_NEW_PIN = BuildConfig.BODY_NEW_PIN;
     public static final String BODY_RETYPE_NEW_PIN = BuildConfig.BODY_RETYPE_NEW_PIN;
     public static final String BODY_USER_ID = BuildConfig.BODY_USER_ID;
+    public static final String BODY_MEMBER_ID = BuildConfig.BODY_MEMBER_ID;
     public static final String BODY_NO_KTP = BuildConfig.BODY_NO_KTP;
     public static final String BODY_ALAMAT = BuildConfig.BODY_ALAMAT;
     public static final String BODY_KODE_POS = BuildConfig.BODY_KODE_POS;
