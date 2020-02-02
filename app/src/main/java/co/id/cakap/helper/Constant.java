@@ -69,6 +69,7 @@ public class Constant {
     public static final String BODY_TAHUN = BuildConfig.BODY_TAHUN;
     public static final String BODY_BULAN = BuildConfig.BODY_BULAN;
     public static final String BODY_ID = BuildConfig.BODY_ID;
+    public static final String BODY_LEVEL = BuildConfig.BODY_LEVEL;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;

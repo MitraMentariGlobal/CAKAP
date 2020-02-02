@@ -24,17 +24,19 @@ public class NetworkGenealogyData implements Parcelable {
     @Expose
     private String link;
 
-//    @SerializedName("user_name")
-//    @Expose
-//    private String user_name;
+    @SerializedName("nama")
+    @Expose
+    private String nama;
 
     protected NetworkGenealogyData(Parcel in) {
         link = in.readString();
+        nama = in.readString();
     }
 
-    @Generated(hash = 603937524)
-    public NetworkGenealogyData(String link) {
+    @Generated(hash = 1966290554)
+    public NetworkGenealogyData(String link, String nama) {
         this.link = link;
+        this.nama = nama;
     }
 
     @Generated(hash = 538777502)
@@ -44,6 +46,7 @@ public class NetworkGenealogyData implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(link);
+        dest.writeString(nama);
     }
 
     @Override
@@ -57,6 +60,14 @@ public class NetworkGenealogyData implements Parcelable {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getNama() {
+        return this.nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public static final Creator<NetworkGenealogyData> CREATOR = new Creator<NetworkGenealogyData>() {

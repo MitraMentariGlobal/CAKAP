@@ -36,8 +36,8 @@ public class NetworkGenealogyPresenter implements NetworkGenealogyContract.UserA
     public void getData(String memberId) {
         mView.showProgressBar();
 
-//        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postNetworkGenealogy(memberId, memberId)
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postNetworkGenealogy(mResultDataLogin.getMember_id(), memberId)
                 .subscribe(new ResourceSubscriber<ApiResponseNetworkGeneology>() {
                     @Override
                     public void onNext(ApiResponseNetworkGeneology apiResponseNetworkGeneology) {

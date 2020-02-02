@@ -26,6 +26,7 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.data.NetworkGenealogyData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.utils.Logger;
 
 public class NetworkGenealogyActivity extends AppCompatActivity implements NetworkGenealogyContract.View {
     @Inject
@@ -89,7 +90,7 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
 
     @Override
     public void setData(NetworkGenealogyData networkGenealogyData) {
-//        mName.setText(networkGenealogyData.getUser_name());
+        mName.setText(networkGenealogyData.getNama());
 
         WebSettings webSetting = mWebView.getSettings();
         webSetting.setJavaScriptEnabled(true);
@@ -118,6 +119,7 @@ public class NetworkGenealogyActivity extends AppCompatActivity implements Netwo
                 super.onPageFinished(view, url);
             }
         });
+        Logger.d("url : " + networkGenealogyData.getLink());
         mWebView.loadUrl(networkGenealogyData.getLink());
 
         hideProgressBar();

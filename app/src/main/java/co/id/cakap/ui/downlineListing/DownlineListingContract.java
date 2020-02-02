@@ -15,6 +15,6 @@ public class DownlineListingContract {
 
     public interface UserActionListener{
         void setView(DownlineListingContract.View view);
-        void getData();
+        void getData(String level);
     }
 }

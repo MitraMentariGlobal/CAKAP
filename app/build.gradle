@@ -116,6 +116,7 @@ android {
             buildConfigField 'String', 'BODY_TAHUN', endpointProperties['body_tahun']
             buildConfigField 'String', 'BODY_BULAN', endpointProperties['body_bulan']
             buildConfigField 'String', 'BODY_ID', endpointProperties['body_id']
+            buildConfigField 'String', 'BODY_LEVEL', endpointProperties['body_level']
         }
     }
 

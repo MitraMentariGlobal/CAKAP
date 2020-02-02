@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +41,10 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
     RecyclerView mRecyclerView;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
+    @BindView(R.id.et_level)
+    EditText mEtLevel;
+    @BindView(R.id.relative_level)
+    RelativeLayout mRelativeLevel;
 
     private DownlineListingContract.UserActionListener mUserActionListener;
     private DownlineListingAdapter mListAdapter;
@@ -66,7 +71,6 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
         mUserActionListener = mDownlineListingPresenter;
         mDownlineListingPresenter.setView(this);
 
-        mUserActionListener.getData();
         mTitle.setText(getString(R.string.downline_listing).toUpperCase());
     }
 
@@ -99,5 +103,15 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
+    }
+
+    @OnClick(R.id.linear_submit)
+    public void submitLevel(View view) {
+        if (mEtLevel.getText().length() == 0) {
+            mRelativeLevel.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+        } else {
+            mRelativeLevel.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mUserActionListener.getData(mEtLevel.getText().toString());
+        }
     }
 }

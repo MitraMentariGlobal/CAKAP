@@ -849,12 +849,8 @@ napp/src/main/java/co/id/cakap/ui/dashboard/activity/activityBonusStatement/Acti
 napp/src/main/java/co/id/cakap/ui/dashboard/activity/activityBonusStatement/ActivityBonusStatementFragment.java,1/6/16545f9e4304a0b06c49ffdd3e89f9a70397ddff
 Ÿ
 oapp/src/main/java/co/id/cakap/ui/dashboard/activity/activityBonusStatement/ActivityBonusStatementPresenter.java,8/9/8964b29e97e401f86bc11710a86161b26c7b8a56
-£
-sapp/src/main/java/co/id/cakap/ui/dashboard/activity/activityBonusStatement/ActivityBonusStatementWebViewClient.java,f/a/fa8503a5de45c026e743980f2caca280640923c9
 s
 Capp/src/main/java/co/id/cakap/ui/homeWebView/HomeWebViewClient.java,b/8/b87e68110d04d088ab07ebad30a0c7dbafacbcf9
-„
-Tapp/src/main/java/co/id/cakap/ui/networkGenealogy/NetworkGenealogyWebViewClient.java,0/b/0b67b36bcb87140dce6870456ef0511e2d44e9ad
 m
 =app/src/main/res/layout/fragment_activity_bonus_statement.xml,0/4/045a135ecb15c5f12e39b612c37b9a376f8cd529
 _
@@ -977,3 +973,5 @@ Z
 *app/src/main/res/drawable/ic_live_chat.xml,6/8/68c04ec012e0263c47e826b917a6c0bf1a4598ac
 W
 'app/src/main/res/xml/provider_paths.xml,4/7/47d5b10e2dfabe53d7e7fe6bca04311cadff1990
+v
+Fapp/src/main/java/co/id/cakap/network/ApiResponseNetworkGeneology.java,3/a/3a10c2cb453777eb920a6d45ad442dd0ea558ad0
