@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,10 +24,12 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.DownlineListingAdapter;
+import co.id.cakap.adapter.DownlineListingDropdownAdapter;
 import co.id.cakap.adapter.NetworkTableAdapter;
 import co.id.cakap.data.DownlineListingData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.networkGenealogy.NetworkGenealogyActivity;
+import co.id.cakap.utils.Logger;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class DownlineListingActivity extends AppCompatActivity implements DownlineListingContract.View {
@@ -48,6 +51,8 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
 
     private DownlineListingContract.UserActionListener mUserActionListener;
     private DownlineListingAdapter mListAdapter;
+    private DownlineListingDropdownAdapter mDropdownAdapter;
+    private List<Integer> mDropdownData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,7 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
         mDownlineListingPresenter.setView(this);
 
         mTitle.setText(getString(R.string.downline_listing).toUpperCase());
+        mUserActionListener.getDataDropdown();
     }
 
     @Override
@@ -90,13 +96,29 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
     }
 
     @Override
-    public void setAdapter(List<DownlineListingData> resultData) {
+    public void setAdapter(int level, List<DownlineListingData> resultData, RecyclerView recyclerView, TextView txtTitle) {
+        txtTitle.setText("Level " + level + " [" + resultData.size() + " data]");
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setNestedScrollingEnabled(false);
+        mListAdapter = new DownlineListingAdapter(resultData, this);
+        recyclerView.setAdapter(mListAdapter);
+        hideProgressBar();
+    }
+
+    @Override
+    public void setAdapterDropdown(int totalDropdown) {
+        for (int i = 1; i <= totalDropdown; i++) {
+            mDropdownData.add(i);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
-        mListAdapter = new DownlineListingAdapter(resultData, this);
-        mRecyclerView.setAdapter(mListAdapter);
+        mDropdownAdapter = new DownlineListingDropdownAdapter(mDropdownData, this);
+        mRecyclerView.setAdapter(mDropdownAdapter);
         hideProgressBar();
     }
 
@@ -111,7 +133,6 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
             mRelativeLevel.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
         } else {
             mRelativeLevel.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mUserActionListener.getData(mEtLevel.getText().toString());
         }
     }
 }

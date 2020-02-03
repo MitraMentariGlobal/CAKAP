@@ -975,3 +975,5 @@ W
 'app/src/main/res/xml/provider_paths.xml,4/7/47d5b10e2dfabe53d7e7fe6bca04311cadff1990
 v
 Fapp/src/main/java/co/id/cakap/network/ApiResponseNetworkGeneology.java,3/a/3a10c2cb453777eb920a6d45ad442dd0ea558ad0
+u
+Eapp/src/main/java/co/id/cakap/network/ApiResponseDownlineListing.java,8/2/82c8248637fa9d016a9569c225ef79e5ab3b7a52

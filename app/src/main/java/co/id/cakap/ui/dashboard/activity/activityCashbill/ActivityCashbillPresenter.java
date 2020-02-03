@@ -35,7 +35,7 @@ public class ActivityCashbillPresenter implements ActivityCashbillContract.UserA
 
     }
 
-    public void setView(ActivityCashbillContract.View view){
+    public void setView(ActivityCashbillContract.View view) {
         mView = new WeakReference<>(view);
     }
 
