@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.DownlineListingData;
+import co.id.cakap.data.LevelData;
 import co.id.cakap.ui.downlineListing.DownlineListingPresenter;
 import co.id.cakap.utils.Utils;
 
@@ -26,11 +27,11 @@ import co.id.cakap.utils.Utils;
  */
 
 public class DownlineListingDropdownAdapter extends RecyclerView.Adapter<DownlineListingDropdownAdapter.ViewHolder> {
-    private List<Integer> mResultData;
+    private List<LevelData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public DownlineListingDropdownAdapter(List<Integer> resultData, Context context){
+    public DownlineListingDropdownAdapter(List<LevelData> resultData, Context context){
         mResultData = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -45,11 +46,11 @@ public class DownlineListingDropdownAdapter extends RecyclerView.Adapter<Downlin
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        int data = mResultData.get(position);
+        LevelData levelData = mResultData.get(position);
 
         holder.context = mContext;
-        holder.level = data;
-        holder.mTxtTitleLevel.setText("Level " + data);
+        holder.levelData = levelData;
+        holder.mTxtTitleLevel.setText("Level " + levelData.getLevel());
     }
 
     @Override
@@ -71,7 +72,7 @@ public class DownlineListingDropdownAdapter extends RecyclerView.Adapter<Downlin
         TextView mTxtTitleLevel;
 
         Context context;
-        int level = 0;
+        LevelData levelData;
         private boolean mIsExpand = false;
 
         public ViewHolder(View itemView) {
@@ -90,7 +91,7 @@ public class DownlineListingDropdownAdapter extends RecyclerView.Adapter<Downlin
                 mIsExpand = true;
                 mImageIcon.animate().rotation(180).setDuration(500).start();
 
-                new DownlineListingPresenter().getData(level, mMainList, mTxtTitleLevel);
+                new DownlineListingPresenter().getData(levelData, mMainList, mTxtTitleLevel);
             }
         }
     }

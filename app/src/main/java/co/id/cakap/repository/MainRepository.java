@@ -12,6 +12,7 @@ import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
 import co.id.cakap.network.ApiResponseDownlineListing;
 import co.id.cakap.network.ApiResponseJenisKelamin;
+import co.id.cakap.network.ApiResponseLevel;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
 import co.id.cakap.network.ApiResponseNetworkGeneology;
@@ -124,6 +125,13 @@ public class MainRepository extends BaseRepository {
     public Flowable<ApiResponseNetworkGeneology> postNetworkGenealogy(String userId, String memberId) {
         return networkService.postNetworkGenealogy(
                 Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, memberId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseLevel> postLevel(String userId) {
+        return networkService.postLevel(
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

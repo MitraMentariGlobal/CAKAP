@@ -27,6 +27,7 @@ import co.id.cakap.adapter.DownlineListingAdapter;
 import co.id.cakap.adapter.DownlineListingDropdownAdapter;
 import co.id.cakap.adapter.NetworkTableAdapter;
 import co.id.cakap.data.DownlineListingData;
+import co.id.cakap.data.LevelData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.networkGenealogy.NetworkGenealogyActivity;
 import co.id.cakap.utils.Logger;
@@ -52,7 +53,6 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
     private DownlineListingContract.UserActionListener mUserActionListener;
     private DownlineListingAdapter mListAdapter;
     private DownlineListingDropdownAdapter mDropdownAdapter;
-    private List<Integer> mDropdownData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +96,8 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
     }
 
     @Override
-    public void setAdapter(int level, List<DownlineListingData> resultData, RecyclerView recyclerView, TextView txtTitle) {
-        txtTitle.setText("Level " + level + " [" + resultData.size() + " data]");
+    public void setAdapter(LevelData levelData, List<DownlineListingData> resultData, RecyclerView recyclerView, TextView txtTitle) {
+        txtTitle.setText("Level " + levelData.getLevel() + " [" + resultData.size() + " data]");
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -108,16 +108,13 @@ public class DownlineListingActivity extends AppCompatActivity implements Downli
     }
 
     @Override
-    public void setAdapterDropdown(int totalDropdown) {
-        for (int i = 1; i <= totalDropdown; i++) {
-            mDropdownData.add(i);
-        }
-
+    public void setAdapterDropdown(List<LevelData> levelDataList) {
+        levelDataList.remove(0);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
-        mDropdownAdapter = new DownlineListingDropdownAdapter(mDropdownData, this);
+        mDropdownAdapter = new DownlineListingDropdownAdapter(levelDataList, this);
         mRecyclerView.setAdapter(mDropdownAdapter);
         hideProgressBar();
     }

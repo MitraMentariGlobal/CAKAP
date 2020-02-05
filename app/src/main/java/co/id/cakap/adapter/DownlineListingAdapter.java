@@ -49,6 +49,10 @@ public class DownlineListingAdapter extends RecyclerView.Adapter<DownlineListing
         holder.mNomorHp.setText(downlineListingData.getNo_hp());
         holder.mJoinDate.setText(downlineListingData.getJoin_date());
         holder.mStatus.setText(downlineListingData.getStatus());
+
+        if (downlineListingData.getStatus().equals("TERMINATE")) {
+            holder.mStatus.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
     }
 
     @Override

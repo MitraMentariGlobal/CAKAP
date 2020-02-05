@@ -144,6 +144,12 @@ public interface NetworkService {
                                                                @Field(Constant.BODY_MEMBER_ID) String memberId);
 
     @FormUrlEncoded
+    @POST("level")
+    Flowable<ApiResponseLevel> postLevel(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                         @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                         @Field(Constant.BODY_USER_ID) String userId);
+
+    @FormUrlEncoded
     @POST("downline_listing")
     Flowable<ApiResponseDownlineListing> postDownlineListing(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                @Header(Constant.CAKAP_KEY_TEXT) String authorization,

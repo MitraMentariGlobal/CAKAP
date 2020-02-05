@@ -24,15 +24,15 @@ public class DownlineListingData implements Parcelable {
     @Expose
     private String member_id;
 
-    @SerializedName("name")
+    @SerializedName("nama")
     @Expose
     private String name;
 
-    @SerializedName("no_hp")
+    @SerializedName("hp")
     @Expose
     private String no_hp;
 
-    @SerializedName("join_date")
+    @SerializedName("joindate")
     @Expose
     private String join_date;
 

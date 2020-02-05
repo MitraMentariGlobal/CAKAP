@@ -977,3 +977,7 @@ v
 Fapp/src/main/java/co/id/cakap/network/ApiResponseNetworkGeneology.java,3/a/3a10c2cb453777eb920a6d45ad442dd0ea558ad0
 u
 Eapp/src/main/java/co/id/cakap/network/ApiResponseDownlineListing.java,8/2/82c8248637fa9d016a9569c225ef79e5ab3b7a52
+y
+Iapp/src/main/java/co/id/cakap/adapter/DownlineListingDropdownAdapter.java,8/b/8b1db1028cb0a26dc2e0e5014bd808505b333fc7
+j
+:app/src/main/res/layout/item_downline_listing_dropdown.xml,a/1/a10bf1ca0a5bf24df1a47a2503f97fa21a572f74
