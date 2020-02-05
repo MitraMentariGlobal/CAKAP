@@ -156,5 +156,13 @@ public interface NetworkService {
                                                                @Field(Constant.BODY_USER_ID) String userId,
                                                                @Field(Constant.BODY_LEVEL) String level);
 
+    @FormUrlEncoded
+    @POST("report_bulanan")
+    Flowable<ApiResponseMonthlyPointReport> postMonthlyPointReport(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                   @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_USER_ID) String userId,
+                                                                   @Field(Constant.BODY_TAHUN) String tahun,
+                                                                   @Field(Constant.BODY_BULAN) String bulan);
+
 
 }

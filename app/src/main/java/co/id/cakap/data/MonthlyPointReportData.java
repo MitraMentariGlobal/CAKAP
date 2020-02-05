@@ -20,11 +20,11 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class MonthlyPointReportData implements Parcelable {
-    @SerializedName("distr_id")
+    @SerializedName("member_id")
     @Expose
     private String distr_id;
 
-    @SerializedName("name")
+    @SerializedName("nama")
     @Expose
     private String name;
 
@@ -32,15 +32,15 @@ public class MonthlyPointReportData implements Parcelable {
     @Expose
     private String rank;
 
-    @SerializedName("ppv")
+    @SerializedName("PPV")
     @Expose
     private String ppv;
 
-    @SerializedName("ngpv")
+    @SerializedName("NGPV")
     @Expose
     private String ngpv;
 
-    @SerializedName("tgpv")
+    @SerializedName("TGPV")
     @Expose
     private String tgpv;
 

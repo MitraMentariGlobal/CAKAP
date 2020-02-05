@@ -104,7 +104,7 @@ public class Utils {
         return priceWithoutDecimal(Double.parseDouble(price.replace(".","")));
     }
 
-    public static String priceWithoutDecimal (Double price) {
+    public static String priceWithoutDecimal(Double price) {
         DecimalFormat formatter = new DecimalFormat("###,###,###.##");
         return formatter.format(price);
     }

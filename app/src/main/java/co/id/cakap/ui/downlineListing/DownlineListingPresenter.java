@@ -53,25 +53,6 @@ public class DownlineListingPresenter implements DownlineListingContract.UserAct
 
     @Override
     public void getData(LevelData levelData, RecyclerView recyclerView, TextView txtTitle) {
-//        getView().showProgressBar();
-//
-//        arrayList = new ArrayList<>();
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        arrayList.add(new DownlineListingData("0000012", "ALBERT PANGEMANAN", "081315405345", "2008-03-24", "0000011"));
-//        getView().setAdapter(levelData, arrayList, recyclerView, txtTitle);
-
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
@@ -83,7 +64,6 @@ public class DownlineListingPresenter implements DownlineListingContract.UserAct
                         Logger.d("message : " + apiResponseDownlineListing.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().hideProgressBar();
                         getView().setAdapter(levelData, apiResponseDownlineListing.getData(), recyclerView, txtTitle);
                     }
 

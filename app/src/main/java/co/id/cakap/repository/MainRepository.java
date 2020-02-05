@@ -15,6 +15,7 @@ import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseLevel;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
+import co.id.cakap.network.ApiResponseMonthlyPointReport;
 import co.id.cakap.network.ApiResponseNetworkGeneology;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseReligion;
@@ -102,43 +103,43 @@ public class MainRepository extends BaseRepository {
     }
 
     public Flowable<ApiResponseActivityCashbill> postActivityCashbill(String userId, String tahun, String bulan, String groupId) {
-        return networkService.postActivityCashbill(
-                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan, groupId)
+        return networkService.postActivityCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan, groupId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Flowable<ApiResponseDetailTransaction> postDetailTransaction(String url, String id) {
-        return networkService.postDetailTransaction(
-                url, Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
+        return networkService.postDetailTransaction(url, Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Flowable<ApiResponseBonusStatementData> postActivityBonusStatement(String userId, String tahun, String bulan) {
-        return networkService.postActivityBonusStatement(
-                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
+        return networkService.postActivityBonusStatement(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Flowable<ApiResponseNetworkGeneology> postNetworkGenealogy(String userId, String memberId) {
-        return networkService.postNetworkGenealogy(
-                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, memberId)
+        return networkService.postNetworkGenealogy(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, memberId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Flowable<ApiResponseLevel> postLevel(String userId) {
-        return networkService.postLevel(
-                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+        return networkService.postLevel(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Flowable<ApiResponseDownlineListing> postDownlineListing(String userId, String level) {
-        return networkService.postDownlineListing(
-                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, level)
+        return networkService.postDownlineListing(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, level)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseMonthlyPointReport> postMonthlyPointReport(String userId, String tahun, String bulan) {
+        return networkService.postMonthlyPointReport(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

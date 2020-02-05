@@ -77,9 +77,9 @@ public class MonthlyPointReportActivity extends AppCompatActivity implements Mon
         mUserActionListener = mMonthlyPointReportPresenter;
         mMonthlyPointReportPresenter.setView(this);
 
-        mUserActionListener.getData();
         mTitle.setText(getString(R.string.monthly_point_report).toUpperCase());
         initSpinner();
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -152,7 +152,7 @@ public class MonthlyPointReportActivity extends AppCompatActivity implements Mon
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

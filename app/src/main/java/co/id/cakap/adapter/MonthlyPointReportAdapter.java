@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.data.MonthlyPointReportData;
 import co.id.cakap.data.StockCardData;
+import co.id.cakap.utils.Utils;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -49,7 +50,12 @@ public class MonthlyPointReportAdapter extends RecyclerView.Adapter<MonthlyPoint
         holder.mRank.setText(monthlyPointReportData.getRank());
         holder.mPpv.setText(monthlyPointReportData.getPpv());
         holder.mNgpv.setText(monthlyPointReportData.getNgpv());
-        holder.mTgpv.setText(monthlyPointReportData.getTgpv());
+        holder.mTgpv.setText(Utils.priceFromString(monthlyPointReportData.getTgpv()));
+        holder.mStatus.setText(monthlyPointReportData.getStatus());
+
+        if (monthlyPointReportData.getStatus().equals("TERMINATE")) {
+            holder.mStatus.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
     }
 
     @Override

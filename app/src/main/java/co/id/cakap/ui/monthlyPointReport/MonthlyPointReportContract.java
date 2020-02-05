@@ -15,6 +15,6 @@ public class MonthlyPointReportContract {
 
     public interface UserActionListener{
         void setView(MonthlyPointReportContract.View view);
-        void getData();
+        void getData(String tahun, String bulan);
     }
 }
