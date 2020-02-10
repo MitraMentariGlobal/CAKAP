@@ -22,6 +22,7 @@ import co.id.cakap.data.ItemStockCard;
 import co.id.cakap.data.StockCardData;
 import co.id.cakap.ui.detailRegistration.DetailRegistrationPresenter;
 import co.id.cakap.ui.stockReport.stockCard.StockCardPresenter;
+import co.id.cakap.utils.Utils;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -57,7 +58,7 @@ public class ItemSearchStockCardAdapter extends RecyclerView.Adapter<ItemSearchS
 
         holder.mItemCode.setText(itemStockCard.getItem_code());
         holder.mItemName.setText(itemStockCard.getItem_name());
-        holder.mAmount.setText(itemStockCard.getAmount());
+        holder.mAmount.setText(Utils.priceFromString(itemStockCard.getAmount()));
     }
 
     @Override

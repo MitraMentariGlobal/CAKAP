@@ -3,18 +3,26 @@ package co.id.cakap.ui.stockReport.stockUpdate;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.data.StockCardData;
 import co.id.cakap.data.StockUpdateData;
 import co.id.cakap.model.DataModel;
+import co.id.cakap.network.ApiResponseFeeBcmb;
+import co.id.cakap.network.ApiResponseStockReportUpdate;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.stockReport.stockCard.StockCardContract;
+import co.id.cakap.utils.DateHelper;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
+import io.reactivex.subscribers.ResourceSubscriber;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 public class StockUpdatePresenter implements StockUpdateContract.UserActionListener {
     private static WeakReference<StockUpdateContract.View> mView;
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
-
-    private ArrayList<StockUpdateData> arrayList;
+    private static ResultDataLogin mResultDataLogin;
 
     public StockUpdatePresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -39,19 +47,38 @@ public class StockUpdatePresenter implements StockUpdateContract.UserActionListe
 
     @Override
     public void getData() {
-        arrayList = new ArrayList<>();
-        arrayList.add(new StockUpdateData("BT01", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT02", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT03", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT04", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT05", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT06", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT07", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT08", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT09", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT10", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT11", "Blesstea Botol", "20", "10.000.000"));
-        arrayList.add(new StockUpdateData("BT12", "Blesstea Botol", "20", "10.000.000"));
-        getView().setAdapter(arrayList);
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postStockReportUpdate(mResultDataLogin.getMember_id())
+                .subscribe(new ResourceSubscriber<ApiResponseStockReportUpdate>() {
+                    @Override
+                    public void onNext(ApiResponseStockReportUpdate apiResponseStockReportUpdate) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseStockReportUpdate.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        getView().setAdapter(apiResponseStockReportUpdate.getData());
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
     }
 }

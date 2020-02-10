@@ -45,8 +45,8 @@ public class StockCardAdapter extends RecyclerView.Adapter<StockCardAdapter.View
 
         holder.context = mContext;
         holder.mDate.setText(stockCardData.getDate());
-        holder.mUserId.setText(stockCardData.getUser_id());
-        holder.mSaldo.setText(stockCardData.getSaldo());
+        holder.mUserId.setText(stockCardData.getDescription());
+//        holder.mSaldo.setText(stockCardData.getSaldo());
         holder.mStockIn.setText(stockCardData.getStok_in());
         holder.mStockOut.setText(stockCardData.getStok_out());
     }

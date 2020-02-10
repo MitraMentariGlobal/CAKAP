@@ -45,6 +45,7 @@ import co.id.cakap.data.ItemStockCard;
 import co.id.cakap.data.StockCardData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.dialog.SearchDataDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
@@ -75,15 +76,26 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
     @BindView(R.id.linear_recyclerView)
     LinearLayout mLinearRecyclerView;
 
+    @BindView(R.id.txt_saldo_awal)
+    TextView mTxtSaldoAwal;
+    @BindView(R.id.txt_total_in)
+    TextView mTxtTotalIn;
+    @BindView(R.id.txt_total_out)
+    TextView mTxtTotalOut;
+    @BindView(R.id.txt_saldo_akhir)
+    TextView mTxtSaldoAkhir;
+
     private View mView;
     private Unbinder mUnbinder;
     private RecyclerView mRecyclerViewSearch;
     private EditText mSearchEditText;
     private Dialog mDialog;
+    private ItemStockCard mItemStockCard;
     private StockCardAdapter mListAdapter;
     private ItemSearchStockCardAdapter mListSearchAdapter;
     private StockCardContract.UserActionListener mUserActionListener;
     private List<String> mYearData = new ArrayList<>();
+    private boolean mIsLoadData = false;
 
     @Nullable
     @Override
@@ -126,20 +138,31 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
         mListAdapter = new StockCardAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        int saldoAwal = 0;
+        int totalIn = 0;
+        int totalOut = 0;
+        int saldoAkhir = 0;
+
+        for (int i = 0; i < resultData.size(); i++) {
+            saldoAwal = saldoAwal + Integer.parseInt(resultData.get(i).getSaldo_awal());
+            totalIn = totalIn + Integer.parseInt(resultData.get(i).getStok_in());
+            totalOut = totalOut + Integer.parseInt(resultData.get(i).getStok_out());
+            saldoAkhir = saldoAkhir + Integer.parseInt(resultData.get(i).getSaldo_akhir());
+        }
+
+        mTxtSaldoAwal.setText(String.valueOf(saldoAwal));
+        mTxtTotalIn.setText(String.valueOf(totalIn));
+        mTxtTotalOut.setText(String.valueOf(totalOut));
+        mTxtSaldoAkhir.setText(String.valueOf(saldoAkhir));
+
+        mIsLoadData = true;
         hideProgressBar();
     }
 
     @OnClick(R.id.linear_search_item_code)
     public void searchRecId(View view) {
-        if (mEtItemCode.getText().length() < 3) {
-            mRelativeItemCode.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
-            mTxtErrorItemCode.setVisibility(View.VISIBLE);
-        } else {
-            mRelativeItemCode.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mTxtErrorItemCode.setVisibility(View.GONE);
-            mUserActionListener.getItemProduct(mEtItemCode.getText().toString());
-            mEtItemCode.setInputType(0);
-        }
+        mUserActionListener.getItemProduct(mEtItemCode.getText().toString());
     }
 
     @Override
@@ -171,17 +194,24 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
         mRecyclerViewSearch.setAdapter(mListSearchAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerViewSearch, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         setupOnFocusListener(mSearchEditText);
+
+        hideProgressBar();
     }
 
     @Override
-    public void hideDialogSearchData(ItemStockCard stockCardData) {
+    public void hideDialogSearchData(ItemStockCard itemStockCard) {
+        mItemStockCard = itemStockCard;
         mDialog.dismiss();
 
-        mEtItemCode.setText(stockCardData.getItem_code());
-        mEtItemName.setText(stockCardData.getItem_name());
-        mEtPrice.setText(stockCardData.getAmount());
+        mEtItemCode.setText(mItemStockCard.getItem_code());
+        mEtItemName.setText(mItemStockCard.getItem_name());
+        mEtPrice.setText("IDR " + Utils.priceFromString(mItemStockCard.getAmount()));
 
-        mUserActionListener.getData();
+        mUserActionListener.getData(
+                mYearSpinner.getSelectedItem().toString(),
+                mMonthSpinner.getSelectedItem().toString(),
+                mItemStockCard.getItem_code(),
+                mItemStockCard.getAmount());
     }
 
     public void initSpinner() {
@@ -223,7 +253,12 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        if (mIsLoadData)
+            mUserActionListener.getData(
+                    mYearSpinner.getSelectedItem().toString(),
+                    mMonthSpinner.getSelectedItem().toString(),
+                    mItemStockCard.getItem_code(),
+                    mItemStockCard.getAmount());
     }
 
     @Override

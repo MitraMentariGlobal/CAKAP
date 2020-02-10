@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.data.OmsetData;
 import co.id.cakap.data.StockUpdateData;
+import co.id.cakap.utils.Utils;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -47,7 +48,7 @@ public class StockUpdateAdapter extends RecyclerView.Adapter<StockUpdateAdapter.
         holder.mItemCode.setText(stockUpdateData.getItem_code());
         holder.mItemName.setText(stockUpdateData.getProduct_name());
         holder.mQty.setText(stockUpdateData.getQty());
-        holder.mAmount.setText(stockUpdateData.getAmount());
+        holder.mAmount.setText(Utils.priceFromString(stockUpdateData.getAmount()));
     }
 
     @Override

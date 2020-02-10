@@ -18,7 +18,7 @@ public class StockCardContract {
     }
 
     public interface UserActionListener {
-        void getData();
+        void getData(String tahun, String bulan, String itemId, String price);
         void getItemProduct(String param);
     }
 }

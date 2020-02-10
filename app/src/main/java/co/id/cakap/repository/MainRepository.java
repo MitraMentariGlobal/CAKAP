@@ -20,6 +20,9 @@ import co.id.cakap.network.ApiResponseMonthlyPointReport;
 import co.id.cakap.network.ApiResponseNetworkGeneology;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseReligion;
+import co.id.cakap.network.ApiResponseStockReportCard;
+import co.id.cakap.network.ApiResponseStockReportCardItem;
+import co.id.cakap.network.ApiResponseStockReportUpdate;
 import co.id.cakap.network.ApiResponseUpdateProfile;
 import co.id.cakap.network.NetworkService;
 import io.reactivex.Flowable;
@@ -147,6 +150,24 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseFeeBcmb> postFeeBcmb(String userId, String tahun, String bulan) {
         return networkService.postFeeBcmb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseStockReportUpdate> postStockReportUpdate(String userId) {
+        return networkService.postStockReportUpdate(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, "su")
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseStockReportCard> postStockReportCard(String userId, String tahun, String bulan, String itemId, String price) {
+        return networkService.postStockReportCard(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, "sc", tahun, bulan, itemId, price)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseStockReportCardItem> postStockReportCardItem(String userId) {
+        return networkService.postStockReportCardItem(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

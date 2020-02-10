@@ -20,11 +20,11 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class StockCardData implements Parcelable {
-    @SerializedName("date")
+    @SerializedName("tgl")
     @Expose
     private String date;
 
-    @SerializedName("product_name")
+    @SerializedName("prd")
     @Expose
     private String product_name;
 
@@ -32,49 +32,49 @@ public class StockCardData implements Parcelable {
     @Expose
     private String description;
 
-    @SerializedName("stok_in")
+    @SerializedName("fsaldoawal")
+    @Expose
+    private String saldo_awal;
+
+    @SerializedName("fsaldoin")
     @Expose
     private String stok_in;
 
-    @SerializedName("stok_out")
+    @SerializedName("fsaldoout")
     @Expose
     private String stok_out;
 
-    @SerializedName("saldo")
+    @SerializedName("fsaldoakhir")
     @Expose
-    private String saldo;
+    private String saldo_akhir;
 
-    @SerializedName("user_id")
+    @SerializedName("createdby")
     @Expose
     private String user_id;
-
-    @Keep
-    public StockCardData(
-            String date,
-            String product_name,
-            String description,
-            String stok_in,
-            String stok_out,
-            String saldo,
-            String user_id
-    ) {
-        this.date = date;
-        this.product_name = product_name;
-        this.description = description;
-        this.stok_in = stok_in;
-        this.stok_out = stok_out;
-        this.saldo = saldo;
-        this.user_id = user_id;
-    }
 
     protected StockCardData(Parcel in) {
         date = in.readString();
         product_name = in.readString();
         description = in.readString();
+        saldo_awal = in.readString();
         stok_in = in.readString();
         stok_out = in.readString();
-        saldo = in.readString();
+        saldo_akhir = in.readString();
         user_id = in.readString();
+    }
+
+    @Generated(hash = 1206911423)
+    public StockCardData(String date, String product_name, String description,
+            String saldo_awal, String stok_in, String stok_out, String saldo_akhir,
+            String user_id) {
+        this.date = date;
+        this.product_name = product_name;
+        this.description = description;
+        this.saldo_awal = saldo_awal;
+        this.stok_in = stok_in;
+        this.stok_out = stok_out;
+        this.saldo_akhir = saldo_akhir;
+        this.user_id = user_id;
     }
 
     @Generated(hash = 1027024101)
@@ -86,9 +86,10 @@ public class StockCardData implements Parcelable {
         dest.writeString(date);
         dest.writeString(product_name);
         dest.writeString(description);
+        dest.writeString(saldo_awal);
         dest.writeString(stok_in);
         dest.writeString(stok_out);
-        dest.writeString(saldo);
+        dest.writeString(saldo_akhir);
         dest.writeString(user_id);
     }
 
@@ -121,6 +122,14 @@ public class StockCardData implements Parcelable {
         this.description = description;
     }
 
+    public String getSaldo_awal() {
+        return this.saldo_awal;
+    }
+
+    public void setSaldo_awal(String saldo_awal) {
+        this.saldo_awal = saldo_awal;
+    }
+
     public String getStok_in() {
         return this.stok_in;
     }
@@ -137,12 +146,12 @@ public class StockCardData implements Parcelable {
         this.stok_out = stok_out;
     }
 
-    public String getSaldo() {
-        return this.saldo;
+    public String getSaldo_akhir() {
+        return this.saldo_akhir;
     }
 
-    public void setSaldo(String saldo) {
-        this.saldo = saldo;
+    public void setSaldo_akhir(String saldo_akhir) {
+        this.saldo_akhir = saldo_akhir;
     }
 
     public String getUser_id() {

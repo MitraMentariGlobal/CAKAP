@@ -117,6 +117,9 @@ android {
             buildConfigField 'String', 'BODY_BULAN', endpointProperties['body_bulan']
             buildConfigField 'String', 'BODY_ID', endpointProperties['body_id']
             buildConfigField 'String', 'BODY_LEVEL', endpointProperties['body_level']
+            buildConfigField 'String', 'BODY_TIPE', endpointProperties['body_tipe']
+            buildConfigField 'String', 'BODY_ITEM_ID', endpointProperties['body_item_id']
+            buildConfigField 'String', 'BODY_PRICE', endpointProperties['body_price']
         }
     }
 

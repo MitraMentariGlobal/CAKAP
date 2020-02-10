@@ -152,9 +152,9 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("downline_listing")
     Flowable<ApiResponseDownlineListing> postDownlineListing(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
-                                                               @Header(Constant.CAKAP_KEY_TEXT) String authorization,
-                                                               @Field(Constant.BODY_USER_ID) String userId,
-                                                               @Field(Constant.BODY_LEVEL) String level);
+                                                             @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                             @Field(Constant.BODY_USER_ID) String userId,
+                                                             @Field(Constant.BODY_LEVEL) String level);
 
     @FormUrlEncoded
     @POST("report_bulanan")
@@ -171,6 +171,30 @@ public interface NetworkService {
                                              @Field(Constant.BODY_USER_ID) String userId,
                                              @Field(Constant.BODY_TAHUN) String tahun,
                                              @Field(Constant.BODY_BULAN) String bulan);
+
+    @FormUrlEncoded
+    @POST("stock_stc")
+    Flowable<ApiResponseStockReportUpdate> postStockReportUpdate(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                 @Field(Constant.BODY_USER_ID) String userId,
+                                                                 @Field(Constant.BODY_TIPE) String tipe);
+
+    @FormUrlEncoded
+    @POST("stock_stc")
+    Flowable<ApiResponseStockReportCard> postStockReportCard(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                             @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                             @Field(Constant.BODY_USER_ID) String userId,
+                                                             @Field(Constant.BODY_TIPE) String tipe,
+                                                             @Field(Constant.BODY_TAHUN) String tahun,
+                                                             @Field(Constant.BODY_BULAN) String bulan,
+                                                             @Field(Constant.BODY_ITEM_ID) String itemId,
+                                                             @Field(Constant.BODY_PRICE) String price);
+
+    @FormUrlEncoded
+    @POST("item_stc")
+    Flowable<ApiResponseStockReportCardItem> postStockReportCardItem(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                     @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                     @Field(Constant.BODY_USER_ID) String userId);
 
 
 }

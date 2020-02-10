@@ -20,15 +20,15 @@ import lombok.Data;
 @Data
 @Entity
 public class ItemStockCard implements Parcelable {
-    @SerializedName("item_code")
+    @SerializedName("item_id")
     @Expose
     private String item_code;
 
-    @SerializedName("item_name")
+    @SerializedName("name")
     @Expose
     private String item_name;
 
-    @SerializedName("amount")
+    @SerializedName("harga")
     @Expose
     private String amount;
 

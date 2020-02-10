@@ -57,8 +57,8 @@
                         android:textColorHint="@color/curated_light"
                         android:textSize="@dimen/text_14"
                         android:padding="@dimen/padding_12"
-                        android:focusableInTouchMode="true"
-                        android:focusable="true"/>
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"/>
 
                     <LinearLayout
                         android:id="@+id/linear_search_item_code"
@@ -291,7 +291,7 @@
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_14"
-                            android:text="100"
+                            android:text="0"
                             style="@style/TexViewFont"/>
 
                         <TextView
@@ -302,7 +302,7 @@
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_14"
-                            android:text="10"
+                            android:text="0"
                             style="@style/TexViewFont"/>
 
                         <TextView
@@ -313,7 +313,7 @@
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_14"
-                            android:text="5"
+                            android:text="0"
                             style="@style/TexViewFont"/>
 
                         <TextView
@@ -323,7 +323,8 @@
                             android:gravity="center"
                             android:textColor="@color/colorPrimaryDark"
                             android:textStyle="bold"
-                            android:text="105"
+                            android:textSize="@dimen/text_14"
+                            android:text="0"
                             style="@style/TexViewFont"/>
                     </LinearLayout>
                 </LinearLayout>

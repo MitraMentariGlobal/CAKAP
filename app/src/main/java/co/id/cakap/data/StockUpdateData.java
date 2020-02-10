@@ -20,11 +20,11 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class StockUpdateData implements Parcelable {
-    @SerializedName("item_code")
+    @SerializedName("id")
     @Expose
     private String item_code;
 
-    @SerializedName("product_name")
+    @SerializedName("name")
     @Expose
     private String product_name;
 
@@ -32,7 +32,7 @@ public class StockUpdateData implements Parcelable {
     @Expose
     private String qty;
 
-    @SerializedName("amount")
+    @SerializedName("price")
     @Expose
     private String amount;
 

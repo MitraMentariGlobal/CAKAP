@@ -33,21 +33,6 @@ public class FeeBcmbActivityPresenter implements FeeBcmbActivityContract.UserAct
 
     @Override
     public void getData(String tahun, String bulan) {
-//        mFeeBCMBData = new FeeBCMBData(
-//                "80,399,091",
-//                "66,717,273",
-//                "17 (paket)",
-//                "9 (paket)",
-//                "3,335,864",
-//                "0",
-//                "127,500",
-//                "450,000",
-//                "14,792,817",
-//                "0",
-//                "18,706,181"
-//        );
-//
-//        mView.setData(mFeeBCMBData);
         mView.showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
