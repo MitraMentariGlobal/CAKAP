@@ -55,9 +55,11 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
                     public void onNext(ApiResponseLogin apiResponseLogin) {
                         Logger.d("=====>>>>>");
                         Logger.d("message : " + apiResponseLogin.getMessages());
-                        Logger.d("role : " + apiResponseLogin.getResult().getRole());
                         Logger.d("url : " + apiResponseLogin.getResult().getUrl());
+                        Logger.d("role : " + apiResponseLogin.getResult().getRole());
                         Logger.d("session token : " + apiResponseLogin.getResult().getSession_token());
+                        Logger.d("username : " + apiResponseLogin.getResult().getUsername());
+                        Logger.d("member id : " + apiResponseLogin.getResult().getMember_id());
                         Logger.d("<<<<<=====");
 
                         saveData(apiResponseLogin);

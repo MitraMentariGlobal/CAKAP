@@ -13,6 +13,6 @@ public class FeeBcmbActivityContract {
 
     public interface UserActionListener{
         void setView(FeeBcmbActivityContract.View view);
-        void getData();
+        void getData(String tahun, String bulan);
     }
 }

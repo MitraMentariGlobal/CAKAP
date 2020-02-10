@@ -20,6 +20,6 @@ public class NotificationContract {
     public interface UserActionListener {
         void getData(SharedPreferences sharedPreferences);
         void deleteAllNotification();
-        void changeReadStatus(NotificationData notificationData, int position);
+        void readAllData();
     }
 }

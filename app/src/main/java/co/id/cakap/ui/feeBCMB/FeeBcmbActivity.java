@@ -28,6 +28,7 @@ import co.id.cakap.data.FeeBCMBData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
 import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
+import co.id.cakap.utils.Utils;
 
 public class FeeBcmbActivity extends AppCompatActivity implements FeeBcmbActivityContract.View, AdapterView.OnItemSelectedListener {
     @Inject
@@ -46,15 +47,17 @@ public class FeeBcmbActivity extends AppCompatActivity implements FeeBcmbActivit
     TextView txt_oms_aft_ppn;
     @BindView(R.id.txt_oms_prd_aft_ppn)
     TextView txt_oms_prd_aft_ppn;
-    @BindView(R.id.txt_stat_kit_reg)
-    TextView txt_stat_kit_reg;
-    @BindView(R.id.txt_pkt_reg_leng)
-    TextView txt_pkt_reg_leng;
+    @BindView(R.id.txt_stat_kit_sp01)
+    TextView txt_stat_kit_sp01;
+    @BindView(R.id.txt_stat_kit_sp03)
+    TextView txt_stat_kit_sp03;
+    @BindView(R.id.txt_stat_kit_sp04)
+    TextView txt_stat_kit_sp04;
 
     @BindView(R.id.txt_tot_oms_prd)
     TextView txt_tot_oms_prd;
-    @BindView(R.id.txt_tmbh_bns_tot_oms)
-    TextView txt_tmbh_bns_tot_oms;
+//    @BindView(R.id.txt_tmbh_bns_tot_oms)
+//    TextView txt_tmbh_bns_tot_oms;
     @BindView(R.id.txt_stat_kit_bsc)
     TextView txt_stat_kit_bsc;
     @BindView(R.id.txt_pkt_lngkp)
@@ -63,8 +66,13 @@ public class FeeBcmbActivity extends AppCompatActivity implements FeeBcmbActivit
     TextView txt_bns_reff_mb;
     @BindView(R.id.txt_bns_kit_v_bless)
     TextView txt_bns_kit_v_bless;
+
     @BindView(R.id.txt_total_fee)
     TextView txt_total_fee;
+    @BindView(R.id.txt_pajak)
+    TextView txt_pajak;
+    @BindView(R.id.txt_netto_fee)
+    TextView txt_netto_fee;
 
     private FeeBcmbActivityContract.UserActionListener mUserActionListener;
     private List<String> mYearData = new ArrayList<>();
@@ -90,10 +98,11 @@ public class FeeBcmbActivity extends AppCompatActivity implements FeeBcmbActivit
     public void initializeData() {
         mUserActionListener = mFeeBcmbActivityPresenter;
         mFeeBcmbActivityPresenter.setView(this);
-        mUserActionListener.getData();
 
         mTitle.setText(getString(R.string.fee_bcmb).toUpperCase());
         initSpinner();
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+
         hideProgressBar();
     }
 
@@ -116,15 +125,21 @@ public class FeeBcmbActivity extends AppCompatActivity implements FeeBcmbActivit
     public void setData(FeeBCMBData feeBCMBData) {
         txt_oms_aft_ppn.setText(feeBCMBData.getTotal_omset_setelah_ppn());
         txt_oms_prd_aft_ppn.setText(feeBCMBData.getTotal_omset_product_setelah_ppn());
-        txt_stat_kit_reg.setText(feeBCMBData.getTotal_stater_kit_regular());
-        txt_pkt_reg_leng.setText(feeBCMBData.getTotal_paket_register_kombinasi());
-        txt_tot_oms_prd.setText(feeBCMBData.getBonus_total_omset_product());
-        txt_tmbh_bns_tot_oms.setText(feeBCMBData.getTambahan_bonus_total_omset());
-        txt_stat_kit_bsc.setText(feeBCMBData.getBonus_stater_kit_basic());
-        txt_pkt_lngkp.setText(feeBCMBData.getBonus_paket_kombinasi());
-        txt_bns_reff_mb.setText(feeBCMBData.getBonus_reff_mb());
-        txt_bns_kit_v_bless.setText(feeBCMBData.getBonus_kit_v_bless());
-        txt_total_fee.setText(feeBCMBData.getTotal_fee());
+        txt_stat_kit_sp01.setText(feeBCMBData.getTotal_starter_kit_sp01());
+        txt_stat_kit_sp03.setText(feeBCMBData.getTotal_starter_kit_sp03());
+        txt_stat_kit_sp04.setText(feeBCMBData.getTotal_starter_kit_sp04());
+        txt_tot_oms_prd.setText(Utils.priceFromString(feeBCMBData.getBonus_total_omset_product()));
+//        txt_tmbh_bns_tot_oms.setText(feeBCMBData.getTambahan_bonus_total_omset());
+        txt_stat_kit_bsc.setText(Utils.priceFromString(feeBCMBData.getBonus_stater_kit_basic()));
+        txt_pkt_lngkp.setText(Utils.priceFromString(feeBCMBData.getBonus_paket_kombinasi_lengkap()));
+        txt_bns_reff_mb.setText(Utils.priceFromString(feeBCMBData.getBonus_reff_mb()));
+        txt_bns_kit_v_bless.setText(Utils.priceFromString(feeBCMBData.getBonus_kit_v_bless()));
+
+        txt_total_fee.setText(Utils.priceWithoutDecimal(feeBCMBData.getTotal_fee()));
+        txt_pajak.setText(Utils.priceWithoutDecimal(feeBCMBData.getPajak()));
+        txt_netto_fee.setText(Utils.priceWithoutDecimal(feeBCMBData.getNetto_fee()));
+
+        hideProgressBar();
     }
 
     @OnClick(R.id.arrow_back)
@@ -171,7 +186,7 @@ public class FeeBcmbActivity extends AppCompatActivity implements FeeBcmbActivit
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

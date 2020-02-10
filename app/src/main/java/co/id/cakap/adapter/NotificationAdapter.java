@@ -1,9 +1,11 @@
 package co.id.cakap.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
 import co.id.cakap.ui.dashboard.notification.NotificationPresenter;
+import co.id.cakap.utils.Logger;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -62,11 +65,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             holder.mNotificationDesc.setTextColor(mContext.getResources().getColor(R.color.curated));
             holder.mNotificationDescExpand.setTextColor(mContext.getResources().getColor(R.color.curated));
             holder.mDate.setTextColor(mContext.getResources().getColor(R.color.curated));
+            holder.mImgUnread.setVisibility(View.GONE);
         } else {
             holder.mNotificationTitle.setTextColor(mContext.getResources().getColor(R.color.black));
             holder.mNotificationDesc.setTextColor(mContext.getResources().getColor(R.color.black));
             holder.mNotificationDescExpand.setTextColor(mContext.getResources().getColor(R.color.black));
             holder.mDate.setTextColor(mContext.getResources().getColor(R.color.black));
+            holder.mImgUnread.setVisibility(View.VISIBLE);
         }
     }
 
@@ -87,6 +92,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         TextView mDate;
         @BindView(R.id.expandable_layout)
         ExpandableRelativeLayout mExpandableLayout;
+        @BindView(R.id.img_unread)
+        ImageView mImgUnread;
 
         int position;
         Context context;
@@ -101,14 +108,27 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         @OnClick(R.id.linear_parent)
         public void openDetail() {
             if (mExpandableLayout.isExpanded()) {
+                Logger.d("isExpanded");
                 mExpandableLayout.collapse();
                 mNotificationDesc.setVisibility(View.VISIBLE);
             } else {
+                Logger.d("not Expanded");
+                Logger.d("notificationData id : " + notificationData.getId());
+                if (!notificationData.getIsRead()) {
+                    notificationData.setIsRead(true);
+                    mNotificationTitle.setTextColor(mContext.getResources().getColor(R.color.curated));
+                    mNotificationDesc.setTextColor(mContext.getResources().getColor(R.color.curated));
+                    mNotificationDescExpand.setTextColor(mContext.getResources().getColor(R.color.curated));
+                    mDate.setTextColor(mContext.getResources().getColor(R.color.curated));
+                    mImgUnread.setVisibility(View.GONE);
+//                    new NotificationPresenter().changeReadStatus(notificationData, position);
+//                    notifyDataSetChanged();
+                }
+
+//                notifyDataSetChanged();
                 mExpandableLayout.expand();
                 mNotificationDesc.setVisibility(View.GONE);
 
-                if (!notificationData.getIsRead())
-                    new NotificationPresenter().changeReadStatus(notificationData, position);
             }
         }
     }

@@ -115,6 +115,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
             mRecyclerView.setAdapter(mListAdapter);
             OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         }
+
         hideProgressBar();
     }
 
@@ -148,7 +149,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_mark_read:
-                setErrorResponse("action_mark_read");
+                mNotificationPresenter.readAllData();
                 return true;
 
             case R.id.action_delete_all:

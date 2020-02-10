@@ -20,37 +20,45 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class FeeBCMBData implements Parcelable {
-    @SerializedName("total_omset_setelah_ppn")
+    @SerializedName("total_omset_bc_dan_mb_setelah_ppn")
+    @Expose
+    private String total_omset_bc_dan_mb_setelah_ppn;
+
+    @SerializedName("total_omzet_setelah_ppn")
     @Expose
     private String total_omset_setelah_ppn;
 
-    @SerializedName("total_omset_product_setelah_ppn")
+    @SerializedName("total_omzet_product_setelah_ppn")
     @Expose
     private String total_omset_product_setelah_ppn;
 
-    @SerializedName("total_stater_kit_regular")
+    @SerializedName("total_starter_kit_sp01")
     @Expose
-    private String total_stater_kit_regular;
+    private String total_starter_kit_sp01;
 
-    @SerializedName("total_paket_register_kombinasi")
+    @SerializedName("total_starter_kit_sp03")
     @Expose
-    private String total_paket_register_kombinasi;
+    private String total_starter_kit_sp03;
 
-    @SerializedName("bonus_total_omset_product")
+    @SerializedName("total_starter_kit_sp04")
+    @Expose
+    private String total_starter_kit_sp04;
+
+    @SerializedName("bonus_total_omset_produk_")
     @Expose
     private String bonus_total_omset_product;
 
-    @SerializedName("tambahan_bonus_total_omset")
-    @Expose
-    private String tambahan_bonus_total_omset;
+//    @SerializedName("tambahan_bonus_total_omset")
+//    @Expose
+//    private String tambahan_bonus_total_omset;
 
-    @SerializedName("bonus_stater_kit_basic")
+    @SerializedName("bonus_starter_kit_basic")
     @Expose
     private String bonus_stater_kit_basic;
 
-    @SerializedName("bonus_paket_kombinasi")
+    @SerializedName("bonus_paket_kombinasi_lengkap")
     @Expose
-    private String bonus_paket_kombinasi;
+    private String bonus_paket_kombinasi_lengkap;
 
     @SerializedName("bonus_reff_mb")
     @Expose
@@ -62,47 +70,55 @@ public class FeeBCMBData implements Parcelable {
 
     @SerializedName("total_fee")
     @Expose
-    private String total_fee;
+    private double total_fee;
 
-    @Keep
-    public FeeBCMBData(
-            String total_omset_setelah_ppn,
-            String total_omset_product_setelah_ppn,
-            String total_stater_kit_regular,
-            String total_paket_register_kombinasi,
-            String bonus_total_omset_product,
-            String tambahan_bonus_total_omset,
-            String bonus_stater_kit_basic,
-            String bonus_paket_kombinasi,
-            String bonus_reff_mb,
-            String bonus_kit_v_bless,
-            String total_fee
-    ) {
+    @SerializedName("pajak")
+    @Expose
+    private double pajak;
+
+    @SerializedName("netto_fee")
+    @Expose
+    private double netto_fee;
+
+    protected FeeBCMBData(Parcel in) {
+        total_omset_bc_dan_mb_setelah_ppn = in.readString();
+        total_omset_setelah_ppn = in.readString();
+        total_omset_product_setelah_ppn = in.readString();
+        total_starter_kit_sp01 = in.readString();
+        total_starter_kit_sp03 = in.readString();
+        total_starter_kit_sp04 = in.readString();
+        bonus_total_omset_product = in.readString();
+        bonus_stater_kit_basic = in.readString();
+        bonus_paket_kombinasi_lengkap = in.readString();
+        bonus_reff_mb = in.readString();
+        bonus_kit_v_bless = in.readString();
+        total_fee = in.readDouble();
+        pajak = in.readDouble();
+        netto_fee = in.readDouble();
+    }
+
+    @Generated(hash = 1419089312)
+    public FeeBCMBData(String total_omset_bc_dan_mb_setelah_ppn,
+            String total_omset_setelah_ppn, String total_omset_product_setelah_ppn,
+            String total_starter_kit_sp01, String total_starter_kit_sp03,
+            String total_starter_kit_sp04, String bonus_total_omset_product,
+            String bonus_stater_kit_basic, String bonus_paket_kombinasi_lengkap,
+            String bonus_reff_mb, String bonus_kit_v_bless, double total_fee,
+            double pajak, double netto_fee) {
+        this.total_omset_bc_dan_mb_setelah_ppn = total_omset_bc_dan_mb_setelah_ppn;
         this.total_omset_setelah_ppn = total_omset_setelah_ppn;
         this.total_omset_product_setelah_ppn = total_omset_product_setelah_ppn;
-        this.total_stater_kit_regular = total_stater_kit_regular;
-        this.total_paket_register_kombinasi = total_paket_register_kombinasi;
+        this.total_starter_kit_sp01 = total_starter_kit_sp01;
+        this.total_starter_kit_sp03 = total_starter_kit_sp03;
+        this.total_starter_kit_sp04 = total_starter_kit_sp04;
         this.bonus_total_omset_product = bonus_total_omset_product;
-        this.tambahan_bonus_total_omset = tambahan_bonus_total_omset;
         this.bonus_stater_kit_basic = bonus_stater_kit_basic;
-        this.bonus_paket_kombinasi = bonus_paket_kombinasi;
+        this.bonus_paket_kombinasi_lengkap = bonus_paket_kombinasi_lengkap;
         this.bonus_reff_mb = bonus_reff_mb;
         this.bonus_kit_v_bless = bonus_kit_v_bless;
         this.total_fee = total_fee;
-    }
-
-    protected FeeBCMBData(Parcel in) {
-        total_omset_setelah_ppn = in.readString();
-        total_omset_product_setelah_ppn = in.readString();
-        total_stater_kit_regular = in.readString();
-        total_paket_register_kombinasi = in.readString();
-        bonus_total_omset_product = in.readString();
-        tambahan_bonus_total_omset = in.readString();
-        bonus_stater_kit_basic = in.readString();
-        bonus_paket_kombinasi = in.readString();
-        bonus_reff_mb = in.readString();
-        bonus_kit_v_bless = in.readString();
-        total_fee = in.readString();
+        this.pajak = pajak;
+        this.netto_fee = netto_fee;
     }
 
     @Generated(hash = 1066607655)
@@ -111,22 +127,34 @@ public class FeeBCMBData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(total_omset_bc_dan_mb_setelah_ppn);
         dest.writeString(total_omset_setelah_ppn);
         dest.writeString(total_omset_product_setelah_ppn);
-        dest.writeString(total_stater_kit_regular);
-        dest.writeString(total_paket_register_kombinasi);
+        dest.writeString(total_starter_kit_sp01);
+        dest.writeString(total_starter_kit_sp03);
+        dest.writeString(total_starter_kit_sp04);
         dest.writeString(bonus_total_omset_product);
-        dest.writeString(tambahan_bonus_total_omset);
         dest.writeString(bonus_stater_kit_basic);
-        dest.writeString(bonus_paket_kombinasi);
+        dest.writeString(bonus_paket_kombinasi_lengkap);
         dest.writeString(bonus_reff_mb);
         dest.writeString(bonus_kit_v_bless);
-        dest.writeString(total_fee);
+        dest.writeDouble(total_fee);
+        dest.writeDouble(pajak);
+        dest.writeDouble(netto_fee);
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getTotal_omset_bc_dan_mb_setelah_ppn() {
+        return this.total_omset_bc_dan_mb_setelah_ppn;
+    }
+
+    public void setTotal_omset_bc_dan_mb_setelah_ppn(
+            String total_omset_bc_dan_mb_setelah_ppn) {
+        this.total_omset_bc_dan_mb_setelah_ppn = total_omset_bc_dan_mb_setelah_ppn;
     }
 
     public String getTotal_omset_setelah_ppn() {
@@ -146,21 +174,28 @@ public class FeeBCMBData implements Parcelable {
         this.total_omset_product_setelah_ppn = total_omset_product_setelah_ppn;
     }
 
-    public String getTotal_stater_kit_regular() {
-        return this.total_stater_kit_regular;
+    public String getTotal_starter_kit_sp01() {
+        return this.total_starter_kit_sp01;
     }
 
-    public void setTotal_stater_kit_regular(String total_stater_kit_regular) {
-        this.total_stater_kit_regular = total_stater_kit_regular;
+    public void setTotal_starter_kit_sp01(String total_starter_kit_sp01) {
+        this.total_starter_kit_sp01 = total_starter_kit_sp01;
     }
 
-    public String getTotal_paket_register_kombinasi() {
-        return this.total_paket_register_kombinasi;
+    public String getTotal_starter_kit_sp03() {
+        return this.total_starter_kit_sp03;
     }
 
-    public void setTotal_paket_register_kombinasi(
-            String total_paket_register_kombinasi) {
-        this.total_paket_register_kombinasi = total_paket_register_kombinasi;
+    public void setTotal_starter_kit_sp03(String total_starter_kit_sp03) {
+        this.total_starter_kit_sp03 = total_starter_kit_sp03;
+    }
+
+    public String getTotal_starter_kit_sp04() {
+        return this.total_starter_kit_sp04;
+    }
+
+    public void setTotal_starter_kit_sp04(String total_starter_kit_sp04) {
+        this.total_starter_kit_sp04 = total_starter_kit_sp04;
     }
 
     public String getBonus_total_omset_product() {
@@ -171,14 +206,6 @@ public class FeeBCMBData implements Parcelable {
         this.bonus_total_omset_product = bonus_total_omset_product;
     }
 
-    public String getTambahan_bonus_total_omset() {
-        return this.tambahan_bonus_total_omset;
-    }
-
-    public void setTambahan_bonus_total_omset(String tambahan_bonus_total_omset) {
-        this.tambahan_bonus_total_omset = tambahan_bonus_total_omset;
-    }
-
     public String getBonus_stater_kit_basic() {
         return this.bonus_stater_kit_basic;
     }
@@ -187,12 +214,13 @@ public class FeeBCMBData implements Parcelable {
         this.bonus_stater_kit_basic = bonus_stater_kit_basic;
     }
 
-    public String getBonus_paket_kombinasi() {
-        return this.bonus_paket_kombinasi;
+    public String getBonus_paket_kombinasi_lengkap() {
+        return this.bonus_paket_kombinasi_lengkap;
     }
 
-    public void setBonus_paket_kombinasi(String bonus_paket_kombinasi) {
-        this.bonus_paket_kombinasi = bonus_paket_kombinasi;
+    public void setBonus_paket_kombinasi_lengkap(
+            String bonus_paket_kombinasi_lengkap) {
+        this.bonus_paket_kombinasi_lengkap = bonus_paket_kombinasi_lengkap;
     }
 
     public String getBonus_reff_mb() {
@@ -211,12 +239,28 @@ public class FeeBCMBData implements Parcelable {
         this.bonus_kit_v_bless = bonus_kit_v_bless;
     }
 
-    public String getTotal_fee() {
+    public double getTotal_fee() {
         return this.total_fee;
     }
 
-    public void setTotal_fee(String total_fee) {
+    public void setTotal_fee(double total_fee) {
         this.total_fee = total_fee;
+    }
+
+    public double getPajak() {
+        return this.pajak;
+    }
+
+    public void setPajak(double pajak) {
+        this.pajak = pajak;
+    }
+
+    public double getNetto_fee() {
+        return this.netto_fee;
+    }
+
+    public void setNetto_fee(double netto_fee) {
+        this.netto_fee = netto_fee;
     }
 
     public static final Creator<FeeBCMBData> CREATOR = new Creator<FeeBCMBData>() {

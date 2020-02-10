@@ -981,3 +981,11 @@ y
 Iapp/src/main/java/co/id/cakap/adapter/DownlineListingDropdownAdapter.java,8/b/8b1db1028cb0a26dc2e0e5014bd808505b333fc7
 j
 :app/src/main/res/layout/item_downline_listing_dropdown.xml,a/1/a10bf1ca0a5bf24df1a47a2503f97fa21a572f74
+a
+1app/src/main/java/co/id/cakap/data/LevelData.java,4/8/48417208af9465f024389d3082a578aeeafd8f81
+k
+;app/src/main/java/co/id/cakap/network/ApiResponseLevel.java,4/4/4409df513b91618230888abeda1ca8058c9d808a
+x
+Happ/src/main/java/co/id/cakap/network/ApiResponseMonthlyPointReport.java,5/b/5b52597d52fac252eb5fe9b0af0c6eaf248882e3
+m
+=app/src/main/java/co/id/cakap/network/ApiResponseFeeBcmb.java,0/f/0f611b2a8f6f8f7d3f2c7beb7411b39b53c27ab7

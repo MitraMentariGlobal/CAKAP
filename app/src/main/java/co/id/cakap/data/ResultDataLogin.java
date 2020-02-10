@@ -71,6 +71,22 @@ public class ResultDataLogin implements Parcelable {
     @Expose
     private String pv_tupo;
 
+    @SerializedName("userid")
+    @Expose
+    private String userid;
+
+    @SerializedName("group_id")
+    @Expose
+    private String group_id;
+
+    @SerializedName("wilayah")
+    @Expose
+    private String wilayah;
+
+    @SerializedName("leader_ids")
+    @Expose
+    private String leader_ids;
+
     protected ResultDataLogin(Parcel in) {
         url = in.readString();
         role = in.readString();
@@ -85,13 +101,18 @@ public class ResultDataLogin implements Parcelable {
         bonus = in.readString();
         pv_max = in.readString();
         pv_tupo = in.readString();
+        userid = in.readString();
+        group_id = in.readString();
+        wilayah = in.readString();
+        leader_ids = in.readString();
     }
 
-    @Generated(hash = 670082296)
+    @Generated(hash = 1837070553)
     public ResultDataLogin(String url, String role, String session_token,
             String update_profile, String running_text, String gambar, String nama,
             String username, String member_id, String posisi, String bonus, String pv_max,
-            String pv_tupo) {
+            String pv_tupo, String userid, String group_id, String wilayah,
+            String leader_ids) {
         this.url = url;
         this.role = role;
         this.session_token = session_token;
@@ -105,6 +126,10 @@ public class ResultDataLogin implements Parcelable {
         this.bonus = bonus;
         this.pv_max = pv_max;
         this.pv_tupo = pv_tupo;
+        this.userid = userid;
+        this.group_id = group_id;
+        this.wilayah = wilayah;
+        this.leader_ids = leader_ids;
     }
 
     @Generated(hash = 820616836)
@@ -126,6 +151,10 @@ public class ResultDataLogin implements Parcelable {
         dest.writeString(bonus);
         dest.writeString(pv_max);
         dest.writeString(pv_tupo);
+        dest.writeString(userid);
+        dest.writeString(group_id);
+        dest.writeString(wilayah);
+        dest.writeString(leader_ids);
     }
 
     @Override
@@ -235,6 +264,38 @@ public class ResultDataLogin implements Parcelable {
 
     public void setPv_tupo(String pv_tupo) {
         this.pv_tupo = pv_tupo;
+    }
+
+    public String getUserid() {
+        return this.userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getGroup_id() {
+        return this.group_id;
+    }
+
+    public void setGroup_id(String group_id) {
+        this.group_id = group_id;
+    }
+
+    public String getWilayah() {
+        return this.wilayah;
+    }
+
+    public void setWilayah(String wilayah) {
+        this.wilayah = wilayah;
+    }
+
+    public String getLeader_ids() {
+        return this.leader_ids;
+    }
+
+    public void setLeader_ids(String leader_ids) {
+        this.leader_ids = leader_ids;
     }
 
     public static final Creator<ResultDataLogin> CREATOR = new Creator<ResultDataLogin>() {

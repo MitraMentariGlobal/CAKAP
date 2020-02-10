@@ -44,14 +44,6 @@ public class NotificationData implements Parcelable {
     @Expose
     private boolean isRead;
 
-    @Keep
-    public NotificationData(String notification_title, String notification_desc, String date, boolean isRead) {
-        this.notification_title = notification_title;
-        this.notification_desc = notification_desc;
-        this.date = date;
-        this.isRead = isRead;
-    }
-
     protected NotificationData(Parcel in) {
         if (in.readByte() == 0) {
             id = null;

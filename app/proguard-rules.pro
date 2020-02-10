@@ -73,6 +73,7 @@
 -keepclassmembers class org.greenrobot.greendao.** { *; }
 
 # If you do not use SQLCipher:
+-dontwarn net.sqlcipher.database.**
 -dontwarn org.greenrobot.greendao.database.**
 -keep public class my.dao.package.models.** {
      public static <fields>;

@@ -86,7 +86,7 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_12"
                         android:layout_marginTop="@dimen/radius_2"
-                        android:text="Total Starter Kit Register"
+                        android:text="Total Starter Kit SP01"
                         style="@style/TexViewFont"/>
 
                     <TextView
@@ -96,7 +96,17 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_12"
                         android:layout_marginTop="@dimen/radius_2"
-                        android:text="Total Paket Register Kombinasi / Lengkap"
+                        android:text="Total Starter Kit SP03"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="Total Starter Kit SP04"
                         style="@style/TexViewFont"/>
 
                 </LinearLayout>
@@ -132,7 +142,7 @@
                         style="@style/TexViewFont"/>
 
                     <TextView
-                        android:id="@+id/txt_stat_kit_reg"
+                        android:id="@+id/txt_stat_kit_sp01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -143,7 +153,18 @@
                         style="@style/TexViewFont"/>
 
                     <TextView
-                        android:id="@+id/txt_pkt_reg_leng"
+                        android:id="@+id/txt_stat_kit_sp03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="9 (paket)"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_stat_kit_sp04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -200,6 +221,7 @@
                             style="@style/TexViewFont"/>
 
                         <TextView
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -271,6 +293,7 @@
 
                         <TextView
                             android:id="@+id/txt_tmbh_bns_tot_oms"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -338,7 +361,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/radius_10"
+                    android:layout_marginTop="@dimen/radius_10"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_10"
                     android:orientation="horizontal">
 
                     <TextView
@@ -349,11 +374,74 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold"
-                        android:text="Total Fee (Bruto)"
+                        android:text="Total Fee"
                         style="@style/TexViewFont"/>
 
                     <TextView
                         android:id="@+id/txt_total_fee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="18,706,181"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="Pajak"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_pajak"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="0"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:layout_marginBottom="@dimen/radius_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="Netto Fee"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_netto_fee"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

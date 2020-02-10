@@ -11,6 +11,7 @@ import co.id.cakap.network.ApiResponseChangePassword;
 import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
 import co.id.cakap.network.ApiResponseDownlineListing;
+import co.id.cakap.network.ApiResponseFeeBcmb;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseLevel;
 import co.id.cakap.network.ApiResponseLogin;
@@ -140,6 +141,12 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseMonthlyPointReport> postMonthlyPointReport(String userId, String tahun, String bulan) {
         return networkService.postMonthlyPointReport(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseFeeBcmb> postFeeBcmb(String userId, String tahun, String bulan) {
+        return networkService.postFeeBcmb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
