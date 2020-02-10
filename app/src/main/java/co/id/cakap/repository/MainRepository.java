@@ -18,8 +18,10 @@ import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
 import co.id.cakap.network.ApiResponseMonthlyPointReport;
 import co.id.cakap.network.ApiResponseNetworkGeneology;
+import co.id.cakap.network.ApiResponseOmset;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseReligion;
+import co.id.cakap.network.ApiResponseSearchMember;
 import co.id.cakap.network.ApiResponseStockReportCard;
 import co.id.cakap.network.ApiResponseStockReportCardItem;
 import co.id.cakap.network.ApiResponseStockReportUpdate;
@@ -168,6 +170,18 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseStockReportCardItem> postStockReportCardItem(String userId) {
         return networkService.postStockReportCardItem(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseOmset> postOmset(String userId, String tahun, String bulan) {
+        return networkService.postOmset(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseSearchMember> postSearchMember(String userId, String keyword) {
+        return networkService.postSearchMember(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, keyword)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

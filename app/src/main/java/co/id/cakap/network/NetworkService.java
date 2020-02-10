@@ -196,5 +196,20 @@ public interface NetworkService {
                                                                      @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                      @Field(Constant.BODY_USER_ID) String userId);
 
+    @FormUrlEncoded
+    @POST("omset_stc")
+    Flowable<ApiResponseOmset> postOmset(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                         @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                         @Field(Constant.BODY_USER_ID) String userId,
+                                         @Field(Constant.BODY_TAHUN) String tahun,
+                                         @Field(Constant.BODY_BULAN) String bulan);
+
+    @FormUrlEncoded
+    @POST("search_member_stc")
+    Flowable<ApiResponseSearchMember> postSearchMember(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                       @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                       @Field(Constant.BODY_USER_ID) String userId,
+                                                       @Field(Constant.BODY_KEYWORD) String keyword);
+
 
 }

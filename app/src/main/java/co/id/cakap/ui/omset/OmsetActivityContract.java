@@ -15,6 +15,6 @@ public class OmsetActivityContract {
 
     public interface UserActionListener{
         void setView(OmsetActivityContract.View view);
-        void getData();
+        void getData(String tahun, String bulan);
     }
 }

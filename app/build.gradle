@@ -120,6 +120,7 @@ android {
             buildConfigField 'String', 'BODY_TIPE', endpointProperties['body_tipe']
             buildConfigField 'String', 'BODY_ITEM_ID', endpointProperties['body_item_id']
             buildConfigField 'String', 'BODY_PRICE', endpointProperties['body_price']
+            buildConfigField 'String', 'BODY_KEYWORD', endpointProperties['body_keyword']
         }
     }
 

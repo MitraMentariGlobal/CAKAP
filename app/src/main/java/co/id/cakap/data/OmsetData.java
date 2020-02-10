@@ -20,11 +20,11 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class OmsetData implements Parcelable {
-    @SerializedName("item_code")
+    @SerializedName("item_id")
     @Expose
     private String item_code;
 
-    @SerializedName("product_name")
+    @SerializedName("item_name")
     @Expose
     private String product_name;
 
@@ -32,7 +32,7 @@ public class OmsetData implements Parcelable {
     @Expose
     private String qty;
 
-    @SerializedName("amount")
+    @SerializedName("omset")
     @Expose
     private String amount;
 

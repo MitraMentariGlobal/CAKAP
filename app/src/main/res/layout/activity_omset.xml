@@ -81,7 +81,7 @@
                         android:layout_marginStart="@dimen/radius_16"
                         android:textSize="@dimen/text_12"
                         android:textStyle="bold"
-                        android:text="IDR 100.000.000"
+                        android:text="0"
                         style="@style/TexViewFont" />
                 </LinearLayout>
             </LinearLayout>

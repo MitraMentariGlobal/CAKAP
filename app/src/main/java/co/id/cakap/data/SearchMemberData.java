@@ -20,7 +20,7 @@ import lombok.Data;
 @Data
 @Entity
 public class SearchMemberData implements Parcelable {
-    @SerializedName("member_id")
+    @SerializedName("id")
     @Expose
     private String member_id;
 
@@ -28,11 +28,11 @@ public class SearchMemberData implements Parcelable {
     @Expose
     private String jenjang;
 
-    @SerializedName("nama_member")
+    @SerializedName("nama")
     @Expose
     private String nama_member;
 
-    @SerializedName("ktp")
+    @SerializedName("noktp")
     @Expose
     private String ktp;
 
@@ -40,11 +40,11 @@ public class SearchMemberData implements Parcelable {
     @Expose
     private String kota;
 
-    @SerializedName("provinsi")
+    @SerializedName("propinsi")
     @Expose
     private String provinsi;
 
-    @SerializedName("status")
+    @SerializedName("note")
     @Expose
     private String status;
 
@@ -52,15 +52,15 @@ public class SearchMemberData implements Parcelable {
     @Expose
     private String sponsor_id;
 
-    @SerializedName("sponsor_name")
+    @SerializedName("namasponsor")
     @Expose
     private String sponsor_name;
 
-    @SerializedName("recruiting_id")
+    @SerializedName("enroller_id")
     @Expose
     private String recruiting_id;
 
-    @SerializedName("recruiting_name")
+    @SerializedName("namaenroller")
     @Expose
     private String recruiting_name;
 

@@ -35,6 +35,7 @@ import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
 import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
 import co.id.cakap.ui.searchMember.SearchMemberActivityContract;
+import co.id.cakap.utils.Utils;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class OmsetActivity extends AppCompatActivity implements OmsetActivityContract.View, AdapterView.OnItemSelectedListener {
@@ -53,6 +54,8 @@ public class OmsetActivity extends AppCompatActivity implements OmsetActivityCon
     RecyclerView mRecyclerView;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
+    @BindView(R.id.txt_total_amount)
+    TextView mTxtTotalAmount;
 
     private OmsetAdapter mListAdapter;
     private OmsetActivityContract.UserActionListener mUserActionListener;
@@ -79,10 +82,10 @@ public class OmsetActivity extends AppCompatActivity implements OmsetActivityCon
     public void initializeData() {
         mUserActionListener = mOmsetActivityPresenter;
         mOmsetActivityPresenter.setView(this);
-        mUserActionListener.getData();
 
         mTitle.setText(getString(R.string.omset).toUpperCase());
         initSpinner();
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -110,6 +113,12 @@ public class OmsetActivity extends AppCompatActivity implements OmsetActivityCon
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
+        double total = 0;
+        for (int i = 0; i < resultData.size(); i++) {
+            total = total + Double.parseDouble(resultData.get(i).getAmount());
+        }
+
+        mTxtTotalAmount.setText("IDR " + Utils.priceWithoutDecimal(total));
         hideProgressBar();
     }
 
@@ -157,7 +166,7 @@ public class OmsetActivity extends AppCompatActivity implements OmsetActivityCon
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

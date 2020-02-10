@@ -21,6 +21,7 @@ import co.id.cakap.R;
 import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.data.OmsetData;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
+import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 /**
@@ -54,7 +55,7 @@ public class OmsetAdapter extends RecyclerView.Adapter<OmsetAdapter.ViewHolder> 
         holder.mItemCode.setText(omsetData.getItem_code());
         holder.mItemName.setText(omsetData.getProduct_name());
         holder.mQty.setText(omsetData.getQty());
-        holder.mAmount.setText(omsetData.getAmount());
+        holder.mAmount.setText(Utils.priceFromString(omsetData.getAmount()));
     }
 
     @Override

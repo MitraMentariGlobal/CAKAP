@@ -73,6 +73,7 @@ public class Constant {
     public static final String BODY_TIPE = BuildConfig.BODY_TIPE;
     public static final String BODY_ITEM_ID = BuildConfig.BODY_ITEM_ID;
     public static final String BODY_PRICE = BuildConfig.BODY_PRICE;
+    public static final String BODY_KEYWORD = BuildConfig.BODY_KEYWORD;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;
