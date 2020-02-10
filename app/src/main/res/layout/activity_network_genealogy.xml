@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <include layout="@layout/title_back"/>
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear_expand_collapse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/radius_10"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/relative_member_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/et_gray_background_style">
+
+                    <EditText
+                        android:id="@+id/et_mb_id"
+                        style="@style/Font_family_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="@string/mb_id"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/curated_light"
+                        android:textSize="@dimen/text_14"
+                        android:padding="@dimen/padding_12"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"/>
+
+                    <LinearLayout
+                        android:id="@+id/linear_submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/submit_next_background"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:background="@drawable/ic_next"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_marginEnd="@dimen/radius_10"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14"
+                    android:text="@string/name_text"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginBottom="@dimen/radius_4"
+                    style="@style/TexViewFont"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_gray_background_style">
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        style="@style/Font_family_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="@string/name_text"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/curated_light"
+                        android:textSize="@dimen/text_14"
+                        android:padding="@dimen/padding_12"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+                        android:enabled="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/radius_10"
+                android:layout_marginEnd="@dimen/radius_10"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/progress_bar_layout" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

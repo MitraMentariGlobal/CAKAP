@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/spinner_filter_layout"
+                android:layout_margin="@dimen/radius_10"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/radius_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14"
+                    android:text="Item Code"
+                    android:layout_marginBottom="@dimen/radius_4"
+                    style="@style/TexViewFont"/>
+
+                <RelativeLayout
+                    android:id="@+id/relative_item_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/et_gray_background_style">
+
+                    <EditText
+                        android:id="@+id/et_item_code"
+                        style="@style/Font_family_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Item Code"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/curated_light"
+                        android:textSize="@dimen/text_14"
+                        android:padding="@dimen/padding_12"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"/>
+
+                    <LinearLayout
+                        android:id="@+id/linear_search_item_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="@drawable/submit_next_background"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:background="@drawable/ic_loupe_white"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_marginEnd="@dimen/radius_10"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/txt_error_item_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_14"
+                    android:text="Silakan input minimal 3 karakter"
+                    android:layout_marginStart="@dimen/radius_10"
+                    style="@style/TexViewFont"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14"
+                    android:text="Item Name"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginBottom="@dimen/radius_4"
+                    style="@style/TexViewFont"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_gray_background_style">
+
+                    <EditText
+                        android:id="@+id/et_item_name"
+                        style="@style/Font_family_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Item Name"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/curated_light"
+                        android:textSize="@dimen/text_14"
+                        android:padding="@dimen/padding_12"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14"
+                    android:text="Price"
+                    android:layout_marginTop="@dimen/radius_16"
+                    android:layout_marginBottom="@dimen/radius_4"
+                    style="@style/TexViewFont"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_gray_background_style">
+
+                    <EditText
+                        android:id="@+id/et_price"
+                        style="@style/Font_family_light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:hint="Price"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/curated_light"
+                        android:textSize="@dimen/text_14"
+                        android:padding="@dimen/padding_12"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+                        android:enabled="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/radius_10"
+                    android:background="@drawable/item_detail_transaksi_style">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/main_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/radius_10"
+                        android:layout_marginBottom="@dimen/radius_10"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_16"
+                    android:layout_marginBottom="@dimen/radius_16"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_14"
+                            android:text="Saldo Awal"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_14"
+                            android:text="Total In"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_14"
+                            android:text="Total Out"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_14"
+                            android:text="Saldo Akhir"
+                            style="@style/TexViewFont"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_14"
+                            android:text=" : "
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_14"
+                            android:text=" : "
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_14"
+                            android:text=" : "
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:text=" : "
+                            style="@style/TexViewFont"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/radius_64"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_saldo_awal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_14"
+                            android:text="0"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_total_in"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_14"
+                            android:text="0"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_total_out"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_14"
+                            android:text="0"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_saldo_akhir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_14"
+                            android:text="0"
+                            style="@style/TexViewFont"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/progress_bar_layout" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

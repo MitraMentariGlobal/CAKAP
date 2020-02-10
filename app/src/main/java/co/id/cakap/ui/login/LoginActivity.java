@@ -1,28 +1,27 @@
 package co.id.cakap.ui.login;
 
-import android.content.Context;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import javax.inject.Inject;
 
@@ -33,10 +32,13 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
-import co.id.cakap.ui.home.HomeActivity;
+import co.id.cakap.ui.dashboard.DashboardActivity;
+import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.BottomDialogActivity;
+import co.id.cakap.utils.dialog.ForgotPasswordDialog;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View {
+public class LoginActivity extends BottomDialogActivity implements LoginContract.View {
     private static final String TAG = "LoginActivity";
 
     @Inject
@@ -50,6 +52,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     EditText mPassword;
     @BindView(R.id.login_btn)
     Button mLoginButton;
+    @BindView(R.id.bottom_sheet)
+    View bottomSheet;
 
     private LoginContract.UserActionListener mUserActionListener;
     private FirebaseAuth mAuth;
@@ -90,23 +94,41 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         getAuthData(mUserId.getText().toString(), mPassword.getText().toString());
     }
 
+    @OnClick(R.id.txt_forgot_password)
+    public void forgotPassword(View view) {
+        ForgotPasswordDialog utils = new ForgotPasswordDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        EditText userId = dialog.findViewById(R.id.user_id_et);
+
+        dialog.findViewById(R.id.txt_submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                bottomSheetAlert(
+                        getResources().getDrawable(R.drawable.ic_success_forgot_password),
+                        getResources().getString(R.string.your_default_password)
+                );
+            }
+        });
+    }
+
     public void getAuthData(String userId, String password) {
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Logger.d("signInAnonymously:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            mUserActionListener.getNotificationToken(userId, password);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Logger.w("signInAnonymously:failure", task.getException());
-                            setErrorResponse("Authentication failed.");
-                        }
-                    }
-                });
+        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Logger.d("signInAnonymously:success");
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    mUserActionListener.getNotificationToken(userId, password);
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Logger.w("signInAnonymously:failure", task.getException());
+                    setErrorResponse("Authentication failed.");
+                }
+            }
+        });
     }
 
     @Override
@@ -114,6 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         mAuth = FirebaseAuth.getInstance();
         mUserActionListener = mLoginPresenter;
         mLoginPresenter.setView(this);
+        mBehavior = BottomSheetBehavior.from(bottomSheet);
         hideProgressBar();
     }
 
@@ -140,9 +163,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void setSuccessResponse(String url) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra(Constant.URL_LINK, url);
-        startActivity(intent);
+//        Intent intent = new Intent(this, HomeWebViewActivity.class);
+//        intent.putExtra(Constant.URL_LINK, url);
+//        startActivity(intent);
+
+        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         finish();
     }
 }

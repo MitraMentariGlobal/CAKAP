@@ -10,4 +10,8 @@
     <declare-styleable name="CradleBall">
         <attr name="cradle_ball_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="CustomRecyclerViewPager">
+        <attr name="itemMargin" format="dimension"/>
+    </declare-styleable>
 </resources>

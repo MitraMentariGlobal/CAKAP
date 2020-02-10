@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="3dp">
+
+    <RelativeLayout
+        android:id="@+id/relative_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:id="@+id/detailData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_transaction_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_14"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="INV - 123123123123123"
+                    style="@style/TexViewFont" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_12"
+                    android:textColor="@color/black"
+                    android:text="28 Jan 2020"
+                    style="@style/TexViewFont" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_total_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
+                    android:text="IDR 100.000.000"
+                    style="@style/TexViewFont" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
+                    android:text=" / "
+                    style="@style/TexViewFont" />
+
+                <TextView
+                    android:id="@+id/txt_total_pv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
+                    android:text="123"
+                    style="@style/TexViewFont" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_orange"
+                    android:text="pv"
+                    style="@style/TexViewFont" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/text_12"
+                android:textStyle="bold"
+                android:text="Pending"
+                style="@style/TexViewFont" />
+
+            <LinearLayout
+                android:id="@+id/linear_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/radius_10"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/item_cancel"
+                    android:background="@drawable/ic_cancel"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/item_verified"
+                    android:background="@drawable/ic_verified"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -1,10 +1,208 @@
 <resources>
     <string name="app_name">CAKAP</string>
+    <string name="title_logo">cakap</string>
     <string name="login_title_1">Welcome !</string>
     <string name="login_title_2">Please log in to get something awesome.</string>
     <string name="login_user_id">User Id</string>
     <string name="login_password">Password</string>
-    <string name="login_btn">Log me in</string>
+    <string name="login_btn">Login</string>
     <string name="login_bottom">Copyright © 2019 PT. CAKAP. All rights reserved. \n Powered by: MMG</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+    <string name="home">Home</string>
+    <string name="activity">Activity</string>
+    <string name="restock">Restock</string>
+    <string name="notification">Notifications</string>
+    <string name="account">Account</string>
+    <string name="ewallet">E-Wallet</string>
+    <string name="idr_upper">IDR</string>
+    <string name="fee">Fee</string>
+    <string name="omset">Omset</string>
+    <string name="total_omset">Total Omset</string>
+    <string name="transaction">Transaction</string>
+    <string name="registration">Registration</string>
+    <string name="cashbill">Cashbill</string>
+    <string name="bonus_statement">Bonus Statement</string>
+    <string name="network_genealogy">Network Genealogy</string>
+    <string name="network_table">Network Table</string>
+    <string name="ebonus">EBonus</string>
+    <string name="downline_listing">Downline Listing</string>
+    <string name="monthly_point_report">Monthly Point Report </string>
+    <string name="invoice_to_mb">Invoice To MB</string>
+    <string name="req_invoice_to_com">Req Invoice To Company</string>
+    <string name="req_invoice_to_bc">Req Invoice To BC</string>
+    <string name="req_invoice_mb">Request Inv MB</string>
+    <string name="rekap_bns_bcmb">Rekap Bns BCMB</string>
+    <string name="invoice">Invoice</string>
+    <string name="req_invoice">Req Invoice</string>
+    <string name="receive_stock">Receive Stock</string>
+    <string name="search">Search</string>
+    <string name="periode">Period</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="subtotal_upper">SUBTOTAL</string>
+    <string name="daftar_produk">Product List </string>
+    <string name="detail_transaksi">Detail Transaction</string>
+    <string name="detail_registration">Detail Registration</string>
+    <string name="my_profile">My Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_pin">Change Pin</string>
+    <string name="fee_bcmb">Fee BCMB</string>
+    <string name="stock_report">Stock Report</string>
+    <string name="search_member">Search Member</string>
+    <string name="member_id">Member ID</string>
+    <string name="mb_id">MB ID</string>
+    <string name="level">Level</string>
+    <string name="name_text">Name</string>
+    <string name="pilih_member">Choose Member</string>
+    <string name="pilih_mb">Choose MB</string>
+    <string name="status">Status</string>
+    <string name="remark">Remark</string>
+    <string name="pick_up_delivery">Pick up / Delivery</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="change_address">Change Address</string>
+    <string name="next_upper">NEXT</string>
+    <string name="process_upper">PROCESS</string>
+    <string name="submit_upper">SUBMIT</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="sure">Sure</string>
+    <string name="province">Province</string>
+    <string name="kota">City</string>
+    <string name="alamat">Address</string>
+    <string name="enter_your_pin">Enter Your Pin</string>
+    <string name="default_address">Default</string>
+    <string name="member_info">Member Info</string>
+    <string name="mb_info">MB Info</string>
+    <string name="bcr_info">BC Info</string>
+    <string name="bonus_date">Bonus Date</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="please_confirm_bc">Silakan hubungi, dan lakukan pembayaran kepada %1$s - %2$s</string>
+    <string name="your_transaction">Amount To Be Paid</string>
+    <string name="copy">copy</string>
+    <string name="transfer_via_bca_upper_1">Transfer via BCA 1</string>
+    <string name="transfer_via_bca_upper_2">Transfer via BCA 2</string>
+    <string name="rek_bca_1">372.306.8858</string>
+    <string name="rek_bca_2">372.303.8258</string>
+    <string name="payment_method_string">Payment method : %1$s</string>
+    <string name="please_confirm_company">Silakan hubungi, dan lakukan pembayaran sebeelum %1$s kepada company berikut dengan %2$s digit terakhir untuk memudahkan verifikasi.</string>
+    <string name="ewallet_item">E-Wallet</string>
+    <string name="transfer_item">Transfer</string>
+    <string name="transaksi_berhasil">Thank you for your transaction.</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="back_to_home_upper">BACK TO HOME</string>
+    <string name="this_transaction">%1$s this transaction?</string>
+    <string name="pleasee_check_again">Periksa kembali inputan anda, apakah Anda bersedia untuk melanjutkan transaksi ini?</string>
+    <string name="pleasee_check_again_profile">Periksa kembali inputan anda, apakah Anda bersedia untuk merubah data?</string>
+    <string name="dialog_log_out">Are you sure want to log out?</string>
+    <string name="dialog_delete_notification">Are you sure want to delete all notification?</string>
+    <string name="download">Download</string>
+
+    <string name="sex_male">Male</string>
+    <string name="sex_female">Female</string>
+
+    <string name="religion_islam">Islam</string>
+    <string name="religion_katolik">Katholik</string>
+    <string name="religion_kristen">Kristen</string>
+    <string name="religion_hindu">Hindu</string>
+    <string name="religion_budha">Budha</string>
+    <string name="religion_konghucu">Konghucu</string>
+
+    <string name="bank_bca">Bank Central Asia</string>
+    <string name="bank_mandiri">Bank Mandiri</string>
+    <string name="bank_bri">Bank Rakyat Indonesia</string>
+    <string name="bank_bni">Bank Negara Indonesia</string>
+    <string name="bank_bii">Bank International Indonesia</string>
+    <string name="bank_danamon">Bank Danamon</string>
+    <string name="bank_permata">Bank Permata</string>
+    <string name="bank_cimb">Bank CIMB Niaga</string>
+    <string name="bank_panin">Bank Panin</string>
+    <string name="stock_update">Update</string>
+    <string name="stock_card">Card</string>
+    <string name="field_not_match">This field does not match</string>
+    <string name="minimum_5">Minimum 5 character</string>
+    <string name="field_required">This field is required</string>
+    <string name="your_default_password">Your default password would be sent to your mail</string>
+    <string name="success_update_profile">Update profile berhasil</string>
+    <string name="title_information">Information</string>
+    <string name="semangat_pagi">Semangat Pagi,</string>
+    <string name="mark_all_read">Mark all as read</string>
+    <string name="delete_all">Delete all</string>
+
+    <string name="bc_login">stc</string>
+    <string name="mb_login">mstc</string>
+    <string name="member_login">mem</string>
+
+    <string name="title_1">Cool card</string>
+    <string name="title_2">Ok card</string>
+
+    <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
+    <item name="root_layout" type="id" />
+
+    <string name="month_january">January</string>
+    <string name="month_february">February</string>
+    <string name="month_march">March</string>
+    <string name="month_april">April</string>
+    <string name="month_may">May</string>
+    <string name="month_june">June</string>
+    <string name="month_july">July</string>
+    <string name="month_august">August</string>
+    <string name="month_september">September</string>
+    <string name="month_october">October</string>
+    <string name="month_november">November</string>
+    <string name="month_december">December</string>
+
+    <string-array name="month_array">
+        <item>@string/month_january</item>
+        <item>@string/month_february</item>
+        <item>@string/month_march</item>
+        <item>@string/month_april</item>
+        <item>@string/month_may</item>
+        <item>@string/month_june</item>
+        <item>@string/month_july</item>
+        <item>@string/month_august</item>
+        <item>@string/month_september</item>
+        <item>@string/month_october</item>
+        <item>@string/month_november</item>
+        <item>@string/month_december</item>
+    </string-array>
+
+    <string-array name="pick_up_delivery">
+        <item>Delivery</item>
+    </string-array>
+
+    <string-array name="payment_method_list">
+        <item>@string/ewallet_item</item>
+        <item>@string/transfer_item</item>
+    </string-array>
+
+    <string-array name="sex_list">
+        <item>@string/sex_male</item>
+        <item>@string/sex_female</item>
+    </string-array>
+
+    <string-array name="religion_list">
+        <item> - </item>
+        <item>@string/religion_islam</item>
+        <item>@string/religion_katolik</item>
+        <item>@string/religion_kristen</item>
+        <item>@string/religion_hindu</item>
+        <item>@string/religion_budha</item>
+        <item>@string/religion_konghucu</item>
+    </string-array>
+
+    <string-array name="bank_list">
+        <item> - </item>
+        <item>@string/bank_bca</item>
+        <item>@string/bank_mandiri</item>
+        <item>@string/bank_bri</item>
+        <item>@string/bank_bni</item>
+        <item>@string/bank_bii</item>
+        <item>@string/bank_danamon</item>
+        <item>@string/bank_permata</item>
+        <item>@string/bank_cimb</item>
+        <item>@string/bank_panin</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

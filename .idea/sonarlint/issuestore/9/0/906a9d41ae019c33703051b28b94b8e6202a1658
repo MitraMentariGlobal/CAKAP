@@ -1,3 +1,4 @@
 
-Rsquid:S2696"6Make the enclosing method "static" or remove this set.(ñõîÙşÿÿÿÿ
 c$squid:AssignmentInSubExpressionCheck".Extract the assignment out of this expression.(ƒşÍäúÿÿÿÿ
+Rsquid:S2696"6Make the enclosing method "static" or remove this set.(ñõîÙşÿÿÿÿ
+`squid:CallToDeprecatedMethod "1Remove this use of "appModule"; it is deprecated.(›úİø8ïªŠ”ô-

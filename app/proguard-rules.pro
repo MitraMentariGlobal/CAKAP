@@ -73,6 +73,7 @@
 -keepclassmembers class org.greenrobot.greendao.** { *; }
 
 # If you do not use SQLCipher:
+-dontwarn net.sqlcipher.database.**
 -dontwarn org.greenrobot.greendao.database.**
 -keep public class my.dao.package.models.** {
      public static <fields>;
@@ -164,3 +165,5 @@
 -keep class org.sqlite.database.** { *; }
 
 -dontwarn lombok.**
+
+-keep class io.codetail.animation.arcanimator.** { *; }

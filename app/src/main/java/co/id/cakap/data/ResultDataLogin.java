@@ -12,7 +12,7 @@ import org.greenrobot.greendao.annotation.Generated;
 import lombok.Data;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 
@@ -23,19 +23,113 @@ public class ResultDataLogin implements Parcelable {
     @Expose
     private String url;
 
+    @SerializedName("role")
+    @Expose
+    private String role;
+
     @SerializedName("session_token")
     @Expose
     private String session_token;
 
+    @SerializedName("update_profile")
+    @Expose
+    private String update_profile;
+
+    @SerializedName("running_text")
+    @Expose
+    private String running_text;
+
+    @SerializedName("gambar")
+    @Expose
+    private String gambar;
+
+    @SerializedName("nama")
+    @Expose
+    private String nama;
+
+    @SerializedName("username")
+    @Expose
+    private String username;
+
+    @SerializedName("member_id")
+    @Expose
+    private String member_id;
+
+    @SerializedName("posisi")
+    @Expose
+    private String posisi;
+
+    @SerializedName("bonus")
+    @Expose
+    private String bonus;
+
+    @SerializedName("pv_max")
+    @Expose
+    private String pv_max;
+
+    @SerializedName("pv_tupo")
+    @Expose
+    private String pv_tupo;
+
+    @SerializedName("userid")
+    @Expose
+    private String userid;
+
+    @SerializedName("group_id")
+    @Expose
+    private String group_id;
+
+    @SerializedName("wilayah")
+    @Expose
+    private String wilayah;
+
+    @SerializedName("leader_ids")
+    @Expose
+    private String leader_ids;
+
     protected ResultDataLogin(Parcel in) {
         url = in.readString();
+        role = in.readString();
         session_token = in.readString();
+        update_profile = in.readString();
+        running_text = in.readString();
+        gambar = in.readString();
+        nama = in.readString();
+        username = in.readString();
+        member_id = in.readString();
+        posisi = in.readString();
+        bonus = in.readString();
+        pv_max = in.readString();
+        pv_tupo = in.readString();
+        userid = in.readString();
+        group_id = in.readString();
+        wilayah = in.readString();
+        leader_ids = in.readString();
     }
 
-    @Generated(hash = 2072942856)
-    public ResultDataLogin(String url, String session_token) {
+    @Generated(hash = 1837070553)
+    public ResultDataLogin(String url, String role, String session_token,
+            String update_profile, String running_text, String gambar, String nama,
+            String username, String member_id, String posisi, String bonus, String pv_max,
+            String pv_tupo, String userid, String group_id, String wilayah,
+            String leader_ids) {
         this.url = url;
+        this.role = role;
         this.session_token = session_token;
+        this.update_profile = update_profile;
+        this.running_text = running_text;
+        this.gambar = gambar;
+        this.nama = nama;
+        this.username = username;
+        this.member_id = member_id;
+        this.posisi = posisi;
+        this.bonus = bonus;
+        this.pv_max = pv_max;
+        this.pv_tupo = pv_tupo;
+        this.userid = userid;
+        this.group_id = group_id;
+        this.wilayah = wilayah;
+        this.leader_ids = leader_ids;
     }
 
     @Generated(hash = 820616836)
@@ -45,7 +139,22 @@ public class ResultDataLogin implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(url);
+        dest.writeString(role);
         dest.writeString(session_token);
+        dest.writeString(update_profile);
+        dest.writeString(running_text);
+        dest.writeString(gambar);
+        dest.writeString(nama);
+        dest.writeString(username);
+        dest.writeString(member_id);
+        dest.writeString(posisi);
+        dest.writeString(bonus);
+        dest.writeString(pv_max);
+        dest.writeString(pv_tupo);
+        dest.writeString(userid);
+        dest.writeString(group_id);
+        dest.writeString(wilayah);
+        dest.writeString(leader_ids);
     }
 
     @Override
@@ -61,12 +170,132 @@ public class ResultDataLogin implements Parcelable {
         this.url = url;
     }
 
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getSession_token() {
         return this.session_token;
     }
 
     public void setSession_token(String session_token) {
         this.session_token = session_token;
+    }
+
+    public String getUpdate_profile() {
+        return this.update_profile;
+    }
+
+    public void setUpdate_profile(String update_profile) {
+        this.update_profile = update_profile;
+    }
+
+    public String getRunning_text() {
+        return this.running_text;
+    }
+
+    public void setRunning_text(String running_text) {
+        this.running_text = running_text;
+    }
+
+    public String getGambar() {
+        return this.gambar;
+    }
+
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
+    }
+
+    public String getNama() {
+        return this.nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getMember_id() {
+        return this.member_id;
+    }
+
+    public void setMember_id(String member_id) {
+        this.member_id = member_id;
+    }
+
+    public String getPosisi() {
+        return this.posisi;
+    }
+
+    public void setPosisi(String posisi) {
+        this.posisi = posisi;
+    }
+
+    public String getBonus() {
+        return this.bonus;
+    }
+
+    public void setBonus(String bonus) {
+        this.bonus = bonus;
+    }
+
+    public String getPv_max() {
+        return this.pv_max;
+    }
+
+    public void setPv_max(String pv_max) {
+        this.pv_max = pv_max;
+    }
+
+    public String getPv_tupo() {
+        return this.pv_tupo;
+    }
+
+    public void setPv_tupo(String pv_tupo) {
+        this.pv_tupo = pv_tupo;
+    }
+
+    public String getUserid() {
+        return this.userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getGroup_id() {
+        return this.group_id;
+    }
+
+    public void setGroup_id(String group_id) {
+        this.group_id = group_id;
+    }
+
+    public String getWilayah() {
+        return this.wilayah;
+    }
+
+    public void setWilayah(String wilayah) {
+        this.wilayah = wilayah;
+    }
+
+    public String getLeader_ids() {
+        return this.leader_ids;
+    }
+
+    public void setLeader_ids(String leader_ids) {
+        this.leader_ids = leader_ids;
     }
 
     public static final Creator<ResultDataLogin> CREATOR = new Creator<ResultDataLogin>() {
