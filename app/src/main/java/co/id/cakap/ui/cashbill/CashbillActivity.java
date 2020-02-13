@@ -197,6 +197,7 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
                     dialog.dismiss();
 
                     mUserActionListener.submitData(
+                            pin,
                             String.valueOf(mPrice),
                             String.valueOf(mPv),
                             String.valueOf(mBv),

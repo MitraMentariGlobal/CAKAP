@@ -19,6 +19,6 @@ public class CashbillActivityContract {
         void setView(CashbillActivityContract.View view);
         void getMemberData(String memberId);
         void getItemCashbill(OperationUserStatusData operationUserStatusData);
-        void submitData(String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData);
+        void submitData(String pin, String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData);
     }
 }

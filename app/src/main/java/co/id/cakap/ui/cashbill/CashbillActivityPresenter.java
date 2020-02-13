@@ -15,6 +15,7 @@ import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseItemCashbill;
 import co.id.cakap.network.ApiResponseSearchMember;
 import co.id.cakap.network.ApiResponseSearchMemberCashbill;
+import co.id.cakap.network.ApiResponseSubmitCashbill;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.account.AccountContract;
 import co.id.cakap.utils.DateHelper;
@@ -148,11 +149,42 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
     }
 
     @Override
-    public void submitData(String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData) {
-        getParam(totalHarga, totalPv, totalBv, remark, resultData);
+    public void submitData(String pin, String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData) {
+        getView().showProgressBar();
+
+        mMainRepository.postSubmitCashbill(getParam(pin, totalHarga, totalPv, totalBv, remark, resultData))
+                .subscribe(new ResourceSubscriber<ApiResponseSubmitCashbill>() {
+                    @Override
+                    public void onNext(ApiResponseSubmitCashbill apiResponseSubmitCashbill) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseSubmitCashbill.getMessages());
+                        Logger.d("<<<<<=====");
+
+
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
     }
 
-    private Map<String, Object> getParam(String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData) {
+    private Map<String, Object> getParam(String pin, String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData) {
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
 
@@ -176,6 +208,7 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
             }
         }
 
+        param.put(Constant.BODY_PIN, pin);
         param.put(Constant.BODY_USER_ID, mResultDataLogin.getMember_id());
         param.put(Constant.BODY_WILAYAH, mResultDataLogin.getWilayah());
         param.put(Constant.BODY_USER_NAME, mResultDataLogin.getUsername());
