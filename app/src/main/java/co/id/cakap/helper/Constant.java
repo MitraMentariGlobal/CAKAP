@@ -17,6 +17,7 @@ public class Constant {
     public static String FIREBASE_NOTIFICATION_MOVE = BuildConfig.FIREBASE_NOTIFICATION_MOVE;
     public static String FIREBASE_NOTIFICATION_URL = BuildConfig.FIREBASE_NOTIFICATION_URL;
     public static String LOGIN_DATA = "";
+    public static String URL_IMAGE_PRODUCT = "";
     public static boolean IS_HAVE_PARENT = false;
 
     public static final String END_URL_DETAIL_CASHBILL = BuildConfig.END_URL_DETAIL_CASHBILL;
@@ -74,6 +75,17 @@ public class Constant {
     public static final String BODY_ITEM_ID = BuildConfig.BODY_ITEM_ID;
     public static final String BODY_PRICE = BuildConfig.BODY_PRICE;
     public static final String BODY_KEYWORD = BuildConfig.BODY_KEYWORD;
+    public static final String BODY_WILAYAH = BuildConfig.BODY_WILAYAH;
+    public static final String BODY_TGL = BuildConfig.BODY_TGL;
+    public static final String BODY_TOTAL_HARGA = BuildConfig.BODY_TOTAL_HARGA;
+    public static final String BODY_TOTAL_PV = BuildConfig.BODY_TOTAL_PV;
+    public static final String BODY_TOTAL_BV = BuildConfig.BODY_TOTAL_BV;
+    public static final String BODY_REMARK = BuildConfig.BODY_REMARK;
+    public static final String BODY_DETAIL = BuildConfig.BODY_DETAIL;
+    public static final String BODY_TITIPAN_ID = BuildConfig.BODY_TITIPAN_ID;
+    public static final String BODY_PV = BuildConfig.BODY_PV;
+    public static final String BODY_BV = BuildConfig.BODY_BV;
+    public static final String BODY_QTY = BuildConfig.BODY_QTY;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;

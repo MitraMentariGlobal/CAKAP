@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ItemShopData;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
+import co.id.cakap.utils.Logger;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -56,10 +60,18 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
         holder.position = position;
 
         holder.mItemCode.setText(itemShopData.getItem_code());
-        holder.mStock.setText(itemShopData.getStock());
+        holder.mStock.setText(itemShopData.getQty());
         holder.mItemName.setText(itemShopData.getItem_name());
-        holder.mPrice.setText(itemShopData.getPrice());
+        holder.mPrice.setText(itemShopData.getFharga());
         holder.mPv.setText(itemShopData.getPv());
+
+        if (!(itemShopData.getImage().equals("0"))) {
+            Picasso.with(mContext)
+                    .load(Constant.URL_IMAGE_PRODUCT + itemShopData.getImage())
+                    .into(holder.mImage);
+        } else {
+            holder.mImage.setBackground(mContext.getResources().getDrawable(R.drawable.img_item_placeholder));
+        }
     }
 
     @Override
@@ -80,7 +92,7 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
                     for (ItemShopData itemShopData : mResultData) {
                         if (itemShopData.getItem_code().toLowerCase().contains(charString) ||
                                 itemShopData.getItem_name().toLowerCase().contains(charString) ||
-                                itemShopData.getPrice().toLowerCase().contains(charString) ||
+                                itemShopData.getHarga().toLowerCase().contains(charString) ||
                                 itemShopData.getPv().toLowerCase().contains(charString)) {
                             filteredList.add(itemShopData);
                         }
@@ -119,6 +131,8 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
         EditText mQty;
         @BindView(R.id.img_plus)
         ImageView mPlus;
+        @BindView(R.id.image)
+        ImageView mImage;
 
         ItemShopData itemShopData;
         Context context;
@@ -145,7 +159,7 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
-                itemShopData.setQty(String.valueOf(qty));
+                itemShopData.setCart(String.valueOf(qty));
                 mResultData.set(position, itemShopData);
                 new CashbillActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 0);
             }
@@ -153,12 +167,17 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
-            setZeroQty();
-            qty += 1;
-            mQty.setText(String.valueOf(qty));
-            itemShopData.setQty(String.valueOf(qty));
-            mResultData.set(position, itemShopData);
-            new CashbillActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
+            Logger.d("qty : " + qty);
+            Logger.d("itemShopData.getQty() : " + itemShopData.getQty());
+
+            if (qty < Integer.parseInt(itemShopData.getQty())) {
+                setZeroQty();
+                qty += 1;
+                mQty.setText(String.valueOf(qty));
+                itemShopData.setCart(String.valueOf(qty));
+                mResultData.set(position, itemShopData);
+                new CashbillActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
+            }
         }
     }
 }

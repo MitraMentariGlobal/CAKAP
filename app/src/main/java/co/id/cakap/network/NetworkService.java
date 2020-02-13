@@ -1,8 +1,11 @@
 package co.id.cakap.network;
 
+import java.util.Map;
+
 import co.id.cakap.data.NetworkGenealogyData;
 import co.id.cakap.helper.Constant;
 import io.reactivex.Flowable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -210,6 +213,24 @@ public interface NetworkService {
                                                        @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                        @Field(Constant.BODY_USER_ID) String userId,
                                                        @Field(Constant.BODY_KEYWORD) String keyword);
+
+    @FormUrlEncoded
+    @POST("search_member_cashbill")
+    Flowable<ApiResponseSearchMemberCashbill> postSearchMemberCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                       @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                       @Field(Constant.BODY_MEMBER_ID) String memberId);
+
+    @FormUrlEncoded
+    @POST("item_stc_cashbill")
+    Flowable<ApiResponseItemCashbill> postItemCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                       @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                       @Field(Constant.BODY_USER_ID) String memberId);
+
+    @FormUrlEncoded
+    @POST("submit_cashbill_stc")
+    Flowable<ApiResponseSubmitCashbill> postSubmitCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                           @Body Map<String, Object> param);
 
 
 }

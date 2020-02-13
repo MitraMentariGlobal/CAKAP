@@ -1,5 +1,7 @@
 package co.id.cakap.repository;
 
+import java.util.Map;
+
 import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.NetworkGenealogyData;
 import co.id.cakap.data.ReligionData;
@@ -12,6 +14,7 @@ import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
 import co.id.cakap.network.ApiResponseDownlineListing;
 import co.id.cakap.network.ApiResponseFeeBcmb;
+import co.id.cakap.network.ApiResponseItemCashbill;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseLevel;
 import co.id.cakap.network.ApiResponseLogin;
@@ -22,9 +25,11 @@ import co.id.cakap.network.ApiResponseOmset;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseReligion;
 import co.id.cakap.network.ApiResponseSearchMember;
+import co.id.cakap.network.ApiResponseSearchMemberCashbill;
 import co.id.cakap.network.ApiResponseStockReportCard;
 import co.id.cakap.network.ApiResponseStockReportCardItem;
 import co.id.cakap.network.ApiResponseStockReportUpdate;
+import co.id.cakap.network.ApiResponseSubmitCashbill;
 import co.id.cakap.network.ApiResponseUpdateProfile;
 import co.id.cakap.network.NetworkService;
 import io.reactivex.Flowable;
@@ -182,6 +187,24 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseSearchMember> postSearchMember(String userId, String keyword) {
         return networkService.postSearchMember(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, keyword)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseSearchMemberCashbill> postSearchMemberCashbill(String memberId) {
+        return networkService.postSearchMemberCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, memberId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseItemCashbill> postItemCashbill(String userId) {
+        return networkService.postItemCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseSubmitCashbill> postSubmitCashbill(Map<String, Object> param) {
+        return networkService.postSubmitCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, param)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

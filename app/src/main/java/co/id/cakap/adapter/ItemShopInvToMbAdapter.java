@@ -56,9 +56,9 @@ public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMb
         holder.position = position;
 
         holder.mItemCode.setText(itemShopData.getItem_code());
-        holder.mStock.setText(itemShopData.getStock());
+        holder.mStock.setText(itemShopData.getQty());
         holder.mItemName.setText(itemShopData.getItem_name());
-        holder.mPrice.setText(itemShopData.getPrice());
+        holder.mPrice.setText(itemShopData.getFharga());
         holder.mPv.setText(itemShopData.getPv());
     }
 
@@ -80,7 +80,7 @@ public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMb
                     for (ItemShopData itemShopData : mResultData) {
                         if (itemShopData.getItem_code().toLowerCase().contains(charString) ||
                                 itemShopData.getItem_name().toLowerCase().contains(charString) ||
-                                itemShopData.getPrice().toLowerCase().contains(charString) ||
+                                itemShopData.getHarga().toLowerCase().contains(charString) ||
                                 itemShopData.getPv().toLowerCase().contains(charString)) {
                             filteredList.add(itemShopData);
                         }
@@ -119,6 +119,8 @@ public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMb
         EditText mQty;
         @BindView(R.id.img_plus)
         ImageView mPlus;
+        @BindView(R.id.image)
+        ImageView mImage;
 
         ItemShopData itemShopData;
         Context context;
@@ -145,7 +147,7 @@ public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMb
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
-                itemShopData.setQty(String.valueOf(qty));
+                itemShopData.setCart(String.valueOf(qty));
                 mResultData.set(position, itemShopData);
                 new InvoiceToMbActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 0);
             }
@@ -156,7 +158,7 @@ public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMb
             setZeroQty();
             qty += 1;
             mQty.setText(String.valueOf(qty));
-            itemShopData.setQty(String.valueOf(qty));
+            itemShopData.setCart(String.valueOf(qty));
             mResultData.set(position, itemShopData);
             new InvoiceToMbActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
         }

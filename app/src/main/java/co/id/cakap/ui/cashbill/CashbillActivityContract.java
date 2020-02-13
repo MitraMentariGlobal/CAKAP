@@ -17,6 +17,8 @@ public class CashbillActivityContract {
 
     public interface UserActionListener{
         void setView(CashbillActivityContract.View view);
-        void getData(String memberId);
+        void getMemberData(String memberId);
+        void getItemCashbill(OperationUserStatusData operationUserStatusData);
+        void submitData(String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData);
     }
 }

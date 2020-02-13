@@ -23,8 +23,6 @@ public class SearchMemberActivityPresenter implements SearchMemberActivityContra
     private static DataModel mDataModel;
     private static ResultDataLogin mResultDataLogin;
 
-//    private ArrayList<SearchMemberData> arrayList;
-
     public SearchMemberActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
         mDataModel = dataModel;
@@ -49,27 +47,6 @@ public class SearchMemberActivityPresenter implements SearchMemberActivityContra
 
     @Override
     public void getDataMember(String param) {
-//        arrayList = new ArrayList<>();
-//        arrayList.add(new SearchMemberData("00000021", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000022", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000023", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "INACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000024", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000025", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "INACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000026", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000027", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000028", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "INACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000029", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000030", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000031", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "INACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000032", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000033", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000034", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000035", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000036", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000037", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        arrayList.add(new SearchMemberData("00000038", "RD", "Nama Member 1", "6473648566438824", "JAKARTA SELATAN", "DKI JAKARTA", "ACTIVE", "0000003", "LILY SUKHAMTA", "0000003", "LILY SUKHAMTA"));
-//        getView().setAdapter(arrayList);
-
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);

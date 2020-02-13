@@ -121,6 +121,17 @@ android {
             buildConfigField 'String', 'BODY_ITEM_ID', endpointProperties['body_item_id']
             buildConfigField 'String', 'BODY_PRICE', endpointProperties['body_price']
             buildConfigField 'String', 'BODY_KEYWORD', endpointProperties['body_keyword']
+            buildConfigField 'String', 'BODY_WILAYAH', endpointProperties['body_wilayah']
+            buildConfigField 'String', 'BODY_TGL', endpointProperties['body_tgl']
+            buildConfigField 'String', 'BODY_TOTAL_HARGA', endpointProperties['body_total_harga']
+            buildConfigField 'String', 'BODY_TOTAL_PV', endpointProperties['body_total_pv']
+            buildConfigField 'String', 'BODY_TOTAL_BV', endpointProperties['body_total_bv']
+            buildConfigField 'String', 'BODY_REMARK', endpointProperties['body_remark']
+            buildConfigField 'String', 'BODY_DETAIL', endpointProperties['body_detail']
+            buildConfigField 'String', 'BODY_TITIPAN_ID', endpointProperties['body_titipan_id']
+            buildConfigField 'String', 'BODY_PV', endpointProperties['body_pv']
+            buildConfigField 'String', 'BODY_BV', endpointProperties['body_bv']
+            buildConfigField 'String', 'BODY_QTY', endpointProperties['body_qty']
         }
     }
 

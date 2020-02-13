@@ -153,11 +153,11 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopData.getPv());
-            mPrice -= Double.parseDouble(itemShopData.getPrice().replace(".",""));
+            mPrice -= Double.parseDouble(itemShopData.getHarga());
         } else {
             mItem += 1;
             mPv += Integer.parseInt(itemShopData.getPv());
-            mPrice += Double.parseDouble(itemShopData.getPrice().replace(".",""));
+            mPrice += Double.parseDouble(itemShopData.getHarga());
         }
 
         mTxtTotalItem.setText(String.valueOf(mItem));

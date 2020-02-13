@@ -88,10 +88,12 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
     private ItemShopCashbillAdapter mListAdapter;
     private GridLayoutManager mGridLayoutManager;
     private CashbillActivityContract.UserActionListener mUserActionListener;
+    private List<ItemShopData> mResultData;
     private boolean mIsExpand = true;
 
     private static int mItem = 0;
     private static int mPv = 0;
+    private static int mBv = 0;
     private static double mPrice = 0;
 
     @Override
@@ -156,14 +158,17 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
 
     @Override
     public void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action) {
+        mResultData = resultData;
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopData.getPv());
-            mPrice -= Double.parseDouble(itemShopData.getPrice().replace(".",""));
+            mBv -= Integer.parseInt(itemShopData.getBv());
+            mPrice -= Double.parseDouble(itemShopData.getHarga());
         } else {
             mItem += 1;
             mPv += Integer.parseInt(itemShopData.getPv());
-            mPrice += Double.parseDouble(itemShopData.getPrice().replace(".",""));
+            mBv += Integer.parseInt(itemShopData.getBv());
+            mPrice += Double.parseDouble(itemShopData.getHarga());
         }
 
         mTxtTotalItem.setText(String.valueOf(mItem));
@@ -178,41 +183,51 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-        PinDialog utils = new PinDialog();
-        Dialog dialog = utils.showDialog(this);
+        if (mItem != 0) {
+            PinDialog utils = new PinDialog();
+            Dialog dialog = utils.showDialog(this);
 
-        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
-        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
-        PinLockListener pinLockListener = new PinLockListener() {
-            @Override
-            public void onComplete(String pin) {
-                Logger.d("Pin complete: " + pin);
-                dialog.hide();
-                dialog.dismiss();
+            PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+            IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+            PinLockListener pinLockListener = new PinLockListener() {
+                @Override
+                public void onComplete(String pin) {
+                    Logger.d("Pin complete: " + pin);
+                    dialog.hide();
+                    dialog.dismiss();
 
-                Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
-                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
-                startActivity(intent);
-            }
+                    mUserActionListener.submitData(
+                            String.valueOf(mPrice),
+                            String.valueOf(mPv),
+                            String.valueOf(mBv),
+                            mRemark.getText().toString(),
+                            mResultData
+                    );
 
-            @Override
-            public void onEmpty() {
-                Logger.d("Pin empty");
-            }
+//                    Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
+//                    intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
+//                    startActivity(intent);
+                }
 
-            @Override
-            public void onPinChange(int pinLength, String intermediatePin) {
-                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
-            }
-        };
+                @Override
+                public void onEmpty() {
+                    Logger.d("Pin empty");
+                }
 
-        pinLockView.attachIndicatorDots(indicatorDots);
-        pinLockView.setPinLockListener(pinLockListener);
+                @Override
+                public void onPinChange(int pinLength, String intermediatePin) {
+                    Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+                }
+            };
 
-        pinLockView.setPinLength(6);
-        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            pinLockView.attachIndicatorDots(indicatorDots);
+            pinLockView.setPinLockListener(pinLockListener);
 
-        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
+            pinLockView.setPinLength(6);
+            pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+            indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
+        }
     }
 
     @OnClick(R.id.linear_submit)
@@ -221,8 +236,8 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
             mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
         } else {
             mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mUserActionListener.getData(mMemberId.getText().toString());
-            mMemberId.setInputType(0);
+            mUserActionListener.getMemberData(mMemberId.getText().toString());
+//            mMemberId.setInputType(0);
         }
     }
 
