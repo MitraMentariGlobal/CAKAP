@@ -40,11 +40,11 @@ public class CashbillSuccessData implements Parcelable {
     @Expose
     private String qty;
 
-    @SerializedName("sub_total")
+    @SerializedName("fsubtotals")
     @Expose
     private String sub_total;
 
-    @SerializedName("sub_total_pv")
+    @SerializedName("fsubtotalpv")
     @Expose
     private String sub_total_pv;
 
