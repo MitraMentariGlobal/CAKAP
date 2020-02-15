@@ -167,6 +167,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     public void openDetailTransaction(ActivityCashbillData activityCashbillData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.cashbill));
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_CASHBILL);
         intent.putExtra(Constant.ITEM_ID_DETAIL, activityCashbillData.getItem_id());
         intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityCashbillData.getTransaction_id());
         intent.putExtra(Constant.MEMBER_ID_DETAIL, activityCashbillData.getMember_id());

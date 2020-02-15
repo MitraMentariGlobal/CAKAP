@@ -5,14 +5,24 @@ import java.util.ArrayList;
 
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
+import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
+import co.id.cakap.network.ApiResponseItemInvoiceToMb;
+import co.id.cakap.network.ApiResponseSearchMbInvoice;
+import co.id.cakap.network.ApiResponseSearchMemberCashbill;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
+import io.reactivex.subscribers.ResourceSubscriber;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract.UserActionListener {
     private static WeakReference<InvoiceToMbActivityContract.View> mView;
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
+    private static ResultDataLogin mResultDataLogin;
 
     private OperationUserStatusData operationUserStatusData;
     private ArrayList<ItemShopData> arrayList;
@@ -55,5 +65,77 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
 //        arrayList.add(new ItemShopData("PC10", "V-Bless Day", "0", "9", "Wilayah I", "40.000", "20", "0", "0"));
 //        arrayList.add(new ItemShopData("PC11", "V-Bless Nite", "0", "7", "Wilayah I", "41.000", "20", "0", "0"));
         getView().setAdapter(arrayList, operationUserStatusData);
+    }
+
+    @Override
+    public void getMbData(String mbId) {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postSearchMbInvoice(mResultDataLogin.getMember_id(), mbId)
+                .subscribe(new ResourceSubscriber<ApiResponseSearchMbInvoice>() {
+                    @Override
+                    public void onNext(ApiResponseSearchMbInvoice apiResponseSearchMbInvoice) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseSearchMbInvoice.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        getItemInvoice(apiResponseSearchMbInvoice.getData());
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void getItemInvoice(OperationUserStatusData operationUserStatusData) {
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postItemInvoiceToMb(mResultDataLogin.getMember_id(), operationUserStatusData.getUser_code())
+                .subscribe(new ResourceSubscriber<ApiResponseItemInvoiceToMb>() {
+                    @Override
+                    public void onNext(ApiResponseItemInvoiceToMb apiResponseItemInvoiceToMb) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseItemInvoiceToMb.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        getView().setAdapter(apiResponseItemInvoiceToMb.getData(), operationUserStatusData);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
     }
 }

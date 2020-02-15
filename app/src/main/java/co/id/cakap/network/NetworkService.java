@@ -232,5 +232,35 @@ public interface NetworkService {
                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                            @Body Map<String, Object> param);
 
+    @FormUrlEncoded
+    @POST("search_mb_invoice")
+    Flowable<ApiResponseSearchMbInvoice> postSearchMbInvoice(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                             @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                             @Field(Constant.BODY_USER_ID) String userId,
+                                                             @Field(Constant.BODY_NO_STC) String noStc);
+
+    @FormUrlEncoded
+    @POST("item_stc_invoice")
+    Flowable<ApiResponseItemInvoiceToMb> postItemInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                             @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                             @Field(Constant.BODY_USER_ID) String userId,
+                                                             @Field(Constant.BODY_MEMBER_ID2) String memberId);
+
+    @FormUrlEncoded
+    @POST("rekap_bonus_bcmb")
+    Flowable<ApiResponseRekapBonusBcmb> postRekapBonusBcmb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                           @Field(Constant.BODY_USER_ID) String userId,
+                                                           @Field(Constant.BODY_TAHUN) String tahun,
+                                                           @Field(Constant.BODY_BULAN) String bulan);
+
+    @FormUrlEncoded
+    @POST("invoice_mb")
+    Flowable<ApiResponseInvoiceToMb> postRekapInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                             @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                             @Field(Constant.BODY_USER_ID) String userId,
+                                                           @Field(Constant.BODY_TAHUN) String tahun,
+                                                           @Field(Constant.BODY_BULAN) String bulan,
+                                                           @Field(Constant.GET_GROUP_ID) String groupId);
 
 }

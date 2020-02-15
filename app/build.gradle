@@ -67,6 +67,7 @@ android {
             buildConfigField 'String', 'CAKAP_KEY_TEXT', endpointProperties['cakap_key_text']
 
             buildConfigField 'String', 'END_URL_DETAIL_CASHBILL', endpointProperties['end_url_detail_cashbill']
+            buildConfigField 'String', 'END_URL_DETAIL_INVOICE_TO_MB', endpointProperties['end_url_detail_invoice_to_mb']
 
             buildConfigField 'String', 'GET_GROUP_ID', endpointProperties['get_group_id']
             buildConfigField 'String', 'GET_GROUP_ID_MEMBER', endpointProperties['get_group_id_member']
@@ -132,6 +133,8 @@ android {
             buildConfigField 'String', 'BODY_PV', endpointProperties['body_pv']
             buildConfigField 'String', 'BODY_BV', endpointProperties['body_bv']
             buildConfigField 'String', 'BODY_QTY', endpointProperties['body_qty']
+            buildConfigField 'String', 'BODY_NO_STC', endpointProperties['body_no_stc']
+            buildConfigField 'String', 'BODY_MEMBER_ID2', endpointProperties['body_member_id2']
         }
     }
 

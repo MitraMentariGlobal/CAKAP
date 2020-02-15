@@ -56,15 +56,13 @@ public class ActivityCashbillData implements Parcelable {
     @Expose
     private String remark;
 
-//    @Keep
-//    public ActivityCashbillData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date) {
-//        this.transaction_id = transaction_id;
-//        this.member_id = member_id;
-//        this.name = name;
-//        this.total_amount = total_amount;
-//        this.total_pv = total_pv;
-//        this.date = date;
-//    }
+    @SerializedName("note")
+    @Expose
+    private String note;
+
+    @SerializedName("kit")
+    @Expose
+    private String kit;
 
     protected ActivityCashbillData(Parcel in) {
         item_id = in.readString();
@@ -76,11 +74,14 @@ public class ActivityCashbillData implements Parcelable {
         date = in.readString();
         dates = in.readString();
         remark = in.readString();
+        note = in.readString();
+        kit = in.readString();
     }
 
-    @Generated(hash = 1227616761)
-    public ActivityCashbillData(String item_id, String transaction_id, String member_id, String name, String total_amount, String total_pv,
-            String date, String dates, String remark) {
+    @Generated(hash = 1909153190)
+    public ActivityCashbillData(String item_id, String transaction_id, String member_id, String name,
+            String total_amount, String total_pv, String date, String dates, String remark, String note,
+            String kit) {
         this.item_id = item_id;
         this.transaction_id = transaction_id;
         this.member_id = member_id;
@@ -90,6 +91,8 @@ public class ActivityCashbillData implements Parcelable {
         this.date = date;
         this.dates = dates;
         this.remark = remark;
+        this.note = note;
+        this.kit = kit;
     }
 
     @Generated(hash = 998928684)
@@ -107,6 +110,8 @@ public class ActivityCashbillData implements Parcelable {
         dest.writeString(date);
         dest.writeString(dates);
         dest.writeString(remark);
+        dest.writeString(note);
+        dest.writeString(kit);
     }
 
     @Override
@@ -184,6 +189,22 @@ public class ActivityCashbillData implements Parcelable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getNote() {
+        return this.note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getKit() {
+        return this.kit;
+    }
+
+    public void setKit(String kit) {
+        this.kit = kit;
     }
 
     public static final Creator<ActivityCashbillData> CREATOR = new Creator<ActivityCashbillData>() {

@@ -1,5 +1,7 @@
 package co.id.cakap.ui.dashboard.activity.activityInvToMb;
 
+import android.content.Context;
+
 import java.util.List;
 
 import co.id.cakap.adapter.ActivityInvToMbAdapter;
@@ -12,10 +14,10 @@ public class ActivityInvToMbContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void openDetailTransaction(String transactionId);
+        void openDetailTransaction(ActivityInvToMbData activityInvToMbData);
     }
 
     public interface UserActionListener {
-        void getData();
+        void getData(Context context, String tahun, String bulan);
     }
 }

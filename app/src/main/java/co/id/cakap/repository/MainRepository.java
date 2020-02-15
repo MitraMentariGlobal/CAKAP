@@ -14,7 +14,9 @@ import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
 import co.id.cakap.network.ApiResponseDownlineListing;
 import co.id.cakap.network.ApiResponseFeeBcmb;
+import co.id.cakap.network.ApiResponseInvoiceToMb;
 import co.id.cakap.network.ApiResponseItemCashbill;
+import co.id.cakap.network.ApiResponseItemInvoiceToMb;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseLevel;
 import co.id.cakap.network.ApiResponseLogin;
@@ -23,7 +25,9 @@ import co.id.cakap.network.ApiResponseMonthlyPointReport;
 import co.id.cakap.network.ApiResponseNetworkGeneology;
 import co.id.cakap.network.ApiResponseOmset;
 import co.id.cakap.network.ApiResponseProfileData;
+import co.id.cakap.network.ApiResponseRekapBonusBcmb;
 import co.id.cakap.network.ApiResponseReligion;
+import co.id.cakap.network.ApiResponseSearchMbInvoice;
 import co.id.cakap.network.ApiResponseSearchMember;
 import co.id.cakap.network.ApiResponseSearchMemberCashbill;
 import co.id.cakap.network.ApiResponseStockReportCard;
@@ -205,6 +209,30 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseSubmitCashbill> postSubmitCashbill(Map<String, Object> param) {
         return networkService.postSubmitCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, param)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseSearchMbInvoice> postSearchMbInvoice(String userId, String noStc) {
+        return networkService.postSearchMbInvoice(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, noStc)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseItemInvoiceToMb> postItemInvoiceToMb(String userId, String memberId) {
+        return networkService.postItemInvoiceToMb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, memberId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseRekapBonusBcmb> postRekapBonusBcmb(String userId, String tahun, String bulan) {
+        return networkService.postRekapBonusBcmb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseInvoiceToMb> postRekapInvoiceToMb(String userId, String tahun, String bulan, String groupId) {
+        return networkService.postRekapInvoiceToMb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan, groupId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

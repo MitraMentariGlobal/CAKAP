@@ -39,7 +39,6 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:text="Casbill / Request Inv MB / Invoice to MB"
                 android:layout_marginStart="@dimen/appbar_padding"
                 android:layout_marginTop="@dimen/appbar_padding"
                 style="@style/TexViewFont"/>
@@ -80,7 +79,6 @@
                                     android:textSize="@dimen/text_14"
                                     android:textStyle="bold"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:text="INV - 123123123123123"
                                     style="@style/TexViewFont" />
                             </LinearLayout>
 
@@ -96,7 +94,6 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="@dimen/text_13"
                                     android:textColor="@color/black"
-                                    android:text="BC123 - Nama Sub Stockist Nama Sub Stockist Nama Sub Stockist"
                                     style="@style/TexViewFont" />
 
                                 <TextView
@@ -134,7 +131,6 @@
                                 android:textAlignment="textEnd"
                                 android:textSize="@dimen/text_12"
                                 android:textColor="@color/black"
-                                android:text="28 Jan 2020"
                                 style="@style/TexViewFont" />
 
                             <LinearLayout
@@ -160,7 +156,6 @@
                                     android:textSize="@dimen/text_12"
                                     android:textStyle="bold"
                                     android:textColor="@color/dark_orange"
-                                    android:text="IDR 100.000.000"
                                     style="@style/TexViewFont" />
                             </LinearLayout>
                         </LinearLayout>
@@ -201,8 +196,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent"
-                                android:hint="@string/remark"
-                                android:text="@string/text_1"
+                                android:hint="-"
                                 android:maxLines="4"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/curated_light"

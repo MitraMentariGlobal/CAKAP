@@ -20,23 +20,27 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class ActivityInvToMbData implements Parcelable {
-    @SerializedName("transaction_id")
+    @SerializedName("id")
+    @Expose
+    private String item_id;
+
+    @SerializedName("inv")
     @Expose
     private String transaction_id;
 
-    @SerializedName("member_id")
+    @SerializedName("no_stc")
     @Expose
     private String member_id;
 
-    @SerializedName("name")
+    @SerializedName("namastc")
     @Expose
     private String name;
 
-    @SerializedName("total_amount")
+    @SerializedName("ftotalharga")
     @Expose
     private String total_amount;
 
-    @SerializedName("total_pv")
+    @SerializedName("ftotalpv")
     @Expose
     private String total_pv;
 
@@ -44,23 +48,45 @@ public class ActivityInvToMbData implements Parcelable {
     @Expose
     private String date;
 
-    @Keep
-    public ActivityInvToMbData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date) {
-        this.transaction_id = transaction_id;
-        this.member_id = member_id;
-        this.name = name;
-        this.total_amount = total_amount;
-        this.total_pv = total_pv;
-        this.date = date;
-    }
+    @SerializedName("remarkapp")
+    @Expose
+    private String remark;
+
+    @SerializedName("flag_acform")
+    @Expose
+    private String flag_acform;
+
+    @SerializedName("type_id")
+    @Expose
+    private String type_id;
 
     protected ActivityInvToMbData(Parcel in) {
+        item_id = in.readString();
         transaction_id = in.readString();
         member_id = in.readString();
         name = in.readString();
         total_amount = in.readString();
         total_pv = in.readString();
         date = in.readString();
+        remark = in.readString();
+        flag_acform = in.readString();
+        type_id = in.readString();
+    }
+
+    @Generated(hash = 223341624)
+    public ActivityInvToMbData(String item_id, String transaction_id, String member_id, String name,
+            String total_amount, String total_pv, String date, String remark, String flag_acform,
+            String type_id) {
+        this.item_id = item_id;
+        this.transaction_id = transaction_id;
+        this.member_id = member_id;
+        this.name = name;
+        this.total_amount = total_amount;
+        this.total_pv = total_pv;
+        this.date = date;
+        this.remark = remark;
+        this.flag_acform = flag_acform;
+        this.type_id = type_id;
     }
 
     @Generated(hash = 377002865)
@@ -69,17 +95,29 @@ public class ActivityInvToMbData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(item_id);
         dest.writeString(transaction_id);
         dest.writeString(member_id);
         dest.writeString(name);
         dest.writeString(total_amount);
         dest.writeString(total_pv);
         dest.writeString(date);
+        dest.writeString(remark);
+        dest.writeString(flag_acform);
+        dest.writeString(type_id);
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getItem_id() {
+        return this.item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 
     public String getTransaction_id() {
@@ -128,6 +166,30 @@ public class ActivityInvToMbData implements Parcelable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getRemark() {
+        return this.remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getFlag_acform() {
+        return this.flag_acform;
+    }
+
+    public void setFlag_acform(String flag_acform) {
+        this.flag_acform = flag_acform;
+    }
+
+    public String getType_id() {
+        return this.type_id;
+    }
+
+    public void setType_id(String type_id) {
+        this.type_id = type_id;
     }
 
     public static final Creator<ActivityInvToMbData> CREATOR = new Creator<ActivityInvToMbData>() {

@@ -93,8 +93,9 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     public void initializeData() {
         mUserActionListener = mActivityInvToMbPresenter;
         mActivityInvToMbPresenter.setView(this);
-        mUserActionListener.getData();
+
         initSpinner();
+        mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -139,10 +140,17 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     }
 
     @Override
-    public void openDetailTransaction(String transactionId) {
+    public void openDetailTransaction(ActivityInvToMbData activityInvToMbData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.invoice_to_mb));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_INVOICE_TO_MB);
+        intent.putExtra(Constant.ITEM_ID_DETAIL, activityInvToMbData.getItem_id());
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityInvToMbData.getTransaction_id());
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, activityInvToMbData.getMember_id());
+        intent.putExtra(Constant.NAME_DETAIL, activityInvToMbData.getName());
+        intent.putExtra(Constant.DATE_DETAIL, activityInvToMbData.getDate());
+        intent.putExtra(Constant.TOTAL_DETAIL, activityInvToMbData.getTotal_amount());
+        intent.putExtra(Constant.REMARK_DETAIL, activityInvToMbData.getRemark());
         startActivity(intent);
     }
 
@@ -205,7 +213,7 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

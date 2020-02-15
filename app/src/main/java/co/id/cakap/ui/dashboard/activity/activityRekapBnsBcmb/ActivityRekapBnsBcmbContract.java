@@ -1,5 +1,7 @@
 package co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb;
 
+import android.content.Context;
+
 import java.util.List;
 
 import co.id.cakap.adapter.ActivityRekapBnsBcmbAdapter;
@@ -16,6 +18,6 @@ public class ActivityRekapBnsBcmbContract {
     }
 
     public interface UserActionListener {
-        void getData();
+        void getData(String tahun, String bulan);
     }
 }

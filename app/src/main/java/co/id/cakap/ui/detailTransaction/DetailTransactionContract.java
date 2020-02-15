@@ -14,6 +14,6 @@ public class DetailTransactionContract {
     }
 
     public interface UserActionListener {
-        void getData(String itemId);
+        void getData(String endpoint, String itemId);
     }
 }

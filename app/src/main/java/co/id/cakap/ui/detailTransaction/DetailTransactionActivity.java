@@ -54,13 +54,11 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     TextView mTxtTotalAmount;
     @BindView(R.id.et_remark)
     EditText mEtRemark;
-
-
-
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
 
     private String mTitle = "";
+    private String mEndpoint = "";
     private String mItemId = "";
     private String mTransactionId = "";
     private String mMemberId = "";
@@ -98,6 +96,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
 
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
+        mEndpoint = intent.getStringExtra(Constant.URL_LINK_DETAIL);
         mItemId = intent.getStringExtra(Constant.ITEM_ID_DETAIL);
         mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
         mMemberId = intent.getStringExtra(Constant.MEMBER_ID_DETAIL);
@@ -115,7 +114,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mEtRemark.setText(mRemark);
         mTitleToolbar.setText(getString(R.string.detail_transaksi).toUpperCase());
 
-        mUserActionListener.getData(mItemId);
+        mUserActionListener.getData(mEndpoint, mItemId);
     }
 
     @Override

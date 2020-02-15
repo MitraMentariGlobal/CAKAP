@@ -50,12 +50,17 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         ActivityInvToMbData activityInvToMbData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.activityInvToMbData = activityInvToMbData;
         holder.mTotalPv.setText(activityInvToMbData.getTotal_pv());
         holder.mTransactionId.setText(activityInvToMbData.getTransaction_id());
         holder.mDate.setText(activityInvToMbData.getDate());
         holder.mMemberId.setText(activityInvToMbData.getMember_id());
         holder.mName.setText(activityInvToMbData.getName());
-        holder.mTotalAmount.setText(activityInvToMbData.getTotal_amount());
+        holder.mTotalAmount.setText("IDR " + activityInvToMbData.getTotal_amount());
+
+        if (!(activityInvToMbData.getFlag_acform().equals("0") && activityInvToMbData.getType_id().equals("1"))) {
+            holder.mItemCancel.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -85,6 +90,7 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         ImageView mItemVerified;
 
         Context context;
+        ActivityInvToMbData activityInvToMbData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -95,7 +101,7 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityInvToMbPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+            new ActivityInvToMbPresenter().getView().openDetailTransaction(activityInvToMbData);
         }
 
         @OnClick(R.id.item_cancel)

@@ -18,5 +18,7 @@ public class InvoiceToMbActivityContract {
     public interface UserActionListener{
         void setView(InvoiceToMbActivityContract.View view);
         void getData(String memberId);
+        void getMbData(String mbId);
+        void getItemInvoice(OperationUserStatusData operationUserStatusData);
     }
 }

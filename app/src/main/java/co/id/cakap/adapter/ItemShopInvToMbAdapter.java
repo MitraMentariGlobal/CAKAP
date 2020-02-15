@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ItemShopData;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivityPresenter;
 
 /**
@@ -60,6 +63,14 @@ public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMb
         holder.mItemName.setText(itemShopData.getItem_name());
         holder.mPrice.setText(itemShopData.getFharga());
         holder.mPv.setText(itemShopData.getPv());
+
+        if (!(itemShopData.getImage().equals("0"))) {
+            Picasso.with(mContext)
+                    .load(Constant.URL_IMAGE_PRODUCT + itemShopData.getImage())
+                    .into(holder.mImage);
+        } else {
+            holder.mImage.setBackground(mContext.getResources().getDrawable(R.drawable.img_item_placeholder));
+        }
     }
 
     @Override
@@ -155,12 +166,14 @@ public class ItemShopInvToMbAdapter extends RecyclerView.Adapter<ItemShopInvToMb
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
-            setZeroQty();
-            qty += 1;
-            mQty.setText(String.valueOf(qty));
-            itemShopData.setCart(String.valueOf(qty));
-            mResultData.set(position, itemShopData);
-            new InvoiceToMbActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
+            if (qty < Integer.parseInt(itemShopData.getQty())) {
+                setZeroQty();
+                qty += 1;
+                mQty.setText(String.valueOf(qty));
+                itemShopData.setCart(String.valueOf(qty));
+                mResultData.set(position, itemShopData);
+                new InvoiceToMbActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
+            }
         }
     }
 }

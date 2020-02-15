@@ -85,8 +85,8 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
     public void initializeData() {
         mUserActionListener = mActivityRekapBnsBcmbPresenter;
         mActivityRekapBnsBcmbPresenter.setView(this);
-        mUserActionListener.getData();
         initSpinner();
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -96,6 +96,7 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
         mListAdapter = new ActivityRekapBnsBcmbAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
         hideProgressBar();
     }
 
@@ -161,7 +162,7 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

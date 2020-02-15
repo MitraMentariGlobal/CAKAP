@@ -52,6 +52,21 @@ public class SubmitCashbillData extends SubmitCashbillParentData implements Parc
         totalharga = in.readString();
     }
 
+    @Generated(hash = 1329395013)
+    public SubmitCashbillData(String inv, String tgl, String member_id, String no_stc, String remark,
+            String totalharga) {
+        this.inv = inv;
+        this.tgl = tgl;
+        this.member_id = member_id;
+        this.no_stc = no_stc;
+        this.remark = remark;
+        this.totalharga = totalharga;
+    }
+
+    @Generated(hash = 798252181)
+    public SubmitCashbillData() {
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(inv);
@@ -65,6 +80,54 @@ public class SubmitCashbillData extends SubmitCashbillParentData implements Parc
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getInv() {
+        return this.inv;
+    }
+
+    public void setInv(String inv) {
+        this.inv = inv;
+    }
+
+    public String getTgl() {
+        return this.tgl;
+    }
+
+    public void setTgl(String tgl) {
+        this.tgl = tgl;
+    }
+
+    public String getMember_id() {
+        return this.member_id;
+    }
+
+    public void setMember_id(String member_id) {
+        this.member_id = member_id;
+    }
+
+    public String getNo_stc() {
+        return this.no_stc;
+    }
+
+    public void setNo_stc(String no_stc) {
+        this.no_stc = no_stc;
+    }
+
+    public String getRemark() {
+        return this.remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getTotalharga() {
+        return this.totalharga;
+    }
+
+    public void setTotalharga(String totalharga) {
+        this.totalharga = totalharga;
     }
 
     public static final Creator<SubmitCashbillData> CREATOR = new Creator<SubmitCashbillData>() {

@@ -20,23 +20,23 @@ import lombok.Data;
 @Data
 @Entity
 public class CashbillSuccessData implements Parcelable {
-    @SerializedName("item_code")
+    @SerializedName("item_id")
     @Expose
     private String item_code;
 
-    @SerializedName("item_name")
+    @SerializedName("name")
     @Expose
     private String item_name;
 
-    @SerializedName("price")
+    @SerializedName("fharga")
     @Expose
     private String price;
 
-    @SerializedName("pv")
+    @SerializedName("fpv")
     @Expose
     private String pv;
 
-    @SerializedName("qty")
+    @SerializedName("fqty")
     @Expose
     private String qty;
 

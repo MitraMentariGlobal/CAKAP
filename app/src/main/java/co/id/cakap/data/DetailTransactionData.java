@@ -52,17 +52,6 @@ public class DetailTransactionData implements Parcelable {
     @Expose
     private String sub_total_pv;
 
-//    @Keep
-//    public DetailTransactionData(String item_code, String item_name, String price, String pv, String qty, String sub_total, String sub_total_pv) {
-//        this.item_code = item_code;
-//        this.item_name = item_name;
-//        this.price = price;
-//        this.pv = pv;
-//        this.qty = qty;
-//        this.sub_total = sub_total;
-//        this.sub_total_pv = sub_total_pv;
-//    }
-
     protected DetailTransactionData(Parcel in) {
         item_code = in.readString();
         item_name = in.readString();

@@ -18,7 +18,6 @@ import lombok.Data;
  */
 
 @Data
-@Entity
 public class SubmitCashbillParentData {
     @SerializedName("detail")
     @Expose

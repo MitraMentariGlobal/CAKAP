@@ -20,15 +20,15 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class ActivityRekapBnsBcmbData implements Parcelable {
-    @SerializedName("member_id")
+    @SerializedName("_member_id")
     @Expose
     private String member_id;
 
-    @SerializedName("name")
+    @SerializedName("nama")
     @Expose
     private String name;
 
-    @SerializedName("mobile_phone")
+    @SerializedName("_hp")
     @Expose
     private String mobile_phone;
 
@@ -36,19 +36,26 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
     @Expose
     private String amount;
 
-    @Keep
-    public ActivityRekapBnsBcmbData(String member_id, String name, String mobile_phone, String amount) {
-        this.member_id = member_id;
-        this.name = name;
-        this.mobile_phone = mobile_phone;
-        this.amount = amount;
-    }
+    @SerializedName("flag")
+    @Expose
+    private String flag;
 
     protected ActivityRekapBnsBcmbData(Parcel in) {
         member_id = in.readString();
         name = in.readString();
         mobile_phone = in.readString();
         amount = in.readString();
+        flag = in.readString();
+    }
+
+    @Generated(hash = 336871135)
+    public ActivityRekapBnsBcmbData(String member_id, String name, String mobile_phone, String amount,
+            String flag) {
+        this.member_id = member_id;
+        this.name = name;
+        this.mobile_phone = mobile_phone;
+        this.amount = amount;
+        this.flag = flag;
     }
 
     @Generated(hash = 1219341017)
@@ -61,6 +68,7 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
         dest.writeString(name);
         dest.writeString(mobile_phone);
         dest.writeString(amount);
+        dest.writeString(flag);
     }
 
     @Override
@@ -98,6 +106,14 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getFlag() {
+        return this.flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 
     public static final Creator<ActivityRekapBnsBcmbData> CREATOR = new Creator<ActivityRekapBnsBcmbData>() {

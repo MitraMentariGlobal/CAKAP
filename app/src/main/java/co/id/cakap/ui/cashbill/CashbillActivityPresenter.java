@@ -113,7 +113,6 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
 
     @Override
     public void getItemCashbill(OperationUserStatusData operationUserStatusData) {
-
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
         mMainRepository.postItemCashbill(mResultDataLogin.getMember_id())
                 .subscribe(new ResourceSubscriber<ApiResponseItemCashbill>() {

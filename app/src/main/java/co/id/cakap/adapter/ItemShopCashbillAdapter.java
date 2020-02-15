@@ -167,9 +167,6 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
-            Logger.d("qty : " + qty);
-            Logger.d("itemShopData.getQty() : " + itemShopData.getQty());
-
             if (qty < Integer.parseInt(itemShopData.getQty())) {
                 setZeroQty();
                 qty += 1;

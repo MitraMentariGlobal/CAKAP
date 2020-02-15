@@ -54,6 +54,10 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
         holder.mName.setText(activityRekapBnsBcmbData.getName());
         holder.mPhoneNumber.setText(activityRekapBnsBcmbData.getMobile_phone());
         holder.mAmount.setText(activityRekapBnsBcmbData.getAmount());
+
+        if (!(activityRekapBnsBcmbData.getFlag().equals("0"))) {
+            holder.mItemVerified.setVisibility(View.GONE);
+        }
     }
 
     @Override
