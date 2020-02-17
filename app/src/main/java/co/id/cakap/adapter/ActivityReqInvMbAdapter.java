@@ -49,12 +49,14 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
         ActivityReqInvMbData activityReqInvMbData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.activityReqInvMbData = activityReqInvMbData;
         holder.mTotalPv.setText(activityReqInvMbData.getTotal_pv());
-        holder.mTransactionId.setText(activityReqInvMbData.getTransaction_id());
+        holder.mTransactionId.setText(activityReqInvMbData.getItem_id());
+        holder.mTransactionId.setVisibility(View.GONE);
         holder.mDate.setText(activityReqInvMbData.getDate());
-        holder.mMemberId.setText(activityReqInvMbData.getMember_id());
+        holder.mMemberId.setText(activityReqInvMbData.getMember_id() + " - " + activityReqInvMbData.getName());
         holder.mName.setText(activityReqInvMbData.getName());
-        holder.mTotalAmount.setText(activityReqInvMbData.getTotal_amount());
+        holder.mTotalAmount.setText("IDR " + activityReqInvMbData.getTotal_amount());
     }
 
     @Override
@@ -82,6 +84,7 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
         ImageView mItemVerified;
 
         Context context;
+        ActivityReqInvMbData activityReqInvMbData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -90,7 +93,7 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityReqInvMbPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+            new ActivityReqInvMbPresenter().getView().openDetailTransaction(activityReqInvMbData);
         }
 
         @OnClick(R.id.item_cancel)
@@ -104,7 +107,6 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -112,7 +114,7 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new ActivityReqInvMbPresenter().getView().openPinDialog(activityReqInvMbData, "reject");
                 }
             });
         }
@@ -128,7 +130,6 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -136,7 +137,7 @@ public class ActivityReqInvMbAdapter extends RecyclerView.Adapter<ActivityReqInv
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new ActivityReqInvMbPresenter().getView().openPinDialog(activityReqInvMbData, "approve");
                 }
             });
         }

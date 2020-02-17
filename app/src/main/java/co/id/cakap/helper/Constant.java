@@ -22,6 +22,7 @@ public class Constant {
 
     public static final String END_URL_DETAIL_CASHBILL = BuildConfig.END_URL_DETAIL_CASHBILL;
     public static final String END_URL_DETAIL_INVOICE_TO_MB = BuildConfig.END_URL_DETAIL_INVOICE_TO_MB;
+    public static final String END_URL_DETAIL_REQ_INVOICE_MB = BuildConfig.END_URL_DETAIL_REQ_INVOICE_MB;
 
     public static final String GET_GROUP_ID = BuildConfig.GET_GROUP_ID;
     public static final String GET_GROUP_ID_MEMBER = BuildConfig.GET_GROUP_ID_MEMBER;
@@ -89,6 +90,7 @@ public class Constant {
     public static final String BODY_QTY = BuildConfig.BODY_QTY;
     public static final String BODY_NO_STC = BuildConfig.BODY_NO_STC;
     public static final String BODY_MEMBER_ID2 = BuildConfig.BODY_MEMBER_ID2;
+    public static final String BODY_SO_ID = BuildConfig.BODY_SO_ID;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;
@@ -97,6 +99,7 @@ public class Constant {
 
     public static final String URL_LINK = "url_link";
     public static final String URL_LINK_DETAIL = "url_link_detail";
+    public static final String SUCCESS_DATA_OBJECT = "success_data_object";
     public static final String TITLE_DETAIL = "title_detail";
     public static final String ITEM_ID_DETAIL = "item_id_detail";
     public static final String TRANSACTION_ID_DETAIL = "transaction_id_detail";

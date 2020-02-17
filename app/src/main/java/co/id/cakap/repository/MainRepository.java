@@ -6,9 +6,13 @@ import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.NetworkGenealogyData;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.network.ApiResponseActionRekapBnsBcmb;
+import co.id.cakap.network.ApiResponseActionReqInvMb;
 import co.id.cakap.network.ApiResponseActivityCashbill;
+import co.id.cakap.network.ApiResponseActivityReqInvoiceMb;
 import co.id.cakap.network.ApiResponseBank;
 import co.id.cakap.network.ApiResponseBonusStatementData;
+import co.id.cakap.network.ApiResponseCancelItemCashbill;
 import co.id.cakap.network.ApiResponseChangePassword;
 import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
@@ -233,6 +237,30 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseInvoiceToMb> postRekapInvoiceToMb(String userId, String tahun, String bulan, String groupId) {
         return networkService.postRekapInvoiceToMb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan, groupId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseCancelItemCashbill> postCancelItemCashbill(String userId, String username, String pin, String soId) {
+        return networkService.postCancelItemCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, username, pin, soId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseActivityReqInvoiceMb> postListReqInvMb(String userId, String groupId) {
+        return networkService.postListReqInvMb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, groupId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseActionReqInvMb> postActionReqInvMb(String userId, String username, String pin, String id, String tipe) {
+        return networkService.postActionReqInvMb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, username, pin, id, tipe)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseActionRekapBnsBcmb> postActionRekapBnsBcmb(String username, String pin, String id) {
+        return networkService.postActionRekapBnsBcmb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, username, pin, id)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

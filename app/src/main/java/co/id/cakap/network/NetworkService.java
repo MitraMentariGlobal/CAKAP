@@ -226,7 +226,7 @@ public interface NetworkService {
                                                        @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                        @Field(Constant.BODY_USER_ID) String memberId);
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
     @POST("submit_cashbill_stc")
     Flowable<ApiResponseSubmitCashbill> postSubmitCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
@@ -257,10 +257,44 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("invoice_mb")
     Flowable<ApiResponseInvoiceToMb> postRekapInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
-                                                             @Header(Constant.CAKAP_KEY_TEXT) String authorization,
-                                                             @Field(Constant.BODY_USER_ID) String userId,
-                                                           @Field(Constant.BODY_TAHUN) String tahun,
-                                                           @Field(Constant.BODY_BULAN) String bulan,
-                                                           @Field(Constant.GET_GROUP_ID) String groupId);
+                                                          @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                          @Field(Constant.BODY_USER_ID) String userId,
+                                                          @Field(Constant.BODY_TAHUN) String tahun,
+                                                          @Field(Constant.BODY_BULAN) String bulan,
+                                                          @Field(Constant.GET_GROUP_ID) String groupId);
+
+    @FormUrlEncoded
+    @POST("submit_cancel_cashbill")
+    Flowable<ApiResponseCancelItemCashbill> postCancelItemCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                   @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_USER_ID) String userId,
+                                                                   @Field(Constant.BODY_USER_NAME) String username,
+                                                                   @Field(Constant.BODY_PIN) String pin,
+                                                                   @Field(Constant.BODY_SO_ID) String soId);
+
+    @FormUrlEncoded
+    @POST("req_invoice_mb")
+    Flowable<ApiResponseActivityReqInvoiceMb> postListReqInvMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                               @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                               @Field(Constant.BODY_USER_ID) String userId,
+                                                               @Field(Constant.GET_GROUP_ID) String groupId);
+
+    @FormUrlEncoded
+    @POST("submit_req_invoice_mb")
+    Flowable<ApiResponseActionReqInvMb> postActionReqInvMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                           @Field(Constant.BODY_USER_ID) String userId,
+                                                           @Field(Constant.BODY_USER_NAME) String username,
+                                                           @Field(Constant.BODY_PIN) String pin,
+                                                           @Field(Constant.BODY_ID) String id,
+                                                           @Field(Constant.BODY_TIPE) String tipe);
+
+    @FormUrlEncoded
+    @POST("submit_rekap_bonus_bcmb_account_valid")
+    Flowable<ApiResponseActionRekapBnsBcmb> postActionRekapBnsBcmb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                   @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_USER_NAME) String username,
+                                                                   @Field(Constant.BODY_PIN) String pin,
+                                                                   @Field(Constant.BODY_ID) String id);
 
 }

@@ -35,8 +35,10 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.ItemShopCashbillAdapter;
+import co.id.cakap.data.CashbillSuccessData;
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
+import co.id.cakap.data.SubmitCashbillData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
@@ -176,6 +178,14 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
         mTxtTotalPrice.setText(Utils.priceWithoutDecimal(mPrice));
     }
 
+    @Override
+    public void successSubmitData(SubmitCashbillData submitCashbillData) {
+        Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
+        intent.putExtra(Constant.SUCCESS_DATA_OBJECT, submitCashbillData);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.arrow_back)
     public void arrowBack(View view) {
         super.onBackPressed();
@@ -204,10 +214,6 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
                             mRemark.getText().toString(),
                             mResultData
                     );
-
-//                    Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
-//                    intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
-//                    startActivity(intent);
                 }
 
                 @Override

@@ -159,7 +159,6 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -167,7 +166,7 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new ActivityCashbillPresenter().getView().openPinDialog(activityCashbillData);
                 }
             });
         }

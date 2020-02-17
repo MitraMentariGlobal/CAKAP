@@ -159,7 +159,7 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
                         Logger.d("message : " + apiResponseSubmitCashbill.getMessages());
                         Logger.d("<<<<<=====");
 
-
+                        getView().successSubmitData(apiResponseSubmitCashbill.getData());
                     }
 
                     @Override
@@ -211,7 +211,7 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
         param.put(Constant.BODY_USER_ID, mResultDataLogin.getMember_id());
         param.put(Constant.BODY_WILAYAH, mResultDataLogin.getWilayah());
         param.put(Constant.BODY_USER_NAME, mResultDataLogin.getUsername());
-        param.put(Constant.BODY_MEMBER_ID, mMemberId);
+        param.put(Constant.BODY_MEMBER_ID2, mMemberId);
         param.put(Constant.BODY_TGL, DateHelper.getTimeNowBackEnd());
         param.put(Constant.BODY_TOTAL_HARGA, totalHarga);
         param.put(Constant.BODY_TOTAL_PV, totalPv);

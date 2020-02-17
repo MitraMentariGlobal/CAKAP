@@ -20,6 +20,10 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class ActivityRekapBnsBcmbData implements Parcelable {
+    @SerializedName("id")
+    @Expose
+    private String item_id;
+
     @SerializedName("_member_id")
     @Expose
     private String member_id;
@@ -41,6 +45,7 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
     private String flag;
 
     protected ActivityRekapBnsBcmbData(Parcel in) {
+        item_id = in.readString();
         member_id = in.readString();
         name = in.readString();
         mobile_phone = in.readString();
@@ -48,9 +53,10 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
         flag = in.readString();
     }
 
-    @Generated(hash = 336871135)
-    public ActivityRekapBnsBcmbData(String member_id, String name, String mobile_phone, String amount,
-            String flag) {
+    @Generated(hash = 300058419)
+    public ActivityRekapBnsBcmbData(String item_id, String member_id, String name, String mobile_phone,
+            String amount, String flag) {
+        this.item_id = item_id;
         this.member_id = member_id;
         this.name = name;
         this.mobile_phone = mobile_phone;
@@ -64,6 +70,7 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(item_id);
         dest.writeString(member_id);
         dest.writeString(name);
         dest.writeString(mobile_phone);
@@ -74,6 +81,14 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getItem_id() {
+        return this.item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 
     public String getMember_id() {

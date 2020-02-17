@@ -15,9 +15,11 @@ public class ActivityRekapBnsBcmbContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void openDetailTransaction(String transactionId);
+        void openPinDialog(ActivityRekapBnsBcmbData activityRekapBnsBcmbData);
     }
 
     public interface UserActionListener {
         void getData(String tahun, String bulan);
+        void actionTransaction(ActivityRekapBnsBcmbData activityRekapBnsBcmbData, String pin, String tahun, String bulan);
     }
 }

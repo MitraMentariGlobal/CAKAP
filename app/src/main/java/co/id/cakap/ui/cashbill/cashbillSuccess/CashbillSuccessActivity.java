@@ -26,6 +26,7 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.CashbillSuccessAdapter;
 import co.id.cakap.data.CashbillSuccessData;
+import co.id.cakap.data.SubmitCashbillData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.DashboardActivity;
@@ -47,6 +48,16 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     TextView mTitleToolbar;
     @BindView(R.id.txt_transaction_id)
     TextView mTransactionIdText;
+    @BindView(R.id.txt_member_id)
+    TextView mTxtMemberId;
+    @BindView(R.id.txt_name)
+    TextView mTxtName;
+    @BindView(R.id.txt_date)
+    TextView mTxtDate;
+    @BindView(R.id.txt_total_amount)
+    TextView mTxtTotalAmount;
+
+
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
     @BindView(R.id.et_member_id)
@@ -72,6 +83,7 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
 
     private String mTitle = "";
     private String mTransactionId = "INV - 123123123123123";
+    private SubmitCashbillData mSubmitCashbillData;
     private CashbillSuccessAdapter mListAdapter;
     private CashbillSuccessContract.UserActionListener mUserActionListener;
 
@@ -98,13 +110,21 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     public void initializeData() {
         mUserActionListener = mCashbillSuccessPresenter;
         mCashbillSuccessPresenter.setView(this);
-        mUserActionListener.getData();
+//        mUserActionListener.getData();
 
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
+        mSubmitCashbillData = (SubmitCashbillData) intent.getParcelableExtra(Constant.SUCCESS_DATA_OBJECT);
 //        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
-        mTransactionIdText.setText(mTransactionId);
         mTitleToolbar.setText(mTitle);
+        mTransactionIdText.setText(mSubmitCashbillData.getInv());
+        mTxtMemberId.setText(mSubmitCashbillData.getMember_id());
+        mTxtName.setText(mSubmitCashbillData.getMember_id());
+        mTxtDate.setText(mSubmitCashbillData.getTgl());
+        mTxtTotalAmount.setText(mSubmitCashbillData.getTotalharga());
+        mRemark.setText(mSubmitCashbillData.getRemark());
+
+//        setAdapter(mSubmitCashbillData.getDetail());
     }
 
     @Override

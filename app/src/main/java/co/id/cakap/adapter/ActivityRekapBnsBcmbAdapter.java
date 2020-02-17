@@ -50,10 +50,11 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
         ActivityRekapBnsBcmbData activityRekapBnsBcmbData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.activityRekapBnsBcmbData = activityRekapBnsBcmbData;
         holder.mMemberId.setText(activityRekapBnsBcmbData.getMember_id());
         holder.mName.setText(activityRekapBnsBcmbData.getName());
         holder.mPhoneNumber.setText(activityRekapBnsBcmbData.getMobile_phone());
-        holder.mAmount.setText(activityRekapBnsBcmbData.getAmount());
+        holder.mAmount.setText("IDR " + activityRekapBnsBcmbData.getAmount());
 
         if (!(activityRekapBnsBcmbData.getFlag().equals("0"))) {
             holder.mItemVerified.setVisibility(View.GONE);
@@ -83,6 +84,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
         ImageView mItemVerified;
 
         Context context;
+        ActivityRekapBnsBcmbData activityRekapBnsBcmbData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -94,7 +96,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityRekapBnsBcmbPresenter().getView().openDetailTransaction(mMemberId.getText().toString());
+//            new ActivityRekapBnsBcmbPresenter().getView().openDetailTransaction(mMemberId.getText().toString());
         }
 
         @OnClick(R.id.item_verified)
@@ -108,7 +110,6 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -116,7 +117,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new ActivityRekapBnsBcmbPresenter().getView().openPinDialog(activityRekapBnsBcmbData);
                 }
             });
         }

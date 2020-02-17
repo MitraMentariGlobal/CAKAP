@@ -68,6 +68,7 @@ android {
 
             buildConfigField 'String', 'END_URL_DETAIL_CASHBILL', endpointProperties['end_url_detail_cashbill']
             buildConfigField 'String', 'END_URL_DETAIL_INVOICE_TO_MB', endpointProperties['end_url_detail_invoice_to_mb']
+            buildConfigField 'String', 'END_URL_DETAIL_REQ_INVOICE_MB', endpointProperties['end_url_detail_req_invoice_mb']
 
             buildConfigField 'String', 'GET_GROUP_ID', endpointProperties['get_group_id']
             buildConfigField 'String', 'GET_GROUP_ID_MEMBER', endpointProperties['get_group_id_member']
@@ -135,6 +136,7 @@ android {
             buildConfigField 'String', 'BODY_QTY', endpointProperties['body_qty']
             buildConfigField 'String', 'BODY_NO_STC', endpointProperties['body_no_stc']
             buildConfigField 'String', 'BODY_MEMBER_ID2', endpointProperties['body_member_id2']
+            buildConfigField 'String', 'BODY_SO_ID', endpointProperties['body_so_id']
         }
     }
 

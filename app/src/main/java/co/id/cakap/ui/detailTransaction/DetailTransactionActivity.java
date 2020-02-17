@@ -106,7 +106,11 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mRemark = intent.getStringExtra(Constant.REMARK_DETAIL);
 
         mTitleText.setText(mTitle);
-        mTxtTransactionId.setText(mTransactionId);
+        if (mTransactionId.length() == 0) {
+            mTxtTransactionId.setVisibility(View.GONE);
+        } else {
+            mTxtTransactionId.setText(mTransactionId);
+        }
         mTxtMemberId.setText(mMemberId + " - " + mName);
         mTxtName.setText(mName);
         mTxtDate.setText(mDate);

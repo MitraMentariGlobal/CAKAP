@@ -2,8 +2,10 @@ package co.id.cakap.ui.cashbill;
 
 import java.util.List;
 
+import co.id.cakap.data.CashbillSuccessData;
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
+import co.id.cakap.data.SubmitCashbillData;
 
 public class CashbillActivityContract {
     public interface View{
@@ -13,6 +15,7 @@ public class CashbillActivityContract {
         void setErrorResponse(String message);
         void setAdapter(List<ItemShopData> resultData, OperationUserStatusData operationUserStatusData);
         void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action);
+        void successSubmitData(SubmitCashbillData submitCashbillData);
     }
 
     public interface UserActionListener{

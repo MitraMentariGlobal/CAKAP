@@ -19,6 +19,7 @@ import lombok.Data;
 @Data
 @Entity
 public class SubmitCashbillData extends SubmitCashbillParentData implements Parcelable {
+//public class SubmitCashbillData implements Parcelable {
     @SerializedName("inv")
     @Expose
     private String inv;

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import co.id.cakap.data.ActivityRekapBnsBcmbData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
+import co.id.cakap.network.ApiResponseActionRekapBnsBcmb;
+import co.id.cakap.network.ApiResponseActionReqInvMb;
 import co.id.cakap.network.ApiResponseActivityCashbill;
 import co.id.cakap.network.ApiResponseRekapBonusBcmb;
 import co.id.cakap.repository.MainRepository;
@@ -24,8 +26,6 @@ public class ActivityRekapBnsBcmbPresenter implements ActivityRekapBnsBcmbContra
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
     private static ResultDataLogin mResultDataLogin;
-
-    private ArrayList<ActivityRekapBnsBcmbData> arrayList;
 
     public ActivityRekapBnsBcmbPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -50,19 +50,6 @@ public class ActivityRekapBnsBcmbPresenter implements ActivityRekapBnsBcmbContra
 
     @Override
     public void getData(String tahun, String bulan) {
-//        arrayList = new ArrayList<>();
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        arrayList.add(new ActivityRekapBnsBcmbData("0000012", "Nama Member", "081912345678", "IDR 100.000.000"));
-//        getView().setAdapter(arrayList);
-
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
@@ -80,6 +67,43 @@ public class ActivityRekapBnsBcmbPresenter implements ActivityRekapBnsBcmbContra
                         } else {
                             getView().setAdapter(apiResponseRekapBonusBcmb.getData());
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void actionTransaction(ActivityRekapBnsBcmbData activityRekapBnsBcmbData, String pin, String tahun, String bulan) {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postActionRekapBnsBcmb(mResultDataLogin.getUsername(), pin, activityRekapBnsBcmbData.getItem_id())
+                .subscribe(new ResourceSubscriber<ApiResponseActionRekapBnsBcmb>() {
+                    @Override
+                    public void onNext(ApiResponseActionRekapBnsBcmb apiResponseActionRekapBnsBcmb) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseActionRekapBnsBcmb.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        getData(tahun, bulan);
                     }
 
                     @Override
