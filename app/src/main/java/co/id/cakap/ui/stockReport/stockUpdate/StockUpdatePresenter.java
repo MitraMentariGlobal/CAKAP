@@ -58,7 +58,11 @@ public class StockUpdatePresenter implements StockUpdateContract.UserActionListe
                         Logger.d("message : " + apiResponseStockReportUpdate.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().setAdapter(apiResponseStockReportUpdate.getData());
+                        try {
+                            getView().setAdapter(apiResponseStockReportUpdate.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

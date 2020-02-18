@@ -11,7 +11,7 @@ public class RestockReqInvoiceContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void openDetailTransaction(String transactionId);
+        void openDetailTransaction(RestockReqInvoiceData restockReqInvoiceData);
     }
 
     public interface UserActionListener {

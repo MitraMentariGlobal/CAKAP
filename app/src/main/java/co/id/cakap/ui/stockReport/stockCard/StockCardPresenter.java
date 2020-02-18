@@ -25,8 +25,6 @@ public class StockCardPresenter implements StockCardContract.UserActionListener 
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
     private static ResultDataLogin mResultDataLogin;
-    private ArrayList<StockCardData> arrayList;
-    private ArrayList<ItemStockCard> itemArrayList;
 
     public StockCardPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -51,19 +49,6 @@ public class StockCardPresenter implements StockCardContract.UserActionListener 
 
     @Override
     public void getData(String tahun, String bulan, String itemId, String price) {
-//        arrayList = new ArrayList<>();
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        arrayList.add(new StockCardData("2019-11-14", "Blesstea Botol", "1 - Adjust Stock BC-MB", "1", "0", "80", "COMP911"));
-//        getView().setAdapter(arrayList);
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
@@ -75,7 +60,11 @@ public class StockCardPresenter implements StockCardContract.UserActionListener 
                         Logger.d("message : " + apiResponseStockReportCard.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().setAdapter(apiResponseStockReportCard.getData());
+                        try {
+                            getView().setAdapter(apiResponseStockReportCard.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -112,7 +101,11 @@ public class StockCardPresenter implements StockCardContract.UserActionListener 
                         Logger.d("message : " + apiResponseStockReportCardItem.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().openDialogSearchData(apiResponseStockReportCardItem.getData());
+                        try {
+                            getView().openDialogSearchData(apiResponseStockReportCardItem.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

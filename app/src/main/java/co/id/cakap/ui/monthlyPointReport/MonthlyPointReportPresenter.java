@@ -45,7 +45,11 @@ public class MonthlyPointReportPresenter implements MonthlyPointReportContract.U
                         Logger.d("message : " + apiResponseMonthlyPointReport.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.setAdapter(apiResponseMonthlyPointReport.getData());
+                        try {
+                            mView.setAdapter(apiResponseMonthlyPointReport.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

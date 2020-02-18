@@ -11,10 +11,10 @@ public class RestockInvoiceContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void openDetailTransaction(String transactionId);
+        void openDetailTransaction(RestockInvoiceData restockInvoiceData);
     }
 
     public interface UserActionListener {
-        void getData();
+        void getData(String tahun, String bulan);
     }
 }

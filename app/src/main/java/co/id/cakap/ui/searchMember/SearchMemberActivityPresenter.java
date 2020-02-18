@@ -58,7 +58,11 @@ public class SearchMemberActivityPresenter implements SearchMemberActivityContra
                         Logger.d("message : " + apiResponseSearchMember.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().setAdapter(apiResponseSearchMember.getData());
+                        try {
+                            getView().setAdapter(apiResponseSearchMember.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

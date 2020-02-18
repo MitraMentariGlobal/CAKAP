@@ -64,11 +64,15 @@ public class ActivityReqInvMbPresenter implements ActivityReqInvMbContract.UserA
                         Logger.d("message : " + apiResponseActivityReqInvoiceMb.getMessages());
                         Logger.d("<<<<<=====");
 
-                        if (apiResponseActivityReqInvoiceMb.getData().isEmpty()) {
-                            getView().hideProgressBar();
-                            getView().setErrorResponse(apiResponseActivityReqInvoiceMb.getMessages());
-                        } else {
-                            getView().setAdapter(apiResponseActivityReqInvoiceMb.getData());
+                        try {
+                            if (apiResponseActivityReqInvoiceMb.getData().isEmpty()) {
+                                getView().hideProgressBar();
+                                getView().setErrorResponse(apiResponseActivityReqInvoiceMb.getMessages());
+                            } else {
+                                getView().setAdapter(apiResponseActivityReqInvoiceMb.getData());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 
@@ -107,7 +111,11 @@ public class ActivityReqInvMbPresenter implements ActivityReqInvMbContract.UserA
                         Logger.d("message : " + apiResponseActionReqInvMb.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getData(context);
+                        try {
+                            getData(context);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

@@ -23,6 +23,9 @@ public class Constant {
     public static final String END_URL_DETAIL_CASHBILL = BuildConfig.END_URL_DETAIL_CASHBILL;
     public static final String END_URL_DETAIL_INVOICE_TO_MB = BuildConfig.END_URL_DETAIL_INVOICE_TO_MB;
     public static final String END_URL_DETAIL_REQ_INVOICE_MB = BuildConfig.END_URL_DETAIL_REQ_INVOICE_MB;
+    public static final String END_URL_DETAIL_INVOICE = BuildConfig.END_URL_DETAIL_INVOICE;
+    public static final String END_URL_DETAIL_REQ_INVOICE = BuildConfig.END_URL_DETAIL_REQ_INVOICE;
+    public static final String END_URL_DETAIL_RECEIVE_STOCK = BuildConfig.END_URL_DETAIL_RECEIVE_STOCK;
 
     public static final String GET_GROUP_ID = BuildConfig.GET_GROUP_ID;
     public static final String GET_GROUP_ID_MEMBER = BuildConfig.GET_GROUP_ID_MEMBER;

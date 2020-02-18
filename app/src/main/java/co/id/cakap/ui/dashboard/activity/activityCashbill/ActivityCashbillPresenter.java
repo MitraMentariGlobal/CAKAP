@@ -61,11 +61,15 @@ public class ActivityCashbillPresenter implements ActivityCashbillContract.UserA
                         Logger.d("message : " + apiResponseActivityCashbill.getMessages());
                         Logger.d("<<<<<=====");
 
-                        if (apiResponseActivityCashbill.getData().isEmpty()) {
-                            getView().hideProgressBar();
-                            getView().setErrorResponse(apiResponseActivityCashbill.getMessages());
-                        } else {
-                            getView().setAdapter(apiResponseActivityCashbill.getData());
+                        try {
+                            if (apiResponseActivityCashbill.getData().isEmpty()) {
+                                getView().hideProgressBar();
+                                getView().setErrorResponse(apiResponseActivityCashbill.getMessages());
+                            } else {
+                                getView().setAdapter(apiResponseActivityCashbill.getData());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 
@@ -103,7 +107,11 @@ public class ActivityCashbillPresenter implements ActivityCashbillContract.UserA
                         Logger.d("message : " + apiResponseCancelItemCashbill.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getData(context, tahun, bulan);
+                        try {
+                            getData(context, tahun, bulan);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

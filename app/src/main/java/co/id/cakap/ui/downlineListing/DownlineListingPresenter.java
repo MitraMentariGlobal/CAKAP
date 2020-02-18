@@ -64,7 +64,11 @@ public class DownlineListingPresenter implements DownlineListingContract.UserAct
                         Logger.d("message : " + apiResponseDownlineListing.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().setAdapter(levelData, apiResponseDownlineListing.getData(), recyclerView, txtTitle);
+                        try {
+                            getView().setAdapter(levelData, apiResponseDownlineListing.getData(), recyclerView, txtTitle);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -101,7 +105,11 @@ public class DownlineListingPresenter implements DownlineListingContract.UserAct
                         Logger.d("message : " + apiResponseLevel.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().setAdapterDropdown(apiResponseLevel.getData());
+                        try {
+                            getView().setAdapterDropdown(apiResponseLevel.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

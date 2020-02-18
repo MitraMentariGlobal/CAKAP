@@ -62,8 +62,12 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
                         Logger.d("member id : " + apiResponseLogin.getResult().getMember_id());
                         Logger.d("<<<<<=====");
 
-                        saveData(apiResponseLogin);
-                        mView.goToHome(apiResponseLogin.getResult().getUrl());
+                        try {
+                            saveData(apiResponseLogin);
+                            mView.goToHome(apiResponseLogin.getResult().getUrl());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

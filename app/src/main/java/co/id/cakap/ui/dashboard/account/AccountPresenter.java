@@ -61,9 +61,14 @@ public class AccountPresenter implements AccountContract.UserActionListener {
                         Logger.d("=====>>>>>");
                         Logger.d("message : " + apiResponseLogout.getMessages());
                         Logger.d("<<<<<=====");
-                        mView.hideProgressBar();
-                        mView.setSuccessResponse();
-                        deleteData();
+
+                        try {
+                            mView.hideProgressBar();
+                            mView.setSuccessResponse();
+                            deleteData();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

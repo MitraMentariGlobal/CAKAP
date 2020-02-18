@@ -61,11 +61,15 @@ public class ActivityRekapBnsBcmbPresenter implements ActivityRekapBnsBcmbContra
                         Logger.d("message : " + apiResponseRekapBonusBcmb.getMessages());
                         Logger.d("<<<<<=====");
 
-                        if (apiResponseRekapBonusBcmb.getData().isEmpty()) {
-                            getView().hideProgressBar();
-                            getView().setErrorResponse(apiResponseRekapBonusBcmb.getMessages());
-                        } else {
-                            getView().setAdapter(apiResponseRekapBonusBcmb.getData());
+                        try {
+                            if (apiResponseRekapBonusBcmb.getData().isEmpty()) {
+                                getView().hideProgressBar();
+                                getView().setErrorResponse(apiResponseRekapBonusBcmb.getMessages());
+                            } else {
+                                getView().setAdapter(apiResponseRekapBonusBcmb.getData());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 
@@ -103,7 +107,11 @@ public class ActivityRekapBnsBcmbPresenter implements ActivityRekapBnsBcmbContra
                         Logger.d("message : " + apiResponseActionRekapBnsBcmb.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getData(tahun, bulan);
+                        try {
+                            getData(tahun, bulan);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

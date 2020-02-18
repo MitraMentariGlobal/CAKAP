@@ -93,8 +93,9 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
     public void initializeData() {
         mUserActionListener = mRestockInvoicePresenter;
         mRestockInvoicePresenter.setView(this);
-        mUserActionListener.getData();
+
         initSpinner();
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -139,10 +140,18 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
     }
 
     @Override
-    public void openDetailTransaction(String transactionId) {
+    public void openDetailTransaction(RestockInvoiceData restockInvoiceData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.invoice));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_INVOICE);
+        intent.putExtra(Constant.ITEM_ID_DETAIL, restockInvoiceData.getItem_id());
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, restockInvoiceData.getTransaction_id());
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, restockInvoiceData.getNo_stc());
+        intent.putExtra(Constant.NAME_DETAIL, restockInvoiceData.getNama());
+        intent.putExtra(Constant.DATE_DETAIL, restockInvoiceData.getDate());
+        intent.putExtra(Constant.TOTAL_DETAIL, restockInvoiceData.getTotal_amount());
+        intent.putExtra(Constant.REMARK_DETAIL, restockInvoiceData.getRemarkapp());
+
         startActivity(intent);
     }
 
@@ -205,7 +214,7 @@ public class RestockInvoiceFragment extends Fragment implements RestockInvoiceCo
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

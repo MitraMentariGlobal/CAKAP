@@ -80,7 +80,11 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
                         Logger.d("message : " + apiResponseSearchMbInvoice.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getItemInvoice(apiResponseSearchMbInvoice.getData());
+                        try {
+                            getItemInvoice(apiResponseSearchMbInvoice.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -115,7 +119,11 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
                         Logger.d("message : " + apiResponseItemInvoiceToMb.getMessages());
                         Logger.d("<<<<<=====");
 
-                        getView().setAdapter(apiResponseItemInvoiceToMb.getData(), operationUserStatusData);
+                        try {
+                            getView().setAdapter(apiResponseItemInvoiceToMb.getData(), operationUserStatusData);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

@@ -43,9 +43,12 @@ public class ActivityBonusStatementPresenter implements ActivityBonusStatementCo
                         Logger.d("message : " + apiResponseBonusStatementData.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.hideProgressBar();
-                        mView.checkPermissionStorage(apiResponseBonusStatementData.getData());
-
+                        try {
+                            mView.hideProgressBar();
+                            mView.checkPermissionStorage(apiResponseBonusStatementData.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

@@ -47,11 +47,13 @@ public class RestockReqInvoiceAdapter extends RecyclerView.Adapter<RestockReqInv
         RestockReqInvoiceData restockReqInvoiceData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.restockReqInvoiceData = restockReqInvoiceData;
         holder.mTotalPv.setText(restockReqInvoiceData.getTotal_pv());
-        holder.mTransactionId.setText(restockReqInvoiceData.getTransaction_id());
+        holder.mTransactionId.setText(restockReqInvoiceData.getItem_id());
+        holder.mTransactionId.setVisibility(View.GONE);
         holder.mDate.setText(restockReqInvoiceData.getDate());
         holder.mStatus.setText(restockReqInvoiceData.getStatus());
-        holder.mTotalAmount.setText(restockReqInvoiceData.getTotal_amount());
+        holder.mTotalAmount.setText("IDR " + restockReqInvoiceData.getTotal_amount());
     }
 
     @Override
@@ -75,6 +77,7 @@ public class RestockReqInvoiceAdapter extends RecyclerView.Adapter<RestockReqInv
         LinearLayout mLinearAction;
 
         Context context;
+        RestockReqInvoiceData restockReqInvoiceData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -85,7 +88,7 @@ public class RestockReqInvoiceAdapter extends RecyclerView.Adapter<RestockReqInv
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new RestockReqInvoicePresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+            new RestockReqInvoicePresenter().getView().openDetailTransaction(restockReqInvoiceData);
         }
     }
 }

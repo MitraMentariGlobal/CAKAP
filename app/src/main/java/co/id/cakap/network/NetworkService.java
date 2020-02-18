@@ -256,7 +256,7 @@ public interface NetworkService {
 
     @FormUrlEncoded
     @POST("invoice_mb")
-    Flowable<ApiResponseInvoiceToMb> postRekapInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+    Flowable<ApiResponseInvoiceToMb> postInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                           @Field(Constant.BODY_USER_ID) String userId,
                                                           @Field(Constant.BODY_TAHUN) String tahun,
@@ -293,6 +293,35 @@ public interface NetworkService {
     @POST("submit_rekap_bonus_bcmb_account_valid")
     Flowable<ApiResponseActionRekapBnsBcmb> postActionRekapBnsBcmb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                    @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_USER_NAME) String username,
+                                                                   @Field(Constant.BODY_PIN) String pin,
+                                                                   @Field(Constant.BODY_ID) String id);
+
+    @FormUrlEncoded
+    @POST("invoice_company")
+    Flowable<ApiResponseRestockInvoice> postRestockInvoice(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                           @Field(Constant.BODY_USER_ID) String userId,
+                                                           @Field(Constant.BODY_TAHUN) String tahun,
+                                                           @Field(Constant.BODY_BULAN) String bulan);
+
+    @FormUrlEncoded
+    @POST("req_invoice_company")
+    Flowable<ApiResponseRestockReqInvoice> postRestockReqInvoice(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                 @Field(Constant.BODY_USER_ID) String userId);
+
+    @FormUrlEncoded
+    @POST("receive_stok")
+    Flowable<ApiResponseRestockReceiveStock> postRestockReceiveStock(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                     @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                     @Field(Constant.BODY_USER_ID) String userId);
+
+    @FormUrlEncoded
+    @POST("submit_receive_stok")
+    Flowable<ApiResponseActionReceiveStock> postActionReceiveStock(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                   @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_USER_ID) String userId,
                                                                    @Field(Constant.BODY_USER_NAME) String username,
                                                                    @Field(Constant.BODY_PIN) String pin,
                                                                    @Field(Constant.BODY_ID) String id);

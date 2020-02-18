@@ -66,7 +66,7 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postRekapInvoiceToMb(mResultDataLogin.getMember_id(), tahun, DateHelper.getMonthNumber(bulan), Utils.getGroupId(context))
+        mMainRepository.postInvoiceToMb(mResultDataLogin.getMember_id(), tahun, DateHelper.getMonthNumber(bulan), Utils.getGroupId(context))
                 .subscribe(new ResourceSubscriber<ApiResponseInvoiceToMb>() {
                     @Override
                     public void onNext(ApiResponseInvoiceToMb apiResponseInvoiceToMb) {
@@ -74,11 +74,15 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
                         Logger.d("message : " + apiResponseInvoiceToMb.getMessages());
                         Logger.d("<<<<<=====");
 
-                        if (apiResponseInvoiceToMb.getData().isEmpty()) {
-                            getView().hideProgressBar();
-                            getView().setErrorResponse(apiResponseInvoiceToMb.getMessages());
-                        } else {
-                            getView().setAdapter(apiResponseInvoiceToMb.getData());
+                        try {
+                            if (apiResponseInvoiceToMb.getData().isEmpty()) {
+                                getView().hideProgressBar();
+                                getView().setErrorResponse(apiResponseInvoiceToMb.getMessages());
+                            } else {
+                                getView().setAdapter(apiResponseInvoiceToMb.getData());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 

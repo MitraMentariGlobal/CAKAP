@@ -45,8 +45,12 @@ public class NetworkGenealogyPresenter implements NetworkGenealogyContract.UserA
                         Logger.d("message : " + apiResponseNetworkGeneology.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.hideProgressBar();
-                        mView.setData(apiResponseNetworkGeneology.getData());
+                        try {
+                            mView.hideProgressBar();
+                            mView.setData(apiResponseNetworkGeneology.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

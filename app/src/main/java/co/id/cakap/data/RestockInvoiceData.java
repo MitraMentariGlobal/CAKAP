@@ -20,15 +20,19 @@ import lombok.Data;
 @Data
 @Entity
 public class RestockInvoiceData implements Parcelable {
-    @SerializedName("transaction_id")
+    @SerializedName("id")
+    @Expose
+    private String item_id;
+
+    @SerializedName("inv")
     @Expose
     private String transaction_id;
 
-    @SerializedName("total_amount")
+    @SerializedName("ftotalharga")
     @Expose
     private String total_amount;
 
-    @SerializedName("total_pv")
+    @SerializedName("ftotalpv")
     @Expose
     private String total_pv;
 
@@ -36,25 +40,46 @@ public class RestockInvoiceData implements Parcelable {
     @Expose
     private String date;
 
+    @SerializedName("nama")
+    @Expose
+    private String nama;
+
+    @SerializedName("no_stc")
+    @Expose
+    private String no_stc;
+
+    @SerializedName("remarkapp")
+    @Expose
+    private String remarkapp;
+
     @SerializedName("status")
     @Expose
     private String status;
 
-    @Keep
-    public RestockInvoiceData(String transaction_id, String total_amount, String total_pv, String date, String status) {
-        this.transaction_id = transaction_id;
-        this.total_amount = total_amount;
-        this.total_pv = total_pv;
-        this.date = date;
-        this.status = status;
-    }
-
     protected RestockInvoiceData(Parcel in) {
+        item_id = in.readString();
         transaction_id = in.readString();
         total_amount = in.readString();
         total_pv = in.readString();
         date = in.readString();
+        nama = in.readString();
+        no_stc = in.readString();
+        remarkapp = in.readString();
         status = in.readString();
+    }
+
+    @Generated(hash = 400022397)
+    public RestockInvoiceData(String item_id, String transaction_id, String total_amount,
+            String total_pv, String date, String nama, String no_stc, String remarkapp, String status) {
+        this.item_id = item_id;
+        this.transaction_id = transaction_id;
+        this.total_amount = total_amount;
+        this.total_pv = total_pv;
+        this.date = date;
+        this.nama = nama;
+        this.no_stc = no_stc;
+        this.remarkapp = remarkapp;
+        this.status = status;
     }
 
     @Generated(hash = 1003735311)
@@ -63,16 +88,28 @@ public class RestockInvoiceData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(item_id);
         dest.writeString(transaction_id);
         dest.writeString(total_amount);
         dest.writeString(total_pv);
         dest.writeString(date);
+        dest.writeString(nama);
+        dest.writeString(no_stc);
+        dest.writeString(remarkapp);
         dest.writeString(status);
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getItem_id() {
+        return this.item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 
     public String getTransaction_id() {
@@ -105,6 +142,30 @@ public class RestockInvoiceData implements Parcelable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getNama() {
+        return this.nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getNo_stc() {
+        return this.no_stc;
+    }
+
+    public void setNo_stc(String no_stc) {
+        this.no_stc = no_stc;
+    }
+
+    public String getRemarkapp() {
+        return this.remarkapp;
+    }
+
+    public void setRemarkapp(String remarkapp) {
+        this.remarkapp = remarkapp;
     }
 
     public String getStatus() {

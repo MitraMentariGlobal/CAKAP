@@ -11,10 +11,12 @@ public class RestockReceiveStockContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void openDetailTransaction(String transactionId);
+        void openDetailTransaction(RestockReceiveStockData restockReceiveStockData);
+        void openPinDialog(RestockReceiveStockData restockReceiveStockData);
     }
 
     public interface UserActionListener {
         void getData();
+        void actionTransaction(RestockReceiveStockData restockReceiveStockData, String pin);
     }
 }

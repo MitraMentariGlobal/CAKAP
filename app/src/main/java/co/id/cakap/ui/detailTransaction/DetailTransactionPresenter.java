@@ -40,7 +40,11 @@ public class DetailTransactionPresenter implements DetailTransactionContract.Use
                         Logger.d("message : " + apiResponseDetailTransaction.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.setAdapter(apiResponseDetailTransaction.getData());
+                        try {
+                            mView.setAdapter(apiResponseDetailTransaction);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +23,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.BankInfoAdapter;
 import co.id.cakap.adapter.DetailTransaksiAdapter;
 import co.id.cakap.data.DetailTransactionData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.network.ApiResponseDetailTransaction;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class DetailTransactionActivity extends AppCompatActivity implements DetailTransactionContract.View {
@@ -56,6 +59,12 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     EditText mEtRemark;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
+    @BindView(R.id.linear_info)
+    LinearLayout mLinearInfo;
+    @BindView(R.id.txt_info)
+    TextView mTxtInfo;
+    @BindView(R.id.bank_list)
+    RecyclerView mbankList;
 
     private String mTitle = "";
     private String mEndpoint = "";
@@ -68,6 +77,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     private String mRemark = "";
 
     private DetailTransaksiAdapter mListAdapter;
+    private BankInfoAdapter mListBankAdapter;
     private DetailTransactionContract.UserActionListener mUserActionListener;
 
     @Override
@@ -104,6 +114,8 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mDate = intent.getStringExtra(Constant.DATE_DETAIL);
         mTotal = intent.getStringExtra(Constant.TOTAL_DETAIL);
         mRemark = intent.getStringExtra(Constant.REMARK_DETAIL);
+        if (mRemark.equals("0"))
+            mRemark = "-";
 
         mTitleText.setText(mTitle);
         if (mTransactionId.length() == 0) {
@@ -122,17 +134,35 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     }
 
     @Override
-    public void setAdapter(List<DetailTransactionData> resultData) {
+    public void setAdapter(ApiResponseDetailTransaction apiResponseDetailTransaction) {
+        if (apiResponseDetailTransaction.getInfo() != null) {
+            setBankAdapter(apiResponseDetailTransaction);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
 
-        mListAdapter = new DetailTransaksiAdapter(resultData, this);
+        mListAdapter = new DetailTransaksiAdapter(apiResponseDetailTransaction.getData(), this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
+    }
+
+    public void setBankAdapter(ApiResponseDetailTransaction apiResponseDetailTransaction) {
+        mLinearInfo.setVisibility(View.VISIBLE);
+        mTxtInfo.setText(apiResponseDetailTransaction.getInfo());
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mbankList.setLayoutManager(layoutManager);
+        mbankList.setNestedScrollingEnabled(false);
+        mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
+
+        mListBankAdapter = new BankInfoAdapter(apiResponseDetailTransaction.getBank(), this);
+        mbankList.setAdapter(mListBankAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mbankList, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
     }
 
     @Override

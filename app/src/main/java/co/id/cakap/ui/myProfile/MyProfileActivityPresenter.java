@@ -56,8 +56,12 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
                         Logger.d("message : " + apiResponseJenisKelamin.getMessages());
                         Logger.d("<<<<<=====");
 
-                        saveJenisKelaminData(apiResponseJenisKelamin.getData());
-                        getReligion();
+                        try {
+                            saveJenisKelaminData(apiResponseJenisKelamin.getData());
+                            getReligion();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -92,8 +96,12 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
                         Logger.d("message : " + apiResponseReligion.getData());
                         Logger.d("<<<<<=====");
 
-                        saveReligionData(apiResponseReligion.getData());
-                        getProfileData();
+                        try {
+                            saveReligionData(apiResponseReligion.getData());
+                            getProfileData();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -130,7 +138,11 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
                         Logger.d("message : " + apiResponseBank.getData());
                         Logger.d("<<<<<=====");
 
-                        saveBankData(apiResponseBank.getData());
+                        try {
+                            saveBankData(apiResponseBank.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -165,7 +177,11 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
                         Logger.d("message : " + apiResponseProfileData.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.setProfileData(apiResponseProfileData.getData());
+                        try {
+                            mView.setProfileData(apiResponseProfileData.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -323,9 +339,12 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
                         Logger.d("message : " + apiResponseUpdateProfile.getMessages());
                         Logger.d("<<<<<=====");
 
-//                        mView.hideProgressBar();
-                        getProfileData();
-                        mView.openSuccessBottomSheet();
+                        try {
+                            getProfileData();
+                            mView.openSuccessBottomSheet();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
