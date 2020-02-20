@@ -14,10 +14,14 @@ import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.FirebaseTokenDataDao;
 import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.JenisKelaminDataDao;
+import co.id.cakap.data.KotaData;
+import co.id.cakap.data.KotaDataDao;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.data.NotificationDataDao;
 import co.id.cakap.data.OperationUserStatusData;
 import co.id.cakap.data.OperationUserStatusDataDao;
+import co.id.cakap.data.ProvinsiData;
+import co.id.cakap.data.ProvinsiDataDao;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.data.ReligionDataDao;
 import co.id.cakap.data.ResultDataLogin;
@@ -37,6 +41,8 @@ public class DataModel extends BaseModel {
     private JenisKelaminDataDao mJenisKelaminDataDao;
     private ReligionDataDao mReligionDataDao;
     private BankDataDao mBankDataDao;
+    private ProvinsiDataDao mProvinsiDataDao;
+    private KotaDataDao mKotaDataDao;
     private SubmitCashbillDataDao mSubmitCashbillDataDao;
     private CashbillSuccessDataDao mCashbillSuccessDataDao;
 
@@ -48,6 +54,8 @@ public class DataModel extends BaseModel {
         mJenisKelaminDataDao = daoSession.getJenisKelaminDataDao();
         mReligionDataDao = daoSession.getReligionDataDao();
         mBankDataDao = daoSession.getBankDataDao();
+        mProvinsiDataDao = daoSession.getProvinsiDataDao();
+        mKotaDataDao = daoSession.getKotaDataDao();
         mSubmitCashbillDataDao = daoSession.getSubmitCashbillDataDao();
         mCashbillSuccessDataDao = daoSession.getCashbillSuccessDataDao();
     }
@@ -126,6 +134,30 @@ public class DataModel extends BaseModel {
 
     public void deleteBankData() {
         mBankDataDao.deleteAll();
+    }
+
+    public void insertProvinsiData(ProvinsiData provinsiData){
+        mProvinsiDataDao.insertOrReplace(provinsiData);
+    }
+
+    public List<ProvinsiData> getAllProvinsiData() {
+        return mProvinsiDataDao.loadAll();
+    }
+
+    public void deleteProvinsiData() {
+        mProvinsiDataDao.deleteAll();
+    }
+
+    public void insertKotaData(KotaData kotaData){
+        mKotaDataDao.insertOrReplace(kotaData);
+    }
+
+    public List<KotaData> getAllKotaData() {
+        return mKotaDataDao.loadAll();
+    }
+
+    public void deleteKotaData() {
+        mKotaDataDao.deleteAll();
     }
 
     public void insertCashbillSuccessData(SubmitCashbillData submitCashbillData){

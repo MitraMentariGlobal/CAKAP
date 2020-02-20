@@ -369,10 +369,10 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @Override
     public void setReligionData(List<String> religionDataList) {
         mSpinnerReligion.setOnItemSelectedListener(this);
-        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> religionAdapter = new ArrayAdapter<String>(this,
                 R.layout.item_spinner, android.R.id.text1, religionDataList);
-        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerReligion.setAdapter(provinceAdapter);
+        religionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerReligion.setAdapter(religionAdapter);
     }
 
     @Override

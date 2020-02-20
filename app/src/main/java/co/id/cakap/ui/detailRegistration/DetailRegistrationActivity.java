@@ -76,10 +76,21 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @BindView(R.id.et_member_id)
     EditText mEtMemberId;
+
+    @BindView(R.id.linear_full_name)
+    LinearLayout mLinearFullName;
+    @BindView(R.id.txt_error_full_name)
+    TextView mTxtErrorFullName;
     @BindView(R.id.et_full_name)
     EditText mEtFulllName;
+
+    @BindView(R.id.linear_id_card)
+    LinearLayout mLinearIdCard;
+    @BindView(R.id.txt_error_id_card)
+    TextView mTxtErrorIdCard;
     @BindView(R.id.et_id_card)
     EditText mEtIdCard;
+
     @BindView(R.id.radio_male)
     RadioButton mRadioMale;
     @BindView(R.id.radio_female)
@@ -89,20 +100,42 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     EditText mEtPob;
     @BindView(R.id.txt_date_of_birth)
     TextView mTxtDob;
+
+    @BindView(R.id.linear_spinner_religion)
+    LinearLayout mLinearSpinnerReligion;
+    @BindView(R.id.txt_error_religion)
+    TextView mTxtErrorReligion;
     @BindView(R.id.spinner_religion)
     Spinner mSpinnerReligion;
+
     @BindView(R.id.et_email)
     EditText mEtEmail;
     @BindView(R.id.et_phone_number)
     EditText mEtPhoneNumber;
     @BindView(R.id.et_mobile_number)
     EditText mEtMobileNumber;
+
+    @BindView(R.id.linear_address)
+    LinearLayout mLinearAddress;
+    @BindView(R.id.txt_error_address)
+    TextView mTxtErrorAddress;
     @BindView(R.id.et_address)
     EditText mEtAddress;
+
+    @BindView(R.id.linear_spinner_province)
+    LinearLayout mLinearSpinnerProvince;
+    @BindView(R.id.txt_error_province)
+    TextView mTxtErrorProvince;
     @BindView(R.id.spinner_province)
     Spinner mSpinnerProvince;
+
+    @BindView(R.id.linear_spinner_city)
+    LinearLayout mLinearSpinnerCity;
+    @BindView(R.id.txt_error_city)
+    TextView mTxtErrorCity;
     @BindView(R.id.spinner_city)
     Spinner mSpinnerCity;
+
     @BindView(R.id.et_postal_code)
     EditText mEtPostalCode;
     @BindView(R.id.et_activation_code)
@@ -110,8 +143,18 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
 
     @BindView(R.id.et_couple_name)
     EditText mEtCoupleName;
+
+    @BindView(R.id.linear_heir_name)
+    LinearLayout mLinearHeirName;
+    @BindView(R.id.txt_error_heir_name)
+    TextView mTxtErrorHeirName;
     @BindView(R.id.et_heir_name)
     EditText mEtHeirName;
+
+    @BindView(R.id.linear_relatoinship)
+    LinearLayout mLinearRelationship;
+    @BindView(R.id.txt_error_relationship)
+    TextView mTxtErrorRelationship;
     @BindView(R.id.et_relationship)
     EditText mEtRelationship;
 
@@ -147,7 +190,13 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     private ItemSearchRegistrationAdapter mListAdapter;
     private String mActivationCode = "";
     private String mMemberId = "";
+    private String mBankId = "";
+    private String mProvinceId = "";
+    private String mKotaId = "";
     private RegistrationSuccessData mSuccessData;
+    private List<String> mBankIdList;
+    private List<String> mCityIdList;
+    private List<String> mProvinsiIdList;
     private List<String> mCityData = new ArrayList<>();
     private List<String> mProvinceData = new ArrayList<>();
     private DetailRegistrationContract.UserActionListener mUserActionListener;
@@ -184,25 +233,22 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
         mTitle.setText(getString(R.string.registration).toUpperCase());
         mRadioMale.setChecked(true);
         setupOnFocusListenerName();
-        initSpinner();
-        hideProgressBar();
+//        initSpinner();
+        mDetailRegistrationPresenter.getReligion();
 
-
-
-
-        mEtFulllName.setText("test full name");
-        mEtIdCard.setText("3475639200129943");
-        mEtPob.setText("test tempat lahir");
-        mEtEmail.setText("test email");
-        mEtPhoneNumber.setText("021123456789");
-        mEtMobileNumber.setText("081987654321");
-        mEtAddress.setText("test address");
-        mEtPostalCode.setText("34321");
-        mEtHeirName.setText("test nama pewaris");
-        mEtRelationship.setText("test hubungan pewaris");
-        mEtBranchName.setText("test cabang");
-        mEtAccountHolder.setText("test full name");
-        mEtAccountNumber.setText("633764383847");
+//        mEtFulllName.setText("test full name");
+//        mEtIdCard.setText("3475639200129943");
+//        mEtPob.setText("test tempat lahir");
+//        mEtEmail.setText("test email");
+//        mEtPhoneNumber.setText("021123456789");
+//        mEtMobileNumber.setText("081987654321");
+//        mEtAddress.setText("test address");
+//        mEtPostalCode.setText("34321");
+//        mEtHeirName.setText("test nama pewaris");
+//        mEtRelationship.setText("test hubungan pewaris");
+//        mEtBranchName.setText("test cabang");
+//        mEtAccountHolder.setText("test full name");
+//        mEtAccountNumber.setText("633764383847");
     }
 
     @Override
@@ -234,7 +280,7 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
             mRelativeRecId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
             mTxtErrorRecId.setVisibility(View.GONE);
             mUserActionListener.getDataRecId(mEtRecId.getText().toString());
-            mEtRecId.setInputType(0);
+//            mEtRecId.setInputType(0);
         }
     }
 
@@ -247,71 +293,24 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
             mRelativeSponsorId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
             mTxtErrorSponsorId.setVisibility(View.GONE);
             mUserActionListener.getDataSponsorId(mEtSponsorId.getText().toString());
-            mEtSponsorId.setInputType(0);
+//            mEtSponsorId.setInputType(0);
         }
     }
 
     @OnClick(R.id.text_process)
     public void actionProcess(View view) {
-        UserConfirmationDialog utils = new UserConfirmationDialog();
-        Dialog dialog = utils.showDialog(this);
-        utils.setTitleDialog();
-        utils.setNegativeActionGreen();
-
-        TextView txtNo = (TextView) dialog.findViewById(R.id.no_act_btn);
-        txtNo.setText("Periksa Kembali");
-        dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Toast.makeText(DetailRegistrationActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        TextView txtYes = (TextView) dialog.findViewById(R.id.yes_act_btn);
-        txtYes.setText("Bersedia");
-        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-
-                String gender = "";
-                if (mRadioMale.isChecked())
-                    gender = "Laki - Laki";
-                else
-                    gender = "Perempuan";
-
-                mSuccessData = new RegistrationSuccessData(
-                        mEtRecId.getText().toString(),
-                        mEtRecName.getText().toString(),
-                        mEtSponsorId.getText().toString(),
-                        mEtSponsorName.getText().toString(),
-                        mEtMemberId.getText().toString(),
-                        mEtFulllName.getText().toString(),
-                        mEtIdCard.getText().toString(),
-                        gender,
-                        mEtPob.getText().toString(),
-                        mTxtDob.getText().toString(),
-                        mSpinnerReligion.getSelectedItem().toString(),
-                        mEtEmail.getText().toString(),
-                        mEtPhoneNumber.getText().toString(),
-                        mEtMobileNumber.getText().toString(),
-                        mEtAddress.getText().toString(),
-                        mSpinnerProvince.getSelectedItem().toString(),
-                        mSpinnerCity.getSelectedItem().toString(),
-                        mEtPostalCode.getText().toString(),
-                        mEtActivationCode.getText().toString(),
-                        mEtHeirName.getText().toString(),
-                        mEtRelationship.getText().toString(),
-                        mSpinnerBank.getSelectedItem().toString(),
-                        mEtBranchName.getText().toString(),
-                        mEtAccountHolder.getText().toString(),
-                        mEtAccountNumber.getText().toString()
-                );
-
-                openDialogPin();
-            }
-        });
+        mDetailRegistrationPresenter.checkData(
+                mEtRecId.getText().toString(),
+                mEtSponsorId.getText().toString(),
+                mEtFulllName.getText().toString(),
+                mEtIdCard.getText().toString(),
+                mSpinnerReligion.getSelectedItem().toString(),
+                mEtAddress.getText().toString(),
+                mProvinceId,
+                mKotaId,
+                mEtHeirName.getText().toString(),
+                mEtRelationship.getText().toString()
+        );
     }
 
     public void openDialogPin() {
@@ -327,13 +326,37 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
                 dialog.hide();
                 dialog.dismiss();
 
-                Bundle b = new Bundle();
-                b.putParcelable(Constant.REGISTRATION_DATA, mSuccessData);
+                String gender = "";
+                if (mRadioMale.isChecked())
+                    gender = "Laki-Laki";
+                else
+                    gender = "Perempuan";
 
-                Intent intent = new Intent(getApplicationContext(), RegistrationSuccessActivity.class);
-                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.registration).toUpperCase());
-                intent.putExtra(Constant.REGISTRATION_DATA, b);
-                startActivity(intent);
+                mUserActionListener.sendRegistrationData(
+                        pin,
+                        mEtRecId.getText().toString(),
+                        mEtSponsorId.getText().toString(),
+                        mEtMemberId.getText().toString(),
+                        mEtFulllName.getText().toString(),
+                        mEtIdCard.getText().toString(),
+                        gender,
+                        mEtPob.getText().toString(),
+                        mTxtDob.getText().toString(),
+                        mSpinnerReligion.getSelectedItem().toString(),
+                        mEtEmail.getText().toString(),
+                        mEtPhoneNumber.getText().toString(),
+                        mEtMobileNumber.getText().toString(),
+                        mEtAddress.getText().toString(),
+                        mKotaId,
+                        mEtPostalCode.getText().toString(),
+                        mEtActivationCode.getText().toString(),
+                        mEtHeirName.getText().toString(),
+                        mEtRelationship.getText().toString(),
+                        mBankId,
+                        mEtBranchName.getText().toString(),
+                        mEtAccountHolder.getText().toString(),
+                        mEtAccountNumber.getText().toString()
+                );
             }
 
             @Override
@@ -370,6 +393,8 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         setupOnFocusListener(mSearchEditText);
+
+        hideProgressBar();
     }
 
     @Override
@@ -382,6 +407,243 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
             mEtSponsorId.setText(itemSearchRegistrationData.getMember_id());
             mEtSponsorName.setText(itemSearchRegistrationData.getName());
         }
+    }
+
+    @Override
+    public void successInputData() {
+        String gender = "";
+        if (mRadioMale.isChecked())
+            gender = "Laki-Laki";
+        else
+            gender = "Perempuan";
+
+        mSuccessData = new RegistrationSuccessData(
+                mEtRecId.getText().toString(),
+                mEtRecName.getText().toString(),
+                mEtSponsorId.getText().toString(),
+                mEtSponsorName.getText().toString(),
+                mEtMemberId.getText().toString(),
+                mEtFulllName.getText().toString(),
+                mEtIdCard.getText().toString(),
+                gender,
+                mEtPob.getText().toString(),
+                mTxtDob.getText().toString(),
+                mSpinnerReligion.getSelectedItem().toString(),
+                mEtEmail.getText().toString(),
+                mEtPhoneNumber.getText().toString(),
+                mEtMobileNumber.getText().toString(),
+                mEtAddress.getText().toString(),
+                mSpinnerProvince.getSelectedItem().toString(),
+                mSpinnerCity.getSelectedItem().toString(),
+                mEtPostalCode.getText().toString(),
+                mEtActivationCode.getText().toString(),
+                mEtHeirName.getText().toString(),
+                mEtRelationship.getText().toString(),
+                mSpinnerBank.getSelectedItem().toString(),
+                mEtBranchName.getText().toString(),
+                mEtAccountHolder.getText().toString(),
+                mEtAccountNumber.getText().toString()
+        );
+
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.REGISTRATION_DATA, mSuccessData);
+
+        Intent intent = new Intent(getApplicationContext(), RegistrationSuccessActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.registration).toUpperCase());
+        intent.putExtra(Constant.REGISTRATION_DATA, b);
+        startActivity(intent);
+    }
+
+    @Override
+    public void openConfirmationDialog() {
+        UserConfirmationDialog utils = new UserConfirmationDialog();
+        Dialog dialog = utils.showDialog(this);
+        utils.setTitleDialog();
+        utils.setNegativeActionGreen();
+
+        TextView txtNo = (TextView) dialog.findViewById(R.id.no_act_btn);
+        txtNo.setText("Periksa Kembali");
+        dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        TextView txtYes = (TextView) dialog.findViewById(R.id.yes_act_btn);
+        txtYes.setText("Bersedia");
+        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+                openDialogPin();
+            }
+        });
+    }
+
+    @Override
+    public void setErrorRecId(boolean isError) {
+        if (isError) {
+            mRelativeRecId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorRecId.setVisibility(View.VISIBLE);
+            mTxtErrorRecId.setText(getString(R.string.field_required));
+        } else {
+            mRelativeRecId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorRecId.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorSponsorId(boolean isError) {
+        if (isError) {
+            mRelativeSponsorId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorSponsorId.setVisibility(View.VISIBLE);
+            mTxtErrorSponsorId.setText(getString(R.string.field_required));
+        } else {
+            mRelativeSponsorId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorSponsorId.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorName(boolean isError) {
+        if (isError) {
+            mLinearFullName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorFullName.setVisibility(View.VISIBLE);
+            mTxtErrorFullName.setText(getString(R.string.field_required));
+        } else {
+            mLinearFullName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorFullName.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorKtp(boolean isError) {
+        if (isError) {
+            mLinearIdCard.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorIdCard.setVisibility(View.VISIBLE);
+            mTxtErrorIdCard.setText(getString(R.string.field_required));
+        } else {
+            mLinearIdCard.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorIdCard.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorReligion(boolean isError) {
+        if (isError) {
+            mLinearSpinnerReligion.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorReligion.setVisibility(View.VISIBLE);
+            mTxtErrorReligion.setText(getString(R.string.field_required));
+        } else {
+            mLinearSpinnerReligion.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorReligion.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorAlamat(boolean isError) {
+        if (isError) {
+            mLinearAddress.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorAddress.setVisibility(View.VISIBLE);
+            mTxtErrorAddress.setText(getString(R.string.field_required));
+        } else {
+            mLinearAddress.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorAddress.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorProvinsi(boolean isError) {
+        if (isError) {
+            mLinearSpinnerProvince.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorProvince.setVisibility(View.VISIBLE);
+            mTxtErrorProvince.setText(getString(R.string.field_required));
+        } else {
+            mLinearSpinnerProvince.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorProvince.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorKota(boolean isError) {
+        if (isError) {
+            mLinearSpinnerCity.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorCity.setVisibility(View.VISIBLE);
+            mTxtErrorCity.setText(getString(R.string.field_required));
+        } else {
+            mLinearSpinnerCity.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorCity.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorNamaPewaris(boolean isError) {
+        if (isError) {
+            mLinearHeirName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorHeirName.setVisibility(View.VISIBLE);
+            mTxtErrorHeirName.setText(getString(R.string.field_required));
+        } else {
+            mLinearHeirName.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorHeirName.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setErrorHubungan(boolean isError) {
+        if (isError) {
+            mLinearRelationship.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
+            mTxtErrorRelationship.setVisibility(View.VISIBLE);
+            mTxtErrorRelationship.setText(getString(R.string.field_required));
+        } else {
+            mLinearRelationship.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
+            mTxtErrorRelationship.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void setReligionData(List<String> religionDataList) {
+        mSpinnerReligion.setOnItemSelectedListener(this);
+        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(this,
+                R.layout.item_spinner, android.R.id.text1, religionDataList);
+        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerReligion.setAdapter(provinceAdapter);
+    }
+
+    @Override
+    public void setBankData(List<String> bankDataList, List<String> bankIdList) {
+        mBankIdList = bankIdList;
+        mSpinnerBank.setOnItemSelectedListener(this);
+        ArrayAdapter<String> bankAdapter = new ArrayAdapter<String>(this,
+                R.layout.item_spinner, android.R.id.text1, bankDataList);
+        bankAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerBank.setAdapter(bankAdapter);
+
+        hideProgressBar();
+    }
+
+    @Override
+    public void setProvinsiData(List<String> provinsiDataList, List<String> provinsiIdList) {
+        mProvinsiIdList = provinsiIdList;
+        mSpinnerProvince.setOnItemSelectedListener(this);
+        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(this,
+                R.layout.item_spinner, android.R.id.text1, provinsiDataList);
+        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerProvince.setAdapter(provinceAdapter);
+
+    }
+
+    @Override
+    public void setKotaData(List<String> kotaDataList, List<String> kotaIdList) {
+        mCityIdList = kotaIdList;
+        mSpinnerCity.setOnItemSelectedListener(this);
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(this,
+                R.layout.item_spinner, android.R.id.text1, kotaDataList);
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerCity.setAdapter(cityAdapter);
+
+        hideProgressBar();
     }
 
     private void setupOnFocusListener(EditText editText) {
@@ -431,53 +693,64 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
     }
 
     public void initSpinner() {
-        mSpinnerReligion.setOnItemSelectedListener(this);
-        mSpinnerProvince.setOnItemSelectedListener(this);
-        mSpinnerCity.setOnItemSelectedListener(this);
-        mSpinnerBank.setOnItemSelectedListener(this);
 
-        ArrayAdapter<CharSequence> religionAdapter = ArrayAdapter.createFromResource(this,
-                R.array.religion_list, R.layout.item_spinner);
-        religionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerReligion.setAdapter(religionAdapter);
+//        ArrayAdapter<CharSequence> religionAdapter = ArrayAdapter.createFromResource(this,
+//                R.array.religion_list, R.layout.item_spinner);
+//        religionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        mSpinnerReligion.setAdapter(religionAdapter);
 
-        mCityData.add(" - ");
-        mCityData.add("Bekasi");
-        mCityData.add("Bandung");
-        mCityData.add("Solo");
-        mCityData.add("Malang");
-        mCityData.add("Bali");
-        mCityData.add("Lombok");
-        mCityData.add("Aceh");
-        mCityData.add("Pontianak");
+//        mCityData.add(" - ");
+//        mCityData.add("Bekasi");
+//        mCityData.add("Bandung");
+//        mCityData.add("Solo");
+//        mCityData.add("Malang");
+//        mCityData.add("Bali");
+//        mCityData.add("Lombok");
+//        mCityData.add("Aceh");
+//        mCityData.add("Pontianak");
+//
+//        mProvinceData.add(" - ");
+//        mProvinceData.add("Jawa Barat");
+//        mProvinceData.add("Jawa Timur");
+//        mProvinceData.add("Jawa Tengah");
+//        mProvinceData.add("Jambi");
+//        mProvinceData.add("Kalimantan Timur");
+//        mProvinceData.add("Sulawesi Utara");
 
-        mProvinceData.add(" - ");
-        mProvinceData.add("Jawa Barat");
-        mProvinceData.add("Jawa Timur");
-        mProvinceData.add("Jawa Tengah");
-        mProvinceData.add("Jambi");
-        mProvinceData.add("Kalimantan Timur");
-        mProvinceData.add("Sulawesi Utara");
+//        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(this,
+//                R.layout.item_spinner, android.R.id.text1, mProvinceData);
+//        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        mSpinnerProvince.setAdapter(provinceAdapter);
+//
+//        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(this,
+//                R.layout.item_spinner, android.R.id.text1, mCityData);
+//        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        mSpinnerCity.setAdapter(cityAdapter);
 
-        ArrayAdapter<String> provinceAdapter = new ArrayAdapter<String>(this,
-                R.layout.item_spinner, android.R.id.text1, mProvinceData);
-        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerProvince.setAdapter(provinceAdapter);
-
-        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(this,
-                R.layout.item_spinner, android.R.id.text1, mCityData);
-        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerCity.setAdapter(cityAdapter);
-
-        ArrayAdapter<CharSequence> bankAdapter = ArrayAdapter.createFromResource(this,
-                R.array.bank_list, R.layout.item_spinner);
-        bankAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerBank.setAdapter(bankAdapter);
+//        ArrayAdapter<CharSequence> bankAdapter = ArrayAdapter.createFromResource(this,
+//                R.array.bank_list, R.layout.item_spinner);
+//        bankAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        mSpinnerBank.setAdapter(bankAdapter);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.spinner_bank:
+                mBankId = mBankIdList.get(position);
+                break;
+            case R.id.spinner_province:
+                mProvinceId = mProvinsiIdList.get(position);
 
+                showProgressBar();
+                mDetailRegistrationPresenter.getKota(mProvinceId);
+                break;
+            case R.id.spinner_city:
+                mKotaId = mCityIdList.get(position);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

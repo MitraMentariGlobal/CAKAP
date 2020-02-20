@@ -72,6 +72,7 @@ public class Constant {
     public static final String BODY_CABANG = BuildConfig.BODY_CABANG;
     public static final String BODY_AREA = BuildConfig.BODY_AREA;
     public static final String BODY_NAMA = BuildConfig.BODY_NAMA;
+    public static final String BODY_NAMA2 = BuildConfig.BODY_NAMA2;
     public static final String BODY_TAHUN = BuildConfig.BODY_TAHUN;
     public static final String BODY_BULAN = BuildConfig.BODY_BULAN;
     public static final String BODY_ID = BuildConfig.BODY_ID;
@@ -94,6 +95,13 @@ public class Constant {
     public static final String BODY_NO_STC = BuildConfig.BODY_NO_STC;
     public static final String BODY_MEMBER_ID2 = BuildConfig.BODY_MEMBER_ID2;
     public static final String BODY_SO_ID = BuildConfig.BODY_SO_ID;
+    public static final String BODY_RECRUITING = BuildConfig.BODY_RECRUITING;
+    public static final String BODY_SPONSOR = BuildConfig.BODY_SPONSOR;
+    public static final String BODY_KTP = BuildConfig.BODY_KTP;
+    public static final String BODY_TGL_LAHIR = BuildConfig.BODY_TGL_LAHIR;
+    public static final String BODY_ACTIVATION = BuildConfig.BODY_ACTIVATION;
+    public static final String BODY_ACCOUNT_HOLDER = BuildConfig.BODY_ACCOUNT_HOLDER;
+    public static final String BODY_PASANGAN = BuildConfig.BODY_PASANGAN;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;

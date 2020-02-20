@@ -77,6 +77,18 @@
         </LinearLayout>
 
         <TextView
+            android:visibility="gone"
+            android:id="@+id/txt_error_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -109,6 +121,18 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"/>
         </LinearLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txt_error_id_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -732,6 +756,18 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_error_address"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -778,6 +814,18 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_error_province"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -822,6 +870,18 @@
                 android:focusableInTouchMode="false"
                 android:focusable="false"/>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_error_city"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_14"
+            android:text="@string/field_required"
+            android:layout_marginStart="@dimen/radius_10"
+            style="@style/TexViewFont"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -872,7 +932,7 @@
 
         <LinearLayout
             android:id="@+id/linear_activation_code"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 

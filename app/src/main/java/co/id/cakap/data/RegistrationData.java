@@ -20,7 +20,7 @@ import lombok.Data;
 @Data
 @Entity
 public class RegistrationData implements Parcelable {
-    @SerializedName("variant_of_kit")
+    @SerializedName("name")
     @Expose
     private String variant_of_kit;
 
@@ -28,26 +28,17 @@ public class RegistrationData implements Parcelable {
     @Expose
     private String member_id;
 
-    @SerializedName("activation_code")
+    @SerializedName("code")
     @Expose
     private String activation_code;
 
-    @SerializedName("date")
+    @SerializedName("created")
     @Expose
     private String date;
 
     @SerializedName("status")
     @Expose
     private String status;
-
-    @Keep
-    public RegistrationData(String variant_of_kit, String member_id, String activation_code, String date, String status) {
-        this.variant_of_kit = variant_of_kit;
-        this.member_id = member_id;
-        this.activation_code = activation_code;
-        this.date = date;
-        this.status = status;
-    }
 
     protected RegistrationData(Parcel in) {
         variant_of_kit = in.readString();
@@ -59,6 +50,16 @@ public class RegistrationData implements Parcelable {
 
     @Generated(hash = 26555739)
     public RegistrationData() {
+    }
+
+    @Generated(hash = 1212599378)
+    public RegistrationData(String variant_of_kit, String member_id, String activation_code,
+            String date, String status) {
+        this.variant_of_kit = variant_of_kit;
+        this.member_id = member_id;
+        this.activation_code = activation_code;
+        this.date = date;
+        this.status = status;
     }
 
     @Override

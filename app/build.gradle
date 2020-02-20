@@ -119,6 +119,7 @@ android {
             buildConfigField 'String', 'BODY_CABANG', endpointProperties['body_cabang']
             buildConfigField 'String', 'BODY_AREA', endpointProperties['body_area']
             buildConfigField 'String', 'BODY_NAMA', endpointProperties['body_nama']
+            buildConfigField 'String', 'BODY_NAMA2', endpointProperties['body_nama2']
             buildConfigField 'String', 'BODY_TAHUN', endpointProperties['body_tahun']
             buildConfigField 'String', 'BODY_BULAN', endpointProperties['body_bulan']
             buildConfigField 'String', 'BODY_ID', endpointProperties['body_id']
@@ -141,6 +142,13 @@ android {
             buildConfigField 'String', 'BODY_NO_STC', endpointProperties['body_no_stc']
             buildConfigField 'String', 'BODY_MEMBER_ID2', endpointProperties['body_member_id2']
             buildConfigField 'String', 'BODY_SO_ID', endpointProperties['body_so_id']
+            buildConfigField 'String', 'BODY_RECRUITING', endpointProperties['body_recruiting']
+            buildConfigField 'String', 'BODY_SPONSOR', endpointProperties['body_sponsor']
+            buildConfigField 'String', 'BODY_KTP', endpointProperties['body_ktp']
+            buildConfigField 'String', 'BODY_TGL_LAHIR', endpointProperties['body_tgl_lahir']
+            buildConfigField 'String', 'BODY_ACTIVATION', endpointProperties['body_activation']
+            buildConfigField 'String', 'BODY_ACCOUNT_HOLDER', endpointProperties['body_accountholder']
+            buildConfigField 'String', 'BODY_PASANGAN', endpointProperties['body_pasangan']
         }
     }
 

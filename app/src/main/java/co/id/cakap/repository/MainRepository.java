@@ -22,7 +22,9 @@ import co.id.cakap.network.ApiResponseFeeBcmb;
 import co.id.cakap.network.ApiResponseInvoiceToMb;
 import co.id.cakap.network.ApiResponseItemCashbill;
 import co.id.cakap.network.ApiResponseItemInvoiceToMb;
+import co.id.cakap.network.ApiResponseItemSearchRegistration;
 import co.id.cakap.network.ApiResponseJenisKelamin;
+import co.id.cakap.network.ApiResponseKota;
 import co.id.cakap.network.ApiResponseLevel;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
@@ -30,6 +32,8 @@ import co.id.cakap.network.ApiResponseMonthlyPointReport;
 import co.id.cakap.network.ApiResponseNetworkGeneology;
 import co.id.cakap.network.ApiResponseOmset;
 import co.id.cakap.network.ApiResponseProfileData;
+import co.id.cakap.network.ApiResponseProvinsi;
+import co.id.cakap.network.ApiResponseRegistrationList;
 import co.id.cakap.network.ApiResponseRekapBonusBcmb;
 import co.id.cakap.network.ApiResponseReligion;
 import co.id.cakap.network.ApiResponseRestockInvoice;
@@ -42,6 +46,7 @@ import co.id.cakap.network.ApiResponseStockReportCard;
 import co.id.cakap.network.ApiResponseStockReportCardItem;
 import co.id.cakap.network.ApiResponseStockReportUpdate;
 import co.id.cakap.network.ApiResponseSubmitCashbill;
+import co.id.cakap.network.ApiResponseSubmitRegistration;
 import co.id.cakap.network.ApiResponseUpdateProfile;
 import co.id.cakap.network.NetworkService;
 import io.reactivex.Flowable;
@@ -108,6 +113,18 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseBank> getBank() {
         return networkService.getBank(Constant.CONTENT_TYPE, Constant.CAKAP_KEY)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseProvinsi> getProvinsi() {
+        return networkService.getProvinsi(Constant.CONTENT_TYPE, Constant.CAKAP_KEY)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseKota> getKota(String id) {
+        return networkService.getKota(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -289,6 +306,33 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseActionReceiveStock> postActionReceiveStock(String userId, String username, String pin, String id) {
         return networkService.postActionReceiveStock(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, username, pin, id)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseRegistrationList> postRegistrationList(String userId) {
+        return networkService.postRegistrationList(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseItemSearchRegistration> postItemSearchRegistration(String id) {
+        return networkService.postItemSearchRegistration(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseSubmitRegistration> postRegistrationData(
+            String userId, String userName, String pin, String recId, String sponsorId, String memberId,
+            String name, String ktp, String gender, String pob, String dob, String religion, String email,
+            String noTelp, String noHp, String alamat, String kotaId, String kodePos, String activation,
+            String pewaris, String hubungan, String bankId, String cabang, String namaNasabah, String norek
+    ) {
+        return networkService.postRegistrationData(
+                Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, userName, pin,
+                recId, sponsorId, memberId, name, ktp, gender, pob, dob, religion, email, noTelp, noHp, alamat,
+                kotaId, kodePos, activation, pewaris, hubungan, bankId, cabang, namaNasabah, norek,
+                "", "", "", "")
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

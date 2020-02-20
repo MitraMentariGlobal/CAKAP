@@ -81,6 +81,16 @@ public interface NetworkService {
     Flowable<ApiResponseBank> getBank(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                       @Header(Constant.CAKAP_KEY_TEXT) String authorization);
 
+    @GET("provinsi")
+    Flowable<ApiResponseProvinsi> getProvinsi(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                              @Header(Constant.CAKAP_KEY_TEXT) String authorization);
+
+    @FormUrlEncoded
+    @POST("kota")
+    Flowable<ApiResponseKota> getKota(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                      @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                      @Field(Constant.BODY_ID) String id);
+
     @FormUrlEncoded
     @POST("update_profile")
     Flowable<ApiResponseUpdateProfile> postUpdateProfile(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
@@ -226,7 +236,6 @@ public interface NetworkService {
                                                        @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                        @Field(Constant.BODY_USER_ID) String memberId);
 
-//    @FormUrlEncoded
     @POST("submit_cashbill_stc")
     Flowable<ApiResponseSubmitCashbill> postSubmitCashbill(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
@@ -326,4 +335,50 @@ public interface NetworkService {
                                                                    @Field(Constant.BODY_PIN) String pin,
                                                                    @Field(Constant.BODY_ID) String id);
 
+    @FormUrlEncoded
+    @POST("activation_code")
+    Flowable<ApiResponseRegistrationList> postRegistrationList(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                  @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                  @Field(Constant.BODY_USER_ID) String userId);
+
+    @FormUrlEncoded
+    @POST("search_member")
+    Flowable<ApiResponseItemSearchRegistration> postItemSearchRegistration(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                           @Field(Constant.BODY_ID) String id);
+
+    @FormUrlEncoded
+    @POST("submit_registrasi")
+    Flowable<ApiResponseSubmitRegistration> postRegistrationData(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                 @Field(Constant.BODY_USER_ID) String userId,
+                                                                 @Field(Constant.BODY_USER_NAME) String username,
+                                                                 @Field(Constant.BODY_PIN) String pin,
+                                                                 @Field(Constant.BODY_RECRUITING) String recId,
+                                                                 @Field(Constant.BODY_SPONSOR) String sponsorId,
+                                                                 @Field(Constant.BODY_MEMBER_ID2) String memberId,
+                                                                 @Field(Constant.BODY_NAMA2) String name,
+                                                                 @Field(Constant.BODY_KTP) String ktp,
+                                                                 @Field(Constant.BODY_JENIS_KELAMIN) String gender,
+                                                                 @Field(Constant.BODY_TEMPAT_LAHIR) String pob,
+                                                                 @Field(Constant.BODY_TGL_LAHIR) String dob,
+                                                                 @Field(Constant.BODY_RELIGION) String religion,
+                                                                 @Field(Constant.BODY_EMAIL) String email,
+                                                                 @Field(Constant.BODY_TELP) String telp,
+                                                                 @Field(Constant.BODY_HP) String hp,
+                                                                 @Field(Constant.BODY_ALAMAT) String alamat,
+                                                                 @Field(Constant.BODY_KOTA_ID) String kotaId,
+                                                                 @Field(Constant.BODY_KODE_POS) String kodePos,
+                                                                 @Field(Constant.BODY_ACTIVATION) String activation,
+                                                                 @Field(Constant.BODY_AHLI_WARIS) String ahliWaris,
+                                                                 @Field(Constant.BODY_HUBUNGAN) String hubungan,
+                                                                 @Field(Constant.BODY_BANK_ID) String bankId,
+                                                                 @Field(Constant.BODY_AREA) String cabang,
+                                                                 @Field(Constant.BODY_ACCOUNT_HOLDER) String namaNasabah,
+                                                                 @Field(Constant.BODY_NOREK) String norek,
+//                                                                 kososng
+                                                                 @Field(Constant.BODY_NPWP) String npwp,
+                                                                 @Field(Constant.BODY_PEKERJAAN) String pekerjaan,
+                                                                 @Field(Constant.BODY_STATUS_PERNIKAHAN) String statusPernikahan,
+                                                                 @Field(Constant.BODY_PASANGAN) String pasangan);
 }
