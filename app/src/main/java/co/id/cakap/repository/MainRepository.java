@@ -216,7 +216,7 @@ public class MainRepository extends BaseRepository {
     }
 
     public Flowable<ApiResponseSubmitCashbill> postSubmitCashbill(Map<String, Object> param) {
-        return networkService.postSubmitCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, param)
+        return networkService.postSubmitCashbill(Constant.CONTENT_TYPE_JSON, Constant.CAKAP_KEY, param)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

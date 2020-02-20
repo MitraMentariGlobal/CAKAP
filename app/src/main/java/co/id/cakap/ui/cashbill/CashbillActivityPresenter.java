@@ -148,6 +148,7 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
                         Logger.d("<<<<<=====");
 
                         try {
+                            saveData(apiResponseSubmitCashbill);
                             getView().successSubmitData(apiResponseSubmitCashbill.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -173,8 +174,6 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
                         Logger.d("onComplete");
                     }
                 });
-
-//        getParam(pin, totalHarga, totalPv, totalBv, remark, resultData);
     }
 
     private Map<String, Object> getParam(String pin, String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData) {
@@ -183,17 +182,9 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
         List<Object> mAddCashbillDataList = new ArrayList<>();
         Map<String, Object> mParam = new HashMap<>();
         for (ItemShopData itemShopData : resultData) {
-//        for (int i = 0; i < resultData.size(); i++) {
             if (itemShopData.getCart() != null) {
                 if (Integer.parseInt(itemShopData.getCart()) != 0) {
-
                     Map<String, Object> mDetail = new HashMap<>();
-                    Logger.d("input code : " + itemShopData.getItem_code());
-                    Logger.d("input harga : " + itemShopData.getHarga());
-                    Logger.d("input pv : " + itemShopData.getPv());
-                    Logger.d("input bv : " + itemShopData.getBv());
-                    Logger.d("input cart : " + itemShopData.getCart());
-                    Logger.d("==============================================");
 
                     mDetail.put(Constant.BODY_TITIPAN_ID, itemShopData.getId());
                     mDetail.put(Constant.BODY_ITEM_ID, itemShopData.getItem_code());
@@ -202,14 +193,10 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
                     mDetail.put(Constant.BODY_BV, itemShopData.getBv());
                     mDetail.put(Constant.BODY_QTY, itemShopData.getCart());
 
-                    Logger.d("detail : " + mDetail);
                     mAddCashbillDataList.add(mDetail);
-                    Logger.d("**********************************************");
                 }
             }
         }
-
-        Logger.d("detail list : " + mAddCashbillDataList);
 
         mParam.put(Constant.BODY_PIN, pin);
         mParam.put(Constant.BODY_USER_ID, mResultDataLogin.getMember_id());
@@ -223,8 +210,13 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
         mParam.put(Constant.BODY_REMARK, remark);
         mParam.put(Constant.BODY_DETAIL, mAddCashbillDataList);
 
-        Logger.d("param : " + mParam);
-
         return mParam;
+    }
+
+    public void saveData(ApiResponseSubmitCashbill apiResponseSubmitCashbill) {
+        mDataModel.deleteCashbillSuccessDetailData();
+        for (int i = 0; i < apiResponseSubmitCashbill.getData().getDetail().size(); i++) {
+            mDataModel.insertCashbillSuccessDetailData(apiResponseSubmitCashbill.getData().getDetail().get(i));
+        }
     }
 }

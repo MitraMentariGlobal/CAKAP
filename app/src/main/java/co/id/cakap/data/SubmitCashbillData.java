@@ -10,6 +10,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -19,7 +20,7 @@ import lombok.Data;
 @Data
 @Entity
 public class SubmitCashbillData extends SubmitCashbillParentData implements Parcelable {
-//public class SubmitCashbillData implements Parcelable {
+
     @SerializedName("inv")
     @Expose
     private String inv;
@@ -45,6 +46,7 @@ public class SubmitCashbillData extends SubmitCashbillParentData implements Parc
     private String totalharga;
 
     protected SubmitCashbillData(Parcel in) {
+        super();
         inv = in.readString();
         tgl = in.readString();
         member_id = in.readString();

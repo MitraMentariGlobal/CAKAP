@@ -180,9 +180,12 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
 
     @Override
     public void successSubmitData(SubmitCashbillData submitCashbillData) {
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.SUCCESS_DATA_OBJECT, submitCashbillData);
+
         Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
-        intent.putExtra(Constant.SUCCESS_DATA_OBJECT, submitCashbillData);
+        intent.putExtra(Constant.SUCCESS_DATA_OBJECT, b);
         startActivity(intent);
     }
 

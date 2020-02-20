@@ -7,6 +7,8 @@ import java.util.List;
 
 import co.id.cakap.data.BankData;
 import co.id.cakap.data.BankDataDao;
+import co.id.cakap.data.CashbillSuccessData;
+import co.id.cakap.data.CashbillSuccessDataDao;
 import co.id.cakap.data.DaoSession;
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.FirebaseTokenDataDao;
@@ -14,10 +16,14 @@ import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.JenisKelaminDataDao;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.data.NotificationDataDao;
+import co.id.cakap.data.OperationUserStatusData;
+import co.id.cakap.data.OperationUserStatusDataDao;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.data.ReligionDataDao;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.data.ResultDataLoginDao;
+import co.id.cakap.data.SubmitCashbillData;
+import co.id.cakap.data.SubmitCashbillDataDao;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -31,6 +37,8 @@ public class DataModel extends BaseModel {
     private JenisKelaminDataDao mJenisKelaminDataDao;
     private ReligionDataDao mReligionDataDao;
     private BankDataDao mBankDataDao;
+    private SubmitCashbillDataDao mSubmitCashbillDataDao;
+    private CashbillSuccessDataDao mCashbillSuccessDataDao;
 
     public DataModel(DaoSession daoSession) {
         super(daoSession);
@@ -40,6 +48,8 @@ public class DataModel extends BaseModel {
         mJenisKelaminDataDao = daoSession.getJenisKelaminDataDao();
         mReligionDataDao = daoSession.getReligionDataDao();
         mBankDataDao = daoSession.getBankDataDao();
+        mSubmitCashbillDataDao = daoSession.getSubmitCashbillDataDao();
+        mCashbillSuccessDataDao = daoSession.getCashbillSuccessDataDao();
     }
 
     public void insertResultDataLogin(ResultDataLogin resultDataLogin){
@@ -116,5 +126,29 @@ public class DataModel extends BaseModel {
 
     public void deleteBankData() {
         mBankDataDao.deleteAll();
+    }
+
+    public void insertCashbillSuccessData(SubmitCashbillData submitCashbillData){
+        mSubmitCashbillDataDao.insertOrReplace(submitCashbillData);
+    }
+
+    public List<SubmitCashbillData> getAllCashbillSuccessData() {
+        return mSubmitCashbillDataDao.loadAll();
+    }
+
+    public void deleteCashbillSuccessData() {
+        mSubmitCashbillDataDao.deleteAll();
+    }
+
+    public void insertCashbillSuccessDetailData(CashbillSuccessData cashbillSuccessData){
+        mCashbillSuccessDataDao.insertOrReplace(cashbillSuccessData);
+    }
+
+    public List<CashbillSuccessData> getAllCashbillSuccessDetailData() {
+        return mCashbillSuccessDataDao.loadAll();
+    }
+
+    public void deleteCashbillSuccessDetailData() {
+        mCashbillSuccessDataDao.deleteAll();
     }
 }

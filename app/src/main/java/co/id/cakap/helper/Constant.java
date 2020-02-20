@@ -98,6 +98,7 @@ public class Constant {
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;
     public static final String CONTENT_TYPE_TEXT = BuildConfig.CONTENT_TYPE_TEXT;
+    public static final String CONTENT_TYPE_JSON = BuildConfig.CONTENT_TYPE_JSON;
     public static final String CONTENT_TYPE = BuildConfig.ENDPOINT_CONTENT_TYPE;
 
     public static final String URL_LINK = "url_link";

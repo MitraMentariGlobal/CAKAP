@@ -18,8 +18,38 @@ import lombok.Data;
  */
 
 @Data
-public class SubmitCashbillParentData {
+public class SubmitCashbillParentData implements Parcelable{
     @SerializedName("detail")
     @Expose
     private List<CashbillSuccessData> detail;
+
+    protected SubmitCashbillParentData(Parcel in) {
+        detail = in.createTypedArrayList(CashbillSuccessData.CREATOR);
+    }
+
+    public SubmitCashbillParentData() {
+
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(detail);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<SubmitCashbillParentData> CREATOR = new Creator<SubmitCashbillParentData>() {
+        @Override
+        public SubmitCashbillParentData createFromParcel(Parcel in) {
+            return new SubmitCashbillParentData(in);
+        }
+
+        @Override
+        public SubmitCashbillParentData[] newArray(int size) {
+            return new SubmitCashbillParentData[size];
+        }
+    };
 }

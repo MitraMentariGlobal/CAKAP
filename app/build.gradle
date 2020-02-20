@@ -64,6 +64,7 @@ android {
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_URL', endpointProperties['firebase_notification_url']
             buildConfigField 'String', 'ENDPOINT_CONTENT_TYPE', endpointProperties['endpoint_content_type']
             buildConfigField 'String', 'CONTENT_TYPE_TEXT', endpointProperties['content_type_text']
+            buildConfigField 'String', 'CONTENT_TYPE_JSON', endpointProperties['content_type_json']
             buildConfigField 'String', 'CAKAP_KEY_TEXT', endpointProperties['cakap_key_text']
 
             buildConfigField 'String', 'END_URL_DETAIL_CASHBILL', endpointProperties['end_url_detail_cashbill']

@@ -2,6 +2,7 @@ package co.id.cakap.ui.cashbill.cashbillSuccess;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import co.id.cakap.data.SubmitCashbillData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.DashboardActivity;
+import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -56,8 +58,6 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     TextView mTxtDate;
     @BindView(R.id.txt_total_amount)
     TextView mTxtTotalAmount;
-
-
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
     @BindView(R.id.et_member_id)
@@ -110,12 +110,13 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     public void initializeData() {
         mUserActionListener = mCashbillSuccessPresenter;
         mCashbillSuccessPresenter.setView(this);
-//        mUserActionListener.getData();
 
+        showProgressBar();
         Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra(Constant.SUCCESS_DATA_OBJECT);
+
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
-        mSubmitCashbillData = (SubmitCashbillData) intent.getParcelableExtra(Constant.SUCCESS_DATA_OBJECT);
-//        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
+        mSubmitCashbillData = b.getParcelable(Constant.SUCCESS_DATA_OBJECT);
         mTitleToolbar.setText(mTitle);
         mTransactionIdText.setText(mSubmitCashbillData.getInv());
         mTxtMemberId.setText(mSubmitCashbillData.getMember_id());
@@ -124,7 +125,7 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
         mTxtTotalAmount.setText(mSubmitCashbillData.getTotalharga());
         mRemark.setText(mSubmitCashbillData.getRemark());
 
-//        setAdapter(mSubmitCashbillData.getDetail());
+        mUserActionListener.getData();
     }
 
     @Override
