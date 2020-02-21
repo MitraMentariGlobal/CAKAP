@@ -357,7 +357,7 @@ public interface NetworkService {
                                                                  @Field(Constant.BODY_RECRUITING) String recId,
                                                                  @Field(Constant.BODY_SPONSOR) String sponsorId,
                                                                  @Field(Constant.BODY_MEMBER_ID2) String memberId,
-                                                                 @Field(Constant.BODY_NAMA2) String name,
+                                                                 @Field(Constant.BODY_NAME) String name,
                                                                  @Field(Constant.BODY_KTP) String ktp,
                                                                  @Field(Constant.BODY_JENIS_KELAMIN) String gender,
                                                                  @Field(Constant.BODY_TEMPAT_LAHIR) String pob,

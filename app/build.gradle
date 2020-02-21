@@ -149,6 +149,7 @@ android {
             buildConfigField 'String', 'BODY_ACTIVATION', endpointProperties['body_activation']
             buildConfigField 'String', 'BODY_ACCOUNT_HOLDER', endpointProperties['body_accountholder']
             buildConfigField 'String', 'BODY_PASANGAN', endpointProperties['body_pasangan']
+            buildConfigField 'String', 'BODY_NAME', endpointProperties['body_name']
         }
     }
 

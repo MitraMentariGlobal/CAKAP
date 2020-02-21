@@ -102,6 +102,7 @@ public class Constant {
     public static final String BODY_ACTIVATION = BuildConfig.BODY_ACTIVATION;
     public static final String BODY_ACCOUNT_HOLDER = BuildConfig.BODY_ACCOUNT_HOLDER;
     public static final String BODY_PASANGAN = BuildConfig.BODY_PASANGAN;
+    public static final String BODY_NAME = BuildConfig.BODY_NAME;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;

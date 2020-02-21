@@ -22,6 +22,7 @@ import co.id.cakap.network.ApiResponseReligion;
 import co.id.cakap.network.ApiResponseSubmitRegistration;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
+import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -377,7 +378,7 @@ public class DetailRegistrationPresenter implements DetailRegistrationContract.U
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
         mMainRepository.postRegistrationData(mResultDataLogin.getMember_id(), mResultDataLogin.getUsername(), pin,
-                recId, sponsorId, memberId, name, ktp, gender, pob, dob, religion, email, noTelp, noHp, alamat,
+                recId, sponsorId, memberId, name, ktp, gender, pob, DateHelper.changeToFormatBackend(dob), religion, email, noTelp, noHp, alamat,
                 kotaId, kodePos, activation, pewaris, hubungan, bankId, cabang, namaNasabah, norek)
                 .subscribe(new ResourceSubscriber<ApiResponseSubmitRegistration>() {
                     @Override
