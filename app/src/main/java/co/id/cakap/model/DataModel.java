@@ -12,6 +12,8 @@ import co.id.cakap.data.CashbillSuccessDataDao;
 import co.id.cakap.data.DaoSession;
 import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.data.FirebaseTokenDataDao;
+import co.id.cakap.data.InvoiceToMbSuccessData;
+import co.id.cakap.data.InvoiceToMbSuccessDataDao;
 import co.id.cakap.data.JenisKelaminData;
 import co.id.cakap.data.JenisKelaminDataDao;
 import co.id.cakap.data.KotaData;
@@ -45,6 +47,7 @@ public class DataModel extends BaseModel {
     private KotaDataDao mKotaDataDao;
     private SubmitCashbillDataDao mSubmitCashbillDataDao;
     private CashbillSuccessDataDao mCashbillSuccessDataDao;
+    private InvoiceToMbSuccessDataDao mInvoiceToMbSuccessDataDao;
 
     public DataModel(DaoSession daoSession) {
         super(daoSession);
@@ -58,6 +61,7 @@ public class DataModel extends BaseModel {
         mKotaDataDao = daoSession.getKotaDataDao();
         mSubmitCashbillDataDao = daoSession.getSubmitCashbillDataDao();
         mCashbillSuccessDataDao = daoSession.getCashbillSuccessDataDao();
+        mInvoiceToMbSuccessDataDao = daoSession.getInvoiceToMbSuccessDataDao();
     }
 
     public void insertResultDataLogin(ResultDataLogin resultDataLogin){
@@ -182,5 +186,17 @@ public class DataModel extends BaseModel {
 
     public void deleteCashbillSuccessDetailData() {
         mCashbillSuccessDataDao.deleteAll();
+    }
+
+    public void insertInvoiceToMbSuccessDetailData(InvoiceToMbSuccessData invoiceToMbSuccessData){
+        mInvoiceToMbSuccessDataDao.insertOrReplace(invoiceToMbSuccessData);
+    }
+
+    public List<InvoiceToMbSuccessData> getAllInvoiceToMbSuccessDetailData() {
+        return mInvoiceToMbSuccessDataDao.loadAll();
+    }
+
+    public void deleteInvoiceToMbSuccessDetailData() {
+        mInvoiceToMbSuccessDataDao.deleteAll();
     }
 }

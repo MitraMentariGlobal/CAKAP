@@ -29,6 +29,7 @@ import co.id.cakap.adapter.CashbillSuccessAdapter;
 import co.id.cakap.adapter.InvoiceToMbSuccessAdapter;
 import co.id.cakap.data.CashbillSuccessData;
 import co.id.cakap.data.InvoiceToMbSuccessData;
+import co.id.cakap.data.SubmitInvoiceToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessContract;
@@ -68,9 +69,14 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
     LinearLayout mLinearRemark;
     @BindView(R.id.et_remark)
     EditText mRemark;
+    @BindView(R.id.txt_date)
+    TextView mTxtDate;
+    @BindView(R.id.txt_total_amount)
+    TextView mTxtTotalAmount;
 
     private String mTitle = "";
     private String mTransactionId = "INV - 123123123123123";
+    private SubmitInvoiceToMbData mSubmitInvoiceToMbData;
     private InvoiceToMbSuccessAdapter mListAdapter;
     private InvoiceToMbSuccessContract.UserActionListener mUserActionListener;
 
@@ -97,13 +103,22 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
     public void initializeData() {
         mUserActionListener = mInvoiceToMbSuccessPresenter;
         mInvoiceToMbSuccessPresenter.setView(this);
-        mUserActionListener.getData();
 
+        showProgressBar();
         Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra(Constant.SUCCESS_DATA_OBJECT);
+
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
-//        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
-        mTransactionIdText.setText(mTransactionId);
+        mSubmitInvoiceToMbData = b.getParcelable(Constant.SUCCESS_DATA_OBJECT);
         mTitleToolbar.setText(mTitle);
+        mTransactionIdText.setText(mSubmitInvoiceToMbData.getInv());
+        mMbId.setText(mSubmitInvoiceToMbData.getMember_id());
+        mName.setText(mSubmitInvoiceToMbData.getMember_id());
+        mTxtDate.setText(mSubmitInvoiceToMbData.getTgl());
+        mTxtTotalAmount.setText(mSubmitInvoiceToMbData.getTotalharga());
+        mRemark.setText(mSubmitInvoiceToMbData.getRemark());
+
+        mUserActionListener.getData();
     }
 
     @Override

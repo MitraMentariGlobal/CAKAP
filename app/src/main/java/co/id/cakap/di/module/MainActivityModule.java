@@ -11,6 +11,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.NetworkService;
 import co.id.cakap.repository.MainRepository;
+import co.id.cakap.ui.createActivationForm.CreateActivationFormActivity;
+import co.id.cakap.ui.createActivationForm.CreateActivationFormPresenter;
 import co.id.cakap.ui.dashboard.activity.activityBonusStatement.ActivityBonusStatementFragment;
 import co.id.cakap.ui.dashboard.activity.activityBonusStatement.ActivityBonusStatementPresenter;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
@@ -142,6 +144,7 @@ public class MainActivityModule {
     private MonthlyPointReportActivity monthlyPointReportActivity;
     private NetworkGenealogyActivity networkGenealogyActivity;
     private NetworkTableActivity networkTableActivity;
+    private CreateActivationFormActivity createActivationFormActivity;
 
     private HomeFragment homeFragment;
     private ActivityFragment activityFragment;
@@ -341,6 +344,10 @@ public class MainActivityModule {
 
     public MainActivityModule(NetworkTableActivity networkTableActivity) {
         this.networkTableActivity = networkTableActivity;
+    }
+
+    public MainActivityModule(CreateActivationFormActivity createActivationFormActivity) {
+        this.createActivationFormActivity = createActivationFormActivity;
     }
 
     @Provides
@@ -647,5 +654,11 @@ public class MainActivityModule {
     @ActivityScope
     ActivityBonusStatementPresenter provideBonusStatementPresenter(MainRepository mainRepository, DataModel dataModel) {
         return new ActivityBonusStatementPresenter(mainRepository, dataModel);
+    }
+
+    @Provides
+    @ActivityScope
+    CreateActivationFormPresenter provideCreateActivationFormPresenter(MainRepository mainRepository, DataModel dataModel) {
+        return new CreateActivationFormPresenter(mainRepository, dataModel);
     }
 }

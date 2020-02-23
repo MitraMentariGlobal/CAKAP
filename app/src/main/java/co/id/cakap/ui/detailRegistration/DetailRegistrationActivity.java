@@ -233,22 +233,8 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
         mTitle.setText(getString(R.string.registration).toUpperCase());
         mRadioMale.setChecked(true);
         setupOnFocusListenerName();
-//        initSpinner();
-        mDetailRegistrationPresenter.getReligion();
 
-//        mEtFulllName.setText("test full name");
-//        mEtIdCard.setText("3475639200129943");
-//        mEtPob.setText("test tempat lahir");
-//        mEtEmail.setText("test email");
-//        mEtPhoneNumber.setText("021123456789");
-//        mEtMobileNumber.setText("081987654321");
-//        mEtAddress.setText("test address");
-//        mEtPostalCode.setText("34321");
-//        mEtHeirName.setText("test nama pewaris");
-//        mEtRelationship.setText("test hubungan pewaris");
-//        mEtBranchName.setText("test cabang");
-//        mEtAccountHolder.setText("test full name");
-//        mEtAccountNumber.setText("633764383847");
+        mDetailRegistrationPresenter.getReligion();
     }
 
     @Override

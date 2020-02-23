@@ -9,6 +9,8 @@ import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseActivityCashbill;
+import co.id.cakap.network.ApiResponseCancelItemCashbill;
+import co.id.cakap.network.ApiResponseCancelItemInvoiceToMb;
 import co.id.cakap.network.ApiResponseInvoiceToMb;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
@@ -24,8 +26,6 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
     private static ResultDataLogin mResultDataLogin;
-
-    private ArrayList<ActivityInvToMbData> arrayList;
 
     public ActivityInvToMbPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -50,19 +50,6 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
 
     @Override
     public void getData(Context context, String tahun, String bulan) {
-//        arrayList = new ArrayList<>();
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        arrayList.add(new ActivityInvToMbData("INV - 456456456456456", "BC123", "Nama Sub Stockist", "IDR 100.000.000", "123", "28 Jan 2020"));
-//        getView().setAdapter(arrayList);
-
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
@@ -81,6 +68,47 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
                             } else {
                                 getView().setAdapter(apiResponseInvoiceToMb.getData());
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void cancelTransaction(ActivityInvToMbData activityInvToMbData, String pin, Context context, String tahun, String bulan) {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postCancelItemInvoiceToMb(mResultDataLogin.getMember_id(), mResultDataLogin.getUsername(), pin, activityInvToMbData.getItem_id())
+                .subscribe(new ResourceSubscriber<ApiResponseCancelItemInvoiceToMb>() {
+                    @Override
+                    public void onNext(ApiResponseCancelItemInvoiceToMb apiResponseCancelItemInvoiceToMb) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseCancelItemInvoiceToMb.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            getData(context, tahun, bulan);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -241,6 +241,11 @@ public interface NetworkService {
                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                            @Body Map<String, Object> param);
 
+    @POST("submit_invoice_mb")
+    Flowable<ApiResponseSubmitInvoiceToMb> postSubmitInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                           @Body Map<String, Object> param);
+
     @FormUrlEncoded
     @POST("search_mb_invoice")
     Flowable<ApiResponseSearchMbInvoice> postSearchMbInvoice(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
@@ -280,6 +285,15 @@ public interface NetworkService {
                                                                    @Field(Constant.BODY_USER_NAME) String username,
                                                                    @Field(Constant.BODY_PIN) String pin,
                                                                    @Field(Constant.BODY_SO_ID) String soId);
+
+    @FormUrlEncoded
+    @POST("submit_cancel_invoice_mb")
+    Flowable<ApiResponseCancelItemInvoiceToMb> postCancelItemInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                         @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                         @Field(Constant.BODY_USER_ID) String userId,
+                                                                         @Field(Constant.BODY_USER_NAME) String username,
+                                                                         @Field(Constant.BODY_PIN) String pin,
+                                                                         @Field(Constant.BODY_SO_ID) String soId);
 
     @FormUrlEncoded
     @POST("req_invoice_mb")

@@ -2,16 +2,23 @@ package co.id.cakap.ui.invoiceToMb;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
 import co.id.cakap.data.ResultDataLogin;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseItemInvoiceToMb;
 import co.id.cakap.network.ApiResponseSearchMbInvoice;
 import co.id.cakap.network.ApiResponseSearchMemberCashbill;
+import co.id.cakap.network.ApiResponseSubmitCashbill;
+import co.id.cakap.network.ApiResponseSubmitInvoiceToMb;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.cashbill.CashbillActivityContract;
+import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -23,6 +30,7 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
     private static ResultDataLogin mResultDataLogin;
+    private static String mMbId = "";
 
     private OperationUserStatusData operationUserStatusData;
     private ArrayList<ItemShopData> arrayList;
@@ -81,6 +89,7 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
                         Logger.d("<<<<<=====");
 
                         try {
+                            mMbId = mbId;
                             getItemInvoice(apiResponseSearchMbInvoice.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -145,5 +154,90 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
                         Logger.d("onComplete");
                     }
                 });
+    }
+
+    @Override
+    public void submitData(String pin, String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData) {
+        getView().showProgressBar();
+
+        mMainRepository.postSubmitInvoiceToMb(getParam(pin, totalHarga, totalPv, totalBv, remark, resultData))
+                .subscribe(new ResourceSubscriber<ApiResponseSubmitInvoiceToMb>() {
+                    @Override
+                    public void onNext(ApiResponseSubmitInvoiceToMb apiResponseSubmitInvoiceToMb) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseSubmitInvoiceToMb.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            saveData(apiResponseSubmitInvoiceToMb);
+                            getView().successSubmitData(apiResponseSubmitInvoiceToMb.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    private Map<String, Object> getParam(String pin, String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopData> resultData) {
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+
+        List<Object> mAddCashbillDataList = new ArrayList<>();
+        Map<String, Object> mParam = new HashMap<>();
+        for (ItemShopData itemShopData : resultData) {
+            if (itemShopData.getCart() != null) {
+                if (Integer.parseInt(itemShopData.getCart()) != 0) {
+                    Map<String, Object> mDetail = new HashMap<>();
+
+                    mDetail.put(Constant.BODY_TITIPAN_ID, itemShopData.getId());
+                    mDetail.put(Constant.BODY_ITEM_ID, itemShopData.getItem_code());
+                    mDetail.put(Constant.BODY_PRICE, itemShopData.getHarga());
+                    mDetail.put(Constant.BODY_PV, itemShopData.getPv());
+//                    mDetail.put(Constant.BODY_BV, itemShopData.getBv());
+                    mDetail.put(Constant.BODY_QTY, itemShopData.getCart());
+
+                    mAddCashbillDataList.add(mDetail);
+                }
+            }
+        }
+
+        mParam.put(Constant.BODY_PIN, pin);
+        mParam.put(Constant.BODY_USER_ID, mResultDataLogin.getMember_id());
+        mParam.put(Constant.BODY_WILAYAH, mResultDataLogin.getWilayah());
+        mParam.put(Constant.BODY_USER_NAME, mResultDataLogin.getUsername());
+        mParam.put(Constant.BODY_MEMBER_ID2, mMbId);
+        mParam.put(Constant.BODY_TGL, DateHelper.getTimeNowBackEnd());
+        mParam.put(Constant.BODY_TOTAL_HARGA, totalHarga);
+        mParam.put(Constant.BODY_TOTAL_PV, totalPv);
+//        mParam.put(Constant.BODY_TOTAL_BV, totalBv);
+        mParam.put(Constant.BODY_REMARK, remark);
+        mParam.put(Constant.BODY_DETAIL, mAddCashbillDataList);
+
+        return mParam;
+    }
+
+    public void saveData(ApiResponseSubmitInvoiceToMb apiResponseSubmitInvoiceToMb) {
+        mDataModel.deleteInvoiceToMbSuccessDetailData();
+        for (int i = 0; i < apiResponseSubmitInvoiceToMb.getData().getDetail().size(); i++) {
+            mDataModel.insertInvoiceToMbSuccessDetailData(apiResponseSubmitInvoiceToMb.getData().getDetail().get(i));
+        }
     }
 }

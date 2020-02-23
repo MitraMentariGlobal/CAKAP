@@ -58,8 +58,12 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         holder.mName.setText(activityInvToMbData.getName());
         holder.mTotalAmount.setText("IDR " + activityInvToMbData.getTotal_amount());
 
-        if (!(activityInvToMbData.getFlag_acform().equals("0") && activityInvToMbData.getType_id().equals("1"))) {
+        if (!(activityInvToMbData.getFlag_cancel().equals("0"))) {
             holder.mItemCancel.setVisibility(View.GONE);
+        }
+
+        if (activityInvToMbData.getFlag_acform().equals("0") && activityInvToMbData.getType_id().equals("1")) {
+            holder.mItemCreate.setVisibility(View.VISIBLE);
         }
     }
 
@@ -88,6 +92,8 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         ImageView mItemCancel;
         @BindView(R.id.item_verified)
         ImageView mItemVerified;
+        @BindView(R.id.item_create)
+        ImageView mItemCreate;
 
         Context context;
         ActivityInvToMbData activityInvToMbData;
@@ -115,7 +121,6 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -123,9 +128,14 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new ActivityInvToMbPresenter().getView().openPinDialog(activityInvToMbData);
                 }
             });
+        }
+
+        @OnClick(R.id.item_create)
+        public void actionCreate() {
+            new ActivityInvToMbPresenter().getView().createActivationForm(activityInvToMbData);
         }
     }
 }

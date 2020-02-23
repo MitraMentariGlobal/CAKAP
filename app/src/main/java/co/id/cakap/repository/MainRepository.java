@@ -14,6 +14,7 @@ import co.id.cakap.network.ApiResponseActivityReqInvoiceMb;
 import co.id.cakap.network.ApiResponseBank;
 import co.id.cakap.network.ApiResponseBonusStatementData;
 import co.id.cakap.network.ApiResponseCancelItemCashbill;
+import co.id.cakap.network.ApiResponseCancelItemInvoiceToMb;
 import co.id.cakap.network.ApiResponseChangePassword;
 import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
@@ -46,6 +47,7 @@ import co.id.cakap.network.ApiResponseStockReportCard;
 import co.id.cakap.network.ApiResponseStockReportCardItem;
 import co.id.cakap.network.ApiResponseStockReportUpdate;
 import co.id.cakap.network.ApiResponseSubmitCashbill;
+import co.id.cakap.network.ApiResponseSubmitInvoiceToMb;
 import co.id.cakap.network.ApiResponseSubmitRegistration;
 import co.id.cakap.network.ApiResponseUpdateProfile;
 import co.id.cakap.network.NetworkService;
@@ -238,6 +240,12 @@ public class MainRepository extends BaseRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Flowable<ApiResponseSubmitInvoiceToMb> postSubmitInvoiceToMb(Map<String, Object> param) {
+        return networkService.postSubmitInvoiceToMb(Constant.CONTENT_TYPE_JSON, Constant.CAKAP_KEY, param)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     public Flowable<ApiResponseSearchMbInvoice> postSearchMbInvoice(String userId, String noStc) {
         return networkService.postSearchMbInvoice(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, noStc)
                 .subscribeOn(Schedulers.computation())
@@ -264,6 +272,12 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseCancelItemCashbill> postCancelItemCashbill(String userId, String username, String pin, String soId) {
         return networkService.postCancelItemCashbill(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, username, pin, soId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseCancelItemInvoiceToMb> postCancelItemInvoiceToMb(String userId, String username, String pin, String soId) {
+        return networkService.postCancelItemInvoiceToMb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, username, pin, soId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

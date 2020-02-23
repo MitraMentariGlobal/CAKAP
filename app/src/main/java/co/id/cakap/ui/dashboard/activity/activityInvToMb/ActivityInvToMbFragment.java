@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.activity.activityInvToMb;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -40,10 +44,12 @@ import co.id.cakap.adapter.ActivityInvToMbAdapter;
 import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.createActivationForm.CreateActivationFormActivity;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMbContract.View, DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener  {
@@ -152,6 +158,49 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
         intent.putExtra(Constant.TOTAL_DETAIL, activityInvToMbData.getTotal_amount());
         intent.putExtra(Constant.REMARK_DETAIL, activityInvToMbData.getRemark());
         startActivity(intent);
+    }
+
+    @Override
+    public void createActivationForm(ActivityInvToMbData activityInvToMbData) {
+        Intent intent = new Intent(getContext(), CreateActivationFormActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void openPinDialog(ActivityInvToMbData activityInvToMbData) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(getContext());
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mActivityInvToMbPresenter.cancelTransaction(activityInvToMbData, pin, getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 
     @OnClick(R.id.fab)

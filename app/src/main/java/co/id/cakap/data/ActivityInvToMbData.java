@@ -56,6 +56,10 @@ public class ActivityInvToMbData implements Parcelable {
     @Expose
     private String flag_acform;
 
+    @SerializedName("flag_cancel")
+    @Expose
+    private String flag_cancel;
+
     @SerializedName("type_id")
     @Expose
     private String type_id;
@@ -70,13 +74,14 @@ public class ActivityInvToMbData implements Parcelable {
         date = in.readString();
         remark = in.readString();
         flag_acform = in.readString();
+        flag_cancel = in.readString();
         type_id = in.readString();
     }
 
-    @Generated(hash = 223341624)
+    @Generated(hash = 484297221)
     public ActivityInvToMbData(String item_id, String transaction_id, String member_id, String name,
             String total_amount, String total_pv, String date, String remark, String flag_acform,
-            String type_id) {
+            String flag_cancel, String type_id) {
         this.item_id = item_id;
         this.transaction_id = transaction_id;
         this.member_id = member_id;
@@ -86,6 +91,7 @@ public class ActivityInvToMbData implements Parcelable {
         this.date = date;
         this.remark = remark;
         this.flag_acform = flag_acform;
+        this.flag_cancel = flag_cancel;
         this.type_id = type_id;
     }
 
@@ -104,6 +110,7 @@ public class ActivityInvToMbData implements Parcelable {
         dest.writeString(date);
         dest.writeString(remark);
         dest.writeString(flag_acform);
+        dest.writeString(flag_cancel);
         dest.writeString(type_id);
     }
 
@@ -182,6 +189,14 @@ public class ActivityInvToMbData implements Parcelable {
 
     public void setFlag_acform(String flag_acform) {
         this.flag_acform = flag_acform;
+    }
+
+    public String getFlag_cancel() {
+        return this.flag_cancel;
+    }
+
+    public void setFlag_cancel(String flag_cancel) {
+        this.flag_cancel = flag_cancel;
     }
 
     public String getType_id() {
