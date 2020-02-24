@@ -124,6 +124,8 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
         mTxtDate.setText(mSubmitCashbillData.getTgl());
         mTxtTotalAmount.setText(mSubmitCashbillData.getTotalharga());
         mRemark.setText(mSubmitCashbillData.getRemark());
+        if (mSubmitCashbillData.getRemark().equals("0"))
+            mRemark.setText("-");
 
         mUserActionListener.getData();
     }

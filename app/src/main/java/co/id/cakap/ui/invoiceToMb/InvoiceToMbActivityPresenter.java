@@ -206,10 +206,16 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
             if (itemShopData.getCart() != null) {
                 if (Integer.parseInt(itemShopData.getCart()) != 0) {
                     Map<String, Object> mDetail = new HashMap<>();
+                    String harga = itemShopData.getHarga();
+                    if (harga.contains(",")) {
+                        harga = harga.split(",")[0];
+                    } else if (harga.contains(".")) {
+                        harga = harga.split("\\.")[0];
+                    }
 
                     mDetail.put(Constant.BODY_TITIPAN_ID, itemShopData.getId());
                     mDetail.put(Constant.BODY_ITEM_ID, itemShopData.getItem_code());
-                    mDetail.put(Constant.BODY_PRICE, itemShopData.getHarga());
+                    mDetail.put(Constant.BODY_PRICE, harga);
                     mDetail.put(Constant.BODY_PV, itemShopData.getPv());
 //                    mDetail.put(Constant.BODY_BV, itemShopData.getBv());
                     mDetail.put(Constant.BODY_QTY, itemShopData.getCart());
@@ -217,6 +223,12 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
                     mAddCashbillDataList.add(mDetail);
                 }
             }
+        }
+
+        if (totalHarga.contains(",")) {
+            totalHarga = totalHarga.split(",")[0];
+        } else if (totalHarga.contains(".")) {
+            totalHarga = totalHarga.split("\\.")[0];
         }
 
         mParam.put(Constant.BODY_PIN, pin);

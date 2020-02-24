@@ -117,6 +117,8 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
         mTxtDate.setText(mSubmitInvoiceToMbData.getTgl());
         mTxtTotalAmount.setText(mSubmitInvoiceToMbData.getTotalharga());
         mRemark.setText(mSubmitInvoiceToMbData.getRemark());
+        if (mSubmitInvoiceToMbData.getRemark().equals("0"))
+            mRemark.setText("-");
 
         mUserActionListener.getData();
     }
