@@ -54,8 +54,8 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         holder.mTotalPv.setText(activityInvToMbData.getTotal_pv());
         holder.mTransactionId.setText(activityInvToMbData.getTransaction_id());
         holder.mDate.setText(activityInvToMbData.getDate());
-        holder.mMemberId.setText(activityInvToMbData.getMember_id());
-        holder.mName.setText(activityInvToMbData.getName());
+        holder.mMemberId.setText(activityInvToMbData.getMember_id() + " - " + activityInvToMbData.getNama());
+        holder.mName.setText(activityInvToMbData.getNama());
         holder.mTotalAmount.setText("IDR " + activityInvToMbData.getTotal_amount());
 
         if (!(activityInvToMbData.getFlag_cancel().equals("0"))) {

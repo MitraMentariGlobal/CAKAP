@@ -153,7 +153,7 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
         intent.putExtra(Constant.ITEM_ID_DETAIL, activityInvToMbData.getItem_id());
         intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityInvToMbData.getTransaction_id());
         intent.putExtra(Constant.MEMBER_ID_DETAIL, activityInvToMbData.getMember_id());
-        intent.putExtra(Constant.NAME_DETAIL, activityInvToMbData.getName());
+        intent.putExtra(Constant.NAME_DETAIL, activityInvToMbData.getNama());
         intent.putExtra(Constant.DATE_DETAIL, activityInvToMbData.getDate());
         intent.putExtra(Constant.TOTAL_DETAIL, activityInvToMbData.getTotal_amount());
         intent.putExtra(Constant.REMARK_DETAIL, activityInvToMbData.getRemark());
@@ -163,6 +163,10 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     @Override
     public void createActivationForm(ActivityInvToMbData activityInvToMbData) {
         Intent intent = new Intent(getContext(), CreateActivationFormActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.create_activation_form));
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityInvToMbData.getTransaction_id());
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, activityInvToMbData.getMember_id());
+        intent.putExtra(Constant.NAME_DETAIL, activityInvToMbData.getNama());
         startActivity(intent);
     }
 

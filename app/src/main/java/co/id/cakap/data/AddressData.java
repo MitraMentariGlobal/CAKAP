@@ -20,6 +20,10 @@ import lombok.Data;
 @Data
 @Entity
 public class AddressData implements Parcelable {
+    @SerializedName("kota_id")
+    @Expose
+    private String kota_id;
+
     @SerializedName("kota")
     @Expose
     private String kota;
@@ -27,6 +31,10 @@ public class AddressData implements Parcelable {
     @SerializedName("province")
     @Expose
     private String province;
+
+    @SerializedName("province_id")
+    @Expose
+    private String province_id;
 
     @SerializedName("address")
     @Expose
@@ -37,9 +45,11 @@ public class AddressData implements Parcelable {
     private boolean isCheck;
 
     @Keep
-    public AddressData(String kota, String province, String address, boolean isCheck) {
+    public AddressData(String kota_id, String kota, String province_id, String province, String address, boolean isCheck) {
+        this.kota_id = kota_id;
         this.kota = kota;
         this.province = province;
+        this.province_id = province_id;
         this.address = address;
         this.isCheck = isCheck;
     }
@@ -98,6 +108,22 @@ public class AddressData implements Parcelable {
 
     public void setIsCheck(boolean isCheck) {
         this.isCheck = isCheck;
+    }
+
+    public String getKota_id() {
+        return this.kota_id;
+    }
+
+    public void setKota_id(String kota_id) {
+        this.kota_id = kota_id;
+    }
+
+    public String getProvince_id() {
+        return this.province_id;
+    }
+
+    public void setProvince_id(String province_id) {
+        this.province_id = province_id;
     }
 
     public static final Creator<AddressData> CREATOR = new Creator<AddressData>() {

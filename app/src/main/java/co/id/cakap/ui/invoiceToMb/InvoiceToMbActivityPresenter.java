@@ -89,8 +89,8 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
                         Logger.d("<<<<<=====");
 
                         try {
-                            mMbId = mbId;
                             getItemInvoice(apiResponseSearchMbInvoice.getData());
+                            mMbId = apiResponseSearchMbInvoice.getData().getUser_code();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

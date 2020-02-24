@@ -67,8 +67,8 @@ public class CashbillActivityPresenter implements CashbillActivityContract.UserA
                         Logger.d("<<<<<=====");
 
                         try {
-                            mMemberId = memberId;
                             getItemCashbill(apiResponseSearchMemberCashbill.getData());
+                            mMemberId = apiResponseSearchMemberCashbill.getData().getUser_code();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
