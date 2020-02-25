@@ -53,12 +53,14 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
     TextView mTitleToolbar;
     @BindView(R.id.txt_transaction_id)
     TextView mTransactionIdText;
+    @BindView(R.id.txt_member_id)
+    TextView mTxtMemberId;
+    @BindView(R.id.txt_name)
+    TextView mTxtName;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
     @BindView(R.id.et_mb_id)
     EditText mMbId;
-    @BindView(R.id.et_name)
-    EditText mName;
     @BindView(R.id.linear_expand_collapse)
     LinearLayout mLinearExpandCollapse;
     @BindView(R.id.item_thumbnail)
@@ -75,6 +77,7 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
     TextView mTxtTotalAmount;
 
     private String mTitle = "";
+    private String mName = "";
     private String mTransactionId = "INV - 123123123123123";
     private SubmitInvoiceToMbData mSubmitInvoiceToMbData;
     private InvoiceToMbSuccessAdapter mListAdapter;
@@ -109,15 +112,16 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
         Bundle b = intent.getBundleExtra(Constant.SUCCESS_DATA_OBJECT);
 
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
+        mName = intent.getStringExtra(Constant.NAME);
         mSubmitInvoiceToMbData = b.getParcelable(Constant.SUCCESS_DATA_OBJECT);
         mTitleToolbar.setText(mTitle);
         mTransactionIdText.setText(mSubmitInvoiceToMbData.getInv());
-        mMbId.setText(mSubmitInvoiceToMbData.getMember_id());
-        mName.setText(mSubmitInvoiceToMbData.getMember_id());
+        mTxtMemberId.setText(mSubmitInvoiceToMbData.getMember_id() + " - " + mName);
+        mTxtName.setText(mSubmitInvoiceToMbData.getMember_id());
         mTxtDate.setText(mSubmitInvoiceToMbData.getTgl());
-        mTxtTotalAmount.setText(mSubmitInvoiceToMbData.getTotalharga());
+        mTxtTotalAmount.setText("IDR " + mSubmitInvoiceToMbData.getTotalharga());
         mRemark.setText(mSubmitInvoiceToMbData.getRemark());
-        if (mSubmitInvoiceToMbData.getRemark().equals("0"))
+        if (mSubmitInvoiceToMbData.getRemark().equals("0") || mSubmitInvoiceToMbData.getRemark().length() == 0)
             mRemark.setText("-");
 
         mUserActionListener.getData();

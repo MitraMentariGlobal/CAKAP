@@ -28,6 +28,7 @@ import co.id.cakap.adapter.ReqInvoiceToBcSuccessAdapter;
 import co.id.cakap.adapter.ReqInvoiceToCompanySuccessAdapter;
 import co.id.cakap.data.ReqInvoiceToBcSuccessData;
 import co.id.cakap.data.ReqInvoiceToCompanySuccessData;
+import co.id.cakap.data.SubmitInvoiceToCompanyData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.DashboardActivity;
@@ -48,12 +49,18 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     RecyclerView mRecyclerView;
     @BindView(R.id.title_toolbar)
     TextView mTitleToolbar;
+    @BindView(R.id.txt_transaction_id)
+    TextView mTxtxTransactionId;
+    @BindView(R.id.txt_date)
+    TextView mTxtDate;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
     @BindView(R.id.txt_payment_method)
     TextView mTxtPaymentMethod;
     @BindView(R.id.txt_total_transaction)
     TextView mTxtTotalTransaction;
+    @BindView(R.id.txt_total_amount)
+    TextView mTxtTotalAmount;
     @BindView(R.id.txt_copy_nominal)
     TextView mTxtCopyNominal;
     @BindView(R.id.txt_copy_rekening_1)
@@ -70,9 +77,13 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     LinearLayout mLinearRemark;
     @BindView(R.id.et_remark)
     EditText mRemark;
+    @BindView(R.id.txt_info)
+    TextView mTxtInfo;
 
     private String mTitle = "";
     private String mPaymentMethod = "";
+    private String mPaymentInfo = "";
+    private SubmitInvoiceToCompanyData mSubmitInvoiceToCompanyData;
     private ReqInvoiceToCompanySuccessAdapter mListAdapter;
     private ReqInvoiceToCompanySuccessContract.UserActionListener mUserActionListener;
 
@@ -97,12 +108,26 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     public void initializeData() {
         mUserActionListener = mReqInvoiceToCompanySuccessPresenter;
         mReqInvoiceToCompanySuccessPresenter.setView(this);
-        mUserActionListener.getData();
 
+        showProgressBar();
         Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra(Constant.SUCCESS_DATA_OBJECT);
+
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
         mPaymentMethod = intent.getStringExtra(Constant.PAYMENT_METHOD);
+        mPaymentInfo = intent.getStringExtra(Constant.PAYMENT_INFO);
+        mSubmitInvoiceToCompanyData = b.getParcelable(Constant.SUCCESS_DATA_OBJECT);
+
         mTitleToolbar.setText(mTitle);
+        mTxtInfo.setText(mPaymentInfo);
+        mTxtxTransactionId.setText(mSubmitInvoiceToCompanyData.getInv());
+        mTxtDate.setText(mSubmitInvoiceToCompanyData.getTgl());
+        mTxtTotalTransaction.setText("IDR " + mSubmitInvoiceToCompanyData.getTotalharga());
+        mTxtTotalAmount.setText("IDR " + mSubmitInvoiceToCompanyData.getTotalharga());
+        mRemark.setText(mSubmitInvoiceToCompanyData.getRemark());
+        if (mSubmitInvoiceToCompanyData.getRemark().equals("0") || mSubmitInvoiceToCompanyData.getRemark().length() == 0)
+            mRemark.setText("-");
+
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
 
         mTxtPaymentMethod.setText(getResources().getString(R.string.payment_method_string, mPaymentMethod));
@@ -110,6 +135,8 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
             mLinearMustTransfer.setVisibility(View.GONE);
             mLinearRekening.setVisibility(View.GONE);
         }
+
+        mUserActionListener.getData();
     }
 
     @Override

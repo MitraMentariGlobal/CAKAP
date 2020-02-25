@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,8 +29,11 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.AddressAdapter;
+import co.id.cakap.data.AddressDefaultData;
 import co.id.cakap.data.AddressData;
+import co.id.cakap.data.AddressHistoryData;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.NewAddressDialog;
@@ -60,6 +62,8 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     private EditText mAlamat;
     private TextView mSubmit;
     private AddressAdapter mListAdapter;
+    private AddressDefaultData mAddressDefaultData;
+    private AddressHistoryData mAddressHistoryData;
     private String mProvinceId = "";
     private String mKotaId = "";
     private String mKotaIdChange = "";
@@ -115,10 +119,25 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     }
 
     @Override
-    public void setAdapter(List<AddressData> resultData) {
+    public void setAdapter(AddressData addressData) {
+        mAddressDefaultData = addressData.getAddressDefaultData();
+
+        AddressHistoryData newData = new AddressHistoryData();
+        newData.setId(mAddressDefaultData.getId());
+        newData.setKota(mAddressDefaultData.getNamakota());
+        newData.setKota_id(mAddressDefaultData.getKota_id());
+        newData.setAddress(mAddressDefaultData.getAddress());
+        newData.setProvince(mAddressDefaultData.getProvince());
+        newData.setTimur(mAddressDefaultData.getTimur());
+
+        List<AddressHistoryData> dataList = new ArrayList<>();
+        dataList.add(newData);
+        dataList.addAll(addressData.getResultData());
+
+        Logger.d("setAdapter");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-        mListAdapter = new AddressAdapter(mRecyclerView, resultData, this);
+        mListAdapter = new AddressAdapter(mRecyclerView, dataList, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
@@ -138,11 +157,17 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
             }
         });
 
+//        chooseAddress(addressData.getResultData().get(0));
         hideProgressBar();
     }
 
     @Override
-    public void changeAddress(String province, String kota, String address) {
+    public void chooseAddress(AddressHistoryData addressHistoryData) {
+        mAddressHistoryData = addressHistoryData;
+    }
+
+    @Override
+    public void changeAddress(AddressHistoryData addressHistoryData) {
         NewAddressDialog utils = new NewAddressDialog();
         Dialog dialog = utils.showDialog(this);
 
@@ -150,21 +175,33 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         mProvinceSpinner = dialog.findViewById(R.id.province_spinner);
         mAlamat = dialog.findViewById(R.id.et_alamat);
         mSubmit = dialog.findViewById(R.id.submit_btn);
+//        mKotaId = "";
 
-        initAddressSpinner();
+        initProvinceSpinner();
 
-        for (int i = 0; i < mProvinsiIdList.size(); i++) {
-            if (mProvinsiIdList.get(i).equals(province)) {
+        for (int i = 0; i < mProvinceData.size(); i++) {
+            if (mProvinceData.get(i).equals(addressHistoryData.getProvince())) {
                 mProvinceSpinner.setSelection(i);
             }
         }
 
-        showProgressBar();
-        mKotaIdChange = kota;
-        mIsChangeAddress = true;
-        mPickUpDeliveryActivityPresenter.getKota(mProvinceId);
+        Logger.d("addressHistoryData.getKota_id() 1 : " + addressHistoryData.getKota_id());
+        Logger.d("addressHistoryData.getId() 1 : " + addressHistoryData.getId());
+        Logger.d("addressHistoryData.getKota() 1 : " + addressHistoryData.getKota());
+        Logger.d("addressHistoryData.getProvince() 1 : " + addressHistoryData.getProvince());
+        Logger.d("mKotaIdChange 1 : " + mKotaIdChange);
 
-        mAlamat.setText(address);
+        mKotaIdChange = addressHistoryData.getKota_id();
+        Logger.d("mKotaId 1 : " + mKotaId);
+        mKotaId = mKotaIdChange;
+//        if (mKotaIdChange.equals(mKotaId)) {
+//            mKotaIdChange = mKotaId;
+//        }
+
+        mIsChangeAddress = true;
+//        mPickUpDeliveryActivityPresenter.getKota(mProvinceId);
+
+        mAlamat.setText(addressHistoryData.getAddress());
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,6 +209,39 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
                 Logger.d("kota : " + mCitySpinner.getSelectedItem().toString());
                 Logger.d("alamat : " + mAlamat.getText());
                 dialog.hide();
+
+                Logger.d("mKotaId 2 : " + mKotaId);
+                Logger.d("mKotaIdChange : " + mKotaIdChange);
+                Logger.d("addressHistoryData.getId() : " + addressHistoryData.getId());
+                mUserActionListener.editAddress(mAlamat.getText().toString(), mKotaId, addressHistoryData.getId());
+            }
+        });
+    }
+
+    @OnClick(R.id.fab_plus)
+    public void addAddress(View view) {
+        NewAddressDialog utils = new NewAddressDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        mCitySpinner = dialog.findViewById(R.id.city_spinner);
+        mProvinceSpinner = dialog.findViewById(R.id.province_spinner);
+        mAlamat = dialog.findViewById(R.id.et_alamat);
+        mSubmit = dialog.findViewById(R.id.submit_btn);
+//        mKotaId = "";
+
+        initProvinceSpinner();
+
+        mSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logger.d("province : " + mProvinceSpinner.getSelectedItem().toString());
+                Logger.d("kota : " + mCitySpinner.getSelectedItem().toString());
+                Logger.d("alamat : " + mAlamat.getText());
+                dialog.hide();
+
+                Logger.d("mKotaId : " + mKotaId);
+
+                mUserActionListener.addAddress(mAlamat.getText().toString(), mKotaId);
             }
         });
     }
@@ -180,6 +250,8 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
     public void setProvinsiData(List<String> provinsiDataList, List<String> provinsiIdList) {
         mProvinceData = provinsiDataList;
         mProvinsiIdList = provinsiIdList;
+
+        hideProgressBar();
     }
 
     @Override
@@ -222,36 +294,12 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         super.onBackPressed();
     }
 
-    @OnClick(R.id.fab_plus)
-    public void addAddress(View view) {
-        NewAddressDialog utils = new NewAddressDialog();
-        Dialog dialog = utils.showDialog(this);
-
-        mCitySpinner = dialog.findViewById(R.id.city_spinner);
-        mProvinceSpinner = dialog.findViewById(R.id.province_spinner);
-        mAlamat = dialog.findViewById(R.id.et_alamat);
-        mSubmit = dialog.findViewById(R.id.submit_btn);
-
-        initAddressSpinner();
-
-        mSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logger.d("province : " + mProvinceSpinner.getSelectedItem().toString());
-                Logger.d("kota : " + mCitySpinner.getSelectedItem().toString());
-                Logger.d("alamat : " + mAlamat.getText());
-                dialog.hide();
-            }
-        });
-    }
-
-    public void initAddressSpinner() {
+    public void initProvinceSpinner() {
         mProvinceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 mProvinceId = mProvinsiIdList.get(position);
 
-                showProgressBar();
                 mPickUpDeliveryActivityPresenter.getKota(mProvinceId);
             }
 
@@ -269,7 +317,13 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
 
     @OnClick(R.id.text_submit)
     public void actionSubmit(View view) {
-        startActivity(new Intent(this, ReqInvoiceToCompanyActivity.class));
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.ADDRESS_COMPANY_DATA_OBJECT, mAddressDefaultData);
+        b.putParcelable(Constant.ITEM_ADDRESS_COMPANY_DATA_OBJECT, mAddressHistoryData);
+
+        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToCompanyActivity.class);
+        intent.putExtra(Constant.COMPANY_DATA_OBJECT, b);
+        startActivity(intent);
     }
 
     public void initSpinner() {

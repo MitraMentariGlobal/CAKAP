@@ -7,6 +7,8 @@ import java.util.List;
 
 import co.id.cakap.data.BankData;
 import co.id.cakap.data.BankDataDao;
+import co.id.cakap.data.BankInfoData;
+import co.id.cakap.data.BankInfoDataDao;
 import co.id.cakap.data.CashbillSuccessData;
 import co.id.cakap.data.CashbillSuccessDataDao;
 import co.id.cakap.data.DaoSession;
@@ -26,6 +28,10 @@ import co.id.cakap.data.ProvinsiData;
 import co.id.cakap.data.ProvinsiDataDao;
 import co.id.cakap.data.ReligionData;
 import co.id.cakap.data.ReligionDataDao;
+import co.id.cakap.data.ReqInvoiceToBcSuccessData;
+import co.id.cakap.data.ReqInvoiceToBcSuccessDataDao;
+import co.id.cakap.data.ReqInvoiceToCompanySuccessData;
+import co.id.cakap.data.ReqInvoiceToCompanySuccessDataDao;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.data.ResultDataLoginDao;
 import co.id.cakap.data.SubmitCashbillData;
@@ -43,11 +49,14 @@ public class DataModel extends BaseModel {
     private JenisKelaminDataDao mJenisKelaminDataDao;
     private ReligionDataDao mReligionDataDao;
     private BankDataDao mBankDataDao;
+    private BankInfoDataDao mBankInfoDataDao;
     private ProvinsiDataDao mProvinsiDataDao;
     private KotaDataDao mKotaDataDao;
     private SubmitCashbillDataDao mSubmitCashbillDataDao;
     private CashbillSuccessDataDao mCashbillSuccessDataDao;
     private InvoiceToMbSuccessDataDao mInvoiceToMbSuccessDataDao;
+    private ReqInvoiceToCompanySuccessDataDao mReqInvoiceToCompanySuccessDataDao;
+    private ReqInvoiceToBcSuccessDataDao mReqInvoiceToBcSuccessDataDao;
 
     public DataModel(DaoSession daoSession) {
         super(daoSession);
@@ -57,11 +66,14 @@ public class DataModel extends BaseModel {
         mJenisKelaminDataDao = daoSession.getJenisKelaminDataDao();
         mReligionDataDao = daoSession.getReligionDataDao();
         mBankDataDao = daoSession.getBankDataDao();
+        mBankInfoDataDao = daoSession.getBankInfoDataDao();
         mProvinsiDataDao = daoSession.getProvinsiDataDao();
         mKotaDataDao = daoSession.getKotaDataDao();
         mSubmitCashbillDataDao = daoSession.getSubmitCashbillDataDao();
         mCashbillSuccessDataDao = daoSession.getCashbillSuccessDataDao();
         mInvoiceToMbSuccessDataDao = daoSession.getInvoiceToMbSuccessDataDao();
+        mReqInvoiceToCompanySuccessDataDao = daoSession.getReqInvoiceToCompanySuccessDataDao();
+        mReqInvoiceToBcSuccessDataDao = daoSession.getReqInvoiceToBcSuccessDataDao();
     }
 
     public void insertResultDataLogin(ResultDataLogin resultDataLogin){
@@ -140,6 +152,18 @@ public class DataModel extends BaseModel {
         mBankDataDao.deleteAll();
     }
 
+    public void insertBankInfoData(BankInfoData bankInfoData){
+        mBankInfoDataDao.insertOrReplace(bankInfoData);
+    }
+
+    public List<BankInfoData> getAllBankInfoData() {
+        return mBankInfoDataDao.loadAll();
+    }
+
+    public void deleteBankInfoData() {
+        mBankInfoDataDao.deleteAll();
+    }
+
     public void insertProvinsiData(ProvinsiData provinsiData){
         mProvinsiDataDao.insertOrReplace(provinsiData);
     }
@@ -198,5 +222,29 @@ public class DataModel extends BaseModel {
 
     public void deleteInvoiceToMbSuccessDetailData() {
         mInvoiceToMbSuccessDataDao.deleteAll();
+    }
+
+    public void insertReqInvoiceToCompanySuccessData(ReqInvoiceToCompanySuccessData reqInvoiceToCompanySuccessData){
+        mReqInvoiceToCompanySuccessDataDao.insertOrReplace(reqInvoiceToCompanySuccessData);
+    }
+
+    public List<ReqInvoiceToCompanySuccessData> getAllReqInvoiceToCompanySuccessData() {
+        return mReqInvoiceToCompanySuccessDataDao.loadAll();
+    }
+
+    public void deleteReqInvoiceToCompanySuccessData() {
+        mReqInvoiceToCompanySuccessDataDao.deleteAll();
+    }
+
+    public void insertReqInvoiceToBcSuccessData(ReqInvoiceToBcSuccessData reqInvoiceToBcSuccessData){
+        mReqInvoiceToBcSuccessDataDao.insertOrReplace(reqInvoiceToBcSuccessData);
+    }
+
+    public List<ReqInvoiceToBcSuccessData> getAllReqInvoiceToBcSuccessData() {
+        return mReqInvoiceToBcSuccessDataDao.loadAll();
+    }
+
+    public void deleteReqInvoiceToBcSuccessData() {
+        mReqInvoiceToBcSuccessDataDao.deleteAll();
     }
 }

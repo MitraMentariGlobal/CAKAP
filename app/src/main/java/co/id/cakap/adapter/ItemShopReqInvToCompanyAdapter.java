@@ -58,7 +58,7 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
 
         holder.mItemCode.setText(itemShopCompanyData.getItem_code());
         holder.mItemName.setText(itemShopCompanyData.getItem_name());
-        holder.mPrice.setText(itemShopCompanyData.getPrice());
+        holder.mPrice.setText(itemShopCompanyData.getFharga());
         holder.mPv.setText(itemShopCompanyData.getPv());
     }
 
@@ -80,7 +80,7 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
                     for (ItemShopCompanyData itemShopCompanyData : mResultData) {
                         if (itemShopCompanyData.getItem_code().toLowerCase().contains(charString) ||
                                 itemShopCompanyData.getItem_name().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getPrice().toLowerCase().contains(charString) ||
+                                itemShopCompanyData.getHarga().toLowerCase().contains(charString) ||
                                 itemShopCompanyData.getPv().toLowerCase().contains(charString)) {
                             filteredList.add(itemShopCompanyData);
                         }
@@ -146,6 +146,7 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
+                itemShopCompanyData.setCart(String.valueOf(qty));
                 itemShopCompanyData.setQty(String.valueOf(qty));
                 mResultData.set(position, itemShopCompanyData);
                 new ReqInvoiceToCompanyActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 0);
@@ -157,6 +158,7 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
             setZeroQty();
             qty += 1;
             mQty.setText(String.valueOf(qty));
+            itemShopCompanyData.setCart(String.valueOf(qty));
             itemShopCompanyData.setQty(String.valueOf(qty));
             mResultData.set(position, itemShopCompanyData);
             new ReqInvoiceToCompanyActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 1);

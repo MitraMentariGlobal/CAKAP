@@ -20,53 +20,76 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class ItemShopCompanyData implements Parcelable {
-    @SerializedName("item_code")
+    @SerializedName("item_id")
     @Expose
     private String item_code;
 
-    @SerializedName("item_name")
+    @SerializedName("name")
     @Expose
     private String item_name;
 
-    @SerializedName("qty")
-    @Expose
-    private String qty;
-
     @SerializedName("price")
     @Expose
-    private String price;
+    private String harga;
 
     @SerializedName("pv")
     @Expose
     private String pv;
 
-    @SerializedName("sub_total_price")
+    @SerializedName("bv")
     @Expose
-    private String sub_total_price;
+    private String bv;
 
-    @SerializedName("sub_total_pv")
+    @SerializedName("fprice")
     @Expose
-    private String sub_total_pv;
+    private String fharga;
 
-    @Keep
-    public ItemShopCompanyData(String item_code, String item_name, String qty, String price, String pv, String sub_total_price, String sub_total_pv) {
-        this.item_code = item_code;
-        this.item_name = item_name;
-        this.qty = qty;
-        this.price = price;
-        this.pv = pv;
-        this.sub_total_price = sub_total_price;
-        this.sub_total_pv = sub_total_pv;
-    }
+    @SerializedName("fpv")
+    @Expose
+    private String fpv;
+
+//    @SerializedName("fbv")
+//    @Expose
+//    private String fbv;
+
+    @SerializedName("fqty")
+    @Expose
+    private String fqty;
+
+    @SerializedName("qty")
+    @Expose
+    private String qty;
+
+    @SerializedName("cart")
+    @Expose
+    private String cart;
 
     protected ItemShopCompanyData(Parcel in) {
         item_code = in.readString();
         item_name = in.readString();
-        qty = in.readString();
-        price = in.readString();
+        harga = in.readString();
         pv = in.readString();
-        sub_total_price = in.readString();
-        sub_total_pv = in.readString();
+        bv = in.readString();
+        fharga = in.readString();
+        fpv = in.readString();
+        fqty = in.readString();
+        qty = in.readString();
+        cart = in.readString();
+    }
+
+    @Generated(hash = 846056668)
+    public ItemShopCompanyData(String item_code, String item_name, String harga, String pv, String bv,
+            String fharga, String fpv, String fqty, String qty, String cart) {
+        this.item_code = item_code;
+        this.item_name = item_name;
+        this.harga = harga;
+        this.pv = pv;
+        this.bv = bv;
+        this.fharga = fharga;
+        this.fpv = fpv;
+        this.fqty = fqty;
+        this.qty = qty;
+        this.cart = cart;
     }
 
     @Generated(hash = 1215865971)
@@ -77,11 +100,14 @@ public class ItemShopCompanyData implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(item_code);
         dest.writeString(item_name);
-        dest.writeString(qty);
-        dest.writeString(price);
+        dest.writeString(harga);
         dest.writeString(pv);
-        dest.writeString(sub_total_price);
-        dest.writeString(sub_total_pv);
+        dest.writeString(bv);
+        dest.writeString(fharga);
+        dest.writeString(fpv);
+        dest.writeString(fqty);
+        dest.writeString(qty);
+        dest.writeString(cart);
     }
 
     @Override
@@ -105,20 +131,12 @@ public class ItemShopCompanyData implements Parcelable {
         this.item_name = item_name;
     }
 
-    public String getQty() {
-        return this.qty;
+    public String getHarga() {
+        return this.harga;
     }
 
-    public void setQty(String qty) {
-        this.qty = qty;
-    }
-
-    public String getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
+    public void setHarga(String harga) {
+        this.harga = harga;
     }
 
     public String getPv() {
@@ -129,20 +147,52 @@ public class ItemShopCompanyData implements Parcelable {
         this.pv = pv;
     }
 
-    public String getSub_total_price() {
-        return this.sub_total_price;
+    public String getBv() {
+        return this.bv;
     }
 
-    public void setSub_total_price(String sub_total_price) {
-        this.sub_total_price = sub_total_price;
+    public void setBv(String bv) {
+        this.bv = bv;
     }
 
-    public String getSub_total_pv() {
-        return this.sub_total_pv;
+    public String getFharga() {
+        return this.fharga;
     }
 
-    public void setSub_total_pv(String sub_total_pv) {
-        this.sub_total_pv = sub_total_pv;
+    public void setFharga(String fharga) {
+        this.fharga = fharga;
+    }
+
+    public String getFpv() {
+        return this.fpv;
+    }
+
+    public void setFpv(String fpv) {
+        this.fpv = fpv;
+    }
+
+    public String getFqty() {
+        return this.fqty;
+    }
+
+    public void setFqty(String fqty) {
+        this.fqty = fqty;
+    }
+
+    public String getQty() {
+        return this.qty;
+    }
+
+    public void setQty(String qty) {
+        this.qty = qty;
+    }
+
+    public String getCart() {
+        return this.cart;
+    }
+
+    public void setCart(String cart) {
+        this.cart = cart;
     }
 
     public static final Creator<ItemShopCompanyData> CREATOR = new Creator<ItemShopCompanyData>() {

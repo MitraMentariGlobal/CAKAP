@@ -185,6 +185,7 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
 
         Intent intent = new Intent(getApplicationContext(), CashbillSuccessActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.cashbill).toUpperCase());
+        intent.putExtra(Constant.NAME, mName.getText().toString());
         intent.putExtra(Constant.SUCCESS_DATA_OBJECT, b);
         startActivity(intent);
     }

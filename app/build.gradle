@@ -94,6 +94,8 @@ android {
             buildConfigField 'String', 'BODY_MEMBER_ID', endpointProperties['body_member_id']
             buildConfigField 'String', 'BODY_NO_KTP', endpointProperties['body_no_ktp']
             buildConfigField 'String', 'BODY_ALAMAT', endpointProperties['body_alamat']
+            buildConfigField 'String', 'BODY_ID_ALAMAT', endpointProperties['body_id_alamat']
+            buildConfigField 'String', 'BODY_TIMUR', endpointProperties['body_timur']
             buildConfigField 'String', 'BODY_KODE_POS', endpointProperties['body_kode_pos']
             buildConfigField 'String', 'BODY_NPWP', endpointProperties['body_npwp']
             buildConfigField 'String', 'BODY_STATUS_PERNIKAHAN', endpointProperties['body_status_pernikahan']
@@ -150,6 +152,8 @@ android {
             buildConfigField 'String', 'BODY_ACCOUNT_HOLDER', endpointProperties['body_accountholder']
             buildConfigField 'String', 'BODY_PASANGAN', endpointProperties['body_pasangan']
             buildConfigField 'String', 'BODY_NAME', endpointProperties['body_name']
+            buildConfigField 'String', 'BODY_OPSI', endpointProperties['body_opsi']
+            buildConfigField 'String', 'BODY_IDADDR', endpointProperties['body_idaddr']
         }
     }
 

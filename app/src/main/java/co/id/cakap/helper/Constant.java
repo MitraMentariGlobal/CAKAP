@@ -47,6 +47,8 @@ public class Constant {
     public static final String BODY_MEMBER_ID = BuildConfig.BODY_MEMBER_ID;
     public static final String BODY_NO_KTP = BuildConfig.BODY_NO_KTP;
     public static final String BODY_ALAMAT = BuildConfig.BODY_ALAMAT;
+    public static final String BODY_ID_ALAMAT = BuildConfig.BODY_ID_ALAMAT;
+    public static final String BODY_TIMUR = BuildConfig.BODY_TIMUR;
     public static final String BODY_KODE_POS = BuildConfig.BODY_KODE_POS;
     public static final String BODY_NPWP = BuildConfig.BODY_NPWP;
     public static final String BODY_STATUS_PERNIKAHAN = BuildConfig.BODY_STATUS_PERNIKAHAN;
@@ -103,6 +105,8 @@ public class Constant {
     public static final String BODY_ACCOUNT_HOLDER = BuildConfig.BODY_ACCOUNT_HOLDER;
     public static final String BODY_PASANGAN = BuildConfig.BODY_PASANGAN;
     public static final String BODY_NAME = BuildConfig.BODY_NAME;
+    public static final String BODY_OPSI = BuildConfig.BODY_OPSI;
+    public static final String BODY_IDADDR = BuildConfig.BODY_IDADDR;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;
@@ -113,7 +117,11 @@ public class Constant {
     public static final String URL_LINK = "url_link";
     public static final String URL_LINK_DETAIL = "url_link_detail";
     public static final String SUCCESS_DATA_OBJECT = "success_data_object";
+    public static final String ADDRESS_COMPANY_DATA_OBJECT = "address_company_data_object";
+    public static final String ITEM_ADDRESS_COMPANY_DATA_OBJECT = "item_address_company_data_object";
+    public static final String COMPANY_DATA_OBJECT = "company_data_object";
     public static final String TITLE_DETAIL = "title_detail";
+    public static final String NAME = "name";
     public static final String ITEM_ID_DETAIL = "item_id_detail";
     public static final String TRANSACTION_ID_DETAIL = "transaction_id_detail";
     public static final String MEMBER_ID_DETAIL = "member_id_detail";
@@ -122,6 +130,7 @@ public class Constant {
     public static final String TOTAL_DETAIL = "total_detail";
     public static final String REMARK_DETAIL = "remark_detail";
     public static final String PAYMENT_METHOD = "payment_method";
+    public static final String PAYMENT_INFO = "payment_info";
     public static final String ACTIVATION_CODE = "activation_code";
     public static final String MEMBER_ID = "member_id";
     public static final String REGISTRATION_DATA = "registration_data";

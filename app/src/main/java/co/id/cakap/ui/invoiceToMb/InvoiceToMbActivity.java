@@ -179,6 +179,7 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
 
         Intent intent = new Intent(getApplicationContext(), InvoiceToMbSuccessActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.invoice_to_mb).toUpperCase());
+        intent.putExtra(Constant.NAME, mName.getText().toString());
         intent.putExtra(Constant.SUCCESS_DATA_OBJECT, b);
         startActivity(intent);
     }

@@ -11,6 +11,7 @@ import co.id.cakap.network.ApiResponseActionRekapBnsBcmb;
 import co.id.cakap.network.ApiResponseActionReqInvMb;
 import co.id.cakap.network.ApiResponseActivityCashbill;
 import co.id.cakap.network.ApiResponseActivityReqInvoiceMb;
+import co.id.cakap.network.ApiResponseAddEditAddress;
 import co.id.cakap.network.ApiResponseBank;
 import co.id.cakap.network.ApiResponseBonusStatementData;
 import co.id.cakap.network.ApiResponseCancelItemCashbill;
@@ -22,11 +23,13 @@ import co.id.cakap.network.ApiResponseDownlineListing;
 import co.id.cakap.network.ApiResponseFeeBcmb;
 import co.id.cakap.network.ApiResponseInvoiceToMb;
 import co.id.cakap.network.ApiResponseItemCashbill;
+import co.id.cakap.network.ApiResponseItemInvoiceToCompany;
 import co.id.cakap.network.ApiResponseItemInvoiceToMb;
 import co.id.cakap.network.ApiResponseItemSearchRegistration;
 import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseKota;
 import co.id.cakap.network.ApiResponseLevel;
+import co.id.cakap.network.ApiResponseListAddress;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
 import co.id.cakap.network.ApiResponseMonthlyPointReport;
@@ -47,6 +50,8 @@ import co.id.cakap.network.ApiResponseStockReportCard;
 import co.id.cakap.network.ApiResponseStockReportCardItem;
 import co.id.cakap.network.ApiResponseStockReportUpdate;
 import co.id.cakap.network.ApiResponseSubmitCashbill;
+import co.id.cakap.network.ApiResponseSubmitInvoiceToBc;
+import co.id.cakap.network.ApiResponseSubmitInvoiceToCompany;
 import co.id.cakap.network.ApiResponseSubmitInvoiceToMb;
 import co.id.cakap.network.ApiResponseSubmitRegistration;
 import co.id.cakap.network.ApiResponseUpdateProfile;
@@ -246,6 +251,18 @@ public class MainRepository extends BaseRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Flowable<ApiResponseSubmitInvoiceToBc> postSubmitInvoiceToBc(Map<String, Object> param) {
+        return networkService.postSubmitInvoiceToBc(Constant.CONTENT_TYPE_JSON, Constant.CAKAP_KEY, param)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseSubmitInvoiceToCompany> postSubmitInvoiceToCompany(Map<String, Object> param) {
+        return networkService.postSubmitInvoiceToCompany(Constant.CONTENT_TYPE_JSON, Constant.CAKAP_KEY, param)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     public Flowable<ApiResponseSearchMbInvoice> postSearchMbInvoice(String userId, String noStc) {
         return networkService.postSearchMbInvoice(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, noStc)
                 .subscribeOn(Schedulers.computation())
@@ -347,6 +364,30 @@ public class MainRepository extends BaseRepository {
                 recId, sponsorId, memberId, name, ktp, gender, pob, dob, religion, email, noTelp, noHp, alamat,
                 kotaId, kodePos, activation, pewaris, hubungan, bankId, cabang, namaNasabah, norek,
                 "", "", "", "")
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseListAddress> postListAlamat(String userId) {
+        return networkService.postListAlamat(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseAddEditAddress> postSubmitAlamat(String userId, String alamat, String kotaId, String username) {
+        return networkService.postSubmitAlamat(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, alamat, kotaId, username)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseAddEditAddress> postEditAlamat(String userId, String alamat, String kotaId, String username, String idAlamat) {
+        return networkService.postEditAlamat(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, alamat, kotaId, username, idAlamat)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseItemInvoiceToCompany> postItemInvoiceToCompany(String timur) {
+        return networkService.postItemInvoiceToCompany(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, timur)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

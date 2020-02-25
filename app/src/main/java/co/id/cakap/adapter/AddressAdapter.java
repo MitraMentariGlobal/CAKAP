@@ -16,8 +16,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
-import co.id.cakap.data.AddressData;
+import co.id.cakap.data.AddressDefaultData;
+import co.id.cakap.data.AddressHistoryData;
 import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivityPresenter;
+import co.id.cakap.utils.Logger;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -27,12 +29,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
     private static RecyclerView mRecyclerView = null;
-    private List<AddressData> mResultData;
+    private List<AddressHistoryData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private int mPositionCheck = 0;
 
-    public AddressAdapter(RecyclerView recyclerView, List<AddressData> resultData, Context context) {
+    public AddressAdapter(RecyclerView recyclerView, List<AddressHistoryData> resultData, Context context) {
         mRecyclerView = recyclerView;
         mResultData = resultData;
         mContext = context;
@@ -48,22 +50,19 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        AddressData addressData = mResultData.get(position);
+        AddressHistoryData addressHistoryData = mResultData.get(position);
 
         holder.context = mContext;
-        holder.addressData = addressData;
+        holder.addressHistoryData = addressHistoryData;
 
-        holder.mTxtCity.setText(addressData.getKota());
-        holder.mTxtProvince.setText(addressData.getProvince());
-        holder.mTxtAddress.setText(addressData.getAddress());
+        holder.mTxtCity.setText(addressHistoryData.getKota());
+        holder.mTxtProvince.setText(addressHistoryData.getProvince());
+        holder.mTxtAddress.setText(addressHistoryData.getAddress());
 
         if (position == 0) {
             holder.mLinearChangeAddress.setVisibility(View.GONE);
             holder.mRelativeDefaultAddress.setVisibility(View.VISIBLE);
-        }
-
-        if (addressData.getIsCheck()) {
-            holder.mItemCheck.setBackground(mContext.getResources().getDrawable(R.drawable.ic_radio_on_button));
+//            holder.mItemCheck.setBackground(mContext.getResources().getDrawable(R.drawable.ic_radio_on_button));
         }
     }
 
@@ -87,7 +86,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         @BindView(R.id.item_check)
         CircleImageView mItemCheck;
 
-        AddressData addressData;
+        AddressHistoryData addressHistoryData;
         CircleImageView itemCheck;
         Context context;
 
@@ -98,12 +97,15 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
         @OnClick(R.id.txt_change_address)
         public void changeAddress(View view) {
-            new PickUpDeliveryActivityPresenter().getView().changeAddress(addressData.getProvince_id(), addressData.getKota_id(), addressData.getAddress());
+            new PickUpDeliveryActivityPresenter().getView().changeAddress(addressHistoryData);
         }
 
         @OnClick(R.id.item_check)
         public void userCheck(View view) {
             View recyclerView = null;
+
+            Logger.d("getAdapterPosition() : " + getAdapterPosition());
+            Logger.d("mPositionCheck : " + mPositionCheck);
 
             if (getAdapterPosition() == mPositionCheck) {
                 recyclerView = mRecyclerView.findViewHolderForAdapterPosition(mPositionCheck).itemView;
@@ -120,6 +122,9 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
                 mItemCheck.setBackground(context.getResources().getDrawable(R.drawable.ic_radio_on_button));
                 mPositionCheck = getAdapterPosition();
             }
+
+            notifyDataSetChanged();
+            new PickUpDeliveryActivityPresenter().getView().chooseAddress(addressHistoryData);
         }
     }
 }

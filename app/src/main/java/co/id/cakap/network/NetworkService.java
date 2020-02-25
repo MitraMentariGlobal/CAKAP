@@ -246,6 +246,16 @@ public interface NetworkService {
                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                            @Body Map<String, Object> param);
 
+    @POST("submit_invoice_bc")
+    Flowable<ApiResponseSubmitInvoiceToBc> postSubmitInvoiceToBc(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                 @Body Map<String, Object> param);
+
+    @POST("submit_invoice_comp")
+    Flowable<ApiResponseSubmitInvoiceToCompany> postSubmitInvoiceToCompany(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                           @Body Map<String, Object> param);
+
     @FormUrlEncoded
     @POST("search_mb_invoice")
     Flowable<ApiResponseSearchMbInvoice> postSearchMbInvoice(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
@@ -287,7 +297,7 @@ public interface NetworkService {
                                                                    @Field(Constant.BODY_SO_ID) String soId);
 
     @FormUrlEncoded
-    @POST("submit_cancel_invoice_mb")
+    @POST("submit_cancel_invoice")
     Flowable<ApiResponseCancelItemInvoiceToMb> postCancelItemInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                          @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                          @Field(Constant.BODY_USER_ID) String userId,
@@ -395,4 +405,33 @@ public interface NetworkService {
                                                                  @Field(Constant.BODY_PEKERJAAN) String pekerjaan,
                                                                  @Field(Constant.BODY_STATUS_PERNIKAHAN) String statusPernikahan,
                                                                  @Field(Constant.BODY_PASANGAN) String pasangan);
+
+    @FormUrlEncoded
+    @POST("address_stc")
+    Flowable<ApiResponseListAddress> postListAlamat(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                         @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                         @Field(Constant.BODY_USER_ID) String userId);
+
+    @FormUrlEncoded
+    @POST("submit_alamat")
+    Flowable<ApiResponseAddEditAddress> postSubmitAlamat(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                         @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                         @Field(Constant.BODY_USER_ID) String userId,
+                                                         @Field(Constant.BODY_ALAMAT) String alamat,
+                                                         @Field(Constant.BODY_KOTA_ID) String kotaId,
+                                                         @Field(Constant.BODY_USER_NAME) String username);
+    @FormUrlEncoded
+    @POST("submit_edit_alamat")
+    Flowable<ApiResponseAddEditAddress> postEditAlamat(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                       @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                       @Field(Constant.BODY_USER_ID) String userId,
+                                                       @Field(Constant.BODY_ALAMAT) String alamat,
+                                                       @Field(Constant.BODY_KOTA_ID) String kotaId,
+                                                       @Field(Constant.BODY_USER_NAME) String username,
+                                                       @Field(Constant.BODY_ID_ALAMAT) String idAlamat);
+    @FormUrlEncoded
+    @POST("item_req_invoice")
+    Flowable<ApiResponseItemInvoiceToCompany> postItemInvoiceToCompany(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                       @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                       @Field(Constant.BODY_TIMUR) String timur);
 }

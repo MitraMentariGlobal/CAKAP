@@ -2,6 +2,7 @@ package co.id.cakap.ui.reqInvoiceToBc;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 import co.id.cakap.data.ItemShopCompanyData;
 import co.id.cakap.model.DataModel;
@@ -38,17 +39,27 @@ public class ReqInvoiceToBcActivityPresenter implements ReqInvoiceToBcActivityCo
 
     @Override
     public void getData() {
-        arrayList = new ArrayList<>();
-        arrayList.add(new ItemShopCompanyData("BT01", "Blesstea Botol", "0", "115.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("BT02", "Blesstea Sachet", "0", "95.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("BT04", "Blesstea Pouch", "0", "80.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("PC05", "Blesstea Teessiu Sachet", "0", "72.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("PC06", "Blesstea Bellesha Body Shower Pink with Camellia", "3", "47.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("PC07", "Blesstea Bellesha Body Shower Camellia", "66", "47.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("PC08", "Blesstea Bellesha Shampoo", "120", "60.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("PC09", "V-Bless Pantyliner", "0", "37.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("PC10", "V-Bless Day", "0", "40.000", "20", "0", "0"));
-        arrayList.add(new ItemShopCompanyData("PC11", "V-Bless Nite", "0", "41.000", "20", "0", "0"));
-        getView().setAdapter(arrayList);
+//        arrayList = new ArrayList<>();
+//        arrayList.add(new ItemShopCompanyData("BT01", "Blesstea Botol", "0", "115.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("BT02", "Blesstea Sachet", "0", "95.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("BT04", "Blesstea Pouch", "0", "80.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("PC05", "Blesstea Teessiu Sachet", "0", "72.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("PC06", "Blesstea Bellesha Body Shower Pink with Camellia", "3", "47.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("PC07", "Blesstea Bellesha Body Shower Camellia", "66", "47.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("PC08", "Blesstea Bellesha Shampoo", "120", "60.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("PC09", "V-Bless Pantyliner", "0", "37.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("PC10", "V-Bless Day", "0", "40.000", "20", "0", "0"));
+//        arrayList.add(new ItemShopCompanyData("PC11", "V-Bless Nite", "0", "41.000", "20", "0", "0"));
+//        getView().setAdapter(arrayList);
+    }
+
+    @Override
+    public void getItemInvoice() {
+
+    }
+
+    @Override
+    public void submitData(String pin, String totalHarga, String totalPv, String totalBv, String remark, List<ItemShopCompanyData> resultData) {
+
     }
 }

@@ -62,8 +62,6 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     NestedScrollView mNestedScroll;
     @BindView(R.id.et_member_id)
     EditText mMemberId;
-    @BindView(R.id.et_name)
-    EditText mName;
     @BindView(R.id.et_bonus_date)
     EditText mBonusDate;
     @BindView(R.id.et_status)
@@ -82,6 +80,7 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     LinearLayout mLinearRemark;
 
     private String mTitle = "";
+    private String mName = "";
     private String mTransactionId = "INV - 123123123123123";
     private SubmitCashbillData mSubmitCashbillData;
     private CashbillSuccessAdapter mListAdapter;
@@ -116,15 +115,16 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
         Bundle b = intent.getBundleExtra(Constant.SUCCESS_DATA_OBJECT);
 
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
+        mName = intent.getStringExtra(Constant.NAME);
         mSubmitCashbillData = b.getParcelable(Constant.SUCCESS_DATA_OBJECT);
         mTitleToolbar.setText(mTitle);
         mTransactionIdText.setText(mSubmitCashbillData.getInv());
-        mTxtMemberId.setText(mSubmitCashbillData.getMember_id());
-        mTxtName.setText(mSubmitCashbillData.getMember_id());
+        mTxtMemberId.setText(mSubmitCashbillData.getMember_id() + " - " + mName);
+        mTxtName.setText(mName);
         mTxtDate.setText(mSubmitCashbillData.getTgl());
-        mTxtTotalAmount.setText(mSubmitCashbillData.getTotalharga());
+        mTxtTotalAmount.setText("IDR " + mSubmitCashbillData.getTotalharga());
         mRemark.setText(mSubmitCashbillData.getRemark());
-        if (mSubmitCashbillData.getRemark().equals("0"))
+        if (mSubmitCashbillData.getRemark().equals("0") || mSubmitCashbillData.getRemark().length() == 0)
             mRemark.setText("-");
 
         mUserActionListener.getData();

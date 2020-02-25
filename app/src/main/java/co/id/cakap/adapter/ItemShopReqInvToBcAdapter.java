@@ -58,7 +58,7 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
 
         holder.mItemCode.setText(itemShopCompanyData.getItem_code());
         holder.mItemName.setText(itemShopCompanyData.getItem_name());
-        holder.mPrice.setText(itemShopCompanyData.getPrice());
+        holder.mPrice.setText(itemShopCompanyData.getFharga());
         holder.mPv.setText(itemShopCompanyData.getPv());
     }
 
@@ -80,7 +80,7 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
                     for (ItemShopCompanyData itemShopCompanyData : mResultData) {
                         if (itemShopCompanyData.getItem_code().toLowerCase().contains(charString) ||
                                 itemShopCompanyData.getItem_name().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getPrice().toLowerCase().contains(charString) ||
+                                itemShopCompanyData.getHarga().toLowerCase().contains(charString) ||
                                 itemShopCompanyData.getPv().toLowerCase().contains(charString)) {
                             filteredList.add(itemShopCompanyData);
                         }

@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class SubmitInvoiceToMbData extends SubmitInvoiceToMbParentData implements Parcelable {
+public class SubmitInvoiceToBcData extends SubmitInvoiceToBcParentData implements Parcelable {
 
     @SerializedName("inv")
     @Expose
@@ -28,7 +28,7 @@ public class SubmitInvoiceToMbData extends SubmitInvoiceToMbParentData implement
     @Expose
     private String tgl;
 
-    @SerializedName("mbid")
+    @SerializedName("member_id")
     @Expose
     private String member_id;
 
@@ -44,7 +44,7 @@ public class SubmitInvoiceToMbData extends SubmitInvoiceToMbParentData implement
     @Expose
     private String totalharga;
 
-    protected SubmitInvoiceToMbData(Parcel in) {
+    protected SubmitInvoiceToBcData(Parcel in) {
         super();
         inv = in.readString();
         tgl = in.readString();
@@ -53,8 +53,9 @@ public class SubmitInvoiceToMbData extends SubmitInvoiceToMbParentData implement
         remark = in.readString();
         totalharga = in.readString();
     }
-    @Generated(hash = 47321051)
-    public SubmitInvoiceToMbData(String inv, String tgl, String member_id, String no_stc, String remark,
+
+    @Generated(hash = 1179800244)
+    public SubmitInvoiceToBcData(String inv, String tgl, String member_id, String no_stc, String remark,
             String totalharga) {
         this.inv = inv;
         this.tgl = tgl;
@@ -63,9 +64,11 @@ public class SubmitInvoiceToMbData extends SubmitInvoiceToMbParentData implement
         this.remark = remark;
         this.totalharga = totalharga;
     }
-    @Generated(hash = 1844090013)
-    public SubmitInvoiceToMbData() {
+
+    @Generated(hash = 852363003)
+    public SubmitInvoiceToBcData() {
     }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(inv);
@@ -129,15 +132,15 @@ public class SubmitInvoiceToMbData extends SubmitInvoiceToMbParentData implement
         this.totalharga = totalharga;
     }
 
-    public static final Creator<SubmitInvoiceToMbData> CREATOR = new Creator<SubmitInvoiceToMbData>() {
+    public static final Creator<SubmitInvoiceToBcData> CREATOR = new Creator<SubmitInvoiceToBcData>() {
         @Override
-        public SubmitInvoiceToMbData createFromParcel(Parcel in) {
-            return new SubmitInvoiceToMbData(in);
+        public SubmitInvoiceToBcData createFromParcel(Parcel in) {
+            return new SubmitInvoiceToBcData(in);
         }
 
         @Override
-        public SubmitInvoiceToMbData[] newArray(int size) {
-            return new SubmitInvoiceToMbData[size];
+        public SubmitInvoiceToBcData[] newArray(int size) {
+            return new SubmitInvoiceToBcData[size];
         }
     };
 }
