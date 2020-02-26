@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/appbar_padding"
                     android:layout_marginEnd="@dimen/appbar_padding"
-                    android:layout_marginBottom="@dimen/appbar_padding"
+                    android:layout_marginBottom="@dimen/radius_8"
                     android:orientation="vertical">
 
                     <TextView
@@ -212,7 +212,16 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_transfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin_top_16"
+                    android:layout_marginStart="@dimen/appbar_padding"
+                    android:layout_marginEnd="@dimen/appbar_padding" />
+
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/linear_rekening"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -413,7 +422,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textSize="@dimen/text_14"
-                                        android:textStyle="bold"
                                         android:text="INV - 123123123123123"
                                         style="@style/TexViewFont" />
                                 </LinearLayout>
@@ -461,6 +469,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/txt_date"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -473,7 +482,6 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/margin_top_16"
                                     android:gravity="end"
                                     android:orientation="vertical">
 

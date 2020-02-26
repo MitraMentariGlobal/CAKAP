@@ -1,5 +1,7 @@
 package co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,8 +26,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.BankInfoInvoiceCompanyAdapter;
 import co.id.cakap.adapter.ReqInvoiceToBcSuccessAdapter;
 import co.id.cakap.adapter.ReqInvoiceToCompanySuccessAdapter;
+import co.id.cakap.data.BankInfoData;
 import co.id.cakap.data.ReqInvoiceToBcSuccessData;
 import co.id.cakap.data.ReqInvoiceToCompanySuccessData;
 import co.id.cakap.data.SubmitInvoiceToCompanyData;
@@ -47,6 +51,8 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     RelativeLayout mRelativeProgressBar;
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
+    @BindView(R.id.recycler_transfer)
+    RecyclerView mRecyclerTransfer;
     @BindView(R.id.title_toolbar)
     TextView mTitleToolbar;
     @BindView(R.id.txt_transaction_id)
@@ -84,6 +90,7 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     private String mPaymentMethod = "";
     private String mPaymentInfo = "";
     private SubmitInvoiceToCompanyData mSubmitInvoiceToCompanyData;
+    private BankInfoInvoiceCompanyAdapter mBankInfoInvoiceCompanyAdapter;
     private ReqInvoiceToCompanySuccessAdapter mListAdapter;
     private ReqInvoiceToCompanySuccessContract.UserActionListener mUserActionListener;
 
@@ -120,7 +127,7 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
 
         mTitleToolbar.setText(mTitle);
         mTxtInfo.setText(mPaymentInfo);
-        mTxtxTransactionId.setText(mSubmitInvoiceToCompanyData.getInv());
+        mTxtxTransactionId.setText(mSubmitInvoiceToCompanyData.getTgl());
         mTxtDate.setText(mSubmitInvoiceToCompanyData.getTgl());
         mTxtTotalTransaction.setText("IDR " + mSubmitInvoiceToCompanyData.getTotalharga());
         mTxtTotalAmount.setText("IDR " + mSubmitInvoiceToCompanyData.getTotalharga());
@@ -140,7 +147,7 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
     }
 
     @Override
-    public void setAdapter(List<ReqInvoiceToCompanySuccessData> resultData) {
+    public void setAdapter(List<ReqInvoiceToCompanySuccessData> resultData, List<BankInfoData> bankInfoDataList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -149,6 +156,19 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
         mListAdapter = new ReqInvoiceToCompanySuccessAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        setAdapterBank(bankInfoDataList);
+    }
+
+    public void setAdapterBank(List<BankInfoData> bankInfoDataList) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerTransfer.setLayoutManager(layoutManager);
+        mRecyclerTransfer.setNestedScrollingEnabled(false);
+        mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
+
+        mBankInfoInvoiceCompanyAdapter = new BankInfoInvoiceCompanyAdapter(bankInfoDataList, this);
+        mRecyclerTransfer.setAdapter(mBankInfoInvoiceCompanyAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerTransfer, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }
@@ -170,6 +190,17 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
 
     @OnClick(R.id.txt_copy_nominal)
     public void actionCopyNominal(View view) {
+        String amount = mSubmitInvoiceToCompanyData.getTotalharga();
+        if (amount.contains(",")) {
+            amount = amount.replace(",", "");
+        } else if (amount.contains(".")) {
+            amount = amount.replace(".", "");
+        }
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label", amount);
+        clipboard.setPrimaryClip(clip);
+
         Toast.makeText(ReqInvoiceToCompanySuccessActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
     }
 

@@ -39,6 +39,9 @@ public class ReqInvoiceToCompanySuccessPresenter implements ReqInvoiceToCompanyS
 //        arrayList.add(new ReqInvoiceToCompanySuccessData("BT010", "Blesstea Botol", "IDR 120.000", "25", "10", "IDR 1.200.000", "250"));
 //        mView.setAdapter(arrayList);
 
-        mView.setAdapter(mDataModel.getAllReqInvoiceToCompanySuccessData());
+        mView.setAdapter(
+                mDataModel.getAllReqInvoiceToCompanySuccessData(),
+                mDataModel.getAllBankInfoData()
+        );
     }
 }
