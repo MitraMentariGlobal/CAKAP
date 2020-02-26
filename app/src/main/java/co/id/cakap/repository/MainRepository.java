@@ -9,6 +9,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.network.ApiResponseActionReceiveStock;
 import co.id.cakap.network.ApiResponseActionRekapBnsBcmb;
 import co.id.cakap.network.ApiResponseActionReqInvMb;
+import co.id.cakap.network.ApiResponseActivationFormData;
+import co.id.cakap.network.ApiResponseActivationFormSubmitData;
 import co.id.cakap.network.ApiResponseActivityCashbill;
 import co.id.cakap.network.ApiResponseActivityReqInvoiceMb;
 import co.id.cakap.network.ApiResponseAddEditAddress;
@@ -388,6 +390,18 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseItemInvoiceToCompany> postItemInvoiceToCompany(String timur) {
         return networkService.postItemInvoiceToCompany(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, timur)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseActivationFormData> postItemActivationForm(String userId) {
+        return networkService.postItemActivationForm(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseActivationFormSubmitData> postSubmitActivationForm(String userId) {
+        return networkService.postSubmitActivationForm(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -434,4 +434,14 @@ public interface NetworkService {
     Flowable<ApiResponseItemInvoiceToCompany> postItemInvoiceToCompany(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                        @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                        @Field(Constant.BODY_TIMUR) String timur);
+    @FormUrlEncoded
+    @POST("asd")
+    Flowable<ApiResponseActivationFormData> postItemActivationForm(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                   @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_USER_ID) String userId);
+    @FormUrlEncoded
+    @POST("asd")
+    Flowable<ApiResponseActivationFormSubmitData> postSubmitActivationForm(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                           @Field(Constant.BODY_USER_ID) String userId);
 }
