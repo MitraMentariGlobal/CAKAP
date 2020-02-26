@@ -8,7 +8,7 @@ public class SplashScreenContract {
     public interface View{
         void initializeData();
         void setErrorResponse(String message);
-        void goToHome(String url);
+        void goToHome(ApiResponseLogin apiResponseLogin);
         void goToLogin();
         void finishActivity();
         void showProgressBar();

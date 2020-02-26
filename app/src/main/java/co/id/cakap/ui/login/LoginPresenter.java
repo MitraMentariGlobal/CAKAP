@@ -76,8 +76,6 @@ public class LoginPresenter implements LoginContract.UserActionListener {
 
                         try {
                             saveData(apiResponseLogin);
-                            mView.hideProgressBar();
-                            mView.setSuccessResponse(apiResponseLogin.getResult().getUrl());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -108,5 +106,8 @@ public class LoginPresenter implements LoginContract.UserActionListener {
     public void saveData(ApiResponseLogin apiResponseLogin) {
         Constant.LOGIN_DATA = apiResponseLogin.getResult().getRole();
         mDataModel.insertResultDataLogin(apiResponseLogin.getResult());
+
+        mView.hideProgressBar();
+        mView.setSuccessResponse(apiResponseLogin);
     }
 }
