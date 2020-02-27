@@ -4,11 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,7 +39,7 @@ public class ActivationNumberFormAdapter extends RecyclerView.Adapter<Activation
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_activation_kit, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_activation_number_form, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -45,6 +48,35 @@ public class ActivationNumberFormAdapter extends RecyclerView.Adapter<Activation
         ActivationNumberFormData activationNumberFormData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.mTxtItemNumberForm.setText("No. Form " + activationNumberFormData.getNumber_form());
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("");
+        arrayList.add("12345678");
+        arrayList.add("87654321");
+        arrayList.add("09876543");
+        arrayList.add("34567890");
+        arrayList.add("11111111");
+//        for (int i = 0; i < activationNumberFormData.getList_form().size(); i++) {
+//            arrayList.add(activationNumberFormData.getList_form().get(i).getItem_form());
+//        }
+
+        holder.mSpinnerItemForm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
+        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(mContext,
+                R.layout.item_spinner, android.R.id.text1, arrayList);
+        stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        holder.mSpinnerItemForm.setAdapter(stringArrayAdapter);
     }
 
     @Override

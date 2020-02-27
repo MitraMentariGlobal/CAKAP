@@ -135,5 +135,6 @@ public class Constant {
     public static final String MEMBER_ID = "member_id";
     public static final String REGISTRATION_DATA = "registration_data";
     public static final String MOVE_PAGE_ACTIVITY = "move_page_activity";
+    public static final String INVOICE_TRANSACTION_DATA = "invoice_transaction_data";
 }
 

@@ -17,7 +17,7 @@ public class CreateActivationFormContract {
 
     public interface UserActionListener{
         void setView(CreateActivationFormContract.View view);
-        void getData();
+        void getData(String id);
         void submitData();
     }
 }

@@ -394,8 +394,8 @@ public class MainRepository extends BaseRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Flowable<ApiResponseActivationFormData> postItemActivationForm(String userId) {
-        return networkService.postItemActivationForm(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+    public Flowable<ApiResponseActivationFormData> postItemActivationForm(String id, String userId) {
+        return networkService.postItemActivationForm(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id, userId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

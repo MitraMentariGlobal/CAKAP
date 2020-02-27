@@ -36,8 +36,8 @@
 
                 <ImageView
                     android:id="@+id/vendor_image"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:src="@drawable/ic_success_forgot_password"/>
             </LinearLayout>
 

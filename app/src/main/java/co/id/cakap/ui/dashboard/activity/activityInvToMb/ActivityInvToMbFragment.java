@@ -162,11 +162,12 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
 
     @Override
     public void createActivationForm(ActivityInvToMbData activityInvToMbData) {
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.INVOICE_TRANSACTION_DATA, activityInvToMbData);
+
         Intent intent = new Intent(getContext(), CreateActivationFormActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.create_activation_form));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityInvToMbData.getTransaction_id());
-        intent.putExtra(Constant.MEMBER_ID_DETAIL, activityInvToMbData.getMember_id());
-        intent.putExtra(Constant.NAME_DETAIL, activityInvToMbData.getNama());
+        intent.putExtra(Constant.INVOICE_TRANSACTION_DATA, b);
         startActivity(intent);
     }
 

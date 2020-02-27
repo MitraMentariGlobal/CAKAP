@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,23 +14,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.ActivationKitAdapter;
 import co.id.cakap.adapter.ActivityRekapBnsBcmbAdapter;
 import co.id.cakap.adapter.ItemShopCashbillAdapter;
 import co.id.cakap.data.ActivationKitData;
+import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.utils.dialog.BottomDialogActivity;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class CreateActivationFormActivity extends AppCompatActivity implements CreateActivationFormContract.View{
+public class CreateActivationFormActivity extends BottomDialogActivity implements CreateActivationFormContract.View{
     @Inject
     CreateActivationFormPresenter mCreateActivationFormPresenter;
 
@@ -47,11 +54,11 @@ public class CreateActivationFormActivity extends AppCompatActivity implements C
     TextView mTxtName;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
+    @BindView(R.id.bottom_sheet)
+    View bottomSheet;
 
     private String mTitle = "";
-    private String mTransactionId = "";
-    private String mMemberId = "";
-    private String mName = "";
+    private ActivityInvToMbData mActivityInvToMbData;
     private ActivationKitAdapter mActivationKitAdapter;
     private CreateActivationFormContract.UserActionListener mUserActionListener;
 
@@ -76,19 +83,20 @@ public class CreateActivationFormActivity extends AppCompatActivity implements C
     public void initializeData() {
         mUserActionListener = mCreateActivationFormPresenter;
         mCreateActivationFormPresenter.setView(this);
+        mBehavior = BottomSheetBehavior.from(bottomSheet);
 
         Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra(Constant.INVOICE_TRANSACTION_DATA);
+
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
-        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
-        mMemberId = intent.getStringExtra(Constant.MEMBER_ID_DETAIL);
-        mName = intent.getStringExtra(Constant.NAME_DETAIL);
+        mActivityInvToMbData = b.getParcelable(Constant.INVOICE_TRANSACTION_DATA);
 
         mTitleToolbar.setText(mTitle.toUpperCase());
-        mTxtTransactionId.setText(mTransactionId);
-        mTxtMbId.setText(mMemberId);
-        mTxtName.setText(mName);
+        mTxtTransactionId.setText(mActivityInvToMbData.getTransaction_id());
+        mTxtMbId.setText(mActivityInvToMbData.getMember_id());
+        mTxtName.setText(mActivityInvToMbData.getNama());
 
-        hideProgressBar();
+        mCreateActivationFormPresenter.getData(mActivityInvToMbData.getItem_id());
     }
 
     @Override
@@ -123,5 +131,39 @@ public class CreateActivationFormActivity extends AppCompatActivity implements C
     @Override
     public void setSuccessResponse() {
         hideProgressBar();
+
+        bottomSheetAlert(
+                getResources().getDrawable(R.drawable.ic_check),
+                getResources().getString(R.string.transaksi_berhasil)
+        );
+    }
+
+    @OnClick(R.id.text_process)
+    public void actionProcess(View view) {
+        UserConfirmationDialog utils = new UserConfirmationDialog();
+        Dialog dialog = utils.showDialog(this);
+        utils.setTitleDialog();
+        utils.setNegativeActionGreen();
+
+        TextView txtNo = (TextView) dialog.findViewById(R.id.no_act_btn);
+        txtNo.setText("Periksa Kembali");
+        dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        TextView txtYes = (TextView) dialog.findViewById(R.id.yes_act_btn);
+        txtYes.setText("Bersedia");
+        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+//                mCreateActivationFormPresenter.submitData();
+                setSuccessResponse();
+            }
+        });
     }
 }

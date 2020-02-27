@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.andrognito.pinlockview.IndicatorDots;
@@ -84,6 +85,8 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     Spinner mYearSpinner;
     @BindView(R.id.include_spinner_filter)
     View mIncludeSpinnerLayout;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -121,6 +124,14 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
         initSpinner();
         mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+        });
     }
 
     @Override
@@ -150,6 +161,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         setupOnFocusListener(mSearchEditText);
         setupFab();
 
+        mSwipeRefreshLayout.setRefreshing(false);
         hideProgressBar();
     }
 

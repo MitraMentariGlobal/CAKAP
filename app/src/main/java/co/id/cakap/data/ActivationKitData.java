@@ -22,15 +22,27 @@ import lombok.Data;
 public class ActivationKitData extends ActivationKitParentData implements Parcelable {
     @SerializedName("title")
     @Expose
-    private String item_code;
+    private String title;
+
+    @SerializedName("item_id")
+    @Expose
+    private String item_id;
+
+    @SerializedName("qty")
+    @Expose
+    private String qty;
 
     protected ActivationKitData(Parcel in) {
-        item_code = in.readString();
+        title = in.readString();
+        item_id = in.readString();
+        qty = in.readString();
     }
 
-    @Generated(hash = 1584810697)
-    public ActivationKitData(String item_code) {
-        this.item_code = item_code;
+    @Generated(hash = 1007888957)
+    public ActivationKitData(String title, String item_id, String qty) {
+        this.title = title;
+        this.item_id = item_id;
+        this.qty = qty;
     }
 
     @Generated(hash = 659501648)
@@ -39,7 +51,9 @@ public class ActivationKitData extends ActivationKitParentData implements Parcel
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(item_code);
+        dest.writeString(title);
+        dest.writeString(item_id);
+        dest.writeString(qty);
     }
 
     @Override
@@ -47,12 +61,28 @@ public class ActivationKitData extends ActivationKitParentData implements Parcel
         return 0;
     }
 
-    public String getItem_code() {
-        return this.item_code;
+    public String getTitle() {
+        return this.title;
     }
 
-    public void setItem_code(String item_code) {
-        this.item_code = item_code;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getItem_id() {
+        return this.item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
+    }
+
+    public String getQty() {
+        return this.qty;
+    }
+
+    public void setQty(String qty) {
+        this.qty = qty;
     }
 
     public static final Creator<ActivationKitData> CREATOR = new Creator<ActivationKitData>() {

@@ -14,6 +14,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <FrameLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/bottom_sheet_behavior" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll"
         android:layout_width="match_parent"
@@ -35,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/radius_8"
-                    android:textSize="@dimen/text_14"
+                    android:textSize="@dimen/text_16"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="Transaction ID"
@@ -45,7 +51,8 @@
                     android:id="@+id/txt_transaction_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_13"
+                    android:layout_marginTop="@dimen/radius_2"
+                    android:textSize="@dimen/text_14"
                     android:textColor="@color/black"
                     android:text=""
                     style="@style/TexViewFont" />
@@ -61,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/radius_8"
-                    android:textSize="@dimen/text_14"
+                    android:textSize="@dimen/text_16"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="MB ID"
@@ -71,7 +78,8 @@
                     android:id="@+id/txt_mb_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_13"
+                    android:layout_marginTop="@dimen/radius_2"
+                    android:textSize="@dimen/text_14"
                     android:textColor="@color/black"
                     android:text=""
                     style="@style/TexViewFont" />
@@ -87,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/radius_8"
-                    android:textSize="@dimen/text_14"
+                    android:textSize="@dimen/text_16"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="Name"
@@ -97,7 +105,8 @@
                     android:id="@+id/txt_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_13"
+                    android:layout_marginTop="@dimen/radius_2"
+                    android:textSize="@dimen/text_14"
                     android:textColor="@color/black"
                     android:text=""
                     style="@style/TexViewFont" />

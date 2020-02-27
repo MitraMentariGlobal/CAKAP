@@ -561,7 +561,7 @@ public class MyProfileActivity extends BottomDialogActivity implements MyProfile
     @Override
     public void openSuccessBottomSheet() {
         bottomSheetAlert(
-                getResources().getDrawable(R.drawable.ic_success_forgot_password),
+                getResources().getDrawable(R.drawable.ic_check),
                 getResources().getString(R.string.success_update_profile)
         );
     }

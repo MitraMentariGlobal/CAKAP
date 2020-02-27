@@ -435,9 +435,10 @@ public interface NetworkService {
                                                                        @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                        @Field(Constant.BODY_TIMUR) String timur);
     @FormUrlEncoded
-    @POST("asd")
+    @POST("get_activation_form")
     Flowable<ApiResponseActivationFormData> postItemActivationForm(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                    @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_ID) String id,
                                                                    @Field(Constant.BODY_USER_ID) String userId);
     @FormUrlEncoded
     @POST("asd")

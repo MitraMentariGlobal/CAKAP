@@ -47,11 +47,11 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
     }
 
     @Override
-    public void getData() {
+    public void getData(String id) {
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postItemActivationForm(mResultDataLogin.getMember_id())
+        mMainRepository.postItemActivationForm(id, mResultDataLogin.getMember_id())
                 .subscribe(new ResourceSubscriber<ApiResponseActivationFormData>() {
                     @Override
                     public void onNext(ApiResponseActivationFormData apiResponseActivationFormData) {

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivationKitData;
 import co.id.cakap.data.BankInfoData;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -35,7 +38,7 @@ public class ActivationKitAdapter extends RecyclerView.Adapter<ActivationKitAdap
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_activation_number_form, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_activation_kit, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -44,6 +47,16 @@ public class ActivationKitAdapter extends RecyclerView.Adapter<ActivationKitAdap
         ActivationKitData activationKitData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.mTxtItemKit.setText(activationKitData.getTitle());
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mContext);
+        holder.mRecyclerView.setLayoutManager(layoutManager);
+        holder.mRecyclerView.setNestedScrollingEnabled(false);
+        holder.mNestedScroll.getParent().requestChildFocus(holder.mNestedScroll, holder.mNestedScroll);
+
+        ActivationNumberFormAdapter activationNumberFormAdapter = new ActivationNumberFormAdapter(activationKitData.getForm(), mContext);
+        holder.mRecyclerView.setAdapter(activationNumberFormAdapter);
+        OverScrollDecoratorHelper.setUpOverScroll(holder.mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
     }
 
     @Override
@@ -57,6 +70,8 @@ public class ActivationKitAdapter extends RecyclerView.Adapter<ActivationKitAdap
         TextView mTxtItemKit;
         @BindView(R.id.main_list)
         RecyclerView mRecyclerView;
+        @BindView(R.id.nested_scroll)
+        NestedScrollView mNestedScroll;
 
         Context context;
 
