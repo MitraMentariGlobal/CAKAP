@@ -21,14 +21,14 @@ import org.greenrobot.greendao.annotation.Generated;
 public class ActivationNumberFormData extends ActivationNumberFormParentData implements Parcelable {
     @SerializedName("number_form")
     @Expose
-    private String number_form;
+    private int number_form;
 
     protected ActivationNumberFormData(Parcel in) {
-        number_form = in.readString();
+        number_form = in.readInt();
     }
 
-    @Generated(hash = 1605526532)
-    public ActivationNumberFormData(String number_form) {
+    @Generated(hash = 1314983447)
+    public ActivationNumberFormData(int number_form) {
         this.number_form = number_form;
     }
 
@@ -38,7 +38,7 @@ public class ActivationNumberFormData extends ActivationNumberFormParentData imp
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(number_form);
+        dest.writeInt(number_form);
     }
 
     @Override
@@ -46,11 +46,11 @@ public class ActivationNumberFormData extends ActivationNumberFormParentData imp
         return 0;
     }
 
-    public String getNumber_form() {
+    public int getNumber_form() {
         return this.number_form;
     }
 
-    public void setNumber_form(String number_form) {
+    public void setNumber_form(int number_form) {
         this.number_form = number_form;
     }
 

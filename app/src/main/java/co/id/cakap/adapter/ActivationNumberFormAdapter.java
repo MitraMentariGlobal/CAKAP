@@ -19,6 +19,9 @@ import butterknife.ButterKnife;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivationKitData;
 import co.id.cakap.data.ActivationNumberFormData;
+import co.id.cakap.data.ActivationSubmitItemFormData;
+import co.id.cakap.ui.createActivationForm.CreateActivationFormPresenter;
+import co.id.cakap.utils.Logger;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -29,10 +32,12 @@ public class ActivationNumberFormAdapter extends RecyclerView.Adapter<Activation
     private List<ActivationNumberFormData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
+    private String mQty;
 
-    public ActivationNumberFormAdapter(List<ActivationNumberFormData> resultData, Context context){
+    public ActivationNumberFormAdapter(List<ActivationNumberFormData> resultData, Context context, String qty){
         mResultData = resultData;
         mContext = context;
+        mQty = qty;
         mLayoutInflater = LayoutInflater.from(context);
         notifyDataSetChanged();
     }
@@ -52,19 +57,29 @@ public class ActivationNumberFormAdapter extends RecyclerView.Adapter<Activation
 
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("");
-        arrayList.add("12345678");
-        arrayList.add("87654321");
-        arrayList.add("09876543");
-        arrayList.add("34567890");
-        arrayList.add("11111111");
-//        for (int i = 0; i < activationNumberFormData.getList_form().size(); i++) {
-//            arrayList.add(activationNumberFormData.getList_form().get(i).getItem_form());
-//        }
+        for (int i = 0; i < activationNumberFormData.getList_form().size(); i++) {
+            arrayList.add(activationNumberFormData.getList_form().get(i).getMember_id());
+        }
 
         holder.mSpinnerItemForm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (position > 0) {
+                    Logger.d("item_id : " + activationNumberFormData.getList_form().get(position - 1).getItem_id());
+                    Logger.d("member_id : " + activationNumberFormData.getList_form().get(position - 1).getMember_id());
+                    Logger.d("number form : " + activationNumberFormData.getNumber_form());
+                    Logger.d("position : " + (position - 1));
+                    Logger.d("qty : " + mQty);
 
+                    new CreateActivationFormPresenter().getView().insertOrUpdateItemData(
+                            new ActivationSubmitItemFormData(
+                                    activationNumberFormData.getList_form().get(position - 1).getItem_id(),
+                                    activationNumberFormData.getList_form().get(position - 1).getMember_id(),
+                                    String.valueOf(activationNumberFormData.getNumber_form()),
+                                    mQty
+                            )
+                    );
+                }
             }
 
             @Override

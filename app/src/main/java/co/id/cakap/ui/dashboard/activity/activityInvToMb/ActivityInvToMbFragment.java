@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.activity.activityInvToMb;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.createActivationForm.CreateActivationFormActivity;
+import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
@@ -168,7 +170,19 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
         Intent intent = new Intent(getContext(), CreateActivationFormActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.create_activation_form));
         intent.putExtra(Constant.INVOICE_TRANSACTION_DATA, b);
-        startActivity(intent);
+        startActivityForResult(intent, Constant.SUCCESS_TRANSACTION);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == Constant.SUCCESS_TRANSACTION) {
+                ((DashboardActivity) getActivity()).bottomSheetAlert(
+                        getResources().getDrawable(R.drawable.ic_check),
+                        getResources().getString(R.string.transaksi_berhasil)
+                );
+            }
+        }
     }
 
     @Override

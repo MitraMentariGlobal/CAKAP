@@ -154,6 +154,8 @@ android {
             buildConfigField 'String', 'BODY_NAME', endpointProperties['body_name']
             buildConfigField 'String', 'BODY_OPSI', endpointProperties['body_opsi']
             buildConfigField 'String', 'BODY_IDADDR', endpointProperties['body_idaddr']
+            buildConfigField 'String', 'BODY_KODE_ID', endpointProperties['body_kode_id']
+            buildConfigField 'String', 'BODY_ID_RO', endpointProperties['body_id_ro']
         }
     }
 

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import javax.inject.Inject;
 
@@ -30,8 +31,9 @@ import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
 import co.id.cakap.ui.dashboard.activity.ActivityFragment;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.BottomDialogActivity;
 
-public class DashboardActivity extends AppCompatActivity implements DashboardContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends BottomDialogActivity implements DashboardContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
     @Inject
     DashboardPresenter mDashboardPresenter;
 
@@ -39,6 +41,8 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
     BottomNavigationView mBottomNavigationView;
     @BindView(R.id.bn_main_member)
     BottomNavigationView mBottomNavigationViewMember;
+    @BindView(R.id.bottom_sheet)
+    View bottomSheet;
 
     private static final int TIME_DELAY = 1500;
     private static long back_pressed;
@@ -67,6 +71,7 @@ public class DashboardActivity extends AppCompatActivity implements DashboardCon
     public void initializeData() {
         mUserActionListener = mDashboardPresenter;
         mDashboardPresenter.setView(this);
+        mBehavior = BottomSheetBehavior.from(bottomSheet);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         try {

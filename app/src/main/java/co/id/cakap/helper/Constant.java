@@ -18,7 +18,11 @@ public class Constant {
     public static String FIREBASE_NOTIFICATION_URL = BuildConfig.FIREBASE_NOTIFICATION_URL;
     public static String LOGIN_DATA = "";
     public static String URL_IMAGE_PRODUCT = "";
+    public static int SUCCESS_TRANSACTION = 200;
     public static boolean IS_HAVE_PARENT = false;
+
+    public static final String DUMMY_USER_ID = "0000160";
+    public static final String DUMMY_USER_NAME = "hanna";
 
     public static final String END_URL_DETAIL_CASHBILL = BuildConfig.END_URL_DETAIL_CASHBILL;
     public static final String END_URL_DETAIL_INVOICE_TO_MB = BuildConfig.END_URL_DETAIL_INVOICE_TO_MB;
@@ -107,6 +111,8 @@ public class Constant {
     public static final String BODY_NAME = BuildConfig.BODY_NAME;
     public static final String BODY_OPSI = BuildConfig.BODY_OPSI;
     public static final String BODY_IDADDR = BuildConfig.BODY_IDADDR;
+    public static final String BODY_KODE_ID = BuildConfig.BODY_KODE_ID;
+    public static final String BODY_ID_RO = BuildConfig.BODY_ID_RO;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;

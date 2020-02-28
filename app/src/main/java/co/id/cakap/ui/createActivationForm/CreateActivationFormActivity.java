@@ -9,13 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,14 +34,17 @@ import co.id.cakap.adapter.ActivationKitAdapter;
 import co.id.cakap.adapter.ActivityRekapBnsBcmbAdapter;
 import co.id.cakap.adapter.ItemShopCashbillAdapter;
 import co.id.cakap.data.ActivationKitData;
+import co.id.cakap.data.ActivationSubmitItemFormData;
 import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.BottomDialogActivity;
+import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
-public class CreateActivationFormActivity extends BottomDialogActivity implements CreateActivationFormContract.View{
+public class CreateActivationFormActivity extends AppCompatActivity implements CreateActivationFormContract.View{
     @Inject
     CreateActivationFormPresenter mCreateActivationFormPresenter;
 
@@ -54,12 +62,11 @@ public class CreateActivationFormActivity extends BottomDialogActivity implement
     TextView mTxtName;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
-    @BindView(R.id.bottom_sheet)
-    View bottomSheet;
 
     private String mTitle = "";
     private ActivityInvToMbData mActivityInvToMbData;
     private ActivationKitAdapter mActivationKitAdapter;
+    private List<ActivationSubmitItemFormData> mSubmitItemFormDataList = new ArrayList<>();
     private CreateActivationFormContract.UserActionListener mUserActionListener;
 
     @Override
@@ -83,7 +90,6 @@ public class CreateActivationFormActivity extends BottomDialogActivity implement
     public void initializeData() {
         mUserActionListener = mCreateActivationFormPresenter;
         mCreateActivationFormPresenter.setView(this);
-        mBehavior = BottomSheetBehavior.from(bottomSheet);
 
         Intent intent = getIntent();
         Bundle b = intent.getBundleExtra(Constant.INVOICE_TRANSACTION_DATA);
@@ -96,7 +102,7 @@ public class CreateActivationFormActivity extends BottomDialogActivity implement
         mTxtMbId.setText(mActivityInvToMbData.getMember_id());
         mTxtName.setText(mActivityInvToMbData.getNama());
 
-        mCreateActivationFormPresenter.getData(mActivityInvToMbData.getItem_id());
+        mUserActionListener.getData(mActivityInvToMbData.getItem_id());
     }
 
     @Override
@@ -129,13 +135,78 @@ public class CreateActivationFormActivity extends BottomDialogActivity implement
     }
 
     @Override
+    public void insertOrUpdateItemData(ActivationSubmitItemFormData activationSubmitItemFormData) {
+        if (mSubmitItemFormDataList.isEmpty()) {
+            mSubmitItemFormDataList.add(activationSubmitItemFormData);
+        } else {
+            int dataSize = mSubmitItemFormDataList.size();
+            int indexSame = -1;
+            boolean isSame = false;
+
+            for (int i = 0; i < dataSize; i++) {
+                if (mSubmitItemFormDataList.get(i).getItemId().equals(activationSubmitItemFormData.getItemId())) {
+                    if (mSubmitItemFormDataList.get(i).getNumberForm().equals(activationSubmitItemFormData.getNumberForm())) {
+                        indexSame = i;
+                        isSame = true;
+                    }
+                }
+
+                if (i == dataSize - 1) {
+                    if (isSame) {
+                        mSubmitItemFormDataList.remove(indexSame);
+                        mSubmitItemFormDataList.add(activationSubmitItemFormData);
+                    } else {
+                        mSubmitItemFormDataList.add(activationSubmitItemFormData);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
     public void setSuccessResponse() {
         hideProgressBar();
 
-        bottomSheetAlert(
-                getResources().getDrawable(R.drawable.ic_check),
-                getResources().getString(R.string.transaksi_berhasil)
-        );
+        Intent returnIntent = new Intent();
+        setResult(RESULT_OK, returnIntent);
+        finish();
+    }
+
+    @Override
+    public void openPinDialog() {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mUserActionListener.submitData(pin, mActivityInvToMbData, mSubmitItemFormDataList);
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 
     @OnClick(R.id.text_process)
@@ -160,9 +231,7 @@ public class CreateActivationFormActivity extends BottomDialogActivity implement
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-
-//                mCreateActivationFormPresenter.submitData();
-                setSuccessResponse();
+                openPinDialog();
             }
         });
     }

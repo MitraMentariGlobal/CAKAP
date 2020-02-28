@@ -16,6 +16,8 @@ import lombok.Data;
 public class ApiResponseActivationFormData {
     @SerializedName("messages")
     private String messages;
+    @SerializedName("kode_id")
+    private String kode_id;
     @SerializedName("data")
     private List<ActivationKitData> data;
 }

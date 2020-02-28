@@ -2,9 +2,16 @@ package co.id.cakap.ui.createActivationForm;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import co.id.cakap.data.ActivationSubmitItemFormData;
+import co.id.cakap.data.ActivityInvToMbData;
+import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.RegistrationData;
 import co.id.cakap.data.ResultDataLogin;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseActivationFormData;
 import co.id.cakap.network.ApiResponseActivationFormSubmitData;
@@ -12,6 +19,7 @@ import co.id.cakap.network.ApiResponseListAddress;
 import co.id.cakap.network.ApiResponseRegistrationList;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.registration.RegistrationActivityContract;
+import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -23,6 +31,7 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
     private static ResultDataLogin mResultDataLogin;
+    private static String mKodeId = "";
 
     public CreateActivationFormPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -51,7 +60,8 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postItemActivationForm(id, mResultDataLogin.getMember_id())
+//        mMainRepository.postItemActivationForm(id, mResultDataLogin.getMember_id())
+        mMainRepository.postItemActivationForm(id, Constant.DUMMY_USER_ID)
                 .subscribe(new ResourceSubscriber<ApiResponseActivationFormData>() {
                     @Override
                     public void onNext(ApiResponseActivationFormData apiResponseActivationFormData) {
@@ -60,6 +70,7 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
                         Logger.d("<<<<<=====");
 
                         try {
+                            mKodeId = apiResponseActivationFormData.getKode_id();
                             getView().setAdapter(apiResponseActivationFormData.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -88,11 +99,12 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
     }
 
     @Override
-    public void submitData() {
+    public void submitData(String pin, ActivityInvToMbData activityInvToMbData, List<ActivationSubmitItemFormData> submitItemFormDataList) {
+//        Logger.d(getParam(pin, activityInvToMbData, submitItemFormDataList).toString());
+
         getView().showProgressBar();
 
-        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postSubmitActivationForm(mResultDataLogin.getMember_id())
+        mMainRepository.postSubmitActivationForm(getParam(pin, activityInvToMbData, submitItemFormDataList))
                 .subscribe(new ResourceSubscriber<ApiResponseActivationFormSubmitData>() {
                     @Override
                     public void onNext(ApiResponseActivationFormSubmitData apiResponseActivationFormSubmitData) {
@@ -126,5 +138,30 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
                         Logger.d("onComplete");
                     }
                 });
+    }
+
+    private Map<String, Object> getParam(String pin, ActivityInvToMbData activityInvToMbData, List<ActivationSubmitItemFormData> submitItemFormDataList) {
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+
+        List<Object> dataList = new ArrayList<>();
+        Map<String, Object> mParam = new HashMap<>();
+        for (ActivationSubmitItemFormData data : submitItemFormDataList) {
+            Map<String, Object> mDetail = new HashMap<>();
+
+            mDetail.put(Constant.BODY_ITEM_ID, data.getItemId());
+            mDetail.put(Constant.BODY_MEMBER_ID2, data.getMemberId());
+            mDetail.put(Constant.BODY_QTY, data.getQty());
+
+            dataList.add(mDetail);
+        }
+
+        mParam.put(Constant.BODY_PIN, pin);
+        mParam.put(Constant.BODY_USER_ID, mResultDataLogin.getMember_id());
+        mParam.put(Constant.BODY_USER_NAME, mResultDataLogin.getUsername());
+        mParam.put(Constant.BODY_ID_RO, activityInvToMbData.getItem_id());
+        mParam.put(Constant.BODY_KODE_ID, mKodeId);
+        mParam.put(Constant.BODY_DETAIL, dataList);
+
+        return mParam;
     }
 }

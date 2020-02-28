@@ -440,9 +440,9 @@ public interface NetworkService {
                                                                    @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                    @Field(Constant.BODY_ID) String id,
                                                                    @Field(Constant.BODY_USER_ID) String userId);
-    @FormUrlEncoded
-    @POST("asd")
+
+    @POST("submit_activation_form")
     Flowable<ApiResponseActivationFormSubmitData> postSubmitActivationForm(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
-                                                                           @Field(Constant.BODY_USER_ID) String userId);
+                                                                           @Body Map<String, Object> param);
 }

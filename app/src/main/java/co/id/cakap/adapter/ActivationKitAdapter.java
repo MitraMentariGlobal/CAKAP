@@ -54,7 +54,7 @@ public class ActivationKitAdapter extends RecyclerView.Adapter<ActivationKitAdap
         holder.mRecyclerView.setNestedScrollingEnabled(false);
         holder.mNestedScroll.getParent().requestChildFocus(holder.mNestedScroll, holder.mNestedScroll);
 
-        ActivationNumberFormAdapter activationNumberFormAdapter = new ActivationNumberFormAdapter(activationKitData.getForm(), mContext);
+        ActivationNumberFormAdapter activationNumberFormAdapter = new ActivationNumberFormAdapter(activationKitData.getForm(), mContext, activationKitData.getQty());
         holder.mRecyclerView.setAdapter(activationNumberFormAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(holder.mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
     }
