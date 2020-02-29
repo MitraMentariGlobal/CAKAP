@@ -184,7 +184,8 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
         mSuccessData = b.getParcelable(Constant.REGISTRATION_DATA);
 
         mTitleToolbar.setText(mTitle);
-        setSuccessInputData();
+        mUserActionListener.getLoginData();
+//        setSuccessInputData();
         hideProgressBar();
     }
 
@@ -216,10 +217,12 @@ public class RegistrationSuccessActivity extends AppCompatActivity implements Re
         startActivity(i);
     }
 
-    public void setSuccessInputData() {
+    @Override
+    public void successInputData(String id, String name) {
         mLinearDataPendaftaran.setVisibility(View.VISIBLE);
         mLinearTanggalExpired.setVisibility(View.GONE);
         mEtTanggalDaftar.setText(DateHelper.getTimeNow());
+        mEtStockistIdName.setText(id + " / " + name);
 //        mEtBCMBId.setText();
 
         mEtRecId.setEnabled(false);

@@ -8,7 +8,7 @@ public class LoginContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
-        void setSuccessResponse(String url);
+        void setSuccessResponse(ApiResponseLogin apiResponseLogin);
     }
 
     public interface UserActionListener{

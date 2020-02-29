@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/relative_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/appbar_padding"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_transfer_via"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="@string/transfer_via_bca_upper_1"
+            style="@style/TexViewFont"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/radius_8"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/radius_16"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/bca"
+                    android:scaleType="centerCrop"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_nomor_rekening"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_16"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:text="@string/rek_bca_1"
+                        style="@style/TexViewFont"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_copy_rekening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/radius_10"
+                android:textSize="@dimen/text_14"
+                android:textColor="@color/collapsing"
+                android:text="@string/copy"
+                style="@style/TexViewFont" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

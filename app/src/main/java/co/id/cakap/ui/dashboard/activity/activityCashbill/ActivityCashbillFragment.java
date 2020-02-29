@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.activity.activityCashbill;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,8 +21,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -50,6 +55,7 @@ import co.id.cakap.ui.dashboard.account.AccountContract;
 import co.id.cakap.ui.dashboard.account.AccountPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
 import co.id.cakap.utils.widget.Fab;
 import me.everything.android.ui.overscroll.HorizontalOverScrollBounceEffectDecorator;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -79,6 +85,8 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     Spinner mYearSpinner;
     @BindView(R.id.include_spinner_filter)
     View mIncludeSpinnerLayout;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -116,6 +124,14 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
         initSpinner();
         mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+        });
     }
 
     @Override
@@ -145,6 +161,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         setupOnFocusListener(mSearchEditText);
         setupFab();
 
+        mSwipeRefreshLayout.setRefreshing(false);
         hideProgressBar();
     }
 
@@ -167,6 +184,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     public void openDetailTransaction(ActivityCashbillData activityCashbillData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.cashbill));
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_CASHBILL);
         intent.putExtra(Constant.ITEM_ID_DETAIL, activityCashbillData.getItem_id());
         intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityCashbillData.getTransaction_id());
         intent.putExtra(Constant.MEMBER_ID_DETAIL, activityCashbillData.getMember_id());
@@ -175,6 +193,43 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         intent.putExtra(Constant.TOTAL_DETAIL, activityCashbillData.getTotal_amount());
         intent.putExtra(Constant.REMARK_DETAIL, activityCashbillData.getRemark());
         startActivity(intent);
+    }
+
+    @Override
+    public void openPinDialog(ActivityCashbillData activityCashbillData) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(getContext());
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mActivityCashbillPresenter.cancelTransaction(activityCashbillData, pin, getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 
     @OnClick(R.id.fab)

@@ -2,6 +2,7 @@ package co.id.cakap.di.component;
 
 import co.id.cakap.di.scope.ActivityScope;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.ui.createActivationForm.CreateActivationFormActivity;
 import co.id.cakap.ui.dashboard.activity.activityBonusStatement.ActivityBonusStatementFragment;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
@@ -91,6 +92,7 @@ public interface MainComponent {
     MonthlyPointReportActivity inject(MonthlyPointReportActivity monthlyPointReportActivity);
     NetworkGenealogyActivity inject(NetworkGenealogyActivity monthlyPointReportActivity);
     NetworkTableActivity inject(NetworkTableActivity monthlyPointReportActivity);
+    CreateActivationFormActivity inject(CreateActivationFormActivity createActivationFormActivity);
 
     HomeFragment inject(HomeFragment homeFragment);
     AccountFragment inject(AccountFragment accountFragment);

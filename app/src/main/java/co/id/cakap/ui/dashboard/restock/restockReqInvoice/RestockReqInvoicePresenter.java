@@ -4,16 +4,24 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import co.id.cakap.data.RestockReqInvoiceData;
+import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
+import co.id.cakap.network.ApiResponseRestockInvoice;
+import co.id.cakap.network.ApiResponseRestockReqInvoice;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.restock.restockInvoice.RestockInvoiceContract;
+import co.id.cakap.utils.DateHelper;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
+import io.reactivex.subscribers.ResourceSubscriber;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 public class RestockReqInvoicePresenter implements RestockReqInvoiceContract.UserActionListener {
     private static WeakReference<RestockReqInvoiceContract.View> mView;
     private static MainRepository mMainRepository;
     private static DataModel mDataModel;
-
-    private ArrayList<RestockReqInvoiceData> arrayList;
+    private static ResultDataLogin mResultDataLogin;
 
     public RestockReqInvoicePresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -38,17 +46,47 @@ public class RestockReqInvoicePresenter implements RestockReqInvoiceContract.Use
 
     @Override
     public void getData() {
-        arrayList = new ArrayList<>();
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Pending"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "On going"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Pending"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "On going"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "On going"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Delivered"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Delivered"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Pending"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Delivered"));
-        arrayList.add(new RestockReqInvoiceData("INV - 123123123123123", "IDR 100.000.000", "123", "28 Jan 2020", "Pending"));
-        getView().setAdapter(arrayList);
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postRestockReqInvoice(mResultDataLogin.getMember_id())
+                .subscribe(new ResourceSubscriber<ApiResponseRestockReqInvoice>() {
+                    @Override
+                    public void onNext(ApiResponseRestockReqInvoice apiResponseRestockReqInvoice) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseRestockReqInvoice.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            if (apiResponseRestockReqInvoice.getData().isEmpty()) {
+                                getView().hideProgressBar();
+                                getView().setErrorResponse(apiResponseRestockReqInvoice.getMessages());
+                            } else {
+                                getView().setAdapter(apiResponseRestockReqInvoice.getData());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
     }
 }

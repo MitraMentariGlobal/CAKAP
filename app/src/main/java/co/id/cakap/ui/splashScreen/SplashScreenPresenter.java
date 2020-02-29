@@ -62,8 +62,11 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
                         Logger.d("member id : " + apiResponseLogin.getResult().getMember_id());
                         Logger.d("<<<<<=====");
 
-                        saveData(apiResponseLogin);
-                        mView.goToHome(apiResponseLogin.getResult().getUrl());
+                        try {
+                            saveData(apiResponseLogin);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -92,5 +95,7 @@ public class SplashScreenPresenter implements SplashScreenContract.UserActionLis
     public void saveData(ApiResponseLogin apiResponseLogin) {
         Constant.LOGIN_DATA = apiResponseLogin.getResult().getRole();
         mDataModel.insertResultDataLogin(apiResponseLogin.getResult());
+
+        mView.goToHome(apiResponseLogin);
     }
 }

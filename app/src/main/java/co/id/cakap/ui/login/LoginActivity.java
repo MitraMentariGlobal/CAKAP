@@ -32,8 +32,11 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.network.ApiResponseLogin;
+import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
+import co.id.cakap.ui.myProfile.MyProfileActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.ForgotPasswordDialog;
@@ -162,12 +165,30 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
     }
 
     @Override
-    public void setSuccessResponse(String url) {
+    public void setSuccessResponse(ApiResponseLogin apiResponseLogin) {
 //        Intent intent = new Intent(this, HomeWebViewActivity.class);
-//        intent.putExtra(Constant.URL_LINK, url);
+//        intent.putExtra(Constant.URL_LINK, apiResponseLogin.getResult().getUrl());
 //        startActivity(intent);
 
-        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+        Intent intent = new Intent(this, DashboardActivity.class);
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.bc_login))) {
+            intent = new Intent(this, DashboardActivity.class);
+//            intent = new Intent(this, ChangePinActivity.class);
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.mb_login))) {
+            if (apiResponseLogin.getResult().getLeader_ids().equals("0")) {
+                Constant.IS_HAVE_PARENT = false;
+            } else {
+                Constant.IS_HAVE_PARENT = true;
+            }
+            intent = new Intent(this, DashboardActivity.class);
+//            intent = new Intent(this, ChangePinActivity.class);
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
+            if (Boolean.parseBoolean(apiResponseLogin.getResult().getUpdate_profile())) {
+                intent = new Intent(this, MyProfileActivity.class);
+            }
+        }
+
+        startActivity(intent);
         finish();
     }
 }

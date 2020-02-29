@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.activity.activityReqInvMb;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 
 import java.util.List;
 
@@ -32,6 +37,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbContract;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ActivityReqInvMbFragment extends Fragment implements ActivityReqInvMbContract.View {
@@ -74,7 +81,7 @@ public class ActivityReqInvMbFragment extends Fragment implements ActivityReqInv
     public void initializeData() {
         mUserActionListener = mActivityReqInvMbPresenter;
         mActivityReqInvMbPresenter.setView(this);
-        mUserActionListener.getData();
+        mUserActionListener.getData(getContext());
     }
 
     @Override
@@ -103,10 +110,56 @@ public class ActivityReqInvMbFragment extends Fragment implements ActivityReqInv
     }
 
     @Override
-    public void openDetailTransaction(String transactionId) {
+    public void openDetailTransaction(ActivityReqInvMbData activityReqInvMbData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
+
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.req_invoice_mb));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_REQ_INVOICE_MB);
+        intent.putExtra(Constant.ITEM_ID_DETAIL, activityReqInvMbData.getItem_id());
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, "");
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, activityReqInvMbData.getMember_id());
+        intent.putExtra(Constant.NAME_DETAIL, activityReqInvMbData.getName());
+        intent.putExtra(Constant.DATE_DETAIL, activityReqInvMbData.getDate());
+        intent.putExtra(Constant.TOTAL_DETAIL, activityReqInvMbData.getTotal_amount());
+        intent.putExtra(Constant.REMARK_DETAIL, activityReqInvMbData.getRemark());
+
         startActivity(intent);
+    }
+
+    @Override
+    public void openPinDialog(ActivityReqInvMbData activityReqInvMbData, String action) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(getContext());
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mActivityReqInvMbPresenter.actionTransaction(activityReqInvMbData, pin, getContext(), action);
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 }

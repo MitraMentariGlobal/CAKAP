@@ -106,10 +106,17 @@ public class RestockReqInvoiceFragment extends Fragment implements RestockReqInv
     }
 
     @Override
-    public void openDetailTransaction(String transactionId) {
+    public void openDetailTransaction(RestockReqInvoiceData restockReqInvoiceData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.req_invoice));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_REQ_INVOICE);
+        intent.putExtra(Constant.ITEM_ID_DETAIL, restockReqInvoiceData.getItem_id());
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, "");
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, restockReqInvoiceData.getNo_stc());
+        intent.putExtra(Constant.NAME_DETAIL, restockReqInvoiceData.getNama());
+        intent.putExtra(Constant.DATE_DETAIL, restockReqInvoiceData.getDate());
+        intent.putExtra(Constant.TOTAL_DETAIL, restockReqInvoiceData.getTotal_amount());
+        intent.putExtra(Constant.REMARK_DETAIL, restockReqInvoiceData.getRemarkapp());
         startActivity(intent);
     }
 }

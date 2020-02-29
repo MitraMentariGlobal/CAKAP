@@ -14,9 +14,11 @@ public class ActivityCashbillContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void openDetailTransaction(ActivityCashbillData activityCashbillData);
+        void openPinDialog(ActivityCashbillData activityCashbillData);
     }
 
     public interface UserActionListener {
         void getData(Context context, String tahun, String bulan);
+        void cancelTransaction(ActivityCashbillData activityCashbillData, String pin, Context context, String tahun, String bulan);
     }
 }

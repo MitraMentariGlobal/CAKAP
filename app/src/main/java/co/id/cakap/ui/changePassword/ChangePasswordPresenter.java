@@ -44,8 +44,12 @@ public class ChangePasswordPresenter implements ChangePasswordContract.UserActio
                         Logger.d("message : " + apiResponseChangePassword.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.hideProgressBar();
-                        mView.setSuccessResponse();
+                        try {
+                            mView.hideProgressBar();
+                            mView.setSuccessResponse();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

@@ -2,6 +2,7 @@ package co.id.cakap.ui.cashbill.cashbillSuccess;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,9 +27,11 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.CashbillSuccessAdapter;
 import co.id.cakap.data.CashbillSuccessData;
+import co.id.cakap.data.SubmitCashbillData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.DashboardActivity;
+import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -47,12 +50,18 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     TextView mTitleToolbar;
     @BindView(R.id.txt_transaction_id)
     TextView mTransactionIdText;
+    @BindView(R.id.txt_member_id)
+    TextView mTxtMemberId;
+    @BindView(R.id.txt_name)
+    TextView mTxtName;
+    @BindView(R.id.txt_date)
+    TextView mTxtDate;
+    @BindView(R.id.txt_total_amount)
+    TextView mTxtTotalAmount;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
     @BindView(R.id.et_member_id)
     EditText mMemberId;
-    @BindView(R.id.et_name)
-    EditText mName;
     @BindView(R.id.et_bonus_date)
     EditText mBonusDate;
     @BindView(R.id.et_status)
@@ -71,7 +80,9 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     LinearLayout mLinearRemark;
 
     private String mTitle = "";
+    private String mName = "";
     private String mTransactionId = "INV - 123123123123123";
+    private SubmitCashbillData mSubmitCashbillData;
     private CashbillSuccessAdapter mListAdapter;
     private CashbillSuccessContract.UserActionListener mUserActionListener;
 
@@ -98,13 +109,25 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
     public void initializeData() {
         mUserActionListener = mCashbillSuccessPresenter;
         mCashbillSuccessPresenter.setView(this);
-        mUserActionListener.getData();
 
+        showProgressBar();
         Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra(Constant.SUCCESS_DATA_OBJECT);
+
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
-//        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
-        mTransactionIdText.setText(mTransactionId);
+        mName = intent.getStringExtra(Constant.NAME);
+        mSubmitCashbillData = b.getParcelable(Constant.SUCCESS_DATA_OBJECT);
         mTitleToolbar.setText(mTitle);
+        mTransactionIdText.setText(mSubmitCashbillData.getInv());
+        mTxtMemberId.setText(mSubmitCashbillData.getMember_id() + " - " + mName);
+        mTxtName.setText(mName);
+        mTxtDate.setText(mSubmitCashbillData.getTgl());
+        mTxtTotalAmount.setText("IDR " + mSubmitCashbillData.getTotalharga());
+        mRemark.setText(mSubmitCashbillData.getRemark());
+        if (mSubmitCashbillData.getRemark().equals("0") || mSubmitCashbillData.getRemark().length() == 0)
+            mRemark.setText("-");
+
+        mUserActionListener.getData();
     }
 
     @Override

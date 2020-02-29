@@ -41,7 +41,7 @@ public class DateHelper {
 
     public static String getTimeNowBackEnd() {
         Calendar c = Calendar.getInstance();
-        return backend_sdf.format(c.getTime());
+        return backend_sdf_notime.format(c.getTime());
     }
 
     public static String getMonthNumber(String monthName) {

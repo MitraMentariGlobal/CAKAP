@@ -20,65 +20,97 @@ import lombok.Data;
 @Data
 @Entity
 public class ItemShopData implements Parcelable {
-    @SerializedName("item_code")
+    @SerializedName("image")
+    @Expose
+    private String image;
+
+    @SerializedName("id")
+    @Expose
+    private String id;
+
+    @SerializedName("item_id")
     @Expose
     private String item_code;
 
-    @SerializedName("item_name")
+    @SerializedName("name")
     @Expose
     private String item_name;
 
-    @SerializedName("qty")
+    @SerializedName("harga")
     @Expose
-    private String qty;
-
-    @SerializedName("stock")
-    @Expose
-    private String stock;
-
-    @SerializedName("wilayah")
-    @Expose
-    private String wilayah;
-
-    @SerializedName("price")
-    @Expose
-    private String price;
+    private String harga;
 
     @SerializedName("pv")
     @Expose
     private String pv;
 
-    @SerializedName("sub_total_price")
+    @SerializedName("bv")
     @Expose
-    private String sub_total_price;
+    private String bv;
 
-    @SerializedName("sub_total_pv")
+    @SerializedName("fharga")
     @Expose
-    private String sub_total_pv;
+    private String fharga;
 
-    @Keep
-    public ItemShopData(String item_code, String item_name, String qty, String stock, String wilayah, String price, String pv, String sub_total_price, String sub_total_pv) {
-        this.item_code = item_code;
-        this.item_name = item_name;
-        this.qty = qty;
-        this.stock = stock;
-        this.wilayah = wilayah;
-        this.price = price;
-        this.pv = pv;
-        this.sub_total_price = sub_total_price;
-        this.sub_total_pv = sub_total_pv;
-    }
+    @SerializedName("fpv")
+    @Expose
+    private String fpv;
+
+    @SerializedName("fbv")
+    @Expose
+    private String fbv;
+
+    @SerializedName("fqty")
+    @Expose
+    private String fqty;
+
+    @SerializedName("qty")
+    @Expose
+    private String qty;
+
+    @SerializedName("ket")
+    @Expose
+    private String ket;
+
+    @SerializedName("cart")
+    @Expose
+    private String cart;
 
     protected ItemShopData(Parcel in) {
+        image = in.readString();
+        id = in.readString();
         item_code = in.readString();
         item_name = in.readString();
-        qty = in.readString();
-        stock = in.readString();
-        wilayah = in.readString();
-        price = in.readString();
+        harga = in.readString();
         pv = in.readString();
-        sub_total_price = in.readString();
-        sub_total_pv = in.readString();
+        bv = in.readString();
+        fharga = in.readString();
+        fpv = in.readString();
+        fbv = in.readString();
+        fqty = in.readString();
+        qty = in.readString();
+        ket = in.readString();
+        cart = in.readString();
+    }
+
+    @Generated(hash = 1275743)
+    public ItemShopData(String image, String id, String item_code, String item_name,
+            String harga, String pv, String bv, String fharga, String fpv, String fbv,
+            String fqty, String qty, String ket, String cart) {
+        this.image = image;
+        this.id = id;
+        this.item_code = item_code;
+        this.item_name = item_name;
+        this.harga = harga;
+        this.pv = pv;
+        this.bv = bv;
+        this.fharga = fharga;
+        this.fpv = fpv;
+        this.fbv = fbv;
+        this.fqty = fqty;
+        this.qty = qty;
+        this.ket = ket;
+        this.cart = cart;
     }
 
     @Generated(hash = 1607569685)
@@ -87,20 +119,41 @@ public class ItemShopData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(image);
+        dest.writeString(id);
         dest.writeString(item_code);
         dest.writeString(item_name);
-        dest.writeString(qty);
-        dest.writeString(stock);
-        dest.writeString(wilayah);
-        dest.writeString(price);
+        dest.writeString(harga);
         dest.writeString(pv);
-        dest.writeString(sub_total_price);
-        dest.writeString(sub_total_pv);
+        dest.writeString(bv);
+        dest.writeString(fharga);
+        dest.writeString(fpv);
+        dest.writeString(fbv);
+        dest.writeString(fqty);
+        dest.writeString(qty);
+        dest.writeString(ket);
+        dest.writeString(cart);
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getItem_code() {
@@ -119,36 +172,12 @@ public class ItemShopData implements Parcelable {
         this.item_name = item_name;
     }
 
-    public String getQty() {
-        return this.qty;
+    public String getHarga() {
+        return this.harga;
     }
 
-    public void setQty(String qty) {
-        this.qty = qty;
-    }
-
-    public String getStock() {
-        return this.stock;
-    }
-
-    public void setStock(String stock) {
-        this.stock = stock;
-    }
-
-    public String getWilayah() {
-        return this.wilayah;
-    }
-
-    public void setWilayah(String wilayah) {
-        this.wilayah = wilayah;
-    }
-
-    public String getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
+    public void setHarga(String harga) {
+        this.harga = harga;
     }
 
     public String getPv() {
@@ -159,20 +188,68 @@ public class ItemShopData implements Parcelable {
         this.pv = pv;
     }
 
-    public String getSub_total_price() {
-        return this.sub_total_price;
+    public String getBv() {
+        return this.bv;
     }
 
-    public void setSub_total_price(String sub_total_price) {
-        this.sub_total_price = sub_total_price;
+    public void setBv(String bv) {
+        this.bv = bv;
     }
 
-    public String getSub_total_pv() {
-        return this.sub_total_pv;
+    public String getFharga() {
+        return this.fharga;
     }
 
-    public void setSub_total_pv(String sub_total_pv) {
-        this.sub_total_pv = sub_total_pv;
+    public void setFharga(String fharga) {
+        this.fharga = fharga;
+    }
+
+    public String getFpv() {
+        return this.fpv;
+    }
+
+    public void setFpv(String fpv) {
+        this.fpv = fpv;
+    }
+
+    public String getFbv() {
+        return this.fbv;
+    }
+
+    public void setFbv(String fbv) {
+        this.fbv = fbv;
+    }
+
+    public String getFqty() {
+        return this.fqty;
+    }
+
+    public void setFqty(String fqty) {
+        this.fqty = fqty;
+    }
+
+    public String getQty() {
+        return this.qty;
+    }
+
+    public void setQty(String qty) {
+        this.qty = qty;
+    }
+
+    public String getKet() {
+        return this.ket;
+    }
+
+    public void setKet(String ket) {
+        this.ket = ket;
+    }
+
+    public String getCart() {
+        return this.cart;
+    }
+
+    public void setCart(String cart) {
+        this.cart = cart;
     }
 
     public static final Creator<ItemShopData> CREATOR = new Creator<ItemShopData>() {

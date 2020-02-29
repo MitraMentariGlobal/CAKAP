@@ -44,8 +44,11 @@ public class FeeBcmbActivityPresenter implements FeeBcmbActivityContract.UserAct
                         Logger.d("message : " + apiResponseFeeBcmb.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.setData(apiResponseFeeBcmb.getData());
-//                        mView.setAdapter(apiResponseMonthlyPointReport.getData());
+                        try {
+                            mView.setData(apiResponseFeeBcmb.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

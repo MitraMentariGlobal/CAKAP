@@ -31,8 +31,8 @@ public class DetailTransactionPresenter implements DetailTransactionContract.Use
     }
 
     @Override
-    public void getData(String itemId) {
-        mMainRepository.postDetailTransaction(Constant.END_URL_DETAIL_CASHBILL, itemId)
+    public void getData(String endpoint, String itemId) {
+        mMainRepository.postDetailTransaction(endpoint, itemId)
                 .subscribe(new ResourceSubscriber<ApiResponseDetailTransaction>() {
                     @Override
                     public void onNext(ApiResponseDetailTransaction apiResponseDetailTransaction) {
@@ -40,7 +40,11 @@ public class DetailTransactionPresenter implements DetailTransactionContract.Use
                         Logger.d("message : " + apiResponseDetailTransaction.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.setAdapter(apiResponseDetailTransaction.getData());
+                        try {
+                            mView.setAdapter(apiResponseDetailTransaction);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

@@ -6,9 +6,11 @@ public class RegistrationSuccessContract {
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
+        void successInputData(String id, String name);
     }
 
     public interface UserActionListener{
         void setView(RegistrationSuccessContract.View view);
+        void getLoginData();
     }
 }

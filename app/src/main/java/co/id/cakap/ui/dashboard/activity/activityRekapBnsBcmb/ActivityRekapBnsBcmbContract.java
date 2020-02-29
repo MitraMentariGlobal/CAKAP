@@ -1,5 +1,7 @@
 package co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb;
 
+import android.content.Context;
+
 import java.util.List;
 
 import co.id.cakap.adapter.ActivityRekapBnsBcmbAdapter;
@@ -13,9 +15,11 @@ public class ActivityRekapBnsBcmbContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void openDetailTransaction(String transactionId);
+        void openPinDialog(ActivityRekapBnsBcmbData activityRekapBnsBcmbData);
     }
 
     public interface UserActionListener {
-        void getData();
+        void getData(String tahun, String bulan);
+        void actionTransaction(ActivityRekapBnsBcmbData activityRekapBnsBcmbData, String pin, String tahun, String bulan);
     }
 }

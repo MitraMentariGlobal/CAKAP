@@ -1,5 +1,7 @@
 package co.id.cakap.ui.dashboard.activity.activityInvToMb;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -40,10 +45,13 @@ import co.id.cakap.adapter.ActivityInvToMbAdapter;
 import co.id.cakap.data.ActivityInvToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.createActivationForm.CreateActivationFormActivity;
+import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMbContract.View, DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener  {
@@ -93,8 +101,9 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     public void initializeData() {
         mUserActionListener = mActivityInvToMbPresenter;
         mActivityInvToMbPresenter.setView(this);
-        mUserActionListener.getData();
+
         initSpinner();
+        mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -139,11 +148,78 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     }
 
     @Override
-    public void openDetailTransaction(String transactionId) {
+    public void openDetailTransaction(ActivityInvToMbData activityInvToMbData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.invoice_to_mb));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_INVOICE_TO_MB);
+        intent.putExtra(Constant.ITEM_ID_DETAIL, activityInvToMbData.getItem_id());
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, activityInvToMbData.getTransaction_id());
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, activityInvToMbData.getMember_id());
+        intent.putExtra(Constant.NAME_DETAIL, activityInvToMbData.getNama());
+        intent.putExtra(Constant.DATE_DETAIL, activityInvToMbData.getDate());
+        intent.putExtra(Constant.TOTAL_DETAIL, activityInvToMbData.getTotal_amount());
+        intent.putExtra(Constant.REMARK_DETAIL, activityInvToMbData.getRemark());
         startActivity(intent);
+    }
+
+    @Override
+    public void createActivationForm(ActivityInvToMbData activityInvToMbData) {
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.INVOICE_TRANSACTION_DATA, activityInvToMbData);
+
+        Intent intent = new Intent(getContext(), CreateActivationFormActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.create_activation_form));
+        intent.putExtra(Constant.INVOICE_TRANSACTION_DATA, b);
+        startActivityForResult(intent, Constant.SUCCESS_TRANSACTION);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == Constant.SUCCESS_TRANSACTION) {
+                ((DashboardActivity) getActivity()).bottomSheetAlert(
+                        getResources().getDrawable(R.drawable.ic_check),
+                        getResources().getString(R.string.transaksi_berhasil)
+                );
+            }
+        }
+    }
+
+    @Override
+    public void openPinDialog(ActivityInvToMbData activityInvToMbData) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(getContext());
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mActivityInvToMbPresenter.cancelTransaction(activityInvToMbData, pin, getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 
     @OnClick(R.id.fab)
@@ -205,7 +281,7 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

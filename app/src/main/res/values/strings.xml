@@ -29,6 +29,7 @@
     <string name="downline_listing">Downline Listing</string>
     <string name="monthly_point_report">Monthly Point Report </string>
     <string name="invoice_to_mb">Invoice To MB</string>
+    <string name="create_activation_form">Create Activation Form</string>
     <string name="req_invoice_to_com">Req Invoice To Company</string>
     <string name="req_invoice_to_bc">Req Invoice To BC</string>
     <string name="req_invoice_mb">Request Inv MB</string>

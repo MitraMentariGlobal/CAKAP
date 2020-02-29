@@ -21,11 +21,11 @@ import lombok.Data;
 @Entity
 public class ItemSearchRegistrationData implements Parcelable {
 
-    @SerializedName("member_id")
+    @SerializedName("id")
     @Expose
     private String member_id;
 
-    @SerializedName("name")
+    @SerializedName("nama")
     @Expose
     private String name;
 

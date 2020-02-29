@@ -45,7 +45,11 @@ public class OmsetActivityPresenter implements OmsetActivityContract.UserActionL
                         Logger.d("message : " + apiResponseOmset.getMessages());
                         Logger.d("<<<<<=====");
 
-                        mView.setAdapter(apiResponseOmset.getData());
+                        try {
+                            mView.setAdapter(apiResponseOmset.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

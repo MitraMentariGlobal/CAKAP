@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,9 +36,13 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.ItemShopReqInvToCompanyAdapter;
+import co.id.cakap.data.AddressDefaultData;
+import co.id.cakap.data.AddressHistoryData;
 import co.id.cakap.data.ItemShopCompanyData;
+import co.id.cakap.data.SubmitInvoiceToCompanyData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.network.ApiResponseSubmitInvoiceToCompany;
 import co.id.cakap.ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
@@ -85,14 +88,26 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     Spinner mPaymentMethodSpinner;
     @BindView(R.id.linear_ewallet)
     LinearLayout mLinearEwallet;
+    @BindView(R.id.txt_city)
+    TextView mTxtCity;
+    @BindView(R.id.txt_province)
+    TextView mTxtProvince;
+    @BindView(R.id.txt_address)
+    TextView mTxtAddress;
 
     private ItemShopReqInvToCompanyAdapter mListAdapter;
     private GridLayoutManager mGridLayoutManager;
+    private AddressDefaultData mAddressDefaultData;
+    private AddressHistoryData mAddressHistoryData;
+    private List<ItemShopCompanyData> mResultData;
     private ReqInvoiceToCompanyActivityContract.UserActionListener mUserActionListener;
+    private String mIdAddress = "";
     private boolean mIsExpand = true;
 
+    private static int mPaymentMethod = 0; // 0 ewallet, 1 transfer
     private static int mItem = 0;
     private static int mPv = 0;
+    private static int mBv = 0;
     private static double mPrice = 0;
 
     @Override
@@ -116,10 +131,37 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     public void initializeData() {
         mUserActionListener = mReqInvoiceToCompanyActivityPresenter;
         mReqInvoiceToCompanyActivityPresenter.setView(this);
-        mUserActionListener.getData();
+
+        Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra(Constant.COMPANY_DATA_OBJECT);
+
+        mAddressDefaultData = b.getParcelable(Constant.ADDRESS_COMPANY_DATA_OBJECT);
+        mAddressHistoryData = b.getParcelable(Constant.ITEM_ADDRESS_COMPANY_DATA_OBJECT);
 
         mTitle.setText(getString(R.string.req_invoice_to_com).toUpperCase());
         mTxtPickUpDelivery.setText("Delivery");
+        mSaldoEwallet.setText(mAddressDefaultData.getFewalletstc());
+        if (mAddressHistoryData != null) {
+            if (mAddressDefaultData.getId().equals(mAddressHistoryData.getId())) {
+                mIdAddress = "";
+            } else {
+                mIdAddress = mAddressHistoryData.getId();
+            }
+
+            mTxtCity.setText(mAddressHistoryData.getKota());
+            mTxtProvince.setText(mAddressHistoryData.getProvince());
+            mTxtAddress.setText(mAddressHistoryData.getAddress());
+
+            mUserActionListener.getItemInvoice(mAddressHistoryData.getTimur());
+        } else {
+            mIdAddress = "";
+            mTxtCity.setText(mAddressDefaultData.getNamakota());
+            mTxtProvince.setText(mAddressDefaultData.getProvince());
+            mTxtAddress.setText(mAddressDefaultData.getAddress());
+
+            mUserActionListener.getItemInvoice(mAddressDefaultData.getTimur());
+        }
+
         mLinearSearch.setVisibility(View.GONE);
         mItemCheck.setVisibility(View.GONE);
         mLinearChangeAddress.setVisibility(View.GONE);
@@ -156,19 +198,35 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @Override
     public void setCheckoutValue(List<ItemShopCompanyData> resultData, ItemShopCompanyData itemShopCompanyData, int action) {
+        mResultData = resultData;
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopCompanyData.getPv());
-            mPrice -= Double.parseDouble(itemShopCompanyData.getPrice().replace(".",""));
+            mBv -= Integer.parseInt(itemShopCompanyData.getBv());
+            mPrice -= Double.parseDouble(itemShopCompanyData.getHarga());
         } else {
             mItem += 1;
             mPv += Integer.parseInt(itemShopCompanyData.getPv());
-            mPrice += Double.parseDouble(itemShopCompanyData.getPrice().replace(".",""));
+            mBv += Integer.parseInt(itemShopCompanyData.getBv());
+            mPrice += Double.parseDouble(itemShopCompanyData.getHarga());
         }
 
         mTxtTotalItem.setText(String.valueOf(mItem));
         mTxtTotalPv.setText(String.valueOf(mPv));
         mTxtTotalPrice.setText(Utils.priceWithoutDecimal(mPrice));
+    }
+
+    @Override
+    public void successSubmitData(ApiResponseSubmitInvoiceToCompany apiResponseSubmitInvoiceToCompany) {
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.SUCCESS_DATA_OBJECT, apiResponseSubmitInvoiceToCompany.getData());
+
+        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToCompanySuccessActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_com).toUpperCase());
+        intent.putExtra(Constant.PAYMENT_METHOD, mPaymentMethodSpinner.getSelectedItem().toString());
+        intent.putExtra(Constant.PAYMENT_INFO, apiResponseSubmitInvoiceToCompany.getInfo());
+        intent.putExtra(Constant.SUCCESS_DATA_OBJECT, b);
+        startActivity(intent);
     }
 
     @OnClick(R.id.arrow_back)
@@ -216,42 +274,54 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-        PinDialog utils = new PinDialog();
-        Dialog dialog = utils.showDialog(this);
+        if (mItem != 0) {
+            PinDialog utils = new PinDialog();
+            Dialog dialog = utils.showDialog(this);
 
-        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
-        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
-        PinLockListener pinLockListener = new PinLockListener() {
-            @Override
-            public void onComplete(String pin) {
-                Logger.d("Pin complete: " + pin);
-                dialog.hide();
-                dialog.dismiss();
+            PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+            IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+            PinLockListener pinLockListener = new PinLockListener() {
+                @Override
+                public void onComplete(String pin) {
+                    Logger.d("Pin complete: " + pin);
+                    dialog.hide();
+                    dialog.dismiss();
 
-                Intent intent = new Intent(getApplicationContext(), ReqInvoiceToCompanySuccessActivity.class);
-                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_com).toUpperCase());
-                intent.putExtra(Constant.PAYMENT_METHOD, mPaymentMethodSpinner.getSelectedItem().toString());
-                startActivity(intent);
-            }
+                    mUserActionListener.submitData(
+                            pin,
+                            String.valueOf(mPrice),
+                            String.valueOf(mPv),
+                            String.valueOf(mBv),
+                            mRemark.getText().toString(),
+                            String.valueOf(mPaymentMethod),
+                            mIdAddress,
+                            mResultData
+                    );
+//                Intent intent = new Intent(getApplicationContext(), ReqInvoiceToCompanySuccessActivity.class);
+//                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_com).toUpperCase());
+//                intent.putExtra(Constant.PAYMENT_METHOD, mPaymentMethodSpinner.getSelectedItem().toString());
+//                startActivity(intent);
+                }
 
-            @Override
-            public void onEmpty() {
-                Logger.d("Pin empty");
-            }
+                @Override
+                public void onEmpty() {
+                    Logger.d("Pin empty");
+                }
 
-            @Override
-            public void onPinChange(int pinLength, String intermediatePin) {
-                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
-            }
-        };
+                @Override
+                public void onPinChange(int pinLength, String intermediatePin) {
+                    Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+                }
+            };
 
-        pinLockView.attachIndicatorDots(indicatorDots);
-        pinLockView.setPinLockListener(pinLockListener);
+            pinLockView.attachIndicatorDots(indicatorDots);
+            pinLockView.setPinLockListener(pinLockListener);
 
-        pinLockView.setPinLength(6);
-        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            pinLockView.setPinLength(6);
+            pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
+            indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
+        }
     }
 
     public void initSpinner() {
@@ -269,8 +339,10 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
             case R.id.payment_method_spinner:
                 if (position == 0) {
                     mLinearEwallet.setVisibility(View.VISIBLE);
+                    mPaymentMethod = 0;
                 } else {
                     mLinearEwallet.setVisibility(View.GONE);
+                    mPaymentMethod = 1;
                 }
                 break;
             default:

@@ -35,6 +35,7 @@ import co.id.cakap.R;
 import co.id.cakap.adapter.ItemShopReqInvToBcAdapter;
 import co.id.cakap.adapter.ItemShopReqInvToCompanyAdapter;
 import co.id.cakap.data.ItemShopCompanyData;
+import co.id.cakap.data.SubmitInvoiceToBcData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity;
@@ -70,6 +71,7 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     private ItemShopReqInvToBcAdapter mListAdapter;
     private GridLayoutManager mGridLayoutManager;
+    private List<ItemShopCompanyData> mResultData;
     private ReqInvoiceToBcActivityContract.UserActionListener mUserActionListener;
 
     private static int mItem = 0;
@@ -131,19 +133,31 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     @Override
     public void setCheckoutValue(List<ItemShopCompanyData> resultData, ItemShopCompanyData itemShopCompanyData, int action) {
+        mResultData = resultData;
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopCompanyData.getPv());
-            mPrice -= Double.parseDouble(itemShopCompanyData.getPrice().replace(".",""));
+            mPrice -= Double.parseDouble(itemShopCompanyData.getHarga());
         } else {
             mItem += 1;
             mPv += Integer.parseInt(itemShopCompanyData.getPv());
-            mPrice += Double.parseDouble(itemShopCompanyData.getPrice().replace(".",""));
+            mPrice += Double.parseDouble(itemShopCompanyData.getHarga());
         }
 
         mTxtTotalItem.setText(String.valueOf(mItem));
         mTxtTotalPv.setText(String.valueOf(mPv));
         mTxtTotalPrice.setText(Utils.priceWithoutDecimal(mPrice));
+    }
+
+    @Override
+    public void successSubmitData(SubmitInvoiceToBcData submitInvoiceToBcData) {
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.SUCCESS_DATA_OBJECT, submitInvoiceToBcData);
+
+        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToBcSuccessActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_bc).toUpperCase());
+        intent.putExtra(Constant.SUCCESS_DATA_OBJECT, b);
+        startActivity(intent);
     }
 
     @OnClick(R.id.arrow_back)
@@ -176,8 +190,17 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToBcSuccessActivity.class);
-        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_bc).toUpperCase());
-        startActivity(intent);
+        mUserActionListener.submitData(
+                "",
+                String.valueOf(mPrice),
+                String.valueOf(mPv),
+                "",
+                "",
+                mResultData
+        );
+
+//        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToBcSuccessActivity.class);
+//        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_bc).toUpperCase());
+//        startActivity(intent);
     }
 }

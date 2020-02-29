@@ -9,6 +9,7 @@ import co.id.cakap.data.ActivityCashbillData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseActivityCashbill;
+import co.id.cakap.network.ApiResponseCancelItemCashbill;
 import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.ui.dashboard.account.AccountContract;
@@ -60,11 +61,56 @@ public class ActivityCashbillPresenter implements ActivityCashbillContract.UserA
                         Logger.d("message : " + apiResponseActivityCashbill.getMessages());
                         Logger.d("<<<<<=====");
 
-                        if (apiResponseActivityCashbill.getData().isEmpty()) {
-                            getView().hideProgressBar();
-                            getView().setErrorResponse(apiResponseActivityCashbill.getMessages());
-                        } else {
-                            getView().setAdapter(apiResponseActivityCashbill.getData());
+                        try {
+                            if (apiResponseActivityCashbill.getData().isEmpty()) {
+                                getView().hideProgressBar();
+                                getView().setErrorResponse(apiResponseActivityCashbill.getMessages());
+                            } else {
+                                getView().setAdapter(apiResponseActivityCashbill.getData());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void cancelTransaction(ActivityCashbillData activityCashbillData, String pin, Context context, String tahun, String bulan) {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postCancelItemCashbill(mResultDataLogin.getMember_id(), mResultDataLogin.getUsername(), pin, activityCashbillData.getItem_id())
+                .subscribe(new ResourceSubscriber<ApiResponseCancelItemCashbill>() {
+                    @Override
+                    public void onNext(ApiResponseCancelItemCashbill apiResponseCancelItemCashbill) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseCancelItemCashbill.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            getData(context, tahun, bulan);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 

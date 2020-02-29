@@ -50,12 +50,21 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         ActivityInvToMbData activityInvToMbData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.activityInvToMbData = activityInvToMbData;
         holder.mTotalPv.setText(activityInvToMbData.getTotal_pv());
         holder.mTransactionId.setText(activityInvToMbData.getTransaction_id());
         holder.mDate.setText(activityInvToMbData.getDate());
-        holder.mMemberId.setText(activityInvToMbData.getMember_id());
-        holder.mName.setText(activityInvToMbData.getName());
-        holder.mTotalAmount.setText(activityInvToMbData.getTotal_amount());
+        holder.mMemberId.setText(activityInvToMbData.getMember_id() + " - " + activityInvToMbData.getNama());
+        holder.mName.setText(activityInvToMbData.getNama());
+        holder.mTotalAmount.setText("IDR " + activityInvToMbData.getTotal_amount());
+
+        if (!(activityInvToMbData.getFlag_cancel().equals("0"))) {
+            holder.mItemCancel.setVisibility(View.GONE);
+        }
+
+        if (activityInvToMbData.getFlag_acform().equals("0") && activityInvToMbData.getType_id().equals("1")) {
+            holder.mItemCreate.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -83,8 +92,11 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
         ImageView mItemCancel;
         @BindView(R.id.item_verified)
         ImageView mItemVerified;
+        @BindView(R.id.item_create)
+        ImageView mItemCreate;
 
         Context context;
+        ActivityInvToMbData activityInvToMbData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -95,7 +107,7 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new ActivityInvToMbPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+            new ActivityInvToMbPresenter().getView().openDetailTransaction(activityInvToMbData);
         }
 
         @OnClick(R.id.item_cancel)
@@ -109,7 +121,6 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -117,9 +128,14 @@ public class ActivityInvToMbAdapter extends RecyclerView.Adapter<ActivityInvToMb
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new ActivityInvToMbPresenter().getView().openPinDialog(activityInvToMbData);
                 }
             });
+        }
+
+        @OnClick(R.id.item_create)
+        public void actionCreate() {
+            new ActivityInvToMbPresenter().getView().createActivationForm(activityInvToMbData);
         }
     }
 }

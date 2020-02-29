@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.monthlyPointReport.MonthlyPointReportActivity"></activity>
+        <activity android:name=".ui.createActivationForm.CreateActivationFormActivity"></activity>
+        <activity android:name=".ui.monthlyPointReport.MonthlyPointReportActivity" />
         <activity android:name=".ui.downlineListing.DownlineListingActivity" />
         <activity android:name=".ui.ebonus.EbonusActivity" />
         <activity android:name=".ui.networkTable.NetworkTableActivity" />
@@ -43,6 +44,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -50,7 +52,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
         <!--
  Set custom default icon. This is used when no icon is set for incoming notification messages.

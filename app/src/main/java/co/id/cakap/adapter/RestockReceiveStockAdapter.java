@@ -51,10 +51,11 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
         RestockReceiveStockData restockReceiveStockData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.restockReceiveStockData = restockReceiveStockData;
         holder.mTotalPv.setText(restockReceiveStockData.getTotal_pv());
         holder.mTransactionId.setText(restockReceiveStockData.getTransaction_id());
         holder.mDate.setText(restockReceiveStockData.getDate());
-        holder.mTotalAmount.setText(restockReceiveStockData.getTotal_amount());
+        holder.mTotalAmount.setText("IDR " + restockReceiveStockData.getTotal_amount());
     }
 
     @Override
@@ -78,6 +79,7 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
         ImageView mItemVerified;
 
         Context context;
+        RestockReceiveStockData restockReceiveStockData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -88,7 +90,7 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new RestockReceiveStockPresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+            new RestockReceiveStockPresenter().getView().openDetailTransaction(restockReceiveStockData);
         }
 
         @OnClick(R.id.item_verified)
@@ -102,7 +104,6 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -110,7 +111,7 @@ public class RestockReceiveStockAdapter extends RecyclerView.Adapter<RestockRece
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new RestockReceiveStockPresenter().getView().openPinDialog(restockReceiveStockData);
                 }
             });
         }

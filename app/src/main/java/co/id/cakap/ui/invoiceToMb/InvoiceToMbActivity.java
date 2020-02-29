@@ -37,8 +37,10 @@ import co.id.cakap.adapter.ItemShopCashbillAdapter;
 import co.id.cakap.adapter.ItemShopInvToMbAdapter;
 import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.OperationUserStatusData;
+import co.id.cakap.data.SubmitInvoiceToMbData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessActivity;
 import co.id.cakap.ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
@@ -83,10 +85,12 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
     private ItemShopInvToMbAdapter mListAdapter;
     private GridLayoutManager mGridLayoutManager;
     private InvoiceToMbActivityContract.UserActionListener mUserActionListener;
+    private List<ItemShopData> mResultData;
     private boolean mIsExpand = true;
 
     private static int mItem = 0;
     private static int mPv = 0;
+//    private int mBv = 0;
     private static double mPrice = 0;
 
     @Override
@@ -150,19 +154,34 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
 
     @Override
     public void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action) {
+        mResultData = resultData;
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopData.getPv());
-            mPrice -= Double.parseDouble(itemShopData.getPrice().replace(".",""));
+//            mBv -= Integer.parseInt(itemShopData.getBv());
+            mPrice -= Double.parseDouble(itemShopData.getHarga());
         } else {
             mItem += 1;
             mPv += Integer.parseInt(itemShopData.getPv());
-            mPrice += Double.parseDouble(itemShopData.getPrice().replace(".",""));
+//            mBv += Integer.parseInt(itemShopData.getBv());
+            mPrice += Double.parseDouble(itemShopData.getHarga());
         }
 
         mTxtTotalItem.setText(String.valueOf(mItem));
         mTxtTotalPv.setText(String.valueOf(mPv));
         mTxtTotalPrice.setText(Utils.priceWithoutDecimal(mPrice));
+    }
+
+    @Override
+    public void successSubmitData(SubmitInvoiceToMbData submitInvoiceToMbData) {
+        Bundle b = new Bundle();
+        b.putParcelable(Constant.SUCCESS_DATA_OBJECT, submitInvoiceToMbData);
+
+        Intent intent = new Intent(getApplicationContext(), InvoiceToMbSuccessActivity.class);
+        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.invoice_to_mb).toUpperCase());
+        intent.putExtra(Constant.NAME, mName.getText().toString());
+        intent.putExtra(Constant.SUCCESS_DATA_OBJECT, b);
+        startActivity(intent);
     }
 
     @OnClick(R.id.arrow_back)
@@ -176,9 +195,7 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
             mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_red_background_style));
         } else {
             mRelativeMemberId.setBackgroundDrawable(getResources().getDrawable(R.drawable.et_gray_background_style));
-            mUserActionListener.getData(mMbId.getText().toString());
-            mMbId.setInputType(0);
-//            showProgressBar();
+            mUserActionListener.getMbData(mMbId.getText().toString());
         }
     }
 
@@ -222,40 +239,47 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-        PinDialog utils = new PinDialog();
-        Dialog dialog = utils.showDialog(this);
+        if (mItem != 0) {
+            PinDialog utils = new PinDialog();
+            Dialog dialog = utils.showDialog(this);
 
-        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
-        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
-        PinLockListener pinLockListener = new PinLockListener() {
-            @Override
-            public void onComplete(String pin) {
-                Logger.d("Pin complete: " + pin);
-                dialog.hide();
-                dialog.dismiss();
+            PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+            IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+            PinLockListener pinLockListener = new PinLockListener() {
+                @Override
+                public void onComplete(String pin) {
+                    Logger.d("Pin complete: " + pin);
+                    dialog.hide();
+                    dialog.dismiss();
 
-                Intent intent = new Intent(getApplicationContext(), InvoiceToMbSuccessActivity.class);
-                intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.invoice_to_mb).toUpperCase());
-                startActivity(intent);
-            }
+                    mUserActionListener.submitData(
+                            pin,
+                            String.valueOf(mPrice),
+                            String.valueOf(mPv),
+                            "",
+                            "",
+                            mResultData
+                    );
+                }
 
-            @Override
-            public void onEmpty() {
-                Logger.d("Pin empty");
-            }
+                @Override
+                public void onEmpty() {
+                    Logger.d("Pin empty");
+                }
 
-            @Override
-            public void onPinChange(int pinLength, String intermediatePin) {
-                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
-            }
-        };
+                @Override
+                public void onPinChange(int pinLength, String intermediatePin) {
+                    Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+                }
+            };
 
-        pinLockView.attachIndicatorDots(indicatorDots);
-        pinLockView.setPinLockListener(pinLockListener);
+            pinLockView.attachIndicatorDots(indicatorDots);
+            pinLockView.setPinLockListener(pinLockListener);
 
-        pinLockView.setPinLength(6);
-        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            pinLockView.setPinLength(6);
+            pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
+            indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
+        }
     }
 }

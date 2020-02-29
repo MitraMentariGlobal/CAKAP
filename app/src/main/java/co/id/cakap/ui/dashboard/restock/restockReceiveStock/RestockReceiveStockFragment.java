@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.restock.restockReceiveStock;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -35,6 +39,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillContract;
 import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class RestockReceiveStockFragment extends Fragment implements RestockReceiveStockContract.View {
@@ -106,10 +112,54 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
     }
 
     @Override
-    public void openDetailTransaction(String transactionId) {
+    public void openDetailTransaction(RestockReceiveStockData restockReceiveStockData) {
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.receive_stock));
-        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_RECEIVE_STOCK);
+        intent.putExtra(Constant.ITEM_ID_DETAIL, restockReceiveStockData.getItem_id());
+        intent.putExtra(Constant.TRANSACTION_ID_DETAIL, restockReceiveStockData.getTransaction_id());
+        intent.putExtra(Constant.MEMBER_ID_DETAIL, restockReceiveStockData.getNo_stc());
+        intent.putExtra(Constant.NAME_DETAIL, restockReceiveStockData.getNama());
+        intent.putExtra(Constant.DATE_DETAIL, restockReceiveStockData.getDate());
+        intent.putExtra(Constant.TOTAL_DETAIL, restockReceiveStockData.getTotal_amount());
+        intent.putExtra(Constant.REMARK_DETAIL, restockReceiveStockData.getRemarkapp());
         startActivity(intent);
+    }
+
+    @Override
+    public void openPinDialog(RestockReceiveStockData restockReceiveStockData) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(getContext());
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mRestockReceiveStockPresenter.actionTransaction(restockReceiveStockData, pin);
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 }

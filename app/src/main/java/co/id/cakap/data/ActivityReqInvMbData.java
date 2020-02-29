@@ -20,23 +20,23 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class ActivityReqInvMbData implements Parcelable {
-    @SerializedName("transaction_id")
+    @SerializedName("id")
     @Expose
-    private String transaction_id;
+    private String item_id;
 
     @SerializedName("member_id")
     @Expose
     private String member_id;
 
-    @SerializedName("name")
+    @SerializedName("nama")
     @Expose
     private String name;
 
-    @SerializedName("total_amount")
+    @SerializedName("ftotalharga")
     @Expose
     private String total_amount;
 
-    @SerializedName("total_pv")
+    @SerializedName("ftotalpv")
     @Expose
     private String total_pv;
 
@@ -44,23 +44,30 @@ public class ActivityReqInvMbData implements Parcelable {
     @Expose
     private String date;
 
-    @Keep
-    public ActivityReqInvMbData(String transaction_id, String member_id, String name, String total_amount, String total_pv, String date) {
-        this.transaction_id = transaction_id;
-        this.member_id = member_id;
-        this.name = name;
-        this.total_amount = total_amount;
-        this.total_pv = total_pv;
-        this.date = date;
-    }
+    @SerializedName("remarkapp")
+    @Expose
+    private String remark;
 
     protected ActivityReqInvMbData(Parcel in) {
-        transaction_id = in.readString();
+        item_id = in.readString();
         member_id = in.readString();
         name = in.readString();
         total_amount = in.readString();
         total_pv = in.readString();
         date = in.readString();
+        remark = in.readString();
+    }
+
+    @Generated(hash = 1489480938)
+    public ActivityReqInvMbData(String item_id, String member_id, String name, String total_amount,
+            String total_pv, String date, String remark) {
+        this.item_id = item_id;
+        this.member_id = member_id;
+        this.name = name;
+        this.total_amount = total_amount;
+        this.total_pv = total_pv;
+        this.date = date;
+        this.remark = remark;
     }
 
     @Generated(hash = 1294999872)
@@ -69,12 +76,13 @@ public class ActivityReqInvMbData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(transaction_id);
+        dest.writeString(item_id);
         dest.writeString(member_id);
         dest.writeString(name);
         dest.writeString(total_amount);
         dest.writeString(total_pv);
         dest.writeString(date);
+        dest.writeString(remark);
     }
 
     @Override
@@ -82,12 +90,12 @@ public class ActivityReqInvMbData implements Parcelable {
         return 0;
     }
 
-    public String getTransaction_id() {
-        return this.transaction_id;
+    public String getItem_id() {
+        return this.item_id;
     }
 
-    public void setTransaction_id(String transaction_id) {
-        this.transaction_id = transaction_id;
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 
     public String getMember_id() {
@@ -128,6 +136,14 @@ public class ActivityReqInvMbData implements Parcelable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getRemark() {
+        return this.remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public static final Creator<ActivityReqInvMbData> CREATOR = new Creator<ActivityReqInvMbData>() {

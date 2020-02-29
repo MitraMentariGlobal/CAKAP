@@ -20,11 +20,11 @@ import lombok.Data;
 @Data
 @Entity
 public class OperationUserStatusData implements Parcelable {
-    @SerializedName("user_code")
+    @SerializedName("id")
     @Expose
     private String user_code;
 
-    @SerializedName("user_name")
+    @SerializedName("nama")
     @Expose
     private String user_name;
 

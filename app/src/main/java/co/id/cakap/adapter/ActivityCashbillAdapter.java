@@ -70,6 +70,10 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
         holder.mMemberId.setText(activityCashbillData.getMember_id() + " - " + activityCashbillData.getName());
         holder.mName.setText(activityCashbillData.getName());
         holder.mTotalAmount.setText("IDR " + activityCashbillData.getTotal_amount());
+
+        if (!(activityCashbillData.getKit().equals("N") && activityCashbillData.getNote().equals("0"))) {
+            holder.mItemCancel.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -155,7 +159,6 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -163,7 +166,7 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    Toast.makeText(context, "Sure", Toast.LENGTH_SHORT).show();
+                    new ActivityCashbillPresenter().getView().openPinDialog(activityCashbillData);
                 }
             });
         }

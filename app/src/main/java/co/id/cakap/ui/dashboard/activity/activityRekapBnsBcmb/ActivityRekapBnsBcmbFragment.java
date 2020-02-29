@@ -1,5 +1,6 @@
 package co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.andrognito.pinlockview.IndicatorDots;
+import com.andrognito.pinlockview.PinLockListener;
+import com.andrognito.pinlockview.PinLockView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +43,8 @@ import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbContract;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
 import co.id.cakap.ui.detailTransaction.DetailTransactionActivity;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.PinDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRekapBnsBcmbContract.View, AdapterView.OnItemSelectedListener {
@@ -85,8 +92,8 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
     public void initializeData() {
         mUserActionListener = mActivityRekapBnsBcmbPresenter;
         mActivityRekapBnsBcmbPresenter.setView(this);
-        mUserActionListener.getData();
         initSpinner();
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
@@ -96,6 +103,7 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
         mListAdapter = new ActivityRekapBnsBcmbAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
         hideProgressBar();
     }
 
@@ -120,6 +128,43 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.rekap_bns_bcmb));
         intent.putExtra(Constant.TRANSACTION_ID_DETAIL, transactionId);
         startActivity(intent);
+    }
+
+    @Override
+    public void openPinDialog(ActivityRekapBnsBcmbData activityRekapBnsBcmbData) {
+        PinDialog utils = new PinDialog();
+        Dialog dialog = utils.showDialog(getContext());
+
+        PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+        IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+        PinLockListener pinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+                Logger.d("Pin complete: " + pin);
+                dialog.hide();
+                dialog.dismiss();
+
+                mActivityRekapBnsBcmbPresenter.actionTransaction(activityRekapBnsBcmbData, pin, mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onEmpty() {
+                Logger.d("Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+
+        pinLockView.attachIndicatorDots(indicatorDots);
+        pinLockView.setPinLockListener(pinLockListener);
+
+        pinLockView.setPinLength(6);
+        pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
     }
 
     public void initSpinner() {
@@ -161,7 +206,7 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

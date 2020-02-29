@@ -160,6 +160,14 @@
                     android:layout_marginStart="@dimen/radius_10"
                     android:layout_width="30dp"
                     android:layout_height="30dp"/>
+
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/item_create"
+                    android:background="@drawable/ic_pen"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

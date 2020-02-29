@@ -47,11 +47,12 @@ public class RestockInvoiceAdapter extends RecyclerView.Adapter<RestockInvoiceAd
         RestockInvoiceData restockInvoiceData = mResultData.get(position);
 
         holder.context = mContext;
+        holder.restockInvoiceData = restockInvoiceData;
         holder.mTotalPv.setText(restockInvoiceData.getTotal_pv());
         holder.mTransactionId.setText(restockInvoiceData.getTransaction_id());
         holder.mDate.setText(restockInvoiceData.getDate());
         holder.mStatus.setText(restockInvoiceData.getStatus());
-        holder.mTotalAmount.setText(restockInvoiceData.getTotal_amount());
+        holder.mTotalAmount.setText("IDR " + restockInvoiceData.getTotal_amount());
     }
 
     @Override
@@ -75,6 +76,7 @@ public class RestockInvoiceAdapter extends RecyclerView.Adapter<RestockInvoiceAd
         LinearLayout mLinearAction;
 
         Context context;
+        RestockInvoiceData restockInvoiceData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -85,7 +87,7 @@ public class RestockInvoiceAdapter extends RecyclerView.Adapter<RestockInvoiceAd
 
         @OnClick(R.id.relative_parent)
         public void openDetail() {
-            new RestockInvoicePresenter().getView().openDetailTransaction(mTransactionId.getText().toString());
+            new RestockInvoicePresenter().getView().openDetailTransaction(restockInvoiceData);
         }
     }
 }

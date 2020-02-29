@@ -74,9 +74,11 @@ public class LoginPresenter implements LoginContract.UserActionListener {
                         Logger.d("session token : " + apiResponseLogin.getResult().getSession_token());
                         Logger.d("<<<<<=====");
 
-                        saveData(apiResponseLogin);
-                        mView.hideProgressBar();
-                        mView.setSuccessResponse(apiResponseLogin.getResult().getUrl());
+                        try {
+                            saveData(apiResponseLogin);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -104,5 +106,8 @@ public class LoginPresenter implements LoginContract.UserActionListener {
     public void saveData(ApiResponseLogin apiResponseLogin) {
         Constant.LOGIN_DATA = apiResponseLogin.getResult().getRole();
         mDataModel.insertResultDataLogin(apiResponseLogin.getResult());
+
+        mView.hideProgressBar();
+        mView.setSuccessResponse(apiResponseLogin);
     }
 }
