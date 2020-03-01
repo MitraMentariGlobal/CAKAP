@@ -122,6 +122,7 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
         intent.putExtra(Constant.NAME_DETAIL, restockReceiveStockData.getNama());
         intent.putExtra(Constant.DATE_DETAIL, restockReceiveStockData.getDate());
         intent.putExtra(Constant.TOTAL_DETAIL, restockReceiveStockData.getTotal_amount());
+        intent.putExtra(Constant.TOTAL_PV_DETAIL, restockReceiveStockData.getTotal_pv());
         intent.putExtra(Constant.REMARK_DETAIL, restockReceiveStockData.getRemarkapp());
         startActivity(intent);
     }

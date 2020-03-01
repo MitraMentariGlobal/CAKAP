@@ -54,8 +54,7 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-//        mMainRepository.postInvoiceToMb(mResultDataLogin.getMember_id(), tahun, DateHelper.getMonthNumber(bulan), Utils.getGroupId(context))
-        mMainRepository.postInvoiceToMb(Constant.DUMMY_USER_ID, tahun, DateHelper.getMonthNumber(bulan), Utils.getGroupId(context))
+        mMainRepository.postInvoiceToMb(mResultDataLogin.getMember_id(), tahun, DateHelper.getMonthNumber(bulan), Utils.getGroupId(context))
                 .subscribe(new ResourceSubscriber<ApiResponseInvoiceToMb>() {
                     @Override
                     public void onNext(ApiResponseInvoiceToMb apiResponseInvoiceToMb) {

@@ -38,6 +38,7 @@ public class LoginPresenter implements LoginContract.UserActionListener {
     @Override
     public void getNotificationToken(String userId, String password) {
         mView.showProgressBar();
+        mDataModel.deleteFirebaseTokenData();
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override

@@ -134,6 +134,7 @@ public class Constant {
     public static final String NAME_DETAIL = "name_detail";
     public static final String DATE_DETAIL = "date_detail";
     public static final String TOTAL_DETAIL = "total_detail";
+    public static final String TOTAL_PV_DETAIL = "total_pv_detail";
     public static final String REMARK_DETAIL = "remark_detail";
     public static final String PAYMENT_METHOD = "payment_method";
     public static final String PAYMENT_INFO = "payment_info";

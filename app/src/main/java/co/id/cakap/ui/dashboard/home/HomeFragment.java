@@ -40,6 +40,7 @@ import co.id.cakap.ui.cashbill.CashbillActivity;
 import co.id.cakap.ui.invoiceToMb.InvoiceToMbActivity;
 import co.id.cakap.ui.registration.RegistrationActivity;
 import co.id.cakap.ui.pickUpDelivery.PickUpDeliveryActivity;
+import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.widget.CustomRecyclerViewPager;
@@ -154,11 +155,23 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             mRelativeReqInvToBc.setVisibility(View.GONE);
         } else if (Constant.LOGIN_DATA.equals(getContext().getResources().getString(R.string.mb_login))) {
             mCardViewInvToMb.setVisibility(View.GONE);
+            mRelativeReqInvToBc.setVisibility(View.GONE);
             if (Constant.IS_HAVE_PARENT) {
-                mCardViewReqInvToCompany.setVisibility(View.GONE);
-                mRelativePaddingRestock1.setVisibility(View.GONE);
-                mRelativePaddingRestock2.setVisibility(View.VISIBLE);
-                mCardViewRestockNotVisible.setVisibility(View.VISIBLE);
+                mLinearRestock.setVisibility(View.GONE); // sementara
+
+                int dayBetween = DateHelper.getDaysBetween(DateHelper.getTimeNow(), DateHelper.getLastDayOfTheMonth());
+//                int dayBetween = DateHelper.getDaysBetween(DateHelper.getTimeNow(), "05-03-2020");
+                if (dayBetween <= 5) {
+                    mCardViewReqInvToCompany.setVisibility(View.VISIBLE);
+                    mRelativePaddingRestock1.setVisibility(View.VISIBLE);
+                    mRelativePaddingRestock2.setVisibility(View.GONE);
+                    mCardViewRestockNotVisible.setVisibility(View.GONE);
+                } else {
+                    mCardViewReqInvToCompany.setVisibility(View.GONE);
+                    mRelativePaddingRestock1.setVisibility(View.GONE);
+                    mRelativePaddingRestock2.setVisibility(View.VISIBLE);
+                    mCardViewRestockNotVisible.setVisibility(View.VISIBLE);
+                }
             } else {
                 mRelativeReqInvToBc.setVisibility(View.GONE);
             }

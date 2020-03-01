@@ -158,6 +158,7 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
         intent.putExtra(Constant.NAME_DETAIL, activityInvToMbData.getNama());
         intent.putExtra(Constant.DATE_DETAIL, activityInvToMbData.getDate());
         intent.putExtra(Constant.TOTAL_DETAIL, activityInvToMbData.getTotal_amount());
+        intent.putExtra(Constant.TOTAL_PV_DETAIL, activityInvToMbData.getTotal_pv());
         intent.putExtra(Constant.REMARK_DETAIL, activityInvToMbData.getRemark());
         startActivity(intent);
     }
@@ -181,6 +182,8 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
                         getResources().getDrawable(R.drawable.ic_check),
                         getResources().getString(R.string.transaksi_berhasil)
                 );
+
+                mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
             }
         }
     }

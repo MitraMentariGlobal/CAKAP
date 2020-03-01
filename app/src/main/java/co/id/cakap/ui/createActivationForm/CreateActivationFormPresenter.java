@@ -60,8 +60,7 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
         getView().showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-//        mMainRepository.postItemActivationForm(id, mResultDataLogin.getMember_id())
-        mMainRepository.postItemActivationForm(id, Constant.DUMMY_USER_ID)
+        mMainRepository.postItemActivationForm(id, mResultDataLogin.getMember_id())
                 .subscribe(new ResourceSubscriber<ApiResponseActivationFormData>() {
                     @Override
                     public void onNext(ApiResponseActivationFormData apiResponseActivationFormData) {
@@ -100,8 +99,6 @@ public class CreateActivationFormPresenter implements CreateActivationFormContra
 
     @Override
     public void submitData(String pin, ActivityInvToMbData activityInvToMbData, List<ActivationSubmitItemFormData> submitItemFormDataList) {
-//        Logger.d(getParam(pin, activityInvToMbData, submitItemFormDataList).toString());
-
         getView().showProgressBar();
 
         mMainRepository.postSubmitActivationForm(getParam(pin, activityInvToMbData, submitItemFormDataList))

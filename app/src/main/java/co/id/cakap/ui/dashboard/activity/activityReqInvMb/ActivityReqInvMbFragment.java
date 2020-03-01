@@ -121,6 +121,7 @@ public class ActivityReqInvMbFragment extends Fragment implements ActivityReqInv
         intent.putExtra(Constant.NAME_DETAIL, activityReqInvMbData.getName());
         intent.putExtra(Constant.DATE_DETAIL, activityReqInvMbData.getDate());
         intent.putExtra(Constant.TOTAL_DETAIL, activityReqInvMbData.getTotal_amount());
+        intent.putExtra(Constant.TOTAL_PV_DETAIL, activityReqInvMbData.getTotal_pv());
         intent.putExtra(Constant.REMARK_DETAIL, activityReqInvMbData.getRemark());
 
         startActivity(intent);

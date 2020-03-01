@@ -191,6 +191,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         intent.putExtra(Constant.NAME_DETAIL, activityCashbillData.getName());
         intent.putExtra(Constant.DATE_DETAIL, activityCashbillData.getDate());
         intent.putExtra(Constant.TOTAL_DETAIL, activityCashbillData.getTotal_amount());
+        intent.putExtra(Constant.TOTAL_PV_DETAIL, activityCashbillData.getTotal_pv());
         intent.putExtra(Constant.REMARK_DETAIL, activityCashbillData.getRemark());
         startActivity(intent);
     }

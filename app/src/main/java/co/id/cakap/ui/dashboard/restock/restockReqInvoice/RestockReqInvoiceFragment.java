@@ -116,6 +116,7 @@ public class RestockReqInvoiceFragment extends Fragment implements RestockReqInv
         intent.putExtra(Constant.NAME_DETAIL, restockReqInvoiceData.getNama());
         intent.putExtra(Constant.DATE_DETAIL, restockReqInvoiceData.getDate());
         intent.putExtra(Constant.TOTAL_DETAIL, restockReqInvoiceData.getTotal_amount());
+        intent.putExtra(Constant.TOTAL_PV_DETAIL, restockReqInvoiceData.getTotal_pv());
         intent.putExtra(Constant.REMARK_DETAIL, restockReqInvoiceData.getRemarkapp());
         startActivity(intent);
     }
