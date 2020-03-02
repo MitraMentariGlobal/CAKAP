@@ -1,5 +1,7 @@
 package co.id.cakap.ui.changePin;
 
+import android.content.Context;
+
 public class ChangePinContract {
     public interface View{
         void initializeData();
@@ -13,7 +15,7 @@ public class ChangePinContract {
     }
 
     public interface UserActionListener{
-        void setView(ChangePinContract.View view);
+        void setView(ChangePinContract.View view, Context context);
         void changeData(String oldPin, String newPin, String retypeNewPin);
         void checkData(String oldPin, String newPin, String retypeNewPin);
     }

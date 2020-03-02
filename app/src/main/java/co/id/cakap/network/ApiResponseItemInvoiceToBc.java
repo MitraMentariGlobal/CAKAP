@@ -20,5 +20,5 @@ public class ApiResponseItemInvoiceToBc {
     @SerializedName("url")
     private String url;
     @SerializedName("data")
-    private List<ItemShopCompanyData> data;
+    private List<ItemShopData> data;
 }

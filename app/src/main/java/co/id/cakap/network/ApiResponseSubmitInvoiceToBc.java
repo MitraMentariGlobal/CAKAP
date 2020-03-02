@@ -15,6 +15,8 @@ import lombok.Data;
 public class ApiResponseSubmitInvoiceToBc {
     @SerializedName("messages")
     private String messages;
+    @SerializedName("info")
+    private String info;
     @SerializedName("data")
     private SubmitInvoiceToBcData data;
 }

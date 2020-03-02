@@ -104,11 +104,11 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     private String mIdAddress = "";
     private boolean mIsExpand = true;
 
-    private static int mPaymentMethod = 0; // 0 ewallet, 1 transfer
-    private static int mItem = 0;
-    private static int mPv = 0;
-    private static int mBv = 0;
-    private static double mPrice = 0;
+    private int mPaymentMethod = 0; // 0 ewallet, 1 transfer
+    private int mItem = 0;
+    private int mPv = 0;
+    private int mBv = 0;
+    private double mPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

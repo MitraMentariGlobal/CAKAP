@@ -28,13 +28,17 @@ public class SubmitInvoiceToBcData extends SubmitInvoiceToBcParentData implement
     @Expose
     private String tgl;
 
-    @SerializedName("member_id")
+    @SerializedName("mbid")
     @Expose
     private String member_id;
 
     @SerializedName("no_stc")
     @Expose
     private String no_stc;
+
+    @SerializedName("namastc")
+    @Expose
+    private String namastc;
 
     @SerializedName("remark")
     @Expose
@@ -45,22 +49,23 @@ public class SubmitInvoiceToBcData extends SubmitInvoiceToBcParentData implement
     private String totalharga;
 
     protected SubmitInvoiceToBcData(Parcel in) {
-        super();
         inv = in.readString();
         tgl = in.readString();
         member_id = in.readString();
         no_stc = in.readString();
+        namastc = in.readString();
         remark = in.readString();
         totalharga = in.readString();
     }
 
-    @Generated(hash = 1179800244)
-    public SubmitInvoiceToBcData(String inv, String tgl, String member_id, String no_stc, String remark,
-            String totalharga) {
+    @Generated(hash = 12088810)
+    public SubmitInvoiceToBcData(String inv, String tgl, String member_id, String no_stc,
+            String namastc, String remark, String totalharga) {
         this.inv = inv;
         this.tgl = tgl;
         this.member_id = member_id;
         this.no_stc = no_stc;
+        this.namastc = namastc;
         this.remark = remark;
         this.totalharga = totalharga;
     }
@@ -75,6 +80,7 @@ public class SubmitInvoiceToBcData extends SubmitInvoiceToBcParentData implement
         dest.writeString(tgl);
         dest.writeString(member_id);
         dest.writeString(no_stc);
+        dest.writeString(namastc);
         dest.writeString(remark);
         dest.writeString(totalharga);
     }
@@ -114,6 +120,14 @@ public class SubmitInvoiceToBcData extends SubmitInvoiceToBcParentData implement
 
     public void setNo_stc(String no_stc) {
         this.no_stc = no_stc;
+    }
+
+    public String getNamastc() {
+        return this.namastc;
+    }
+
+    public void setNamastc(String namastc) {
+        this.namastc = namastc;
     }
 
     public String getRemark() {

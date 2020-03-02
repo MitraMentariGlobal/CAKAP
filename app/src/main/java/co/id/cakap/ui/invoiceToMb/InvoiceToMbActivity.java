@@ -88,10 +88,10 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
     private List<ItemShopData> mResultData;
     private boolean mIsExpand = true;
 
-    private static int mItem = 0;
-    private static int mPv = 0;
+    private int mItem = 0;
+    private int mPv = 0;
 //    private int mBv = 0;
-    private static double mPrice = 0;
+    private double mPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

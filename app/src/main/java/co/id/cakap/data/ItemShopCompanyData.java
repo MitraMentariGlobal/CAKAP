@@ -20,6 +20,10 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class ItemShopCompanyData implements Parcelable {
+    @SerializedName("image")
+    @Expose
+    private String image;
+
     @SerializedName("item_id")
     @Expose
     private String item_code;
@@ -65,6 +69,7 @@ public class ItemShopCompanyData implements Parcelable {
     private String cart;
 
     protected ItemShopCompanyData(Parcel in) {
+        image = in.readString();
         item_code = in.readString();
         item_name = in.readString();
         harga = in.readString();
@@ -77,9 +82,10 @@ public class ItemShopCompanyData implements Parcelable {
         cart = in.readString();
     }
 
-    @Generated(hash = 846056668)
-    public ItemShopCompanyData(String item_code, String item_name, String harga, String pv, String bv,
-            String fharga, String fpv, String fqty, String qty, String cart) {
+    @Generated(hash = 1118503387)
+    public ItemShopCompanyData(String image, String item_code, String item_name, String harga,
+            String pv, String bv, String fharga, String fpv, String fqty, String qty, String cart) {
+        this.image = image;
         this.item_code = item_code;
         this.item_name = item_name;
         this.harga = harga;
@@ -98,6 +104,7 @@ public class ItemShopCompanyData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(image);
         dest.writeString(item_code);
         dest.writeString(item_name);
         dest.writeString(harga);
@@ -113,6 +120,14 @@ public class ItemShopCompanyData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getItem_code() {

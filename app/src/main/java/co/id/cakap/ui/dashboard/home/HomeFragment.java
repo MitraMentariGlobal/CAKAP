@@ -155,9 +155,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             mRelativeReqInvToBc.setVisibility(View.GONE);
         } else if (Constant.LOGIN_DATA.equals(getContext().getResources().getString(R.string.mb_login))) {
             mCardViewInvToMb.setVisibility(View.GONE);
-            mRelativeReqInvToBc.setVisibility(View.GONE);
+
+            Logger.d("have parent : " + Constant.IS_HAVE_PARENT);
             if (Constant.IS_HAVE_PARENT) {
-                mLinearRestock.setVisibility(View.GONE); // sementara
+//                mLinearRestock.setVisibility(View.GONE); // sementara
 
                 int dayBetween = DateHelper.getDaysBetween(DateHelper.getTimeNow(), DateHelper.getLastDayOfTheMonth());
 //                int dayBetween = DateHelper.getDaysBetween(DateHelper.getTimeNow(), "05-03-2020");

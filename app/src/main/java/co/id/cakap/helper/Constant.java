@@ -20,6 +20,7 @@ public class Constant {
     public static String URL_IMAGE_PRODUCT = "";
     public static int SUCCESS_TRANSACTION = 200;
     public static boolean IS_HAVE_PARENT = false;
+    public static boolean IS_FLAG_UPDATE = false;
 
     public static final String DUMMY_USER_ID = "0000160";
     public static final String DUMMY_USER_NAME = "hanna";
@@ -113,6 +114,7 @@ public class Constant {
     public static final String BODY_IDADDR = BuildConfig.BODY_IDADDR;
     public static final String BODY_KODE_ID = BuildConfig.BODY_KODE_ID;
     public static final String BODY_ID_RO = BuildConfig.BODY_ID_RO;
+    public static final String BODY_BC_ID = BuildConfig.BODY_BC_ID;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;

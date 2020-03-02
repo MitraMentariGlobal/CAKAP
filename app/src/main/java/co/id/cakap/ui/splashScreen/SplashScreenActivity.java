@@ -23,6 +23,8 @@ import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.network.ApiResponseLogin;
+import co.id.cakap.ui.changePassword.ChangePasswordActivity;
+import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.login.LoginActivity;
@@ -126,16 +128,15 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
         Intent intent = new Intent(this, DashboardActivity.class);
         if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.bc_login))) {
-            intent = new Intent(this, DashboardActivity.class);
-//            intent = new Intent(this, ChangePinActivity.class);
+            intent = getIntentParse(apiResponseLogin);
         } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.mb_login))) {
             if (apiResponseLogin.getResult().getLeader_ids().equals("0")) {
                 Constant.IS_HAVE_PARENT = false;
             } else {
                 Constant.IS_HAVE_PARENT = true;
             }
-            intent = new Intent(this, DashboardActivity.class);
-//            intent = new Intent(this, ChangePinActivity.class);
+
+            intent = getIntentParse(apiResponseLogin);
         } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
             if (Boolean.parseBoolean(apiResponseLogin.getResult().getUpdate_profile())) {
                 intent = new Intent(this, MyProfileActivity.class);
@@ -144,6 +145,19 @@ public class SplashScreenActivity extends AppCompatActivity implements SplashScr
 
         startActivity(intent);
         finishActivity();
+    }
+
+    private Intent getIntentParse(ApiResponseLogin apiResponseLogin) {
+        if (apiResponseLogin.getResult().getFlag_login().equals("0")) {
+            Constant.IS_FLAG_UPDATE = true;
+            return new Intent(this, ChangePasswordActivity.class);
+        } else if (apiResponseLogin.getResult().getFlag_login().equals("1")) {
+            Constant.IS_FLAG_UPDATE = true;
+            return new Intent(this, ChangePinActivity.class);
+        } else {
+            Constant.IS_FLAG_UPDATE = false;
+            return new Intent(this, DashboardActivity.class);
+        }
     }
 
     @Override

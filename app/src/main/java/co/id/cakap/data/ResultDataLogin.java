@@ -87,6 +87,10 @@ public class ResultDataLogin implements Parcelable {
     @Expose
     private String leader_ids;
 
+    @SerializedName("flag_login")
+    @Expose
+    private String flag_login;
+
     protected ResultDataLogin(Parcel in) {
         url = in.readString();
         role = in.readString();
@@ -105,14 +109,15 @@ public class ResultDataLogin implements Parcelable {
         group_id = in.readString();
         wilayah = in.readString();
         leader_ids = in.readString();
+        flag_login = in.readString();
     }
 
-    @Generated(hash = 1837070553)
+    @Generated(hash = 118583212)
     public ResultDataLogin(String url, String role, String session_token,
             String update_profile, String running_text, String gambar, String nama,
             String username, String member_id, String posisi, String bonus, String pv_max,
-            String pv_tupo, String userid, String group_id, String wilayah,
-            String leader_ids) {
+            String pv_tupo, String userid, String group_id, String wilayah, String leader_ids,
+            String flag_login) {
         this.url = url;
         this.role = role;
         this.session_token = session_token;
@@ -130,6 +135,7 @@ public class ResultDataLogin implements Parcelable {
         this.group_id = group_id;
         this.wilayah = wilayah;
         this.leader_ids = leader_ids;
+        this.flag_login = flag_login;
     }
 
     @Generated(hash = 820616836)
@@ -155,6 +161,7 @@ public class ResultDataLogin implements Parcelable {
         dest.writeString(group_id);
         dest.writeString(wilayah);
         dest.writeString(leader_ids);
+        dest.writeString(flag_login);
     }
 
     @Override
@@ -296,6 +303,14 @@ public class ResultDataLogin implements Parcelable {
 
     public void setLeader_ids(String leader_ids) {
         this.leader_ids = leader_ids;
+    }
+
+    public String getFlag_login() {
+        return this.flag_login;
+    }
+
+    public void setFlag_login(String flag_login) {
+        this.flag_login = flag_login;
     }
 
     public static final Creator<ResultDataLogin> CREATOR = new Creator<ResultDataLogin>() {

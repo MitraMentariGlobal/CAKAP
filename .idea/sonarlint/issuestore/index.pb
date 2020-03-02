@@ -1077,3 +1077,5 @@ g
 7app/src/main/res/layout/item_activation_number_form.xml,c/c/cc36952d76643f3c1d03dbeea870597b1cd7f400
 V
 &app/src/main/res/drawable/ic_check.xml,7/e/7e2d2b71552575a58e044e7cc36039d4f0bbb6a1
+t
+Dapp/src/main/java/co/id/cakap/data/ActivationSubmitItemFormData.java,0/e/0ed7082eb3a29d48e0444a4b2930ed697de51d9d

@@ -25,6 +25,7 @@ import co.id.cakap.network.ApiResponseDownlineListing;
 import co.id.cakap.network.ApiResponseFeeBcmb;
 import co.id.cakap.network.ApiResponseInvoiceToMb;
 import co.id.cakap.network.ApiResponseItemCashbill;
+import co.id.cakap.network.ApiResponseItemInvoiceToBc;
 import co.id.cakap.network.ApiResponseItemInvoiceToCompany;
 import co.id.cakap.network.ApiResponseItemInvoiceToMb;
 import co.id.cakap.network.ApiResponseItemSearchRegistration;
@@ -90,14 +91,14 @@ public class MainRepository extends BaseRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Flowable<ApiResponseChangePassword> postChangePassword(String oldPassword, String newPassword, String retypeNewPassword, String pin, String username, String userId) {
-        return networkService.postChangePassword(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, oldPassword, newPassword, retypeNewPassword, pin, username, userId)
+    public Flowable<ApiResponseChangePassword> postChangePassword(String oldPassword, String newPassword, String retypeNewPassword, String pin, String username, String userId, String groupId) {
+        return networkService.postChangePassword(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, oldPassword, newPassword, retypeNewPassword, pin, username, userId, groupId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Flowable<ApiResponseChangePin> postChangePin(String oldPin, String newPin, String retypeNewPin, String username, String userId) {
-        return networkService.postChangePin(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, oldPin, newPin, retypeNewPin, username, userId)
+    public Flowable<ApiResponseChangePin> postChangePin(String oldPin, String newPin, String retypeNewPin, String username, String userId, String groupId) {
+        return networkService.postChangePin(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, oldPin, newPin, retypeNewPin, username, userId, groupId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -273,6 +274,12 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseItemInvoiceToMb> postItemInvoiceToMb(String userId, String memberId) {
         return networkService.postItemInvoiceToMb(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, memberId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseItemInvoiceToBc> postItemInvoiceToBc(String userId, String memberId) {
+        return networkService.postItemInvoiceToBc(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, memberId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

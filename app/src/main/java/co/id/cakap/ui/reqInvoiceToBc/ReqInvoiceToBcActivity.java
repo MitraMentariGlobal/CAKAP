@@ -34,10 +34,11 @@ import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.ItemShopReqInvToBcAdapter;
 import co.id.cakap.adapter.ItemShopReqInvToCompanyAdapter;
-import co.id.cakap.data.ItemShopCompanyData;
+import co.id.cakap.data.ItemShopData;
 import co.id.cakap.data.SubmitInvoiceToBcData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
+import co.id.cakap.network.ApiResponseSubmitInvoiceToBc;
 import co.id.cakap.ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
@@ -71,12 +72,12 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     private ItemShopReqInvToBcAdapter mListAdapter;
     private GridLayoutManager mGridLayoutManager;
-    private List<ItemShopCompanyData> mResultData;
+    private List<ItemShopData> mResultData;
     private ReqInvoiceToBcActivityContract.UserActionListener mUserActionListener;
 
-    private static int mItem = 0;
-    private static int mPv = 0;
-    private static double mPrice = 0;
+    private int mItem = 0;
+    private int mPv = 0;
+    private double mPrice = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,7 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
     public void initializeData() {
         mUserActionListener = mReqInvoiceToBcActivityPresenter;
         mReqInvoiceToBcActivityPresenter.setView(this);
-        mUserActionListener.getData();
+        mUserActionListener.getItemInvoice();
         mTitle.setText(getString(R.string.req_invoice_to_bc).toUpperCase());
     }
 
@@ -119,7 +120,7 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
     }
 
     @Override
-    public void setAdapter(List<ItemShopCompanyData> resultData) {
+    public void setAdapter(List<ItemShopData> resultData) {
         mGridLayoutManager = new GridLayoutManager(this, 2);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
@@ -132,16 +133,19 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
     }
 
     @Override
-    public void setCheckoutValue(List<ItemShopCompanyData> resultData, ItemShopCompanyData itemShopCompanyData, int action) {
+    public void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action) {
+        Logger.d("set id : " + itemShopData.getItem_code());
+        Logger.d("set cart : " + itemShopData.getCart());
+
         mResultData = resultData;
         if (action == 0) {
             mItem -= 1;
-            mPv -= Integer.parseInt(itemShopCompanyData.getPv());
-            mPrice -= Double.parseDouble(itemShopCompanyData.getHarga());
+            mPv -= Integer.parseInt(itemShopData.getPv());
+            mPrice -= Double.parseDouble(itemShopData.getHarga());
         } else {
             mItem += 1;
-            mPv += Integer.parseInt(itemShopCompanyData.getPv());
-            mPrice += Double.parseDouble(itemShopCompanyData.getHarga());
+            mPv += Integer.parseInt(itemShopData.getPv());
+            mPrice += Double.parseDouble(itemShopData.getHarga());
         }
 
         mTxtTotalItem.setText(String.valueOf(mItem));
@@ -150,12 +154,13 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
     }
 
     @Override
-    public void successSubmitData(SubmitInvoiceToBcData submitInvoiceToBcData) {
+    public void successSubmitData(ApiResponseSubmitInvoiceToBc apiResponseSubmitInvoiceToBc) {
         Bundle b = new Bundle();
-        b.putParcelable(Constant.SUCCESS_DATA_OBJECT, submitInvoiceToBcData);
+        b.putParcelable(Constant.SUCCESS_DATA_OBJECT, apiResponseSubmitInvoiceToBc.getData());
 
         Intent intent = new Intent(getApplicationContext(), ReqInvoiceToBcSuccessActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_bc).toUpperCase());
+        intent.putExtra(Constant.PAYMENT_INFO, apiResponseSubmitInvoiceToBc.getInfo());
         intent.putExtra(Constant.SUCCESS_DATA_OBJECT, b);
         startActivity(intent);
     }
@@ -190,14 +195,48 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     @OnClick(R.id.card_checkout)
     public void checkOut(View view) {
-        mUserActionListener.submitData(
-                "",
-                String.valueOf(mPrice),
-                String.valueOf(mPv),
-                "",
-                "",
-                mResultData
-        );
+        if (mItem != 0) {
+            PinDialog utils = new PinDialog();
+            Dialog dialog = utils.showDialog(this);
+
+            PinLockView pinLockView = dialog.findViewById(R.id.pin_lock_view);
+            IndicatorDots indicatorDots = dialog.findViewById(R.id.indicator_dots);
+            PinLockListener pinLockListener = new PinLockListener() {
+                @Override
+                public void onComplete(String pin) {
+                    Logger.d("Pin complete: " + pin);
+                    dialog.hide();
+                    dialog.dismiss();
+
+                    mUserActionListener.submitData(
+                            pin,
+                            String.valueOf(mPrice),
+                            String.valueOf(mPv),
+                            "",
+                            "",
+                            mResultData
+                    );
+                }
+
+                @Override
+                public void onEmpty() {
+                    Logger.d("Pin empty");
+                }
+
+                @Override
+                public void onPinChange(int pinLength, String intermediatePin) {
+                    Logger.d("Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+                }
+            };
+
+            pinLockView.attachIndicatorDots(indicatorDots);
+            pinLockView.setPinLockListener(pinLockListener);
+
+            pinLockView.setPinLength(6);
+            pinLockView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+            indicatorDots.setIndicatorType(IndicatorDots.IndicatorType.FILL_WITH_ANIMATION);
+        }
 
 //        Intent intent = new Intent(getApplicationContext(), ReqInvoiceToBcSuccessActivity.class);
 //        intent.putExtra(Constant.TITLE_DETAIL, getResources().getString(R.string.req_invoice_to_bc).toUpperCase());

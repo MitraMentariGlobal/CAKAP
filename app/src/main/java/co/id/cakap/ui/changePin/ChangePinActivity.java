@@ -78,7 +78,7 @@ public class ChangePinActivity extends AppCompatActivity implements ChangePinCon
     @Override
     public void initializeData() {
         mUserActionListener = mChangePinPresenter;
-        mChangePinPresenter.setView(this);
+        mChangePinPresenter.setView(this, this);
 
         mTitle.setText(getString(R.string.change_pin).toUpperCase());
         hideProgressBar();

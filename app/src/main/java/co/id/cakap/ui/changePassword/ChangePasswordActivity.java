@@ -85,7 +85,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void initializeData() {
         mUserActionListener = mChangePasswordPresenter;
-        mChangePasswordPresenter.setView(this);
+        mChangePasswordPresenter.setView(this, this);
 
         mTitle.setText(getString(R.string.change_password).toUpperCase());
         hideProgressBar();
