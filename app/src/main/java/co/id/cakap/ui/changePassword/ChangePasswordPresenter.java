@@ -1,5 +1,6 @@
 package co.id.cakap.ui.changePassword;
 
+import android.content.Context;
 import android.view.View;
 
 import co.id.cakap.R;
@@ -20,6 +21,7 @@ public class ChangePasswordPresenter implements ChangePasswordContract.UserActio
     private MainRepository mMainRepository;
     private DataModel mDataModel;
     private ResultDataLogin mResultDataLogin;
+    private Context mContext;
 
     public ChangePasswordPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -27,8 +29,9 @@ public class ChangePasswordPresenter implements ChangePasswordContract.UserActio
     }
 
     @Override
-    public void setView(ChangePasswordContract.View view){
+    public void setView(ChangePasswordContract.View view, Context context){
         mView = view;
+        mContext = context;
     }
 
     @Override
@@ -36,7 +39,7 @@ public class ChangePasswordPresenter implements ChangePasswordContract.UserActio
         mView.showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postChangePassword(oldPassword, newPassword, retypeNewPassword, pin, mResultDataLogin.getUsername(), mResultDataLogin.getMember_id())
+        mMainRepository.postChangePassword(oldPassword, newPassword, retypeNewPassword, pin, mResultDataLogin.getUsername(), mResultDataLogin.getMember_id(), Utils.getGroupId(mContext))
                 .subscribe(new ResourceSubscriber<ApiResponseChangePassword>() {
                     @Override
                     public void onNext(ApiResponseChangePassword apiResponseChangePassword) {

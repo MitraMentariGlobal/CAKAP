@@ -91,13 +91,13 @@
                                 style="@style/TexViewFont"/>
 
                             <TextView
+                                android:id="@+id/txt_ewallet"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:layout_marginStart="5dp"
                                 android:maxLines="1"
-                                android:text="100.000.000"
                                 android:textSize="14sp"
                                 style="@style/TexViewFont"/>
 
@@ -130,13 +130,13 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/txt_fee"
                                     android:background="@android:color/transparent"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="14sp"
-                                    android:text="1.000.000.000"
                                     style="@style/TexViewFont" />
 
                                 <TextView
@@ -173,13 +173,13 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/txt_omset"
                                     android:background="@android:color/transparent"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textSize="14sp"
-                                    android:text="1.000.000.000"
                                     style="@style/TexViewFont"/>
 
                                 <TextView
@@ -216,13 +216,13 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/txt_total_omset"
                                     style="@style/TexViewFont"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:background="@android:color/transparent"
                                     android:gravity="center"
-                                    android:text="1.000.000.000"
                                     android:textSize="14sp" />
 
                                 <TextView

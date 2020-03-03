@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -87,6 +88,8 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
     View mIncludeSpinnerLayout;
     @BindView(R.id.swiperefresh_items)
     SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -136,6 +139,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
     @Override
     public void setAdapter(List<ActivityCashbillData> resultData) {
+        mLinearEmptyData.setVisibility(View.GONE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityCashbillAdapter(resultData, getContext());
@@ -161,7 +165,6 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         setupOnFocusListener(mSearchEditText);
         setupFab();
 
-        mSwipeRefreshLayout.setRefreshing(false);
         hideProgressBar();
     }
 
@@ -172,12 +175,17 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
     @Override
     public void hideProgressBar() {
+        mSwipeRefreshLayout.setRefreshing(false);
         mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -191,6 +199,7 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         intent.putExtra(Constant.NAME_DETAIL, activityCashbillData.getName());
         intent.putExtra(Constant.DATE_DETAIL, activityCashbillData.getDate());
         intent.putExtra(Constant.TOTAL_DETAIL, activityCashbillData.getTotal_amount());
+        intent.putExtra(Constant.TOTAL_PV_DETAIL, activityCashbillData.getTotal_pv());
         intent.putExtra(Constant.REMARK_DETAIL, activityCashbillData.getRemark());
         startActivity(intent);
     }

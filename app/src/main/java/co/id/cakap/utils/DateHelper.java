@@ -55,4 +55,35 @@ public class DateHelper {
 
         return "";
     }
+
+    public static String getLastDayOfTheMonth() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.add(Calendar.DATE, -1);
+
+        return dateFormatFrontEnd.format(calendar.getTime());
+    }
+
+    public static int getDaysBetween(String strDateFrom, String strDateTo) {
+        Date dateFrom = null;
+        Date dateTo = null;
+        try {
+            dateFrom = dateFormatFrontEnd.parse(strDateFrom);
+            dateTo = dateFormatFrontEnd.parse(strDateTo);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(dateFrom);
+        long startDateMillis = startDate.getTimeInMillis();
+
+        Calendar endDate = Calendar.getInstance();
+        endDate.setTime(dateTo);
+        long endDateMillis = endDate.getTimeInMillis();
+
+        long differenceMillis = endDateMillis - startDateMillis;
+        return (int) (differenceMillis / (1000 * 60 * 60 * 24));
+    }
 }

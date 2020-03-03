@@ -20,6 +20,7 @@ public class Constant {
     public static String URL_IMAGE_PRODUCT = "";
     public static int SUCCESS_TRANSACTION = 200;
     public static boolean IS_HAVE_PARENT = false;
+    public static boolean IS_FLAG_UPDATE = false;
 
     public static final String DUMMY_USER_ID = "0000160";
     public static final String DUMMY_USER_NAME = "hanna";
@@ -29,6 +30,7 @@ public class Constant {
     public static final String END_URL_DETAIL_REQ_INVOICE_MB = BuildConfig.END_URL_DETAIL_REQ_INVOICE_MB;
     public static final String END_URL_DETAIL_INVOICE = BuildConfig.END_URL_DETAIL_INVOICE;
     public static final String END_URL_DETAIL_REQ_INVOICE = BuildConfig.END_URL_DETAIL_REQ_INVOICE;
+    public static final String END_URL_DETAIL_REQ_INVOICE_BC = BuildConfig.END_URL_DETAIL_REQ_INVOICE_BC;
     public static final String END_URL_DETAIL_RECEIVE_STOCK = BuildConfig.END_URL_DETAIL_RECEIVE_STOCK;
 
     public static final String GET_GROUP_ID = BuildConfig.GET_GROUP_ID;
@@ -113,6 +115,8 @@ public class Constant {
     public static final String BODY_IDADDR = BuildConfig.BODY_IDADDR;
     public static final String BODY_KODE_ID = BuildConfig.BODY_KODE_ID;
     public static final String BODY_ID_RO = BuildConfig.BODY_ID_RO;
+    public static final String BODY_BC_ID = BuildConfig.BODY_BC_ID;
+    public static final String BODY_KODE_UNIK = BuildConfig.BODY_KODE_UNIK;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;
@@ -129,11 +133,13 @@ public class Constant {
     public static final String TITLE_DETAIL = "title_detail";
     public static final String NAME = "name";
     public static final String ITEM_ID_DETAIL = "item_id_detail";
+    public static final String KODE_UNIK = "kode_unik";
     public static final String TRANSACTION_ID_DETAIL = "transaction_id_detail";
     public static final String MEMBER_ID_DETAIL = "member_id_detail";
     public static final String NAME_DETAIL = "name_detail";
     public static final String DATE_DETAIL = "date_detail";
     public static final String TOTAL_DETAIL = "total_detail";
+    public static final String TOTAL_PV_DETAIL = "total_pv_detail";
     public static final String REMARK_DETAIL = "remark_detail";
     public static final String PAYMENT_METHOD = "payment_method";
     public static final String PAYMENT_INFO = "payment_info";

@@ -39,6 +39,7 @@ import co.id.cakap.adapter.ItemSearchEbonusAdapter;
 import co.id.cakap.data.EbonusData;
 import co.id.cakap.data.ItemEbonusCard;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.network.ApiResponseEbonusMember;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.SearchDataDialog;
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
@@ -71,6 +72,26 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
     NestedScrollView mNestedScroll;
     @BindView(R.id.linear_recyclerView)
     LinearLayout mLinearRecyclerView;
+    @BindView(R.id.linear_search_item)
+    LinearLayout mLinearSearchItem;
+    @BindView(R.id.txt_total_in)
+    TextView mTxtTotalIn;
+    @BindView(R.id.txt_total_out)
+    TextView mTxtTotalOut;
+    @BindView(R.id.txt_title_saldo_awal)
+    TextView mTxtTitleSaldoAwal;
+    @BindView(R.id.txt_colon_saldo_awal)
+    TextView mTxtColonSaldoAwal;
+    @BindView(R.id.txt_saldo_awal)
+    TextView mTxtSaldoAwal;
+    @BindView(R.id.txt_title_saldo_akhir)
+    TextView mTxtTitleSaldoAkhir;
+    @BindView(R.id.txt_colon_saldo_akhir)
+    TextView mTxtColonSaldoAkhir;
+    @BindView(R.id.txt_saldo_akhir)
+    TextView mTxtSaldoAkhir;
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
 
     private RecyclerView mRecyclerViewSearch;
     private EditText mSearchEditText;
@@ -102,21 +123,32 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
         mUserActionListener = mEbonusPresenter;
         mEbonusPresenter.setView(this);
         mTitle.setText(getString(R.string.ebonus).toUpperCase());
+        mLinearSearchItem.setVisibility(View.GONE);
+        mTxtTitleSaldoAwal.setVisibility(View.GONE);
+        mTxtColonSaldoAwal.setVisibility(View.GONE);
+        mTxtSaldoAwal.setVisibility(View.GONE);
+        mTxtTitleSaldoAkhir.setVisibility(View.GONE);
+        mTxtColonSaldoAkhir.setVisibility(View.GONE);
+        mTxtSaldoAkhir.setVisibility(View.GONE);
 
         initSpinner();
-        hideProgressBar();
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override
-    public void setAdapter(List<EbonusData> resultData) {
+    public void setAdapter(ApiResponseEbonusMember apiResponseEbonusMember) {
+        mLinearEmptyData.setVisibility(View.GONE);
         mLinearRecyclerView.setVisibility(View.VISIBLE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
-        mListAdapter = new EbonusAdapter(resultData, this);
+        mListAdapter = new EbonusAdapter(apiResponseEbonusMember.getData(), this);
         mRecyclerView.setAdapter(mListAdapter);
         OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+
+        mTxtTotalIn.setText(apiResponseEbonusMember.getTotal_kredit());
+        mTxtTotalOut.setText(apiResponseEbonusMember.getTotal_debet());
         hideProgressBar();
     }
 
@@ -172,7 +204,7 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
         mEtItemName.setText(itemEbonusCard.getItem_name());
         mEtPrice.setText(itemEbonusCard.getAmount());
 
-        mUserActionListener.getData();
+//        mUserActionListener.getData();
     }
 
     public void initSpinner() {
@@ -237,7 +269,7 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
     }
 
     @Override

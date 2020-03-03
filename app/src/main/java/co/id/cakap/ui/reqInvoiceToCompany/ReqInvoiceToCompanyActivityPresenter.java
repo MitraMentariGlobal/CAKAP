@@ -69,6 +69,7 @@ public class ReqInvoiceToCompanyActivityPresenter implements ReqInvoiceToCompany
                         Logger.d("<<<<<=====");
 
                         try {
+                            Constant.URL_IMAGE_PRODUCT = apiResponseItemInvoiceToCompany.getUrl();
                             getView().setAdapter(apiResponseItemInvoiceToCompany.getData());
                         } catch (Exception e) {
                             e.printStackTrace();

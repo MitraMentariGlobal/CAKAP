@@ -30,7 +30,7 @@ public class MyProfileActivityPresenter implements MyProfileActivityContract.Use
     private MainRepository mMainRepository;
     private DataModel mDataModel;
     private ResultDataLogin mResultDataLogin;
-    private static Context mContext;
+    private Context mContext;
 
     public MyProfileActivityPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;

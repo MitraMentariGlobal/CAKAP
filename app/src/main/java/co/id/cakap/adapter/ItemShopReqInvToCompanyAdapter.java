@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ItemShopCompanyData;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivityPresenter;
+import co.id.cakap.utils.Logger;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -60,6 +64,18 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
         holder.mItemName.setText(itemShopCompanyData.getItem_name());
         holder.mPrice.setText(itemShopCompanyData.getFharga());
         holder.mPv.setText(itemShopCompanyData.getPv());
+
+        try {
+            if (!(itemShopCompanyData.getImage().equals("0"))) {
+                Picasso.with(mContext)
+                        .load(Constant.URL_IMAGE_PRODUCT + itemShopCompanyData.getImage())
+                        .into(holder.mImage);
+            } else {
+                holder.mImage.setBackground(mContext.getResources().getDrawable(R.drawable.img_item_placeholder));
+            }
+        } catch (Exception e) {
+            Logger.e(e.getMessage());
+        }
     }
 
     @Override
@@ -119,6 +135,8 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
         ImageView mPlus;
         @BindView(R.id.linear_stock)
         LinearLayout mLinearStock;
+        @BindView(R.id.image)
+        ImageView mImage;
 
         ItemShopCompanyData itemShopCompanyData;
         Context context;

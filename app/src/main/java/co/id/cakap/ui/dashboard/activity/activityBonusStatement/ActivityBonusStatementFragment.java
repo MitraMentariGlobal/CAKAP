@@ -143,7 +143,8 @@ public class ActivityBonusStatementFragment extends Fragment implements Activity
                 super.onPageFinished(view, url);
             }
         });
-        mWebView.loadUrl(mUrl);
+//        mWebView.loadUrl(mUrl);
+        hideProgressBar();
 
         initSpinner();
     }
@@ -160,7 +161,11 @@ public class ActivityBonusStatementFragment extends Fragment implements Activity
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void initSpinner() {

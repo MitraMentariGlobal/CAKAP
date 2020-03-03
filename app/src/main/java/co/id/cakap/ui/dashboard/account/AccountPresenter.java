@@ -63,9 +63,9 @@ public class AccountPresenter implements AccountContract.UserActionListener {
                         Logger.d("<<<<<=====");
 
                         try {
+                            deleteData();
                             mView.hideProgressBar();
                             mView.setSuccessResponse();
-                            deleteData();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

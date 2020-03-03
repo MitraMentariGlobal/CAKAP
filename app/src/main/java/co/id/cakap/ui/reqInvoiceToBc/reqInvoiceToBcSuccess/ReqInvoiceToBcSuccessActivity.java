@@ -29,6 +29,7 @@ import co.id.cakap.adapter.CashbillSuccessAdapter;
 import co.id.cakap.adapter.ReqInvoiceToBcSuccessAdapter;
 import co.id.cakap.data.CashbillSuccessData;
 import co.id.cakap.data.ReqInvoiceToBcSuccessData;
+import co.id.cakap.data.SubmitInvoiceToBcData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.cashbillSuccess.CashbillSuccessContract;
@@ -62,9 +63,17 @@ public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements 
     TextView mTxtCopy;
     @BindView(R.id.img_close)
     CircleImageView mImgClose;
+    @BindView(R.id.txt_member_id)
+    TextView mTxtMemberId;
+    @BindView(R.id.txt_date)
+    TextView mTxtDate;
+    @BindView(R.id.txt_total_amount)
+    TextView mTxtTotalAmount;
 
     private String mTitle = "";
+    private String mInfo = "";
     private String mTransactionId = "INV - 123123123123123";
+    private SubmitInvoiceToBcData mSubmitInvoiceToBcData;
     private ReqInvoiceToBcSuccessAdapter mListAdapter;
     private ReqInvoiceToBcSuccessContract.UserActionListener mUserActionListener;
 
@@ -89,14 +98,29 @@ public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements 
     public void initializeData() {
         mUserActionListener = mReqInvoiceToBcSuccessPresenter;
         mReqInvoiceToBcSuccessPresenter.setView(this);
-        mUserActionListener.getData();
 
         Intent intent = getIntent();
+        Bundle b = intent.getBundleExtra(Constant.SUCCESS_DATA_OBJECT);
+
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
+        mInfo = intent.getStringExtra(Constant.PAYMENT_INFO);
+        mSubmitInvoiceToBcData = b.getParcelable(Constant.SUCCESS_DATA_OBJECT);
+        mTitleToolbar.setText(mTitle);
+
+//        mTransactionIdText.setText(mSubmitInvoiceToBcData.getInv());
+        mTransactionIdText.setText(mSubmitInvoiceToBcData.getNo_stc() + " - " + mSubmitInvoiceToBcData.getNamastc());
+        mTxtMemberId.setText(mSubmitInvoiceToBcData.getNo_stc() + " - " + mSubmitInvoiceToBcData.getNamastc());
+        mTxtDate.setText(mSubmitInvoiceToBcData.getTgl());
+        mTxtTotalAmount.setText("IDR " + mSubmitInvoiceToBcData.getTotalharga());
+//        mRemark.setText(mSubmitInvoiceToBcData.getRemark());
+//        if (mSubmitInvoiceToBcData.getRemark().equals("0") || mSubmitInvoiceToBcData.getRemark().length() == 0)
+//            mRemark.setText("-");
 //        mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
         mTransactionIdText.setText(mTransactionId);
-        mTitleToolbar.setText(mTitle);
-        mUserIdName.setText(getResources().getString(R.string.please_confirm_bc, "BC014", "YANTI PURWANTI"));
+//        mUserIdName.setText(getResources().getString(R.string.please_confirm_bc, "BC014", "YANTI PURWANTI"));
+        mUserIdName.setText(mInfo);
+
+        mUserActionListener.getData();
     }
 
     @Override

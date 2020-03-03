@@ -1,5 +1,7 @@
 package co.id.cakap.ui.changePassword;
 
+import android.content.Context;
+
 public class ChangePasswordContract {
     public interface View{
         void initializeData();
@@ -14,7 +16,7 @@ public class ChangePasswordContract {
     }
 
     public interface UserActionListener{
-        void setView(ChangePasswordContract.View view);
+        void setView(ChangePasswordContract.View view, Context context);
         void changeData(String oldPassword, String newPassword, String retypeNewPassword, String pin);
         void checkData(String oldPassword, String newPassword, String retypeNewPassword);
     }

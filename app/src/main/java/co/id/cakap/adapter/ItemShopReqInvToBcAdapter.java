@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ItemShopCompanyData;
+import co.id.cakap.data.ItemShopData;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivityPresenter;
+import co.id.cakap.utils.Logger;
 
 /**
  * Created by Laksamana Guntur Dzulfikar
@@ -29,17 +34,17 @@ import co.id.cakap.ui.reqInvoiceToBc.ReqInvoiceToBcActivityPresenter;
  */
 
 public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqInvToBcAdapter.ViewHolder> implements Filterable {
-    private List<ItemShopCompanyData> mResultData;
-    private List<ItemShopCompanyData> mFilteredList;
+    private List<ItemShopData> mResultData;
+    private List<ItemShopData> mFilteredList;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public ItemShopReqInvToBcAdapter(List<ItemShopCompanyData> resultData, Context context){
+    public ItemShopReqInvToBcAdapter(List<ItemShopData> resultData, Context context){
         mResultData = resultData;
         mFilteredList = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     @Override
@@ -50,16 +55,27 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ItemShopCompanyData itemShopCompanyData = mFilteredList.get(position);
+        ItemShopData itemShopData = mFilteredList.get(position);
 
         holder.context = mContext;
-        holder.itemShopCompanyData = itemShopCompanyData;
+        holder.itemShopData = itemShopData;
         holder.position = position;
 
-        holder.mItemCode.setText(itemShopCompanyData.getItem_code());
-        holder.mItemName.setText(itemShopCompanyData.getItem_name());
-        holder.mPrice.setText(itemShopCompanyData.getFharga());
-        holder.mPv.setText(itemShopCompanyData.getPv());
+        holder.mItemCode.setText(itemShopData.getItem_code());
+        holder.mItemName.setText(itemShopData.getItem_name());
+        holder.mPrice.setText(itemShopData.getFharga());
+        holder.mPv.setText(itemShopData.getPv());
+
+        Logger.d("position : " + position);
+        Logger.d("mQty.gettext 2 : " + holder.mQty.getText());
+
+        if (!(itemShopData.getImage().equals("0"))) {
+            Picasso.with(mContext)
+                    .load(Constant.URL_IMAGE_PRODUCT + itemShopData.getImage())
+                    .into(holder.mImage);
+        } else {
+            holder.mImage.setBackground(mContext.getResources().getDrawable(R.drawable.img_item_placeholder));
+        }
     }
 
     @Override
@@ -76,13 +92,13 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
                 if (charString.isEmpty()) {
                     mFilteredList = mResultData;
                 } else {
-                    ArrayList<ItemShopCompanyData> filteredList = new ArrayList<>();
-                    for (ItemShopCompanyData itemShopCompanyData : mResultData) {
-                        if (itemShopCompanyData.getItem_code().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getItem_name().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getHarga().toLowerCase().contains(charString) ||
-                                itemShopCompanyData.getPv().toLowerCase().contains(charString)) {
-                            filteredList.add(itemShopCompanyData);
+                    ArrayList<ItemShopData> filteredList = new ArrayList<>();
+                    for (ItemShopData itemShopData : mResultData) {
+                        if (itemShopData.getItem_code().toLowerCase().contains(charString) ||
+                                itemShopData.getItem_name().toLowerCase().contains(charString) ||
+                                itemShopData.getHarga().toLowerCase().contains(charString) ||
+                                itemShopData.getPv().toLowerCase().contains(charString)) {
+                            filteredList.add(itemShopData);
                         }
                     }
                     mFilteredList = filteredList;
@@ -95,7 +111,7 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mFilteredList = (ArrayList<ItemShopCompanyData>) filterResults.values;
+                mFilteredList = (ArrayList<ItemShopData>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
@@ -119,18 +135,23 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         ImageView mPlus;
         @BindView(R.id.linear_stock)
         LinearLayout mLinearStock;
+        @BindView(R.id.image)
+        ImageView mImage;
 
-        ItemShopCompanyData itemShopCompanyData;
+        ItemShopData itemShopData;
         Context context;
         int qty = 0;
-        int position = 0;
+        int position;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
             mLinearStock.setVisibility(View.GONE);
-            setZeroQty();
+            mQty.setText(String.valueOf(qty));
+            Logger.d("mQty.gettext 1 : " + mQty.getText());
+//            mQty.setText("0");
+//            setZeroQty();
         }
 
         public void setZeroQty() {
@@ -142,24 +163,32 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
 
         @OnClick(R.id.img_minus)
         public void minusItem() {
-            setZeroQty();
+            Logger.d("position minus : " + position);
+//            setZeroQty();
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
-                itemShopCompanyData.setQty(String.valueOf(qty));
-                mResultData.set(position, itemShopCompanyData);
-                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 0);
+                itemShopData.setCart(String.valueOf(qty));
+                mResultData.set(position, itemShopData);
+//                notifyDataSetChanged();
+
+                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 0);
             }
         }
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
-            setZeroQty();
-            qty += 1;
-            mQty.setText(String.valueOf(qty));
-            itemShopCompanyData.setQty(String.valueOf(qty));
-            mResultData.set(position, itemShopCompanyData);
-            new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 1);
+            Logger.d("position plus : " + position);
+            if (qty < Integer.parseInt(itemShopData.getQty())) {
+//                setZeroQty();
+                qty += 1;
+                mQty.setText(String.valueOf(qty));
+                itemShopData.setCart(String.valueOf(qty));
+                mResultData.set(position, itemShopData);
+//                notifyDataSetChanged();
+
+                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
+            }
         }
     }
 }

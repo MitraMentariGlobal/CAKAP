@@ -111,6 +111,7 @@ public class InvoiceToMbActivityPresenter implements InvoiceToMbActivityContract
                         Logger.d("<<<<<=====");
 
                         try {
+                            Constant.URL_IMAGE_PRODUCT = apiResponseItemInvoiceToMb.getUrl();
                             getView().setAdapter(apiResponseItemInvoiceToMb.getData(), operationUserStatusData);
                         } catch (Exception e) {
                             e.printStackTrace();

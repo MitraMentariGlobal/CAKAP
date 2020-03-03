@@ -55,6 +55,8 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     TextView mTxtDate;
     @BindView(R.id.txt_total_amount)
     TextView mTxtTotalAmount;
+    @BindView(R.id.txt_total_pv)
+    TextView mTxtTotalPv;
     @BindView(R.id.et_remark)
     EditText mEtRemark;
     @BindView(R.id.nested_scroll)
@@ -67,6 +69,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     RecyclerView mbankList;
 
     private String mTitle = "";
+    private String mKodeUnik = "";
     private String mEndpoint = "";
     private String mItemId = "";
     private String mTransactionId = "";
@@ -74,6 +77,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     private String mName = "";
     private String mDate = "";
     private String mTotal = "";
+    private String mTotalPv = "";
     private String mRemark = "";
 
     private DetailTransaksiAdapter mListAdapter;
@@ -107,12 +111,19 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
         mEndpoint = intent.getStringExtra(Constant.URL_LINK_DETAIL);
+        try {
+            mKodeUnik = intent.getStringExtra(Constant.KODE_UNIK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mKodeUnik = "";
+        }
         mItemId = intent.getStringExtra(Constant.ITEM_ID_DETAIL);
         mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
         mMemberId = intent.getStringExtra(Constant.MEMBER_ID_DETAIL);
         mName = intent.getStringExtra(Constant.NAME_DETAIL);
         mDate = intent.getStringExtra(Constant.DATE_DETAIL);
         mTotal = intent.getStringExtra(Constant.TOTAL_DETAIL);
+        mTotalPv = intent.getStringExtra(Constant.TOTAL_PV_DETAIL);
         mRemark = intent.getStringExtra(Constant.REMARK_DETAIL);
         if (mRemark.equals("0"))
             mRemark = "-";
@@ -127,10 +138,11 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mTxtName.setText(mName);
         mTxtDate.setText(mDate);
         mTxtTotalAmount.setText("IDR " + mTotal);
+        mTxtTotalPv.setText(mTotalPv + "pv");
         mEtRemark.setText(mRemark);
         mTitleToolbar.setText(getString(R.string.detail_transaksi).toUpperCase());
 
-        mUserActionListener.getData(mEndpoint, mItemId);
+        mUserActionListener.getData(mEndpoint, mItemId, mKodeUnik);
     }
 
     @Override

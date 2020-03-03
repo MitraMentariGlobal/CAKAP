@@ -51,7 +51,8 @@ public interface NetworkService {
                                                            @Field(Constant.BODY_RETYPE_NEW_PASSWORD) String retypeNewPassword,
                                                            @Field(Constant.BODY_PIN) String pin,
                                                            @Field(Constant.BODY_USER_NAME) String username,
-                                                           @Field(Constant.BODY_USER_ID) String userId);
+                                                           @Field(Constant.BODY_USER_ID) String userId,
+                                                           @Query(Constant.GET_GROUP_ID) String groupId);
 
     @FormUrlEncoded
     @POST("changepin_member")
@@ -61,7 +62,8 @@ public interface NetworkService {
                                                  @Field(Constant.BODY_NEW_PIN) String newPin,
                                                  @Field(Constant.BODY_RETYPE_NEW_PIN) String retypeNewPin,
                                                  @Field(Constant.BODY_USER_NAME) String username,
-                                                 @Field(Constant.BODY_USER_ID) String userId);
+                                                 @Field(Constant.BODY_USER_ID) String userId,
+                                                 @Query(Constant.GET_GROUP_ID) String groupId);
 
     @GET("member_profile")
     Flowable<ApiResponseProfileData> getProfileData(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
@@ -140,6 +142,14 @@ public interface NetworkService {
                                                                  @Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                  @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                  @Field(Constant.BODY_ID) String id);
+
+    @FormUrlEncoded
+    @POST()
+    Flowable<ApiResponseDetailTransaction> postDetailTransactionKodeUnik(@Url String url,
+                                                                         @Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                         @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                         @Field(Constant.BODY_ID) String id,
+                                                                         @Field(Constant.BODY_KODE_UNIK) String kodeUnik);
 
     @FormUrlEncoded
     @POST("bonus_statement")
@@ -243,10 +253,10 @@ public interface NetworkService {
 
     @POST("submit_invoice_mb")
     Flowable<ApiResponseSubmitInvoiceToMb> postSubmitInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
-                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
-                                                           @Body Map<String, Object> param);
+                                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                 @Body Map<String, Object> param);
 
-    @POST("submit_invoice_bc")
+    @POST("submit_req_invoice_mb_to_bc")
     Flowable<ApiResponseSubmitInvoiceToBc> postSubmitInvoiceToBc(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                  @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                  @Body Map<String, Object> param);
@@ -266,6 +276,13 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("item_stc_invoice")
     Flowable<ApiResponseItemInvoiceToMb> postItemInvoiceToMb(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                             @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                             @Field(Constant.BODY_USER_ID) String userId,
+                                                             @Field(Constant.BODY_MEMBER_ID2) String memberId);
+
+    @FormUrlEncoded
+    @POST("item_stc_invoice")
+    Flowable<ApiResponseItemInvoiceToBc> postItemInvoiceToBc(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                              @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                              @Field(Constant.BODY_USER_ID) String userId,
                                                              @Field(Constant.BODY_MEMBER_ID2) String memberId);
@@ -339,7 +356,7 @@ public interface NetworkService {
                                                            @Field(Constant.BODY_BULAN) String bulan);
 
     @FormUrlEncoded
-    @POST("req_invoice_company")
+    @POST("req_invoice_company_bc")
     Flowable<ApiResponseRestockReqInvoice> postRestockReqInvoice(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                  @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                  @Field(Constant.BODY_USER_ID) String userId);
@@ -409,8 +426,8 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("address_stc")
     Flowable<ApiResponseListAddress> postListAlamat(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
-                                                         @Header(Constant.CAKAP_KEY_TEXT) String authorization,
-                                                         @Field(Constant.BODY_USER_ID) String userId);
+                                                    @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                    @Field(Constant.BODY_USER_ID) String userId);
 
     @FormUrlEncoded
     @POST("submit_alamat")
@@ -445,4 +462,12 @@ public interface NetworkService {
     Flowable<ApiResponseActivationFormSubmitData> postSubmitActivationForm(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
                                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
                                                                            @Body Map<String, Object> param);
+
+    @FormUrlEncoded
+    @POST("ebonus_member")
+    Flowable<ApiResponseEbonusMember> postEbonusMember(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                       @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                       @Field(Constant.BODY_USER_ID) String userId,
+                                                       @Field(Constant.BODY_TAHUN) String tahun,
+                                                       @Field(Constant.BODY_BULAN) String bulan);
 }

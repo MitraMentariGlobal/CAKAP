@@ -72,6 +72,7 @@ android {
             buildConfigField 'String', 'END_URL_DETAIL_REQ_INVOICE_MB', endpointProperties['end_url_detail_req_invoice_mb']
             buildConfigField 'String', 'END_URL_DETAIL_INVOICE', endpointProperties['end_url_detail_invoice']
             buildConfigField 'String', 'END_URL_DETAIL_REQ_INVOICE', endpointProperties['end_url_detail_req_invoice']
+            buildConfigField 'String', 'END_URL_DETAIL_REQ_INVOICE_BC', endpointProperties['end_url_detail_req_invoice_bc']
             buildConfigField 'String', 'END_URL_DETAIL_RECEIVE_STOCK', endpointProperties['end_url_detail_receive_stock']
 
             buildConfigField 'String', 'GET_GROUP_ID', endpointProperties['get_group_id']
@@ -156,6 +157,8 @@ android {
             buildConfigField 'String', 'BODY_IDADDR', endpointProperties['body_idaddr']
             buildConfigField 'String', 'BODY_KODE_ID', endpointProperties['body_kode_id']
             buildConfigField 'String', 'BODY_ID_RO', endpointProperties['body_id_ro']
+            buildConfigField 'String', 'BODY_BC_ID', endpointProperties['body_bc_id']
+            buildConfigField 'String', 'BODY_KODE_UNIK', endpointProperties['body_kode_unik']
         }
     }
 

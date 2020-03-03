@@ -1,5 +1,7 @@
 package co.id.cakap.ui.changePin;
 
+import android.content.Context;
+
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseChangePassword;
@@ -17,6 +19,7 @@ public class ChangePinPresenter implements ChangePinContract.UserActionListener 
     private MainRepository mMainRepository;
     private DataModel mDataModel;
     private ResultDataLogin mResultDataLogin;
+    private Context mContext;
 
     public ChangePinPresenter(MainRepository mainRepository, DataModel dataModel) {
         mMainRepository = mainRepository;
@@ -24,8 +27,9 @@ public class ChangePinPresenter implements ChangePinContract.UserActionListener 
     }
 
     @Override
-    public void setView(ChangePinContract.View view){
+    public void setView(ChangePinContract.View view, Context context){
         mView = view;
+        mContext = context;
     }
 
     @Override
@@ -33,7 +37,7 @@ public class ChangePinPresenter implements ChangePinContract.UserActionListener 
         mView.showProgressBar();
 
         mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
-        mMainRepository.postChangePin(oldPin, newPin, retypeNewPin, mResultDataLogin.getUsername(), mResultDataLogin.getMember_id())
+        mMainRepository.postChangePin(oldPin, newPin, retypeNewPin, mResultDataLogin.getUsername(), mResultDataLogin.getMember_id(), Utils.getGroupId(mContext))
                 .subscribe(new ResourceSubscriber<ApiResponseChangePin>() {
                     @Override
                     public void onNext(ApiResponseChangePin apiResponseChangePin) {

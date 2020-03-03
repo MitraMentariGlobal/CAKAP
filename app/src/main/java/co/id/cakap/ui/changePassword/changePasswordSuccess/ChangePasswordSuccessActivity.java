@@ -19,8 +19,10 @@ import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
+import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.changePassword.ChangePasswordContract;
 import co.id.cakap.ui.changePassword.ChangePasswordPresenter;
+import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.dashboard.DashboardActivity;
 
 public class ChangePasswordSuccessActivity extends AppCompatActivity {
@@ -54,7 +56,12 @@ public class ChangePasswordSuccessActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent i = new Intent(this, DashboardActivity.class);
+        Intent i = null;
+        if (Constant.IS_FLAG_UPDATE) {
+            i = new Intent(this, ChangePinActivity.class);
+        } else {
+            i = new Intent(this, DashboardActivity.class);
+        }
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
