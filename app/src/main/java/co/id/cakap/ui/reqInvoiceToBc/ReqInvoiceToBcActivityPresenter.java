@@ -83,6 +83,7 @@ public class ReqInvoiceToBcActivityPresenter implements ReqInvoiceToBcActivityCo
                         Logger.d("<<<<<=====");
 
                         try {
+                            Constant.URL_IMAGE_PRODUCT = apiResponseItemInvoiceToBc.getUrl();
                             getView().setAdapter(apiResponseItemInvoiceToBc.getData());
                         } catch (Exception e) {
                             e.printStackTrace();

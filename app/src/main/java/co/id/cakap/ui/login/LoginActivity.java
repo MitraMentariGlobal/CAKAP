@@ -129,7 +129,7 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
                 } else {
                     // If sign in fails, display a message to the user.
                     Logger.w("signInAnonymously:failure", task.getException());
-                    setErrorResponse("Authentication failed.");
+//                    setErrorResponse("Authentication failed.");
                 }
             }
         });
@@ -174,6 +174,8 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
         Intent intent = new Intent(this, DashboardActivity.class);
         if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.bc_login))) {
             intent = getIntentParse(apiResponseLogin);
+//            Constant.IS_FLAG_UPDATE = true;
+//            intent = new Intent(this, ChangePasswordActivity.class);
         } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.mb_login))) {
             if (apiResponseLogin.getResult().getLeader_ids().equals("0")) {
                 Constant.IS_HAVE_PARENT = false;

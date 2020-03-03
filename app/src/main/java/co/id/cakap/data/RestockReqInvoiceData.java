@@ -20,6 +20,10 @@ import org.greenrobot.greendao.annotation.Generated;
 @Data
 @Entity
 public class RestockReqInvoiceData implements Parcelable {
+    @SerializedName("kode_unik")
+    @Expose
+    private String kode_unik;
+
     @SerializedName("id")
     @Expose
     private String item_id;
@@ -53,6 +57,7 @@ public class RestockReqInvoiceData implements Parcelable {
     private String status;
 
     protected RestockReqInvoiceData(Parcel in) {
+        kode_unik = in.readString();
         item_id = in.readString();
         total_amount = in.readString();
         total_pv = in.readString();
@@ -63,9 +68,10 @@ public class RestockReqInvoiceData implements Parcelable {
         status = in.readString();
     }
 
-    @Generated(hash = 1426759281)
-    public RestockReqInvoiceData(String item_id, String total_amount, String total_pv, String date,
-            String nama, String no_stc, String remarkapp, String status) {
+    @Generated(hash = 1890646724)
+    public RestockReqInvoiceData(String kode_unik, String item_id, String total_amount, String total_pv,
+            String date, String nama, String no_stc, String remarkapp, String status) {
+        this.kode_unik = kode_unik;
         this.item_id = item_id;
         this.total_amount = total_amount;
         this.total_pv = total_pv;
@@ -82,6 +88,7 @@ public class RestockReqInvoiceData implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(kode_unik);
         dest.writeString(item_id);
         dest.writeString(total_amount);
         dest.writeString(total_pv);
@@ -95,6 +102,14 @@ public class RestockReqInvoiceData implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getKode_unik() {
+        return this.kode_unik;
+    }
+
+    public void setKode_unik(String kode_unik) {
+        this.kode_unik = kode_unik;
     }
 
     public String getItem_id() {

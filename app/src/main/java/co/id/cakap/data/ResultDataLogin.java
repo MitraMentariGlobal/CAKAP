@@ -91,6 +91,22 @@ public class ResultDataLogin implements Parcelable {
     @Expose
     private String flag_login;
 
+    @SerializedName("ewallet")
+    @Expose
+    private String ewallet;
+
+    @SerializedName("fee")
+    @Expose
+    private String fee;
+
+    @SerializedName("omset")
+    @Expose
+    private String omset;
+
+    @SerializedName("total_omset")
+    @Expose
+    private String total_omset;
+
     protected ResultDataLogin(Parcel in) {
         url = in.readString();
         role = in.readString();
@@ -110,14 +126,18 @@ public class ResultDataLogin implements Parcelable {
         wilayah = in.readString();
         leader_ids = in.readString();
         flag_login = in.readString();
+        ewallet = in.readString();
+        fee = in.readString();
+        omset = in.readString();
+        total_omset = in.readString();
     }
 
-    @Generated(hash = 118583212)
+    @Generated(hash = 1662500561)
     public ResultDataLogin(String url, String role, String session_token,
             String update_profile, String running_text, String gambar, String nama,
             String username, String member_id, String posisi, String bonus, String pv_max,
             String pv_tupo, String userid, String group_id, String wilayah, String leader_ids,
-            String flag_login) {
+            String flag_login, String ewallet, String fee, String omset, String total_omset) {
         this.url = url;
         this.role = role;
         this.session_token = session_token;
@@ -136,6 +156,10 @@ public class ResultDataLogin implements Parcelable {
         this.wilayah = wilayah;
         this.leader_ids = leader_ids;
         this.flag_login = flag_login;
+        this.ewallet = ewallet;
+        this.fee = fee;
+        this.omset = omset;
+        this.total_omset = total_omset;
     }
 
     @Generated(hash = 820616836)
@@ -162,6 +186,10 @@ public class ResultDataLogin implements Parcelable {
         dest.writeString(wilayah);
         dest.writeString(leader_ids);
         dest.writeString(flag_login);
+        dest.writeString(ewallet);
+        dest.writeString(fee);
+        dest.writeString(omset);
+        dest.writeString(total_omset);
     }
 
     @Override
@@ -311,6 +339,38 @@ public class ResultDataLogin implements Parcelable {
 
     public void setFlag_login(String flag_login) {
         this.flag_login = flag_login;
+    }
+
+    public String getEwallet() {
+        return this.ewallet;
+    }
+
+    public void setEwallet(String ewallet) {
+        this.ewallet = ewallet;
+    }
+
+    public String getFee() {
+        return this.fee;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
+
+    public String getOmset() {
+        return this.omset;
+    }
+
+    public void setOmset(String omset) {
+        this.omset = omset;
+    }
+
+    public String getTotal_omset() {
+        return this.total_omset;
+    }
+
+    public void setTotal_omset(String total_omset) {
+        this.total_omset = total_omset;
     }
 
     public static final Creator<ResultDataLogin> CREATOR = new Creator<ResultDataLogin>() {

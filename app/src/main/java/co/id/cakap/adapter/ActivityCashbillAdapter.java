@@ -71,8 +71,10 @@ public class ActivityCashbillAdapter extends RecyclerView.Adapter<ActivityCashbi
         holder.mName.setText(activityCashbillData.getName());
         holder.mTotalAmount.setText("IDR " + activityCashbillData.getTotal_amount());
 
-        if (!(activityCashbillData.getKit().equals("N") && activityCashbillData.getNote().equals("0"))) {
-            holder.mItemCancel.setVisibility(View.GONE);
+        if (!(Constant.LOGIN_DATA.equals(mContext.getResources().getString(R.string.member_login)))) {
+            if (!(activityCashbillData.getKit().equals("N") && activityCashbillData.getNote().equals("0"))) {
+                holder.mItemCancel.setVisibility(View.GONE);
+            }
         }
     }
 

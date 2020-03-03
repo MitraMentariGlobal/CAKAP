@@ -6,11 +6,12 @@ import co.id.cakap.data.EbonusData;
 import co.id.cakap.data.ItemEbonusCard;
 import co.id.cakap.data.ItemStockCard;
 import co.id.cakap.data.StockCardData;
+import co.id.cakap.network.ApiResponseEbonusMember;
 
 public class EbonusContract {
     public interface View {
         void initializeData();
-        void setAdapter(List<EbonusData> resultData);
+        void setAdapter(ApiResponseEbonusMember apiResponseEbonusMember);
         void showProgressBar();
         void hideProgressBar();
         void setErrorResponse(String message);
@@ -20,7 +21,7 @@ public class EbonusContract {
 
     public interface UserActionListener {
         void setView(EbonusContract.View view);
-        void getData();
+        void getData(String tahun, String bulan);
         void getItemProduct(String param);
     }
 }

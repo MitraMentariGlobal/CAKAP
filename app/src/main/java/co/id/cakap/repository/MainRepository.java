@@ -22,6 +22,7 @@ import co.id.cakap.network.ApiResponseChangePassword;
 import co.id.cakap.network.ApiResponseChangePin;
 import co.id.cakap.network.ApiResponseDetailTransaction;
 import co.id.cakap.network.ApiResponseDownlineListing;
+import co.id.cakap.network.ApiResponseEbonusMember;
 import co.id.cakap.network.ApiResponseFeeBcmb;
 import co.id.cakap.network.ApiResponseInvoiceToMb;
 import co.id.cakap.network.ApiResponseItemCashbill;
@@ -160,6 +161,12 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseDetailTransaction> postDetailTransaction(String url, String id) {
         return networkService.postDetailTransaction(url, Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseDetailTransaction> postDetailTransactionKodeUnik(String url, String id, String kodeUnik) {
+        return networkService.postDetailTransactionKodeUnik(url, Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id, kodeUnik)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -409,6 +416,12 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseActivationFormSubmitData> postSubmitActivationForm(Map<String, Object> param) {
         return networkService.postSubmitActivationForm(Constant.CONTENT_TYPE_JSON, Constant.CAKAP_KEY, param)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseEbonusMember> postEbonusMember(String userId, String tahun, String bulan) {
+        return networkService.postEbonusMember(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

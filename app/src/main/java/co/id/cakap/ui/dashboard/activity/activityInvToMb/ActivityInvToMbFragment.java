@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -19,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.andrognito.pinlockview.IndicatorDots;
@@ -68,6 +70,10 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
     Spinner mMonthSpinner;
     @BindView(R.id.year_spinner)
     Spinner mYearSpinner;
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -104,10 +110,19 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
 
         initSpinner();
         mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+        });
     }
 
     @Override
     public void setAdapter(List<ActivityInvToMbData> resultData) {
+        mLinearEmptyData.setVisibility(View.GONE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityInvToMbAdapter(resultData, getContext());
@@ -139,12 +154,17 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
 
     @Override
     public void hideProgressBar() {
+        mSwipeRefreshLayout.setRefreshing(false);
         mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -69,6 +69,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
     RecyclerView mbankList;
 
     private String mTitle = "";
+    private String mKodeUnik = "";
     private String mEndpoint = "";
     private String mItemId = "";
     private String mTransactionId = "";
@@ -110,6 +111,12 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Constant.TITLE_DETAIL);
         mEndpoint = intent.getStringExtra(Constant.URL_LINK_DETAIL);
+        try {
+            mKodeUnik = intent.getStringExtra(Constant.KODE_UNIK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mKodeUnik = "";
+        }
         mItemId = intent.getStringExtra(Constant.ITEM_ID_DETAIL);
         mTransactionId = intent.getStringExtra(Constant.TRANSACTION_ID_DETAIL);
         mMemberId = intent.getStringExtra(Constant.MEMBER_ID_DETAIL);
@@ -135,7 +142,7 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
         mEtRemark.setText(mRemark);
         mTitleToolbar.setText(getString(R.string.detail_transaksi).toUpperCase());
 
-        mUserActionListener.getData(mEndpoint, mItemId);
+        mUserActionListener.getData(mEndpoint, mItemId, mKodeUnik);
     }
 
     @Override

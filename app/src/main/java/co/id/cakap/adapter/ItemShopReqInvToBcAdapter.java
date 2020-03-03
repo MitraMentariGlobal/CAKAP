@@ -44,7 +44,7 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         mFilteredList = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     @Override
@@ -65,6 +65,9 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         holder.mItemName.setText(itemShopData.getItem_name());
         holder.mPrice.setText(itemShopData.getFharga());
         holder.mPv.setText(itemShopData.getPv());
+
+        Logger.d("position : " + position);
+        Logger.d("mQty.gettext 2 : " + holder.mQty.getText());
 
         if (!(itemShopData.getImage().equals("0"))) {
             Picasso.with(mContext)
@@ -138,14 +141,17 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         ItemShopData itemShopData;
         Context context;
         int qty = 0;
-        int position = 0;
+        int position;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
             mLinearStock.setVisibility(View.GONE);
-            setZeroQty();
+            mQty.setText(String.valueOf(qty));
+            Logger.d("mQty.gettext 1 : " + mQty.getText());
+//            mQty.setText("0");
+//            setZeroQty();
         }
 
         public void setZeroQty() {
@@ -158,7 +164,7 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         @OnClick(R.id.img_minus)
         public void minusItem() {
             Logger.d("position minus : " + position);
-            setZeroQty();
+//            setZeroQty();
             if (qty > 0) {
                 qty -= 1;
                 mQty.setText(String.valueOf(qty));
@@ -174,7 +180,7 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         public void plusItem() {
             Logger.d("position plus : " + position);
             if (qty < Integer.parseInt(itemShopData.getQty())) {
-                setZeroQty();
+//                setZeroQty();
                 qty += 1;
                 mQty.setText(String.valueOf(qty));
                 itemShopData.setCart(String.valueOf(qty));

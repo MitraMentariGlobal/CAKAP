@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,11 +45,9 @@ public class EbonusAdapter extends RecyclerView.Adapter<EbonusAdapter.ViewHolder
         EbonusData ebonusData = mResultData.get(position);
 
         holder.context = mContext;
-        holder.mDate.setText(ebonusData.getDate());
-        holder.mUserId.setText(ebonusData.getUser_id());
-        holder.mSaldo.setText(ebonusData.getSaldo());
-        holder.mStockIn.setText(ebonusData.getStok_in());
-        holder.mStockOut.setText(ebonusData.getStok_out());
+        holder.mDate.setText(ebonusData.getCreated());
+        holder.mUserId.setText(ebonusData.getDescription());
+        holder.mStockOut.setText(ebonusData.getNominal());
     }
 
     @Override
@@ -68,12 +67,19 @@ public class EbonusAdapter extends RecyclerView.Adapter<EbonusAdapter.ViewHolder
         TextView mStockIn;
         @BindView(R.id.txt_stock_out)
         TextView mStockOut;
+        @BindView(R.id.linear_in)
+        LinearLayout mLinearIn;
+        @BindView(R.id.txt_out)
+        TextView mTxtOut;
 
         Context context;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            mLinearIn.setVisibility(View.GONE);
+            mTxtOut.setVisibility(View.GONE);
         }
     }
 }

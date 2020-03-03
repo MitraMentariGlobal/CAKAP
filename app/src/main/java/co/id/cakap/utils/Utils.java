@@ -34,7 +34,7 @@ public class Utils {
             }
         } catch (Exception e) {
             Logger.e(e.getMessage());
-            return "Authentication failed.";
+            return "Error.";
         }
     }
 

@@ -30,6 +30,7 @@ public class Constant {
     public static final String END_URL_DETAIL_REQ_INVOICE_MB = BuildConfig.END_URL_DETAIL_REQ_INVOICE_MB;
     public static final String END_URL_DETAIL_INVOICE = BuildConfig.END_URL_DETAIL_INVOICE;
     public static final String END_URL_DETAIL_REQ_INVOICE = BuildConfig.END_URL_DETAIL_REQ_INVOICE;
+    public static final String END_URL_DETAIL_REQ_INVOICE_BC = BuildConfig.END_URL_DETAIL_REQ_INVOICE_BC;
     public static final String END_URL_DETAIL_RECEIVE_STOCK = BuildConfig.END_URL_DETAIL_RECEIVE_STOCK;
 
     public static final String GET_GROUP_ID = BuildConfig.GET_GROUP_ID;
@@ -115,6 +116,7 @@ public class Constant {
     public static final String BODY_KODE_ID = BuildConfig.BODY_KODE_ID;
     public static final String BODY_ID_RO = BuildConfig.BODY_ID_RO;
     public static final String BODY_BC_ID = BuildConfig.BODY_BC_ID;
+    public static final String BODY_KODE_UNIK = BuildConfig.BODY_KODE_UNIK;
 
     public static final String CAKAP_KEY_TEXT = BuildConfig.CAKAP_KEY_TEXT;
     public static final String CAKAP_KEY = BuildConfig.CAKAP_KEY;
@@ -131,6 +133,7 @@ public class Constant {
     public static final String TITLE_DETAIL = "title_detail";
     public static final String NAME = "name";
     public static final String ITEM_ID_DETAIL = "item_id_detail";
+    public static final String KODE_UNIK = "kode_unik";
     public static final String TRANSACTION_ID_DETAIL = "transaction_id_detail";
     public static final String MEMBER_ID_DETAIL = "member_id_detail";
     public static final String NAME_DETAIL = "name_detail";

@@ -31,40 +31,77 @@ public class DetailTransactionPresenter implements DetailTransactionContract.Use
     }
 
     @Override
-    public void getData(String endpoint, String itemId) {
-        mMainRepository.postDetailTransaction(endpoint, itemId)
-                .subscribe(new ResourceSubscriber<ApiResponseDetailTransaction>() {
-                    @Override
-                    public void onNext(ApiResponseDetailTransaction apiResponseDetailTransaction) {
-                        Logger.d("=====>>>>>");
-                        Logger.d("message : " + apiResponseDetailTransaction.getMessages());
-                        Logger.d("<<<<<=====");
+    public void getData(String endpoint, String itemId, String kodeUnik) {
+        if (kodeUnik == null) {
+            mMainRepository.postDetailTransaction(endpoint, itemId)
+                    .subscribe(new ResourceSubscriber<ApiResponseDetailTransaction>() {
+                        @Override
+                        public void onNext(ApiResponseDetailTransaction apiResponseDetailTransaction) {
+                            Logger.d("=====>>>>>");
+                            Logger.d("message : " + apiResponseDetailTransaction.getMessages());
+                            Logger.d("<<<<<=====");
 
-                        try {
-                            mView.setAdapter(apiResponseDetailTransaction);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        String errorResponse = "";
-                        t.printStackTrace();
-                        if (t instanceof HttpException) {
-                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
-                            errorResponse = Utils.getErrorMessage(responseBody);
-                            Logger.e("error HttpException: " + errorResponse);
+                            try {
+                                mView.setAdapter(apiResponseDetailTransaction);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
 
-                        mView.hideProgressBar();
-                        mView.setErrorResponse(errorResponse);
-                    }
+                        @Override
+                        public void onError(Throwable t) {
+                            String errorResponse = "";
+                            t.printStackTrace();
+                            if (t instanceof HttpException) {
+                                ResponseBody responseBody = ((HttpException) t).response().errorBody();
+                                errorResponse = Utils.getErrorMessage(responseBody);
+                                Logger.e("error HttpException: " + errorResponse);
+                            }
 
-                    @Override
-                    public void onComplete() {
-                        Logger.d("onComplete");
-                    }
-                });
+                            mView.hideProgressBar();
+                            mView.setErrorResponse(errorResponse);
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            Logger.d("onComplete");
+                        }
+                    });
+        } else {
+            mMainRepository.postDetailTransactionKodeUnik(endpoint, itemId, kodeUnik)
+                    .subscribe(new ResourceSubscriber<ApiResponseDetailTransaction>() {
+                        @Override
+                        public void onNext(ApiResponseDetailTransaction apiResponseDetailTransaction) {
+                            Logger.d("=====>>>>>");
+                            Logger.d("message : " + apiResponseDetailTransaction.getMessages());
+                            Logger.d("<<<<<=====");
+
+                            try {
+                                mView.setAdapter(apiResponseDetailTransaction);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable t) {
+                            String errorResponse = "";
+                            t.printStackTrace();
+                            if (t instanceof HttpException) {
+                                ResponseBody responseBody = ((HttpException) t).response().errorBody();
+                                errorResponse = Utils.getErrorMessage(responseBody);
+                                Logger.e("error HttpException: " + errorResponse);
+                            }
+
+                            mView.hideProgressBar();
+                            mView.setErrorResponse(errorResponse);
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            Logger.d("onComplete");
+                        }
+                    });
+        }
     }
 }

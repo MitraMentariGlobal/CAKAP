@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -45,6 +47,10 @@ public class RestockReqInvoiceFragment extends Fragment implements RestockReqInv
     RecyclerView mRecyclerView;
     @BindView(R.id.relative_progress_bar)
     RelativeLayout mRelativeProgressBar;
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -78,10 +84,19 @@ public class RestockReqInvoiceFragment extends Fragment implements RestockReqInv
         mUserActionListener = mRestockReqInvoicePresenter;
         mRestockReqInvoicePresenter.setView(this);
         mUserActionListener.getData();
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                mUserActionListener.getData();
+            }
+        });
     }
 
     @Override
     public void setAdapter(List<RestockReqInvoiceData> resultData) {
+        mLinearEmptyData.setVisibility(View.GONE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new RestockReqInvoiceAdapter(resultData, getContext());
@@ -97,19 +112,30 @@ public class RestockReqInvoiceFragment extends Fragment implements RestockReqInv
 
     @Override
     public void hideProgressBar() {
+        mSwipeRefreshLayout.setRefreshing(false);
         mRelativeProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void openDetailTransaction(RestockReqInvoiceData restockReqInvoiceData) {
+        String kodeUnik = "";
+        if (restockReqInvoiceData.getKode_unik() != null) {
+            kodeUnik = restockReqInvoiceData.getKode_unik();
+        }
+
         Intent intent = new Intent(getContext(), DetailTransactionActivity.class);
         intent.putExtra(Constant.TITLE_DETAIL, getContext().getResources().getString(R.string.req_invoice));
-        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_REQ_INVOICE);
+        intent.putExtra(Constant.URL_LINK_DETAIL, Constant.END_URL_DETAIL_REQ_INVOICE_BC);
+        intent.putExtra(Constant.KODE_UNIK, kodeUnik);
         intent.putExtra(Constant.ITEM_ID_DETAIL, restockReqInvoiceData.getItem_id());
         intent.putExtra(Constant.TRANSACTION_ID_DETAIL, "");
         intent.putExtra(Constant.MEMBER_ID_DETAIL, restockReqInvoiceData.getNo_stc());

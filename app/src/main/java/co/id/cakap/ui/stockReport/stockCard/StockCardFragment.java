@@ -177,7 +177,11 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
 
     @Override
     public void setErrorResponse(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
