@@ -63,12 +63,7 @@ public class ActivityInvToMbPresenter implements ActivityInvToMbContract.UserAct
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseInvoiceToMb.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseInvoiceToMb.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseInvoiceToMb.getData());
-                            }
+                            getView().setAdapter(apiResponseInvoiceToMb.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

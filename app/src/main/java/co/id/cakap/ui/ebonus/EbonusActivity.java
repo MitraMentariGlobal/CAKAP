@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -92,6 +93,8 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
     TextView mTxtSaldoAkhir;
     @BindView(R.id.linear_empty_data)
     LinearLayout mLinearEmptyData;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private RecyclerView mRecyclerViewSearch;
     private EditText mSearchEditText;
@@ -133,11 +136,23 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
 
         initSpinner();
         mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+        });
     }
 
     @Override
     public void setAdapter(ApiResponseEbonusMember apiResponseEbonusMember) {
-        mLinearEmptyData.setVisibility(View.GONE);
+        if (apiResponseEbonusMember.getData().isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         mLinearRecyclerView.setVisibility(View.VISIBLE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -145,7 +160,6 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
         mListAdapter = new EbonusAdapter(apiResponseEbonusMember.getData(), this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         mTxtTotalIn.setText(apiResponseEbonusMember.getTotal_kredit());
         mTxtTotalOut.setText(apiResponseEbonusMember.getTotal_debet());
@@ -172,7 +186,12 @@ public class EbonusActivity extends AppCompatActivity implements EbonusContract.
 
     @Override
     public void hideProgressBar() {
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

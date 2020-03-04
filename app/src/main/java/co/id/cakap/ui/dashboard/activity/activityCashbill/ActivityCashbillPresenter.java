@@ -62,12 +62,7 @@ public class ActivityCashbillPresenter implements ActivityCashbillContract.UserA
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseActivityCashbill.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseActivityCashbill.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseActivityCashbill.getData());
-                            }
+                            getView().setAdapter(apiResponseActivityCashbill.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

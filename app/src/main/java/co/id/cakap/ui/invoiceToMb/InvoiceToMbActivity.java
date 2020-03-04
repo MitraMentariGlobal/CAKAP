@@ -146,7 +146,6 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopInvToMbAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();

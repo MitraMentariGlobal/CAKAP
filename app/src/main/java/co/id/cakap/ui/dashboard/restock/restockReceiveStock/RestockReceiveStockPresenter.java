@@ -60,12 +60,7 @@ public class RestockReceiveStockPresenter implements RestockReceiveStockContract
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseRestockReceiveStock.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseRestockReceiveStock.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseRestockReceiveStock.getData());
-                            }
+                            getView().setAdapter(apiResponseRestockReceiveStock.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

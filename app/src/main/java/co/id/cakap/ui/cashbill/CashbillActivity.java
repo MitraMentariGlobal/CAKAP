@@ -152,7 +152,6 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopCashbillAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();

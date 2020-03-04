@@ -60,12 +60,7 @@ public class RestockInvoicePresenter implements RestockInvoiceContract.UserActio
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseRestockInvoice.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseRestockInvoice.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseRestockInvoice.getData());
-                            }
+                            getView().setAdapter(apiResponseRestockInvoice.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

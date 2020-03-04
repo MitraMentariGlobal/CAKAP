@@ -44,6 +44,7 @@ import co.id.cakap.network.ApiResponseProvinsi;
 import co.id.cakap.network.ApiResponseRegistrationList;
 import co.id.cakap.network.ApiResponseRekapBonusBcmb;
 import co.id.cakap.network.ApiResponseReligion;
+import co.id.cakap.network.ApiResponseResetPassword;
 import co.id.cakap.network.ApiResponseRestockInvoice;
 import co.id.cakap.network.ApiResponseRestockReceiveStock;
 import co.id.cakap.network.ApiResponseRestockReqInvoice;
@@ -422,6 +423,12 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseEbonusMember> postEbonusMember(String userId, String tahun, String bulan) {
         return networkService.postEbonusMember(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tahun, bulan)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseResetPassword> postResetPassMember(String userId) {
+        return networkService.postResetPassMember(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

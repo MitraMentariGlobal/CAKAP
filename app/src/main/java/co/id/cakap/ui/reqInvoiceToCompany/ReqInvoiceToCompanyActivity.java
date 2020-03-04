@@ -190,7 +190,6 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopReqInvToCompanyAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();

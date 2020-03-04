@@ -139,7 +139,6 @@ public class CashbillSuccessActivity extends AppCompatActivity implements Cashbi
 
         mListAdapter = new CashbillSuccessAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }

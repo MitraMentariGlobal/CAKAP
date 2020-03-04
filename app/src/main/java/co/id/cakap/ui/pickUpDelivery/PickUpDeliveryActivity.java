@@ -139,7 +139,6 @@ public class PickUpDeliveryActivity extends AppCompatActivity implements PickUpD
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new AddressAdapter(mRecyclerView, dataList, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override

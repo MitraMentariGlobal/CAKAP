@@ -114,7 +114,6 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mSwipeRefreshLayout.setRefreshing(true);
                 mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
             }
         });
@@ -122,12 +121,16 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
 
     @Override
     public void setAdapter(List<ActivityInvToMbData> resultData) {
-        mLinearEmptyData.setVisibility(View.GONE);
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityInvToMbAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
@@ -154,8 +157,12 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
 
     @Override
     public void hideProgressBar() {
-        mSwipeRefreshLayout.setRefreshing(false);
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

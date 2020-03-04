@@ -158,7 +158,6 @@ public class DetailTransactionActivity extends AppCompatActivity implements Deta
 
         mListAdapter = new DetailTransaksiAdapter(apiResponseDetailTransaction.getData(), this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }

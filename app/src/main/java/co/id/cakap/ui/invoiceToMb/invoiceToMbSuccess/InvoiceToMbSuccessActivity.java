@@ -136,7 +136,6 @@ public class InvoiceToMbSuccessActivity extends AppCompatActivity implements Inv
 
         mListAdapter = new InvoiceToMbSuccessAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }

@@ -94,7 +94,6 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mSwipeRefreshLayout.setRefreshing(true);
                 mUserActionListener.getData();
             }
         });
@@ -102,12 +101,16 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
 
     @Override
     public void setAdapter(List<RestockReceiveStockData> resultData) {
-        mLinearEmptyData.setVisibility(View.GONE);
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new RestockReceiveStockAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         hideProgressBar();
     }
 
@@ -118,8 +121,12 @@ public class RestockReceiveStockFragment extends Fragment implements RestockRece
 
     @Override
     public void hideProgressBar() {
-        mSwipeRefreshLayout.setRefreshing(false);
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

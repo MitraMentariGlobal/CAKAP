@@ -76,12 +76,7 @@ public class EbonusPresenter implements EbonusContract.UserActionListener {
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseEbonusMember.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseEbonusMember.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseEbonusMember);
-                            }
+                            getView().setAdapter(apiResponseEbonusMember);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -1,21 +1,21 @@
 
-Fsquid:S1604y"(Make this anonymous inner class a lambda(Ûâ—Ş8É€É‡ë-
-’squid:UselessImportCheck"bRemove this unused import 'com.google.android.material.floatingactionbutton.FloatingActionButton'.(ôˆêãÿÿÿÿÿ8®¡Õ±ì-
-Usquid:S2696·"6Make the enclosing method "static" or remove this set.(•†ĞÇ8—Ÿœˆ.
-Usquid:S2696Ç"6Make the enclosing method "static" or remove this set.(‹¨õğ8óœå‰.
-Usquid:S2696Ê"6Make the enclosing method "static" or remove this set.(‹¨õğ8óœå‰.
-Usquid:S2696Í"6Make the enclosing method "static" or remove this set.(³ô€©8óœå‰.
-Nsquid:S1481j"+Remove this unused "userId" local variable.(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
-Lsquid:S1481")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8É€É‡ë-
-jsquid:CommentedOutCodeLine±"<This block of commented-out lines of code should be removed.(‡Æ‰Ò8ŠúĞ‡Š.
-Usquid:S2696µ"6Make the enclosing method "static" or remove this set.(ÑÖË’8—Ÿœˆ.
-isquid:CommentedOutCodeLineE"<This block of commented-out lines of code should be removed.(è‚Ï·8É€É‡ë-
 [squid:S1854"8Remove this useless assignment to local variable "user".(©Í”äıÿÿÿÿ8É€É‡ë-
-nsquid:UselessImportCheck">Remove this unused import 'androidx.cardview.widget.CardView'.(ğÒ³ãıÿÿÿÿ8“‘ï±ì-
-Esquid:S1068."'Remove this unused "TAG" private field.(Ô‹‡½8É€É‡ë-
-jsquid:CommentedOutCodeLineª"<This block of commented-out lines of code should be removed.(Ïæ£ı8É€É‡ë-
+Usquid:S2696·"6Make the enclosing method "static" or remove this set.(•†ĞÇ8—Ÿœˆ.
+Lsquid:S1481")Remove this unused "user" local variable.(©Í”äıÿÿÿÿ8É€É‡ë-
 psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8¼Ç “ë-
-Msquid:S1066¼"/Merge this if statement with the enclosing one.(’Œ¬+8¦‰ıˆ.
 qsquid:MaximumInheritanceDepth-"<This class has 7 parents which is greater than 5 authorized.(ü›¦úÿÿÿÿ8ú¯“ë-
-]squid:S1854j":Remove this useless assignment to local variable "userId".(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
 osquid:CommentedOutCodeLine„"<This block of commented-out lines of code should be removed.(£¿èüÿÿÿÿ8 èÅŠ.
+Usquid:S2696Ç"6Make the enclosing method "static" or remove this set.(‹¨õğ8óœå‰.
+jsquid:CommentedOutCodeLine±"<This block of commented-out lines of code should be removed.(‡Æ‰Ò8ŠúĞ‡Š.
+Nsquid:S1481j"+Remove this unused "userId" local variable.(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
+Esquid:S1068."'Remove this unused "TAG" private field.(Ô‹‡½8É€É‡ë-
+Usquid:S2696µ"6Make the enclosing method "static" or remove this set.(ÑÖË’8—Ÿœˆ.
+’squid:UselessImportCheck"bRemove this unused import 'com.google.android.material.floatingactionbutton.FloatingActionButton'.(ôˆêãÿÿÿÿÿ8®¡Õ±ì-
+]squid:S1854j":Remove this useless assignment to local variable "userId".(ÁÃ­’ùÿÿÿÿ8É€É‡ë-
+isquid:CommentedOutCodeLineE"<This block of commented-out lines of code should be removed.(è‚Ï·8É€É‡ë-
+jsquid:CommentedOutCodeLineª"<This block of commented-out lines of code should be removed.(Ïæ£ı8É€É‡ë-
+Msquid:S1066¼"/Merge this if statement with the enclosing one.(’Œ¬+8¦‰ıˆ.
+Usquid:S2696Ê"6Make the enclosing method "static" or remove this set.(‹¨õğ8óœå‰.
+nsquid:UselessImportCheck">Remove this unused import 'androidx.cardview.widget.CardView'.(ğÒ³ãıÿÿÿÿ8“‘ï±ì-
+Usquid:S2696Í"6Make the enclosing method "static" or remove this set.(³ô€©8óœå‰.
+Fsquid:S1604y"(Make this anonymous inner class a lambda(Ûâ—Ş8É€É‡ë-

@@ -126,7 +126,6 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopReqInvToBcAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();

@@ -155,7 +155,6 @@ public class ReqInvoiceToCompanySuccessActivity extends AppCompatActivity implem
 
         mListAdapter = new ReqInvoiceToCompanySuccessAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setAdapterBank(bankInfoDataList);
     }

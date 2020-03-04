@@ -377,7 +377,6 @@ public class DetailRegistrationActivity extends AppCompatActivity implements Det
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ItemSearchRegistrationAdapter(resultData, this, idFrom);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         setupOnFocusListener(mSearchEditText);
 
         hideProgressBar();

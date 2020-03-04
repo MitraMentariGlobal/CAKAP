@@ -52,11 +52,11 @@ public class FeeBCMBData implements Parcelable {
 //    @Expose
 //    private String tambahan_bonus_total_omset;
 
-    @SerializedName("bonus_starter_kit_basic")
+    @SerializedName("bonus_starer_kit_sp01")
     @Expose
     private String bonus_stater_kit_basic;
 
-    @SerializedName("bonus_paket_kombinasi_lengkap")
+    @SerializedName("bonus_starter_kit_sp03")
     @Expose
     private String bonus_paket_kombinasi_lengkap;
 
@@ -64,7 +64,7 @@ public class FeeBCMBData implements Parcelable {
     @Expose
     private String bonus_reff_mb;
 
-    @SerializedName("bonus_kit_v_bless")
+    @SerializedName("bonus_stater_kit_sp04")
     @Expose
     private String bonus_kit_v_bless;
 

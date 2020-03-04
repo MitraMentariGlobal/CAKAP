@@ -102,8 +102,6 @@ public class FeeBcmbActivity extends AppCompatActivity implements FeeBcmbActivit
         mTitle.setText(getString(R.string.fee_bcmb).toUpperCase());
         initSpinner();
         mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
-
-        hideProgressBar();
     }
 
     @Override

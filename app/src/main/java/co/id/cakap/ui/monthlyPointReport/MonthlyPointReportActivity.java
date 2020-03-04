@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -50,6 +52,10 @@ public class MonthlyPointReportActivity extends AppCompatActivity implements Mon
     Spinner mYearSpinner;
     @BindView(R.id.nested_scroll)
     NestedScrollView mNestedScroll;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
 
     private MonthlyPointReportContract.UserActionListener mUserActionListener;
     private MonthlyPointReportAdapter mListAdapter;
@@ -80,6 +86,13 @@ public class MonthlyPointReportActivity extends AppCompatActivity implements Mon
         mTitle.setText(getString(R.string.monthly_point_report).toUpperCase());
         initSpinner();
         mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
+            }
+        });
     }
 
     @Override
@@ -89,7 +102,12 @@ public class MonthlyPointReportActivity extends AppCompatActivity implements Mon
 
     @Override
     public void hideProgressBar() {
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -99,6 +117,12 @@ public class MonthlyPointReportActivity extends AppCompatActivity implements Mon
 
     @Override
     public void setAdapter(List<MonthlyPointReportData> resultData) {
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);

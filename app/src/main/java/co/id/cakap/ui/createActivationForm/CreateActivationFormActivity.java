@@ -129,7 +129,6 @@ public class CreateActivationFormActivity extends AppCompatActivity implements C
 
         mActivationKitAdapter = new ActivationKitAdapter(resultData, this);
         mRecyclerView.setAdapter(mActivationKitAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }

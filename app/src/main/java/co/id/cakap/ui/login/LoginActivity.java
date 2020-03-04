@@ -33,6 +33,7 @@ import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.network.ApiResponseLogin;
+import co.id.cakap.network.ApiResponseResetPassword;
 import co.id.cakap.ui.changePassword.ChangePasswordActivity;
 import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.dashboard.DashboardActivity;
@@ -109,10 +110,7 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                bottomSheetAlert(
-                        getResources().getDrawable(R.drawable.ic_success_forgot_password),
-                        getResources().getString(R.string.your_default_password)
-                );
+                mUserActionListener.resetPassword(userId.getText().toString());
             }
         });
     }
@@ -192,6 +190,15 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
 
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void setSuccessReset(ApiResponseResetPassword apiResponseResetPassword) {
+        hideProgressBar();
+        bottomSheetAlert(
+                getResources().getDrawable(R.drawable.ic_success_forgot_password),
+                apiResponseResetPassword.getMessages()
+        );
     }
 
     private Intent getIntentParse(ApiResponseLogin apiResponseLogin) {

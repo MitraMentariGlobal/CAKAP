@@ -1,6 +1,6 @@
 
-jsquid:UselessImportCheck":Remove this unused import 'co.id.cakap.data.ReligionData'.(åÆâœşÿÿÿÿ8ËàõÒù-
+bsquid:S00107"=Method has 29 parameters, which is greater than 7 authorized.(†‘Îûşÿÿÿÿ8ùõíÔù-
 ]squid:S00107ô"=Method has 25 parameters, which is greater than 7 authorized.(…õÆ÷8‡»¢ †.
 isquid:UselessImportCheck">Remove this unused import 'co.id.cakap.data.JenisKelaminData'.(¥Šñ‚8çâóÒù-
-bsquid:S00107"=Method has 29 parameters, which is greater than 7 authorized.(†‘Îûşÿÿÿÿ8ùõíÔù-
 rsquid:UselessImportCheck"BRemove this unused import 'co.id.cakap.data.NetworkGenealogyData'.(“üñğøÿÿÿÿ8«¿œàÿ-
+jsquid:UselessImportCheck":Remove this unused import 'co.id.cakap.data.ReligionData'.(åÆâœşÿÿÿÿ8ËàõÒù-

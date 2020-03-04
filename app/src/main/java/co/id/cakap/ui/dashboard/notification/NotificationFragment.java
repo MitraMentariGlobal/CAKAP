@@ -113,7 +113,6 @@ public class NotificationFragment extends Fragment implements NotificationContra
             mRecyclerView.setLayoutManager(layoutManager);
             mListAdapter = new NotificationAdapter(resultData, getContext());
             mRecyclerView.setAdapter(mListAdapter);
-            OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         }
 
         hideProgressBar();
