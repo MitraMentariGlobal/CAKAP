@@ -54,6 +54,12 @@ public class UserConfirmationDialog {
         textView.setText(context.getResources().getString(R.string.this_transaction, param));
     }
 
+    public void setTitleDialogInvalidAccount(String param) {
+        TextView textView = dialog.findViewById(R.id.txt_title);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(param);
+    }
+
     public void setTitleDialog() {
         TextView textView = dialog.findViewById(R.id.txt_title);
         textView.setVisibility(View.VISIBLE);

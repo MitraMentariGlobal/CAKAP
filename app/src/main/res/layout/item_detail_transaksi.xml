@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:id="@+id/detailData"
-            android:layout_width="150dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
