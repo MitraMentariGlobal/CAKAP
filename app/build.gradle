@@ -56,6 +56,10 @@ android {
             buildConfigField 'String', 'CAKAP_KEY', endpointProperties['cakap_key_prod']
         }
         buildTypes.all {
+            buildConfigField 'String', 'FIREBASE_IS_CANCEL_DIALOG', endpointProperties['firebase_is_cancel_dialog']
+            buildConfigField 'String', 'FIREBASE_IS_UPDATE', endpointProperties['firebase_is_update']
+            buildConfigField 'String', 'FIREBASE_UPDATE_VERSION', endpointProperties['firebase_update_version']
+            buildConfigField 'String', 'FIREBASE_LINK_UPDATE_APP', endpointProperties['firebase_link_update_app']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TOKEN', endpointProperties['firebase_notification_token']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_TITLE', endpointProperties['firebase_notification_title']
             buildConfigField 'String', 'FIREBASE_NOTIFICATION_BODY', endpointProperties['firebase_notification_body']

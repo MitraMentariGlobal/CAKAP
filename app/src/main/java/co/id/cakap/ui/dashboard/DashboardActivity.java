@@ -1,7 +1,11 @@
 package co.id.cakap.ui.dashboard;
 
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
@@ -26,12 +30,14 @@ import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.ui.cashbill.CashbillActivityPresenter;
 import co.id.cakap.ui.dashboard.account.AccountFragment;
+import co.id.cakap.ui.dashboard.activity.activityReqInvMb.ActivityReqInvMbPresenter;
 import co.id.cakap.ui.dashboard.notification.NotificationFragment;
 import co.id.cakap.ui.dashboard.restock.RestockFragment;
 import co.id.cakap.ui.dashboard.home.HomeFragment;
 import co.id.cakap.ui.dashboard.activity.ActivityFragment;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.dialog.BottomDialogActivity;
+import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
 public class DashboardActivity extends BottomDialogActivity implements DashboardContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
     @Inject
@@ -71,6 +77,7 @@ public class DashboardActivity extends BottomDialogActivity implements Dashboard
     public void initializeData() {
         mUserActionListener = mDashboardPresenter;
         mDashboardPresenter.setView(this);
+        mUserActionListener.checkVersionUpdate();
         mBehavior = BottomSheetBehavior.from(bottomSheet);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -107,6 +114,38 @@ public class DashboardActivity extends BottomDialogActivity implements Dashboard
     public void moveToActivity(int index) {
         loadFragment(ActivityFragment.newInstance(index));
         mBottomNavigationViewMember.getMenu().findItem(R.id.activity_menu).setChecked(true);
+    }
+
+    @Override
+    public void openDialogUpdate(String url, boolean isCancelDialog) {
+        UserConfirmationDialog utils = new UserConfirmationDialog();
+        Dialog dialog = utils.showDialog(this);
+        utils.setTitleDialogSingle("Update Info");
+        utils.setDescDialog("Cakap versi terbaru telah tersedia. Silakan memperbarui aplikasi Cakap.");
+        utils.setUpdateAction(isCancelDialog);
+
+        dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                redirectStore(url);
+            }
+        });
+    }
+
+    public void redirectStore(String url) {
+        Uri uri = Uri.parse(url);
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(url)));
+        }
     }
 
     public void moveToNotification() {

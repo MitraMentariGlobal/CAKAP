@@ -5,9 +5,11 @@ public class DashboardContract {
         void initializeData();
         void setErrorResponse(String message);
         void moveToActivity(int index);
+        void openDialogUpdate(String url, boolean isCancelDialog);
     }
 
     public interface UserActionListener{
         void setView(DashboardContract.View view);
+        void checkVersionUpdate();
     }
 }

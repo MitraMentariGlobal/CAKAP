@@ -54,6 +54,12 @@ public class UserConfirmationDialog {
         textView.setText(context.getResources().getString(R.string.this_transaction, param));
     }
 
+    public void setDescDialog(String param) {
+        TextView textView = dialog.findViewById(R.id.txt_desc);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(param);
+    }
+
     public void setTitleDialogInvalidAccount(String param) {
         TextView textView = dialog.findViewById(R.id.txt_title);
         textView.setVisibility(View.VISIBLE);
@@ -112,5 +118,23 @@ public class UserConfirmationDialog {
         txtNo.setTextColor(context.getResources().getColor(R.color.white));
 
         txtYes.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+    }
+
+    public void setTitleDialogSingle(String param) {
+        TextView textView = dialog.findViewById(R.id.txt_title);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(param);
+    }
+
+    public void setUpdateAction(boolean isCancelDialog) {
+        setCancelDialog(isCancelDialog);
+        TextView txtNo = dialog.findViewById(R.id.no_act_btn);
+        TextView txtYes = dialog.findViewById(R.id.yes_act_btn);
+
+        txtNo.setVisibility(View.GONE);
+
+        txtYes.setBackground(context.getResources().getDrawable(R.drawable.background_yes_confirmation_style));
+        txtYes.setTextColor(context.getResources().getColor(R.color.white));
+        txtYes.setText("Perbarui");
     }
 }
