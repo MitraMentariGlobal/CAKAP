@@ -43,7 +43,6 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
         mFilteredList = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-        notifyDataSetChanged();
     }
 
     @Override
@@ -65,16 +64,19 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
         holder.mPrice.setText(itemShopCompanyData.getFharga());
         holder.mPv.setText(itemShopCompanyData.getPv());
 
-        try {
-            if (!(itemShopCompanyData.getImage().equals("0"))) {
-                Picasso.with(mContext)
-                        .load(Constant.URL_IMAGE_PRODUCT + itemShopCompanyData.getImage())
-                        .into(holder.mImage);
-            } else {
-                holder.mImage.setBackground(mContext.getResources().getDrawable(R.drawable.img_item_placeholder));
-            }
-        } catch (Exception e) {
-            Logger.e(e.getMessage());
+
+        if (itemShopCompanyData.getCart() != null) {
+            holder.mQty.setText(itemShopCompanyData.getCart());
+        } else {
+            holder.mQty.setText("0");
+        }
+
+        if (!(itemShopCompanyData.getImage().equals("0"))) {
+            Picasso.with(mContext)
+                    .load(Constant.URL_IMAGE_PRODUCT + itemShopCompanyData.getImage())
+                    .into(holder.mImage);
+        } else {
+            holder.mImage.setBackground(mContext.getResources().getDrawable(R.drawable.img_item_placeholder));
         }
     }
 
@@ -140,7 +142,6 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
 
         ItemShopCompanyData itemShopCompanyData;
         Context context;
-        int qty = 0;
         int position = 0;
 
         public ViewHolder(View itemView) {
@@ -148,38 +149,32 @@ public class ItemShopReqInvToCompanyAdapter extends RecyclerView.Adapter<ItemSho
             ButterKnife.bind(this, itemView);
 
             mLinearStock.setVisibility(View.GONE);
-            setZeroQty();
-        }
-
-        public void setZeroQty() {
-            if (mQty.getText().toString().length() == 0) {
-                mQty.setText("0");
-            }
-            qty = Integer.parseInt(mQty.getText().toString());
         }
 
         @OnClick(R.id.img_minus)
         public void minusItem() {
-            setZeroQty();
+            int qty = Integer.parseInt(mQty.getText().toString());
             if (qty > 0) {
                 qty -= 1;
-                mQty.setText(String.valueOf(qty));
                 itemShopCompanyData.setCart(String.valueOf(qty));
                 itemShopCompanyData.setQty(String.valueOf(qty));
-                mResultData.set(position, itemShopCompanyData);
-                new ReqInvoiceToCompanyActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 0);
+                mFilteredList.set(position, itemShopCompanyData);
+                notifyItemChanged(position);
+
+                new ReqInvoiceToCompanyActivityPresenter().getView().setCheckoutValue(mFilteredList, itemShopCompanyData, 0);
             }
         }
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
-            setZeroQty();
+            int qty = Integer.parseInt(mQty.getText().toString());
             qty += 1;
-            mQty.setText(String.valueOf(qty));
             itemShopCompanyData.setCart(String.valueOf(qty));
             itemShopCompanyData.setQty(String.valueOf(qty));
-            mResultData.set(position, itemShopCompanyData);
-            new ReqInvoiceToCompanyActivityPresenter().getView().setCheckoutValue(mResultData, itemShopCompanyData, 1);
+            mFilteredList.set(position, itemShopCompanyData);
+            notifyItemChanged(position);
+
+            new ReqInvoiceToCompanyActivityPresenter().getView().setCheckoutValue(mFilteredList, itemShopCompanyData, 1);
         }
     }
 }

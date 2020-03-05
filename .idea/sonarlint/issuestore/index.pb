@@ -1085,3 +1085,5 @@ Z
 *app/src/main/res/drawable/ic_dark_data.xml,7/2/727dbc7e7071d8ad890ed5131bc455acedee354a
 V
 &app/src/main/res/layout/empty_data.xml,a/8/a8b1d5ef1fe13eb714441acc550d1b638553d06b
+s
+Capp/src/main/java/co/id/cakap/network/ApiResponseResetPassword.java,f/2/f217124fb98b307627579d8cb09526f9c5cfc10f

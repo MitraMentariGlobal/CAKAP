@@ -78,7 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
-                        android:hint="@string/mb_id"
+                        android:hint="@string/login_user_id"
                         android:maxLines="1"
                         android:textColor="@color/black"
                         android:textColorHint="@color/curated_light"

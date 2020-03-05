@@ -44,7 +44,6 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         mFilteredList = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-//        notifyDataSetChanged();
     }
 
     @Override
@@ -66,8 +65,11 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
         holder.mPrice.setText(itemShopData.getFharga());
         holder.mPv.setText(itemShopData.getPv());
 
-        Logger.d("position : " + position);
-        Logger.d("mQty.gettext 2 : " + holder.mQty.getText());
+        if (itemShopData.getCart() != null) {
+            holder.mQty.setText(itemShopData.getCart());
+        } else {
+            holder.mQty.setText("0");
+        }
 
         if (!(itemShopData.getImage().equals("0"))) {
             Picasso.with(mContext)
@@ -140,7 +142,6 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
 
         ItemShopData itemShopData;
         Context context;
-        int qty = 0;
         int position;
 
         public ViewHolder(View itemView) {
@@ -148,46 +149,31 @@ public class ItemShopReqInvToBcAdapter extends RecyclerView.Adapter<ItemShopReqI
             ButterKnife.bind(this, itemView);
 
             mLinearStock.setVisibility(View.GONE);
-            mQty.setText(String.valueOf(qty));
-            Logger.d("mQty.gettext 1 : " + mQty.getText());
-//            mQty.setText("0");
-//            setZeroQty();
-        }
-
-        public void setZeroQty() {
-            if (mQty.getText().toString().length() == 0) {
-                mQty.setText("0");
-            }
-            qty = Integer.parseInt(mQty.getText().toString());
         }
 
         @OnClick(R.id.img_minus)
         public void minusItem() {
-            Logger.d("position minus : " + position);
-//            setZeroQty();
+            int qty = Integer.parseInt(mQty.getText().toString());
             if (qty > 0) {
                 qty -= 1;
-                mQty.setText(String.valueOf(qty));
                 itemShopData.setCart(String.valueOf(qty));
-                mResultData.set(position, itemShopData);
-//                notifyDataSetChanged();
+                mFilteredList.set(position, itemShopData);
+                notifyItemChanged(position);
 
-                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 0);
+                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mFilteredList, itemShopData, 0);
             }
         }
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
-            Logger.d("position plus : " + position);
+            int qty = Integer.parseInt(mQty.getText().toString());
             if (qty < Integer.parseInt(itemShopData.getQty())) {
-//                setZeroQty();
                 qty += 1;
-                mQty.setText(String.valueOf(qty));
                 itemShopData.setCart(String.valueOf(qty));
-                mResultData.set(position, itemShopData);
-//                notifyDataSetChanged();
+                mFilteredList.set(position, itemShopData);
+                notifyItemChanged(position);
 
-                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
+                new ReqInvoiceToBcActivityPresenter().getView().setCheckoutValue(mFilteredList, itemShopData, 1);
             }
         }
     }
