@@ -1,5 +1,7 @@
 package co.id.cakap.ui.login;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseResetPassword;
 
@@ -15,7 +17,7 @@ public class LoginContract {
 
     public interface UserActionListener{
         void setView(LoginContract.View view);
-        void getNotificationToken(String userId, String password);
+        void getNotificationToken(String userId, String password, FirebaseUser user);
         void saveData(ApiResponseLogin apiResponseLogin);
         void resetPassword(String userId);
     }

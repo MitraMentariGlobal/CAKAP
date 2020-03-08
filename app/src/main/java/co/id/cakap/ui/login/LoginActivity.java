@@ -123,7 +123,7 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
                     // Sign in success, update UI with the signed-in user's information
                     Logger.d("signInAnonymously:success");
                     FirebaseUser user = mAuth.getCurrentUser();
-                    mUserActionListener.getNotificationToken(userId, password);
+                    mUserActionListener.getNotificationToken(userId, password, user);
                 } else {
                     // If sign in fails, display a message to the user.
                     Logger.w("signInAnonymously:failure", task.getException());

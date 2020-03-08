@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
@@ -38,7 +39,7 @@ public class LoginPresenter implements LoginContract.UserActionListener {
     }
 
     @Override
-    public void getNotificationToken(String userId, String password) {
+    public void getNotificationToken(String userId, String password, FirebaseUser user) {
         mView.showProgressBar();
         mDataModel.deleteFirebaseTokenData();
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -54,10 +55,13 @@ public class LoginPresenter implements LoginContract.UserActionListener {
                         String token = task.getResult().getToken();
 
                         // Log and toast
+                        String uid = "uid : " + user.getUid();
                         String msg = "Token : " + token;
+                        Logger.d(uid);
                         Logger.d(msg);
 
                         mFirebaseTokenData.setFcmToken(token);
+                        mFirebaseTokenData.setFirebase_user(user.getUid());
                         mDataModel.insertFirebaseTokenData(mFirebaseTokenData);
                         actionLogin(userId, password, mFirebaseTokenData.getFcmToken());
                     }
