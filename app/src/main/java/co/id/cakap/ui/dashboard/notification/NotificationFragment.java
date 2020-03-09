@@ -101,18 +101,23 @@ public class NotificationFragment extends Fragment implements NotificationContra
 
     @Override
     public void setAdapter(List<NotificationData> resultData) {
-        if (resultData.isEmpty()) {
+        try {
+            if (resultData.isEmpty()) {
+                mRecyclerView.setVisibility(View.GONE);
+                mLinearEmptyNotifications.setVisibility(View.VISIBLE);
+            } else {
+                ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+                mRecyclerView.setVisibility(View.VISIBLE);
+                mLinearEmptyNotifications.setVisibility(View.GONE);
+
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                mRecyclerView.setLayoutManager(layoutManager);
+                mListAdapter = new NotificationAdapter(resultData, getContext());
+                mRecyclerView.setAdapter(mListAdapter);
+            }
+        } catch (Exception e) {
             mRecyclerView.setVisibility(View.GONE);
             mLinearEmptyNotifications.setVisibility(View.VISIBLE);
-        } else {
-            ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
-            mRecyclerView.setVisibility(View.VISIBLE);
-            mLinearEmptyNotifications.setVisibility(View.GONE);
-
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-            mRecyclerView.setLayoutManager(layoutManager);
-            mListAdapter = new NotificationAdapter(resultData, getContext());
-            mRecyclerView.setAdapter(mListAdapter);
         }
 
         hideProgressBar();
@@ -140,6 +145,12 @@ public class NotificationFragment extends Fragment implements NotificationContra
     @Override
     public void updateList() {
         mListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setEmptyScreen() {
+        mRecyclerView.setVisibility(View.GONE);
+        mLinearEmptyNotifications.setVisibility(View.VISIBLE);
     }
 
     @Override

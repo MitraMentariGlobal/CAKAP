@@ -15,11 +15,13 @@ public class NotificationContract {
         void hideProgressBar();
         void setErrorResponse(String message);
         void updateList();
+        void setEmptyScreen();
     }
 
     public interface UserActionListener {
         void getData(SharedPreferences sharedPreferences);
         void deleteAllNotification();
+        void changeReadStatus(NotificationData notificationData, int position);
         void readAllData();
     }
 }

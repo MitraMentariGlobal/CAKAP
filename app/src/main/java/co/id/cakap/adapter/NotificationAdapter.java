@@ -121,7 +121,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     mNotificationDescExpand.setTextColor(mContext.getResources().getColor(R.color.curated));
                     mDate.setTextColor(mContext.getResources().getColor(R.color.curated));
                     mImgUnread.setVisibility(View.GONE);
-//                    new NotificationPresenter().changeReadStatus(notificationData, position);
+                    new NotificationPresenter().changeReadStatus(notificationData, position);
 //                    notifyDataSetChanged();
                 }
 
