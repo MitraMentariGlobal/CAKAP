@@ -34,6 +34,7 @@ import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.NotificationAdapter;
+import co.id.cakap.data.NotificationApiData;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
@@ -93,14 +94,15 @@ public class NotificationFragment extends Fragment implements NotificationContra
         mUserActionListener = mNotificationPresenter;
         mNotificationPresenter.setView(this);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mUserActionListener.getData(mSharedPreferences);
+//        mUserActionListener.getData(mSharedPreferences);
+        mUserActionListener.getListNotification();
 
         mToolbar.setTitle("");
         mTitle.setText(getContext().getResources().getString(R.string.notification).toUpperCase());
     }
 
     @Override
-    public void setAdapter(List<NotificationData> resultData) {
+    public void setAdapter(List<NotificationApiData> resultData) {
         try {
             if (resultData.isEmpty()) {
                 mRecyclerView.setVisibility(View.GONE);
@@ -145,6 +147,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
     @Override
     public void updateList() {
         mListAdapter.notifyDataSetChanged();
+        hideProgressBar();
     }
 
     @Override
@@ -163,7 +166,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_mark_read:
-                mNotificationPresenter.readAllData();
+                mNotificationPresenter.readAllNotification();
                 return true;
 
             case R.id.action_delete_all:

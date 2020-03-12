@@ -34,6 +34,7 @@ import co.id.cakap.network.ApiResponseJenisKelamin;
 import co.id.cakap.network.ApiResponseKota;
 import co.id.cakap.network.ApiResponseLevel;
 import co.id.cakap.network.ApiResponseListAddress;
+import co.id.cakap.network.ApiResponseListNotification;
 import co.id.cakap.network.ApiResponseLogin;
 import co.id.cakap.network.ApiResponseLogout;
 import co.id.cakap.network.ApiResponseMonthlyPointReport;
@@ -41,6 +42,7 @@ import co.id.cakap.network.ApiResponseNetworkGeneology;
 import co.id.cakap.network.ApiResponseOmset;
 import co.id.cakap.network.ApiResponseProfileData;
 import co.id.cakap.network.ApiResponseProvinsi;
+import co.id.cakap.network.ApiResponseReadDeleteNotif;
 import co.id.cakap.network.ApiResponseRegistrationList;
 import co.id.cakap.network.ApiResponseRekapBonusBcmb;
 import co.id.cakap.network.ApiResponseReligion;
@@ -429,6 +431,30 @@ public class MainRepository extends BaseRepository {
 
     public Flowable<ApiResponseResetPassword> postResetPassMember(String userId) {
         return networkService.postResetPassMember(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseListNotification> postListNotification(String userId, String tipe) {
+        return networkService.postListNotification(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tipe)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseReadDeleteNotif> postReadNotification(String id) {
+        return networkService.postReadNotification(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, id)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseReadDeleteNotif> postReadAllNotification(String userId, String tipe) {
+        return networkService.postReadAllNotification(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tipe)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Flowable<ApiResponseReadDeleteNotif> postDeleteAllNotification(String userId, String tipe) {
+        return networkService.postDeleteAllNotification(Constant.CONTENT_TYPE, Constant.CAKAP_KEY, userId, tipe)
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
     }

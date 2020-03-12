@@ -11,8 +11,15 @@ import co.id.cakap.data.NotificationData;
 import co.id.cakap.data.ResultDataLogin;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
+import co.id.cakap.network.ApiResponseListNotification;
+import co.id.cakap.network.ApiResponseReadDeleteNotif;
+import co.id.cakap.network.ApiResponseResetPassword;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
+import io.reactivex.subscribers.ResourceSubscriber;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 public class NotificationPresenter implements NotificationContract.UserActionListener {
     private static WeakReference<NotificationContract.View> mView;
@@ -81,16 +88,16 @@ public class NotificationPresenter implements NotificationContract.UserActionLis
             }
         }
 
-        getView().setAdapter(arrayWillSet);
+//        getView().setAdapter(arrayWillSet);
     }
 
-    @Override
-    public void deleteAllNotification() {
-        mDataModel.deleteNotificationData();
-        getView().setEmptyScreen();
-        getView().updateList();
-        getView().hideProgressBar();
-    }
+//    @Override
+//    public void deleteAllNotification() {
+//        mDataModel.deleteNotificationData();
+//        getView().setEmptyScreen();
+//        getView().updateList();
+//        getView().hideProgressBar();
+//    }
 
     @Override
     public void changeReadStatus(NotificationData notificationData, int position) {
@@ -111,5 +118,170 @@ public class NotificationPresenter implements NotificationContract.UserActionLis
 
         getView().updateList();
         getView().hideProgressBar();
+    }
+
+    @Override
+    public void getListNotification() {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postListNotification(mResultDataLogin.getMember_id(), mResultDataLogin.getRole())
+                .subscribe(new ResourceSubscriber<ApiResponseListNotification>() {
+                    @Override
+                    public void onNext(ApiResponseListNotification apiResponseListNotification) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseListNotification.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            getView().setAdapter(apiResponseListNotification.getData());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void readItemNotification(String id) {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postReadNotification(id)
+                .subscribe(new ResourceSubscriber<ApiResponseReadDeleteNotif>() {
+                    @Override
+                    public void onNext(ApiResponseReadDeleteNotif apiResponseReadDeleteNotif) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseReadDeleteNotif.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            getView().updateList();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void readAllNotification() {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postReadAllNotification(mResultDataLogin.getMember_id(), mResultDataLogin.getRole())
+                .subscribe(new ResourceSubscriber<ApiResponseReadDeleteNotif>() {
+                    @Override
+                    public void onNext(ApiResponseReadDeleteNotif apiResponseReadDeleteNotif) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseReadDeleteNotif.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+//                            getView().updateList();
+                            getListNotification();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
+    }
+
+    @Override
+    public void deleteAllNotification() {
+        getView().showProgressBar();
+
+        mResultDataLogin = mDataModel.getAllResultDataLogin().get(0);
+        mMainRepository.postDeleteAllNotification(mResultDataLogin.getMember_id(), mResultDataLogin.getRole())
+                .subscribe(new ResourceSubscriber<ApiResponseReadDeleteNotif>() {
+                    @Override
+                    public void onNext(ApiResponseReadDeleteNotif apiResponseReadDeleteNotif) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseReadDeleteNotif.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            getListNotification();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        getView().hideProgressBar();
+                        getView().setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
     }
 }

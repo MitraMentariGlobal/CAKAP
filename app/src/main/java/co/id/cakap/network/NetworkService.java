@@ -474,6 +474,33 @@ public interface NetworkService {
     @FormUrlEncoded
     @POST("reset_password_member")
     Flowable<ApiResponseResetPassword> postResetPassMember(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
-                                                            @Header(Constant.CAKAP_KEY_TEXT) String authorization,
-                                                            @Field(Constant.BODY_USER_ID) String userId);
+                                                           @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                           @Field(Constant.BODY_USER_ID) String userId);
+
+    @FormUrlEncoded
+    @POST("get_notif")
+    Flowable<ApiResponseListNotification> postListNotification(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                               @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                               @Field(Constant.BODY_USER_ID) String userId,
+                                                               @Field(Constant.BODY_TIPE) String tipe);
+
+    @FormUrlEncoded
+    @POST("read_notif")
+    Flowable<ApiResponseReadDeleteNotif> postReadNotification(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                              @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                              @Field(Constant.BODY_ID) String id);
+
+    @FormUrlEncoded
+    @POST("read_notif_all")
+    Flowable<ApiResponseReadDeleteNotif> postReadAllNotification(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                 @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                 @Field(Constant.BODY_USER_ID) String userId,
+                                                                 @Field(Constant.BODY_TIPE) String tipe);
+
+    @FormUrlEncoded
+    @POST("delete_notif_all")
+    Flowable<ApiResponseReadDeleteNotif> postDeleteAllNotification(@Header(Constant.CONTENT_TYPE_TEXT) String contentType,
+                                                                   @Header(Constant.CAKAP_KEY_TEXT) String authorization,
+                                                                   @Field(Constant.BODY_USER_ID) String userId,
+                                                                   @Field(Constant.BODY_TIPE) String tipe);
 }

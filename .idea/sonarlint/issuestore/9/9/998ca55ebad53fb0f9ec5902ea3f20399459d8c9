@@ -1,8 +1,8 @@
 
-Ksquid:S1604."(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
-Fsquid:S1148^"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8£Ëóí×-
 Fsquid:S1148W"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8•äÀÍ….
 Gsquid:S1148ˆ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ª¯³Š.
-wsquid:UselessImportCheck"LRemove this unused import 'co.id.cakap.network.ApiResponseNetworkGeneology'.(œ¦²Â8ŞŞ¹³Š.
+Ksquid:S1604."(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
 Tsquid:S2696r"6Make the enclosing method "static" or remove this set.(ªĞËµ8º‰í”ô-
+Fsquid:S1148^"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8£Ëóí×-
 Gsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8—ª¯³Š.
+wsquid:UselessImportCheck"LRemove this unused import 'co.id.cakap.network.ApiResponseNetworkGeneology'.(œ¦²Â8ŞŞ¹³Š.
