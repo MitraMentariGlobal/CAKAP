@@ -1,27 +1,75 @@
 package co.id.cakap.ui.login;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.home.HomeActivity;
+import co.id.cakap.helper.Constant;
+import co.id.cakap.network.ApiResponseLogin;
+import co.id.cakap.network.ApiResponseResetPassword;
+import co.id.cakap.ui.changePassword.ChangePasswordActivity;
+import co.id.cakap.ui.changePin.ChangePinActivity;
+import co.id.cakap.ui.dashboard.DashboardActivity;
+import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
+import co.id.cakap.ui.myProfile.MyProfileActivity;
+import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.dialog.BottomDialogActivity;
+import co.id.cakap.utils.dialog.ForgotPasswordDialog;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View {
+public class LoginActivity extends BottomDialogActivity implements LoginContract.View {
+    private static final String TAG = "LoginActivity";
+
     @Inject
     LoginPresenter mLoginPresenter;
 
+    @BindView(R.id.relative_progress_bar)
+    RelativeLayout mRelativeProgressBar;
+    @BindView(R.id.user_id_et)
+    EditText mUserId;
+    @BindView(R.id.password_et)
+    EditText mPassword;
+    @BindView(R.id.login_btn)
+    Button mLoginButton;
+    @BindView(R.id.bottom_sheet)
+    View bottomSheet;
+
     private LoginContract.UserActionListener mUserActionListener;
+    private FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        updateUI(currentUser);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +96,121 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @OnClick(R.id.login_btn)
     public void userLoginAction(View view) {
-        startActivity(new Intent(this, HomeActivity.class));
+        getAuthData(mUserId.getText().toString(), mPassword.getText().toString());
+    }
+
+    @OnClick(R.id.txt_forgot_password)
+    public void forgotPassword(View view) {
+        ForgotPasswordDialog utils = new ForgotPasswordDialog();
+        Dialog dialog = utils.showDialog(this);
+
+        EditText userId = dialog.findViewById(R.id.user_id_et);
+
+        dialog.findViewById(R.id.txt_submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                mUserActionListener.resetPassword(userId.getText().toString());
+            }
+        });
+    }
+
+    public void getAuthData(String userId, String password) {
+        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Logger.d("signInAnonymously:success");
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    mUserActionListener.getNotificationToken(userId, password, user);
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Logger.w("signInAnonymously:failure", task.getException());
+//                    setErrorResponse("Authentication failed.");
+                }
+            }
+        });
     }
 
     @Override
     public void initializeData() {
+        mAuth = FirebaseAuth.getInstance();
         mUserActionListener = mLoginPresenter;
         mLoginPresenter.setView(this);
+        mBehavior = BottomSheetBehavior.from(bottomSheet);
+        hideProgressBar();
+    }
+
+    @Override
+    public void showProgressBar() {
+        mRelativeProgressBar.setVisibility(View.VISIBLE);
+        mUserId.setEnabled(false);
+        mPassword.setEnabled(false);
+        mLoginButton.setEnabled(false);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mRelativeProgressBar.setVisibility(View.GONE);
+        mUserId.setEnabled(true);
+        mPassword.setEnabled(true);
+        mLoginButton.setEnabled(true);
+    }
+
+    @Override
+    public void setErrorResponse(String message) {
+        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setSuccessResponse(ApiResponseLogin apiResponseLogin) {
+//        Intent intent = new Intent(this, HomeWebViewActivity.class);
+//        intent.putExtra(Constant.URL_LINK, apiResponseLogin.getResult().getUrl());
+//        startActivity(intent);
+
+        Intent intent = new Intent(this, DashboardActivity.class);
+        if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.bc_login))) {
+            intent = getIntentParse(apiResponseLogin);
+//            Constant.IS_FLAG_UPDATE = true;
+//            intent = new Intent(this, ChangePasswordActivity.class);
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.mb_login))) {
+            if (apiResponseLogin.getResult().getLeader_ids().equals("0")) {
+                Constant.IS_HAVE_PARENT = false;
+            } else {
+                Constant.IS_HAVE_PARENT = true;
+            }
+
+            intent = getIntentParse(apiResponseLogin);
+        } else if (Constant.LOGIN_DATA.equals(getResources().getString(R.string.member_login))) {
+            if (Boolean.parseBoolean(apiResponseLogin.getResult().getUpdate_profile())) {
+                intent = new Intent(this, MyProfileActivity.class);
+            }
+        }
+
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void setSuccessReset(ApiResponseResetPassword apiResponseResetPassword) {
+        hideProgressBar();
+        bottomSheetAlert(
+                getResources().getDrawable(R.drawable.ic_success_forgot_password),
+                apiResponseResetPassword.getMessages()
+        );
+    }
+
+    private Intent getIntentParse(ApiResponseLogin apiResponseLogin) {
+        if (apiResponseLogin.getResult().getFlag_login().equals("0")) {
+            Constant.IS_FLAG_UPDATE = true;
+            return new Intent(this, ChangePasswordActivity.class);
+        } else if (apiResponseLogin.getResult().getFlag_login().equals("1")) {
+            Constant.IS_FLAG_UPDATE = true;
+            return new Intent(this, ChangePinActivity.class);
+        } else {
+            Constant.IS_FLAG_UPDATE = false;
+            return new Intent(this, DashboardActivity.class);
+        }
     }
 }

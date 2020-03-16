@@ -16,6 +16,7 @@ def DaggerVersion = "2.5"
 def GreenDaoVersion = "3.2.2"
 def PicassoVersion = "2.5.2"
 def LombokVersion = "1.16.20"
+def CircleImageViewVersion = "3.0.1"
 
 // Define the endpoint strings
 def endpointFile = file('endpoint.properties')
@@ -27,28 +28,141 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "co.id.cakap"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         debug {
-//            shrinkResources true
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.debug
             resValue("string", "PORT_NUMBER", "8080")
 
-            buildConfigField 'String', 'API_KEY', endpointProperties['api_key']
-            buildConfigField 'String', 'URL_API', endpointProperties['utl_api']
-            buildConfigField 'String', 'URL_IMAGE', endpointProperties['url_image']
-            buildConfigField 'String', 'DB_NAME', endpointProperties['db_name']
+            buildConfigField 'String', 'DAO_NAME', endpointProperties['dao_name_dev']
+            buildConfigField 'String', 'URL_API', endpointProperties['utl_api_dev']
+            buildConfigField 'String', 'CAKAP_KEY', endpointProperties['cakap_key_dev']
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'DAO_NAME', endpointProperties['dao_name_prod']
+            buildConfigField 'String', 'URL_API', endpointProperties['utl_api_prod']
+            buildConfigField 'String', 'CAKAP_KEY', endpointProperties['cakap_key_prod']
+        }
+        buildTypes.all {
+            buildConfigField 'String', 'FIREBASE_IS_CANCEL_DIALOG', endpointProperties['firebase_is_cancel_dialog']
+            buildConfigField 'String', 'FIREBASE_IS_UPDATE', endpointProperties['firebase_is_update']
+            buildConfigField 'String', 'FIREBASE_UPDATE_VERSION', endpointProperties['firebase_update_version']
+            buildConfigField 'String', 'FIREBASE_LINK_UPDATE_APP', endpointProperties['firebase_link_update_app']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_TOKEN', endpointProperties['firebase_notification_token']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_TITLE', endpointProperties['firebase_notification_title']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_BODY', endpointProperties['firebase_notification_body']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_DATE', endpointProperties['firebase_notification_date']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_MOVE', endpointProperties['firebase_notification_move']
+            buildConfigField 'String', 'FIREBASE_NOTIFICATION_URL', endpointProperties['firebase_notification_url']
+            buildConfigField 'String', 'ENDPOINT_CONTENT_TYPE', endpointProperties['endpoint_content_type']
+            buildConfigField 'String', 'CONTENT_TYPE_TEXT', endpointProperties['content_type_text']
+            buildConfigField 'String', 'CONTENT_TYPE_JSON', endpointProperties['content_type_json']
+            buildConfigField 'String', 'CAKAP_KEY_TEXT', endpointProperties['cakap_key_text']
+
+            buildConfigField 'String', 'END_URL_DETAIL_CASHBILL', endpointProperties['end_url_detail_cashbill']
+            buildConfigField 'String', 'END_URL_DETAIL_INVOICE_TO_MB', endpointProperties['end_url_detail_invoice_to_mb']
+            buildConfigField 'String', 'END_URL_DETAIL_REQ_INVOICE_MB', endpointProperties['end_url_detail_req_invoice_mb']
+            buildConfigField 'String', 'END_URL_DETAIL_INVOICE', endpointProperties['end_url_detail_invoice']
+            buildConfigField 'String', 'END_URL_DETAIL_REQ_INVOICE', endpointProperties['end_url_detail_req_invoice']
+            buildConfigField 'String', 'END_URL_DETAIL_REQ_INVOICE_BC', endpointProperties['end_url_detail_req_invoice_bc']
+            buildConfigField 'String', 'END_URL_DETAIL_RECEIVE_STOCK', endpointProperties['end_url_detail_receive_stock']
+
+            buildConfigField 'String', 'GET_GROUP_ID', endpointProperties['get_group_id']
+            buildConfigField 'String', 'GET_GROUP_ID_MEMBER', endpointProperties['get_group_id_member']
+            buildConfigField 'String', 'GET_GROUP_ID_BC', endpointProperties['get_group_id_bc']
+            buildConfigField 'String', 'GET_GROUP_ID_MB', endpointProperties['get_group_id_mb']
+
+            buildConfigField 'String', 'BODY_USER_NAME', endpointProperties['body_user_name']
+            buildConfigField 'String', 'BODY_PASSWORD', endpointProperties['body_password']
+            buildConfigField 'String', 'BODY_FCM_TOKEN', endpointProperties['body_fcm_token']
+            buildConfigField 'String', 'BODY_SESSION_TOKEN', endpointProperties['body_session_token']
+            buildConfigField 'String', 'BODY_OLD_PASSWORD', endpointProperties['body_old_password']
+            buildConfigField 'String', 'BODY_NEW_PASSWORD', endpointProperties['body_new_password']
+            buildConfigField 'String', 'BODY_RETYPE_NEW_PASSWORD', endpointProperties['body_retype_new_password']
+            buildConfigField 'String', 'BODY_PIN', endpointProperties['body_pin']
+            buildConfigField 'String', 'BODY_OLD_PIN', endpointProperties['body_old_pin']
+            buildConfigField 'String', 'BODY_NEW_PIN', endpointProperties['body_new_pin']
+            buildConfigField 'String', 'BODY_RETYPE_NEW_PIN', endpointProperties['body_retype_new_pin']
+            buildConfigField 'String', 'BODY_USER_ID', endpointProperties['body_user_id']
+            buildConfigField 'String', 'BODY_MEMBER_ID', endpointProperties['body_member_id']
+            buildConfigField 'String', 'BODY_NO_KTP', endpointProperties['body_no_ktp']
+            buildConfigField 'String', 'BODY_ALAMAT', endpointProperties['body_alamat']
+            buildConfigField 'String', 'BODY_ID_ALAMAT', endpointProperties['body_id_alamat']
+            buildConfigField 'String', 'BODY_TIMUR', endpointProperties['body_timur']
+            buildConfigField 'String', 'BODY_KODE_POS', endpointProperties['body_kode_pos']
+            buildConfigField 'String', 'BODY_NPWP', endpointProperties['body_npwp']
+            buildConfigField 'String', 'BODY_STATUS_PERNIKAHAN', endpointProperties['body_status_pernikahan']
+            buildConfigField 'String', 'BODY_SUAMI', endpointProperties['body_suami']
+            buildConfigField 'String', 'BODY_RELIGION', endpointProperties['body_religion']
+            buildConfigField 'String', 'BODY_ANAK', endpointProperties['body_anak']
+            buildConfigField 'String', 'BODY_PEKERJAAN', endpointProperties['body_pekerjaan']
+            buildConfigField 'String', 'BODY_HUBUNGAN', endpointProperties['body_hubungan']
+            buildConfigField 'String', 'BODY_AHLI_WARIS', endpointProperties['body_ahli_waris']
+            buildConfigField 'String', 'BODY_CITY', endpointProperties['body_city']
+            buildConfigField 'String', 'BODY_EMAIL', endpointProperties['body_email']
+            buildConfigField 'String', 'BODY_TEMPAT_LAHIR', endpointProperties['body_tempat_lahir']
+            buildConfigField 'String', 'BODY_JENIS_KELAMIN', endpointProperties['body_jenis_kelamin']
+            buildConfigField 'String', 'BODY_DATE', endpointProperties['body_date']
+            buildConfigField 'String', 'BODY_HP', endpointProperties['body_hp']
+            buildConfigField 'String', 'BODY_TELP', endpointProperties['body_telp']
+            buildConfigField 'String', 'BODY_FAX', endpointProperties['body_fax']
+            buildConfigField 'String', 'BODY_KOTA_ID', endpointProperties['body_kota_id']
+            buildConfigField 'String', 'BODY_PROVINCE', endpointProperties['body_province']
+            buildConfigField 'String', 'BODY_BANK_ACC', endpointProperties['body_bank_acc']
+            buildConfigField 'String', 'BODY_BANK_ID', endpointProperties['body_bank_id']
+            buildConfigField 'String', 'BODY_NOREK', endpointProperties['body_norek']
+            buildConfigField 'String', 'BODY_CABANG', endpointProperties['body_cabang']
+            buildConfigField 'String', 'BODY_AREA', endpointProperties['body_area']
+            buildConfigField 'String', 'BODY_NAMA', endpointProperties['body_nama']
+            buildConfigField 'String', 'BODY_NAMA2', endpointProperties['body_nama2']
+            buildConfigField 'String', 'BODY_TAHUN', endpointProperties['body_tahun']
+            buildConfigField 'String', 'BODY_BULAN', endpointProperties['body_bulan']
+            buildConfigField 'String', 'BODY_ID', endpointProperties['body_id']
+            buildConfigField 'String', 'BODY_LEVEL', endpointProperties['body_level']
+            buildConfigField 'String', 'BODY_TIPE', endpointProperties['body_tipe']
+            buildConfigField 'String', 'BODY_ITEM_ID', endpointProperties['body_item_id']
+            buildConfigField 'String', 'BODY_PRICE', endpointProperties['body_price']
+            buildConfigField 'String', 'BODY_KEYWORD', endpointProperties['body_keyword']
+            buildConfigField 'String', 'BODY_WILAYAH', endpointProperties['body_wilayah']
+            buildConfigField 'String', 'BODY_TGL', endpointProperties['body_tgl']
+            buildConfigField 'String', 'BODY_TOTAL_HARGA', endpointProperties['body_total_harga']
+            buildConfigField 'String', 'BODY_TOTAL_PV', endpointProperties['body_total_pv']
+            buildConfigField 'String', 'BODY_TOTAL_BV', endpointProperties['body_total_bv']
+            buildConfigField 'String', 'BODY_REMARK', endpointProperties['body_remark']
+            buildConfigField 'String', 'BODY_DETAIL', endpointProperties['body_detail']
+            buildConfigField 'String', 'BODY_TITIPAN_ID', endpointProperties['body_titipan_id']
+            buildConfigField 'String', 'BODY_PV', endpointProperties['body_pv']
+            buildConfigField 'String', 'BODY_BV', endpointProperties['body_bv']
+            buildConfigField 'String', 'BODY_QTY', endpointProperties['body_qty']
+            buildConfigField 'String', 'BODY_NO_STC', endpointProperties['body_no_stc']
+            buildConfigField 'String', 'BODY_MEMBER_ID2', endpointProperties['body_member_id2']
+            buildConfigField 'String', 'BODY_SO_ID', endpointProperties['body_so_id']
+            buildConfigField 'String', 'BODY_RECRUITING', endpointProperties['body_recruiting']
+            buildConfigField 'String', 'BODY_SPONSOR', endpointProperties['body_sponsor']
+            buildConfigField 'String', 'BODY_KTP', endpointProperties['body_ktp']
+            buildConfigField 'String', 'BODY_TGL_LAHIR', endpointProperties['body_tgl_lahir']
+            buildConfigField 'String', 'BODY_ACTIVATION', endpointProperties['body_activation']
+            buildConfigField 'String', 'BODY_ACCOUNT_HOLDER', endpointProperties['body_accountholder']
+            buildConfigField 'String', 'BODY_PASANGAN', endpointProperties['body_pasangan']
+            buildConfigField 'String', 'BODY_NAME', endpointProperties['body_name']
+            buildConfigField 'String', 'BODY_OPSI', endpointProperties['body_opsi']
+            buildConfigField 'String', 'BODY_IDADDR', endpointProperties['body_idaddr']
+            buildConfigField 'String', 'BODY_KODE_ID', endpointProperties['body_kode_id']
+            buildConfigField 'String', 'BODY_ID_RO', endpointProperties['body_id_ro']
+            buildConfigField 'String', 'BODY_BC_ID', endpointProperties['body_bc_id']
+            buildConfigField 'String', 'BODY_KODE_UNIK', endpointProperties['body_kode_unik']
         }
     }
 
@@ -64,22 +178,28 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     //AndroidX
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     //Android Dependency
     implementation "com.android.support:appcompat-v7:$AndroidLibVersion"
     implementation "com.android.support:recyclerview-v7:$AndroidLibVersion"
+    implementation 'android.arch.work:work-runtime:1.0.1'
 
     //Testing Dependency
     testImplementation "junit:junit:$JUnitVersion"
@@ -117,14 +237,35 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$PicassoVersion"
 
     //Lombok
-    compileOnly "org.projectlombok:lombok:$LombokVersion"
+    implementation "org.projectlombok:lombok:$LombokVersion"
     annotationProcessor "org.projectlombok:lombok:$LombokVersion"
 
-    //Firebase
-    implementation 'com.google.firebase:firebase-auth:19.0.0'
-    implementation 'com.google.firebase:firebase-config:19.0.1'
-    implementation 'com.google.firebase:firebase-core:17.2.0'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    //Circle ImageView
+    implementation "de.hdodenhof:circleimageview:$CircleImageViewVersion"
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+    implementation 'com.google.firebase:firebase-config:19.0.3'
+    implementation 'com.google.firebase:firebase-core:17.2.1'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+    implementation 'com.google.firebase:firebase-messaging:20.0.1'
+
+    //Android-SpinKit
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    //Over scroll
+    implementation 'me.everything:overscroll-decor-android:1.0.4'
+
+    //Expandable Layout
+    implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
+
+    //material-sheet
+    implementation 'com.gordonwong:material-sheet-fab:1.2.1'
+
+    //Date Range
+    implementation 'com.borax12.materialdaterangepicker:library:2.0'
+
+    //Pin Lock
+    implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
 }
 apply plugin: 'com.google.gms.google-services'

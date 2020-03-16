@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "581097827454",
+    "firebase_url": "https://cakap-86f35.firebaseio.com",
+    "project_id": "cakap-86f35",
+    "storage_bucket": "cakap-86f35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581097827454:android:8642f1e88fceb901713c2f",
+        "android_client_info": {
+          "package_name": "co.id.cakap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581097827454-26fansa6c2qg8mkke0g58oca11b8tlf0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.id.cakap",
+            "certificate_hash": "629854923c7b5e48e2ce24123d3a6cdb060d3140"
+          }
+        },
+        {
+          "client_id": "581097827454-gh0citbhjd3kg6ev5s8iflpfeg123ivc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7bv_tnrPFaQ4LsSK1w1TQBwx2HlpKmmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581097827454-gh0citbhjd3kg6ev5s8iflpfeg123ivc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

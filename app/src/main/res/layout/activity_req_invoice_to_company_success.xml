@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/title_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                style="@style/TexViewFont"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:visibility="gone"
+                android:id="@+id/img_close"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/appbar_padding"
+                android:background="@drawable/ic_close"/>
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark">
+
+            <RelativeLayout
+                android:id="@+id/action_expand_collapse"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@drawable/background_invoice_style"
+                android:orientation="horizontal">
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/appbar_padding"
+                    android:gravity="top"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/ic_verified"
+                        android:scaleType="centerCrop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/radius_10"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/success_font_green"
+                            android:textSize="14sp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:text="@string/transaksi_berhasil"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_payment_method"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:text="@string/payment_method_string"
+                            style="@style/TexViewFont"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/radius_16"
+                    android:layout_marginEnd="@dimen/radius_16"
+                    android:background="#dedede" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btn_close"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_margin="@dimen/radius_16"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="@dimen/radius_8">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:text="@string/back_to_home"
+                        style="@style/TexViewFont"/>
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/linear_must_transfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_sucess_company_style"
+                    android:layout_margin="@dimen/radius_16">
+
+                    <TextView
+                        android:id="@+id/txt_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:maxLines="5"
+                        android:ellipsize="end"
+                        android:layout_margin="@dimen/radius_8"
+                        android:textAlignment="center"
+                        android:text="@string/please_confirm_company"
+                        style="@style/TexViewFont"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/appbar_padding"
+                    android:layout_marginEnd="@dimen/appbar_padding"
+                    android:layout_marginBottom="@dimen/radius_8"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:text="@string/your_transaction"
+                        style="@style/TexViewFont"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/txt_total_transaction"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/radius_16"
+                            android:textSize="@dimen/text_22"
+                            android:textColor="@color/success_font_green"
+                            android:text="IDR 100.000.000"
+                            style="@style/TexViewFont" />
+
+                        <TextView
+                            android:id="@+id/txt_copy_nominal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/radius_10"
+                            android:textSize="@dimen/text_14"
+                            android:textColor="@color/collapsing"
+                            android:text="@string/copy"
+                            style="@style/TexViewFont" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_transfer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin_top_16"
+                    android:layout_marginStart="@dimen/appbar_padding"
+                    android:layout_marginEnd="@dimen/appbar_padding" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/linear_rekening"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/radius_16"
+                        android:layout_marginEnd="@dimen/radius_16"
+                        android:background="#dedede" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/appbar_padding"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:text="@string/transfer_via_bca_upper_1"
+                            style="@style/TexViewFont"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_marginStart="@dimen/radius_16"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:adjustViewBounds="true"
+                                    android:background="@drawable/bca"
+                                    android:scaleType="centerCrop"
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/radius_10"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/text_16"
+                                        android:maxLines="2"
+                                        android:ellipsize="end"
+                                        android:text="@string/rek_bca_1"
+                                        style="@style/TexViewFont"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txt_copy_rekening_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/radius_10"
+                                android:textSize="@dimen/text_14"
+                                android:textColor="@color/collapsing"
+                                android:text="@string/copy"
+                                style="@style/TexViewFont" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/radius_16"
+                        android:layout_marginEnd="@dimen/radius_16"
+                        android:background="#dedede" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/appbar_padding"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:text="@string/transfer_via_bca_upper_2"
+                            style="@style/TexViewFont"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/radius_8"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_marginStart="@dimen/radius_16"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:adjustViewBounds="true"
+                                    android:background="@drawable/bca"
+                                    android:scaleType="centerCrop"
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/radius_10"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/text_16"
+                                        android:maxLines="2"
+                                        android:ellipsize="end"
+                                        android:text="@string/rek_bca_2"
+                                        style="@style/TexViewFont"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txt_copy_rekening_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/radius_10"
+                                android:textSize="@dimen/text_14"
+                                android:textColor="@color/collapsing"
+                                android:text="@string/copy"
+                                style="@style/TexViewFont" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="@dimen/radius_16"
+                        android:layout_marginEnd="@dimen/radius_16"
+                        android:background="#dedede" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/appbar_padding"
+                    android:layout_marginEnd="@dimen/appbar_padding"
+                    android:layout_marginBottom="@dimen/appbar_padding"
+                    android:background="@drawable/item_detail_transaksi_style">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/relative_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp">
+
+                            <LinearLayout
+                                android:id="@+id/detailData"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_transaction_id"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="@dimen/text_14"
+                                        android:text="INV - 123123123123123"
+                                        style="@style/TexViewFont" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:visibility="gone"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_member_id"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="@dimen/text_13"
+                                        android:textColor="@color/black"
+                                        android:text="BC123"
+                                        style="@style/TexViewFont" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="@dimen/text_13"
+                                        android:textColor="@color/black"
+                                        android:text=" - "
+                                        style="@style/TexViewFont" />
+
+                                    <TextView
+                                        android:id="@+id/txt_name"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="@dimen/text_13"
+                                        android:textColor="@color/black"
+                                        android:text="Nama Sub Stockist"
+                                        style="@style/TexViewFont" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:gravity="end"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:id="@+id/txt_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="@dimen/text_12"
+                                    android:textColor="@color/black"
+                                    android:text="28 Jan 2020"
+                                    style="@style/TexViewFont" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="@dimen/text_12"
+                                        android:textStyle="bold"
+                                        android:text="Total"
+                                        style="@style/TexViewFont" />
+
+                                    <TextView
+                                        android:id="@+id/txt_total_amount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/radius_16"
+                                        android:textSize="@dimen/text_12"
+                                        android:textStyle="bold"
+                                        android:text="IDR 100.000.000"
+                                        style="@style/TexViewFont" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linear_remark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/appbar_padding"
+                            android:layout_marginEnd="@dimen/appbar_padding"
+                            android:layout_marginBottom="@dimen/appbar_padding"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#dedede" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:layout_marginTop="@dimen/radius_10"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:text="@string/remark"
+                                style="@style/TexViewFont"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/et_remark"
+                                    style="@style/Font_family_light"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/transparent"
+                                    android:hint="@string/remark"
+                                    android:text="@string/text_1"
+                                    android:maxLines="4"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/curated_light"
+                                    android:textSize="@dimen/text_14"
+                                    android:focusableInTouchMode="false"
+                                    android:focusable="false"
+                                    android:enabled="false"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="@string/daftar_produk"
+                    android:layout_marginStart="@dimen/appbar_padding"
+                    style="@style/TexViewFont"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_top_8"
+                    android:layout_marginStart="@dimen/appbar_padding"
+                    android:layout_marginEnd="@dimen/appbar_padding" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
+    <include
+        layout="@layout/progress_bar_layout" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

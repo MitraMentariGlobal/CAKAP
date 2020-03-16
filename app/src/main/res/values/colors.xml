@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <color name="dary">#0008ff</color>
-    <color name="colorPrimary">#0083ff</color>
-    <color name="colorPrimaryDark">#0083ff</color>
-    <color name="colorAccent">#00c8ff</color>
+    <color name="colorPrimary">#29b765</color>
+    <color name="colorPrimaryDark">#37692c</color>
+    <color name="colorAccent">#2ecc71</color>
     <color name="colorAccentLightDark">#0083ff</color>
     <color name="colorAccentDark">#0083ff</color>
     <color name="collapsing">#0083ff</color>
@@ -43,6 +42,7 @@
     <color name="gratitude_txt">#666666</color>
     <color name="gratitude_btn">#FCBC54</color>
     <color name="cal">#ff0801</color>
+    <color name="red">#ff0000</color>
     <color name="white_trans">#99FFFFFF</color>
 
     <color name="red_dark">#F06423</color>
@@ -53,10 +53,15 @@
     <color name="navy_blue">#214258</color>
     <color name="navy_blue_dark">#1C3A4E</color>
     <color name="light_green">#78DC96</color>
+    <color name="dark_green">#8037692c</color>
+    <color name="success_font_green">#2ecc71</color>
+    <color name="bg_green_border">#29b765</color>
     <color name="light_blue">#55C8F0</color>
     <color name="blue_black_dark">#13171d</color>
     <color name="blue_black_light">#516179</color>
     <color name="blue_grey_light">#A5B4C8</color>
     <color name="orange">#FFA500</color>
+    <color name="dark_orange">#FF8C00</color>
     <color name="yellow">#fff44f</color>
+    <color name="brown">#b8860b</color>
 </resources>

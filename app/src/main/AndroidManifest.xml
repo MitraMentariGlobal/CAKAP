@@ -4,31 +4,107 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".CoreApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/cakap_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/cakap_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.login.LoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" >
-        </activity>
-        <activity android:name=".ui.home.HomeActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.createActivationForm.CreateActivationFormActivity"></activity>
+        <activity android:name=".ui.monthlyPointReport.MonthlyPointReportActivity" />
+        <activity android:name=".ui.downlineListing.DownlineListingActivity" />
+        <activity android:name=".ui.ebonus.EbonusActivity" />
+        <activity android:name=".ui.networkTable.NetworkTableActivity" />
+        <activity android:name=".ui.networkGenealogy.NetworkGenealogyActivity" />
+        <activity android:name=".ui.detailRegistration.DetailRegistrationActivity" />
+        <activity
+            android:name=".ui.reqInvoiceToCompany.ReqInvoiceToCompanyActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.reqInvoiceToBc.ReqInvoiceToBcActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.invoiceToMb.InvoiceToMbActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.cashbill.CashbillActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.registration.RegistrationActivity" />
+
+        <service
+            android:name=".utils.firebaseNotification.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+        See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/cakap_logo" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+        notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.messaging.default_notification_color" -->
+        <!-- android:resource="@color/colorAccent" /> -->
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.homeWebView.HomeWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.splash_screen.SplashScreenActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.splashScreen.SplashScreenActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.detailTransaction.DetailTransactionActivity" />
+        <activity android:name=".ui.feeBCMB.FeeBcmbActivity" />
+        <activity android:name=".ui.myProfile.MyProfileActivity" />
+        <activity android:name=".ui.omset.OmsetActivity" />
+        <activity android:name=".ui.searchMember.SearchMemberActivity" />
+        <activity android:name=".ui.stockReport.StockReportActivity" />
+        <activity android:name=".ui.pickUpDelivery.PickUpDeliveryActivity" />
+        <activity android:name=".ui.cashbill.cashbillSuccess.CashbillSuccessActivity" />
+        <activity android:name=".ui.invoiceToMb.invoiceToMbSuccess.InvoiceToMbSuccessActivity" />
+        <activity android:name=".ui.reqInvoiceToBc.reqInvoiceToBcSuccess.ReqInvoiceToBcSuccessActivity" />
+        <activity android:name=".ui.reqInvoiceToCompany.reqInvoiceToCompanySuccess.ReqInvoiceToCompanySuccessActivity" />
+        <activity android:name=".ui.registration.registrationSuccess.RegistrationSuccessActivity" />
+        <activity android:name=".ui.changePin.ChangePinActivity" />
+        <activity android:name=".ui.changePassword.ChangePasswordActivity" />
+        <activity android:name=".ui.changePassword.changePasswordSuccess.ChangePasswordSuccessActivity" />
+        <activity android:name=".ui.changePin.changePinSuccess.ChangePinSuccessActivity" />
+        <activity android:name=".utils.dialog.BottomDialogActivity" />
     </application>
 
 </manifest>

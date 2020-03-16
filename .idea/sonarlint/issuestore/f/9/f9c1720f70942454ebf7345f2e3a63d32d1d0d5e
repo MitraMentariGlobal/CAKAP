@@ -1,2 +1,7 @@
 
-hsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê∆ø
+asquid:S00107œ"<Method has 8 parameters, which is greater than 7 authorized.(∏›éá˛ˇˇˇˇ8©õŸÅÉ.
+bsquid:S00107â"=Method has 31 parameters, which is greater than 7 authorized.(ˇ£¶≤¸ˇˇˇˇ8î åÜá.
+`squid:S00107;"<Method has 8 parameters, which is greater than 7 authorized.(õ≠¡´˘ˇˇˇˇ8ùûº„â.
+[squid:S00107b"=Method has 31 parameters, which is greater than 7 authorized.(ò¨Í8£àﬂ‘˘-
+`squid:S00107/"<Method has 9 parameters, which is greater than 7 authorized.(Ãø‘å˝ˇˇˇˇ8ƒ◊ùÅ˘-
+rsquid:UselessImportCheck"BRemove this unused import 'co.id.cakap.data.NetworkGenealogyData'.(ì¸Ò¯ˇˇˇˇ8˜ëú‡ˇ-

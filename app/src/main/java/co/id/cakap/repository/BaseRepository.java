@@ -3,7 +3,7 @@ package co.id.cakap.repository;
 import co.id.cakap.network.NetworkService;
 
 /**
- * Created by Laksamana Guntur Dzulfikar on 19/2/18.
+ * Created by Laksamana Guntur Dzulfikar
  * Android Developer
  */
 

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <include layout="@layout/title_back"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/spinner_filter_layout"
+                android:layout_margin="@dimen/radius_10"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="@dimen/radius_10"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="@string/omset"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/radius_10"
+                android:layout_marginEnd="@dimen/radius_10"
+                android:layout_marginBottom="@dimen/radius_10"
+                android:orientation="horizontal"
+                android:background="@drawable/item_detail_transaksi_style">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginTop="@dimen/radius_10"
+                    android:layout_marginBottom="@dimen/radius_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:text="Total Omset Setelah PPn"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="Total Omset Product Setelah PPn"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="Total Starter Kit SP01"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="Total Starter Kit SP03"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="Total Starter Kit SP04"
+                        style="@style/TexViewFont"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:layout_marginTop="@dimen/radius_10"
+                    android:layout_marginBottom="@dimen/radius_10"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_oms_aft_ppn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:text="80,399,091"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_oms_prd_aft_ppn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="66,717,273"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_stat_kit_sp01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="17 (paket)"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_stat_kit_sp03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="9 (paket)"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_stat_kit_sp04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:layout_marginTop="@dimen/radius_2"
+                        android:text="9 (paket)"
+                        style="@style/TexViewFont"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="@dimen/radius_10"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Bonus"
+                style="@style/TexViewFont"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/radius_10"
+                android:layout_marginEnd="@dimen/radius_10"
+                android:layout_marginBottom="@dimen/radius_10"
+                android:orientation="vertical"
+                android:background="@drawable/item_detail_transaksi_style">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/radius_10"
+                        android:layout_marginTop="@dimen/radius_10"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:text="Bonus Total Omset Produk"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="Tambahan Bonus Total Omset"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="Bonus Starter Kit Basic"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="Bonus Paket Kombinasi/Lengkap"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="Bonus Reff MB"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="Bonus Kit V-Bless"
+                            style="@style/TexViewFont"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/radius_10"
+                        android:layout_marginTop="@dimen/radius_10"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_tot_oms_prd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:text="3,335,864"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_tmbh_bns_tot_oms"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="0"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_stat_kit_bsc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="127,500"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_pkt_lngkp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="450,000"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_bns_reff_mb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="14,792,817"
+                            style="@style/TexViewFont"/>
+
+                        <TextView
+                            android:id="@+id/txt_bns_kit_v_bless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"
+                            android:layout_marginTop="@dimen/radius_2"
+                            android:text="0"
+                            style="@style/TexViewFont"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/radius_10"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:background="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/radius_10"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="Total Fee"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_total_fee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="18,706,181"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="Pajak"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_pajak"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="0"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/radius_10"
+                    android:layout_marginEnd="@dimen/radius_10"
+                    android:layout_marginBottom="@dimen/radius_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="Netto Fee"
+                        style="@style/TexViewFont"/>
+
+                    <TextView
+                        android:id="@+id/txt_netto_fee"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_12"
+                        android:textStyle="bold"
+                        android:text="18,706,181"
+                        style="@style/TexViewFont"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/progress_bar_layout" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

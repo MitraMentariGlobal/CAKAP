@@ -1,5 +1,8 @@
 
-rsquid:S1450"TRemove the "mView" field and declare it as a local variable in the relevant methods.(°ä³”8ÄæåÖ-
-Qsquid:S1068"3Remove this unused "mMainRepository" private field.(öŒÙ¹8ô›åÖ-
-Qsquid:S1068	".Remove this unused "mDataModel" private field.(û¢Àÿÿÿÿÿ8ô›åÖ-
-Gsquid:S1068")Remove this unused "mView" private field.(°ä³”8ô›åÖ-
+wsquid:UselessImportCheck"LRemove this unused import 'co.id.cakap.network.ApiResponseNetworkGeneology'.(œ¦²Â8ŞŞ¹³Š.
+Fsquid:S1148^"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8£Ëóí×-
+Fsquid:S1148W"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8•äÀÍ….
+Tsquid:S2696r"6Make the enclosing method "static" or remove this set.(ªĞËµ8º‰í”ô-
+Ksquid:S1604."(Make this anonymous inner class a lambda(¹‘«Øøÿÿÿÿ8„Á³×-
+Gsquid:S1148ˆ"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8—ª¯³Š.
+Gsquid:S1148"#Use a logger to log this exception.(¯Óí‘úÿÿÿÿ8—ª¯³Š.
