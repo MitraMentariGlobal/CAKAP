@@ -40,14 +40,13 @@ public class DownlineListingData implements Parcelable {
     @Expose
     private String status;
 
-    @Keep
-    public DownlineListingData(String member_id, String name, String no_hp, String join_date, String status) {
-        this.member_id = member_id;
-        this.name = name;
-        this.no_hp = no_hp;
-        this.join_date = join_date;
-        this.status = status;
-    }
+    @SerializedName("tgpv")
+    @Expose
+    private String tgpv;
+
+    @SerializedName("atgpv")
+    @Expose
+    private String atgpv;
 
     protected DownlineListingData(Parcel in) {
         member_id = in.readString();
@@ -55,6 +54,20 @@ public class DownlineListingData implements Parcelable {
         no_hp = in.readString();
         join_date = in.readString();
         status = in.readString();
+        tgpv = in.readString();
+        atgpv = in.readString();
+    }
+
+    @Generated(hash = 1622743551)
+    public DownlineListingData(String member_id, String name, String no_hp, String join_date,
+            String status, String tgpv, String atgpv) {
+        this.member_id = member_id;
+        this.name = name;
+        this.no_hp = no_hp;
+        this.join_date = join_date;
+        this.status = status;
+        this.tgpv = tgpv;
+        this.atgpv = atgpv;
     }
 
     @Generated(hash = 1919124717)
@@ -68,6 +81,8 @@ public class DownlineListingData implements Parcelable {
         dest.writeString(no_hp);
         dest.writeString(join_date);
         dest.writeString(status);
+        dest.writeString(tgpv);
+        dest.writeString(atgpv);
     }
 
     @Override
@@ -113,6 +128,22 @@ public class DownlineListingData implements Parcelable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTgpv() {
+        return this.tgpv;
+    }
+
+    public void setTgpv(String tgpv) {
+        this.tgpv = tgpv;
+    }
+
+    public String getAtgpv() {
+        return this.atgpv;
+    }
+
+    public void setAtgpv(String atgpv) {
+        this.atgpv = atgpv;
     }
 
     public static final Creator<DownlineListingData> CREATOR = new Creator<DownlineListingData>() {

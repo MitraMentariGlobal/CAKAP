@@ -71,6 +71,16 @@
                         android:text="081372080404"
                         style="@style/TexViewFont" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_16"
+                    android:textColor="@color/success_font_green"
+                    android:textStyle="bold"
+                    android:text="Active"
+                    style="@style/TexViewFont" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,21 +95,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="textEnd"
-                    android:textSize="@dimen/text_12"
+                    android:textSize="@dimen/text_14"
                     android:textColor="@color/black"
                     android:text="2008-03-24"
                     style="@style/TexViewFont" />
 
                 <TextView
-                    android:id="@+id/txt_status"
+                    android:id="@+id/txt_tgpv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="textEnd"
-                    android:textSize="@dimen/text_16"
-                    android:textColor="@color/success_font_green"
-                    android:textStyle="bold"
-                    android:text="Active"
-                    android:layout_marginTop="20dp"
+                    android:textSize="@dimen/text_13"
+                    android:textColor="@color/black"
+                    android:text="TGPV"
+                    style="@style/TexViewFont" />
+
+                <TextView
+                    android:id="@+id/txt_atgpv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/text_13"
+                    android:textColor="@color/black"
+                    android:text="ATGPV"
                     style="@style/TexViewFont" />
 
             </LinearLayout>

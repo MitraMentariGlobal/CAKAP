@@ -1,22 +1,22 @@
 
-\squid:S1444"9Make this "public static SUCCESS_TRANSACTION" field final(Ç«Öüùÿÿÿÿ8±ëöÜŠ.
-xsquid:S3008"URename this field "LOGIN_DATA" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ³‚òÿÿÿÿÿ8±ëöÜŠ.
 ysquid:S2068,"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(Ù±òÖşÿÿÿÿ8£Õ¨”Œ.
-Wsquid:S1444"4Make this "public static IS_FLAG_UPDATE" field final(“ÔÎ¯üÿÿÿÿ8±ëöÜŠ.
-Zsquid:S1444"7Make this "public static URL_IMAGE_PRODUCT" field final(²´î¦øÿÿÿÿ8±ëöÜŠ.
-”"squid:ClassVariableVisibilityCheck"ZMake IS_FLAG_UPDATE a static final constant or non-public and provide accessors if needed.(“ÔÎ¯üÿÿÿÿ8±ëöÜŠ.
-Ssquid:S1444"0Make this "public static LOGIN_DATA" field final(ƒ³‚òÿÿÿÿÿ8±ëöÜŠ.
-squid:S3008"^Rename this field "SUCCESS_TRANSACTION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç«Öüùÿÿÿÿ8±ëöÜŠ.
-|squid:S3008"YRename this field "IS_HAVE_PARENT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾é®·ûÿÿÿÿ8±ëöÜŠ.
-tsquid:S20680"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(á”™Ÿ8£Õ¨”Œ.
-Wsquid:S1444"4Make this "public static IS_HAVE_PARENT" field final(¾é®·ûÿÿÿÿ8±ëöÜŠ.
-"squid:ClassVariableVisibilityCheck"VMake LOGIN_DATA a static final constant or non-public and provide accessors if needed.(ƒ³‚òÿÿÿÿÿ8±ëöÜŠ.
 —"squid:ClassVariableVisibilityCheck"]Make URL_IMAGE_PRODUCT a static final constant or non-public and provide accessors if needed.(²´î¦øÿÿÿÿ8±ëöÜŠ.
+"squid:ClassVariableVisibilityCheck"VMake LOGIN_DATA a static final constant or non-public and provide accessors if needed.(ƒ³‚òÿÿÿÿÿ8±ëöÜŠ.
+”"squid:ClassVariableVisibilityCheck"ZMake IS_FLAG_UPDATE a static final constant or non-public and provide accessors if needed.(“ÔÎ¯üÿÿÿÿ8±ëöÜŠ.
+tsquid:S20680"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(á”™Ÿ8£Õ¨”Œ.
 squid:S3008"\Rename this field "URL_IMAGE_PRODUCT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²´î¦øÿÿÿÿ8±ëöÜŠ.
+xsquid:S3008"URename this field "LOGIN_DATA" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ³‚òÿÿÿÿÿ8±ëöÜŠ.
+|squid:S3008"YRename this field "IS_HAVE_PARENT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾é®·ûÿÿÿÿ8±ëöÜŠ.
+ssquid:S20681"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(ÆÁˆ8£Õ¨”Œ.
+Zsquid:S1444"7Make this "public static URL_IMAGE_PRODUCT" field final(²´î¦øÿÿÿÿ8±ëöÜŠ.
 tsquid:S2068/"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(´ùºé8£Õ¨”Œ.
 ]squid:S1118
 ":Add a private constructor to hide the implicit public one.(Ø¡²›ÿÿÿÿÿ8ñ« ×-
-™"squid:ClassVariableVisibilityCheck"_Make SUCCESS_TRANSACTION a static final constant or non-public and provide accessors if needed.(Ç«Öüùÿÿÿÿ8±ëöÜŠ.
-|squid:S3008"YRename this field "IS_FLAG_UPDATE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“ÔÎ¯üÿÿÿÿ8±ëöÜŠ.
-ssquid:S20681"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(ÆÁˆ8£Õ¨”Œ.
+Wsquid:S1444"4Make this "public static IS_FLAG_UPDATE" field final(“ÔÎ¯üÿÿÿÿ8±ëöÜŠ.
 ”"squid:ClassVariableVisibilityCheck"ZMake IS_HAVE_PARENT a static final constant or non-public and provide accessors if needed.(¾é®·ûÿÿÿÿ8±ëöÜŠ.
+Wsquid:S1444"4Make this "public static IS_HAVE_PARENT" field final(¾é®·ûÿÿÿÿ8±ëöÜŠ.
+Ssquid:S1444"0Make this "public static LOGIN_DATA" field final(ƒ³‚òÿÿÿÿÿ8±ëöÜŠ.
+squid:S3008"^Rename this field "SUCCESS_TRANSACTION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ç«Öüùÿÿÿÿ8±ëöÜŠ.
+™"squid:ClassVariableVisibilityCheck"_Make SUCCESS_TRANSACTION a static final constant or non-public and provide accessors if needed.(Ç«Öüùÿÿÿÿ8±ëöÜŠ.
+\squid:S1444"9Make this "public static SUCCESS_TRANSACTION" field final(Ç«Öüùÿÿÿÿ8±ëöÜŠ.
+|squid:S3008"YRename this field "IS_FLAG_UPDATE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“ÔÎ¯üÿÿÿÿ8±ëöÜŠ.

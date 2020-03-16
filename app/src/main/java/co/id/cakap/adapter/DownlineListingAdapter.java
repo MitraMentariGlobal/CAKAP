@@ -47,8 +47,13 @@ public class DownlineListingAdapter extends RecyclerView.Adapter<DownlineListing
         holder.mMemberId.setText(downlineListingData.getMember_id());
         holder.mMemberName.setText(downlineListingData.getName());
         holder.mNomorHp.setText(downlineListingData.getNo_hp());
+        if (downlineListingData.getNo_hp().length() == 0) {
+            holder.mNomorHp.setVisibility(View.GONE);
+        }
         holder.mJoinDate.setText(downlineListingData.getJoin_date());
         holder.mStatus.setText(downlineListingData.getStatus());
+        holder.mTGPV.setText(downlineListingData.getTgpv());
+        holder.mATGPV.setText(downlineListingData.getAtgpv());
 
         if (downlineListingData.getStatus().equals("TERMINATE")) {
             holder.mStatus.setTextColor(mContext.getResources().getColor(R.color.red));
@@ -72,6 +77,10 @@ public class DownlineListingAdapter extends RecyclerView.Adapter<DownlineListing
         TextView mJoinDate;
         @BindView(R.id.txt_status)
         TextView mStatus;
+        @BindView(R.id.txt_tgpv)
+        TextView mTGPV;
+        @BindView(R.id.txt_atgpv)
+        TextView mATGPV;
 
         Context context;
 
