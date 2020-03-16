@@ -161,6 +161,11 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <include layout="@layout/empty_data"
+                android:layout_marginTop="@dimen/radius_16"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+
             <LinearLayout
                 android:id="@+id/linear_recyclerView"
                 android:layout_width="match_parent"

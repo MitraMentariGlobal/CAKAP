@@ -19,6 +19,7 @@ import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityRekapBnsBcmbData;
 import co.id.cakap.data.ActivityReqInvMbData;
+import co.id.cakap.ui.dashboard.activity.activityCashbill.ActivityCashbillPresenter;
 import co.id.cakap.ui.dashboard.activity.activityRekapBnsBcmb.ActivityRekapBnsBcmbPresenter;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
 
@@ -57,7 +58,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
         holder.mAmount.setText("IDR " + activityRekapBnsBcmbData.getAmount());
 
         if (!(activityRekapBnsBcmbData.getFlag().equals("0"))) {
-            holder.mItemVerified.setVisibility(View.GONE);
+            holder.mItemCancel.setVisibility(View.GONE);
         }
     }
 
@@ -91,7 +92,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
             ButterKnife.bind(this, itemView);
 
             mDate.setVisibility(View.GONE);
-            mItemCancel.setVisibility(View.GONE);
+            mItemVerified.setVisibility(View.GONE);
         }
 
         @OnClick(R.id.relative_parent)
@@ -99,12 +100,35 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
 //            new ActivityRekapBnsBcmbPresenter().getView().openDetailTransaction(mMemberId.getText().toString());
         }
 
-        @OnClick(R.id.item_verified)
-        public void actionApprove() {
+//        @OnClick(R.id.item_cancel)
+//        public void actionApprove() {
+//            UserConfirmationDialog utils = new UserConfirmationDialog();
+//            Dialog dialog = utils.showDialog(context);
+//            utils.setTitleDialog("Invalid Acccount");
+//            utils.setNegativeAction();
+//
+//            dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialog.dismiss();
+//                }
+//            });
+//
+//            dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialog.dismiss();
+//                    new ActivityRekapBnsBcmbPresenter().getView().openPinDialog(activityRekapBnsBcmbData);
+//                }
+//            });
+//        }
+
+        @OnClick(R.id.item_cancel)
+        public void actionCancel() {
             UserConfirmationDialog utils = new UserConfirmationDialog();
             Dialog dialog = utils.showDialog(context);
-            utils.setTitleDialog("Approve");
-            utils.setPositiveAction();
+            utils.setTitleDialogInvalidAccount("Invalid Acccount?");
+            utils.setNegativeAction();
 
             dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
                 @Override

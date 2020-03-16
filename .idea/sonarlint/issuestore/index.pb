@@ -1079,3 +1079,17 @@ V
 &app/src/main/res/drawable/ic_check.xml,7/e/7e2d2b71552575a58e044e7cc36039d4f0bbb6a1
 t
 Dapp/src/main/java/co/id/cakap/data/ActivationSubmitItemFormData.java,0/e/0ed7082eb3a29d48e0444a4b2930ed697de51d9d
+r
+Bapp/src/main/java/co/id/cakap/network/ApiResponseEbonusMember.java,8/f/8ff8a88a7f48edffc1ac9c0346abfafd8e03296d
+Z
+*app/src/main/res/drawable/ic_dark_data.xml,7/2/727dbc7e7071d8ad890ed5131bc455acedee354a
+V
+&app/src/main/res/layout/empty_data.xml,a/8/a8b1d5ef1fe13eb714441acc550d1b638553d06b
+s
+Capp/src/main/java/co/id/cakap/network/ApiResponseResetPassword.java,f/2/f217124fb98b307627579d8cb09526f9c5cfc10f
+k
+;app/src/main/java/co/id/cakap/data/NotificationApiData.java,d/6/d6d5f6461dcd173c6baa9143cc4c6313c41a26c9
+v
+Fapp/src/main/java/co/id/cakap/network/ApiResponseListNotification.java,b/3/b343c3cb40747b218e9b9469a934855d444507ca
+u
+Eapp/src/main/java/co/id/cakap/network/ApiResponseReadDeleteNotif.java,8/0/80c87612309212467fccf3d683516bdaa51ec067

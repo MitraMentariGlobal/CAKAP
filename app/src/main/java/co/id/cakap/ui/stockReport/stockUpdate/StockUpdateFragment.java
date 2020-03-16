@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
@@ -39,6 +41,10 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
     RecyclerView mRecyclerView;
     @BindView(R.id.relative_progress_bar)
     RelativeLayout mRelativeProgressBar;
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private View mView;
     private Unbinder mUnbinder;
@@ -72,15 +78,27 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
         mUserActionListener = mStockUpdatePresenter;
         mStockUpdatePresenter.setView(this);
         mUserActionListener.getData();
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mUserActionListener.getData();
+            }
+        });
     }
 
     @Override
     public void setAdapter(List<StockUpdateData> resultData) {
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new StockUpdateAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         hideProgressBar();
     }
 
@@ -91,7 +109,12 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
 
     @Override
     public void hideProgressBar() {
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

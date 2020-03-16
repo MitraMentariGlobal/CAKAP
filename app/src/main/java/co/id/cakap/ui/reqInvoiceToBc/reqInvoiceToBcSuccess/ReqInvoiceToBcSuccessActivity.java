@@ -132,7 +132,6 @@ public class ReqInvoiceToBcSuccessActivity extends AppCompatActivity implements 
 
         mListAdapter = new ReqInvoiceToBcSuccessAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }

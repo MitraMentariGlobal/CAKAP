@@ -34,6 +34,7 @@ import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
 import co.id.cakap.adapter.NotificationAdapter;
+import co.id.cakap.data.NotificationApiData;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.di.module.MainActivityModule;
 import co.id.cakap.utils.dialog.UserConfirmationDialog;
@@ -93,27 +94,32 @@ public class NotificationFragment extends Fragment implements NotificationContra
         mUserActionListener = mNotificationPresenter;
         mNotificationPresenter.setView(this);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mUserActionListener.getData(mSharedPreferences);
+//        mUserActionListener.getData(mSharedPreferences);
+        mUserActionListener.getListNotification();
 
         mToolbar.setTitle("");
         mTitle.setText(getContext().getResources().getString(R.string.notification).toUpperCase());
     }
 
     @Override
-    public void setAdapter(List<NotificationData> resultData) {
-        if (resultData.isEmpty()) {
+    public void setAdapter(List<NotificationApiData> resultData) {
+        try {
+            if (resultData.isEmpty()) {
+                mRecyclerView.setVisibility(View.GONE);
+                mLinearEmptyNotifications.setVisibility(View.VISIBLE);
+            } else {
+                ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+                mRecyclerView.setVisibility(View.VISIBLE);
+                mLinearEmptyNotifications.setVisibility(View.GONE);
+
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                mRecyclerView.setLayoutManager(layoutManager);
+                mListAdapter = new NotificationAdapter(resultData, getContext());
+                mRecyclerView.setAdapter(mListAdapter);
+            }
+        } catch (Exception e) {
             mRecyclerView.setVisibility(View.GONE);
             mLinearEmptyNotifications.setVisibility(View.VISIBLE);
-        } else {
-            ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
-            mRecyclerView.setVisibility(View.VISIBLE);
-            mLinearEmptyNotifications.setVisibility(View.GONE);
-
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-            mRecyclerView.setLayoutManager(layoutManager);
-            mListAdapter = new NotificationAdapter(resultData, getContext());
-            mRecyclerView.setAdapter(mListAdapter);
-            OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         }
 
         hideProgressBar();
@@ -141,6 +147,13 @@ public class NotificationFragment extends Fragment implements NotificationContra
     @Override
     public void updateList() {
         mListAdapter.notifyDataSetChanged();
+        hideProgressBar();
+    }
+
+    @Override
+    public void setEmptyScreen() {
+        mRecyclerView.setVisibility(View.GONE);
+        mLinearEmptyNotifications.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -153,7 +166,7 @@ public class NotificationFragment extends Fragment implements NotificationContra
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_mark_read:
-                mNotificationPresenter.readAllData();
+                mNotificationPresenter.readAllNotification();
                 return true;
 
             case R.id.action_delete_all:

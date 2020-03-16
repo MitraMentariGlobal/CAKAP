@@ -328,6 +328,7 @@
                                 style="@style/TexViewFont"/>
 
                             <TextView
+                                android:id="@+id/txt_last_bonus"
                                 android:background="@android:color/transparent"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

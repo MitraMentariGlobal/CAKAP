@@ -146,13 +146,16 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
         mMemberId.setText(operationUserStatusData.getUser_code());
         mName.setText(operationUserStatusData.getUser_name());
         mStatus.setText(operationUserStatusData.getStatus());
+        setDataAdapter(resultData);
+    }
 
+    public void setDataAdapter(List<ItemShopData> resultData) {
         mGridLayoutManager = new GridLayoutManager(this, 2);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopCashbillAdapter(resultData, this);
+        mListAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();
@@ -161,6 +164,7 @@ public class CashbillActivity extends AppCompatActivity implements CashbillActiv
     @Override
     public void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action) {
         mResultData = resultData;
+
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopData.getPv());

@@ -42,7 +42,6 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
         mFilteredList = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-        notifyDataSetChanged();
     }
 
     @Override
@@ -64,6 +63,12 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
         holder.mItemName.setText(itemShopData.getItem_name());
         holder.mPrice.setText(itemShopData.getFharga());
         holder.mPv.setText(itemShopData.getPv());
+
+        if (itemShopData.getCart() != null) {
+            holder.mQty.setText(itemShopData.getCart());
+        } else {
+            holder.mQty.setText("0");
+        }
 
         if (!(itemShopData.getImage().equals("0"))) {
             Picasso.with(mContext)
@@ -136,44 +141,36 @@ public class ItemShopCashbillAdapter extends RecyclerView.Adapter<ItemShopCashbi
 
         ItemShopData itemShopData;
         Context context;
-        int qty = 0;
         int position = 0;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-            setZeroQty();
-        }
-
-        public void setZeroQty() {
-            if (mQty.getText().toString().length() == 0) {
-                mQty.setText("0");
-            }
-            qty = Integer.parseInt(mQty.getText().toString());
         }
 
         @OnClick(R.id.img_minus)
         public void minusItem() {
-            setZeroQty();
+            int qty = Integer.parseInt(mQty.getText().toString());
             if (qty > 0) {
                 qty -= 1;
-                mQty.setText(String.valueOf(qty));
                 itemShopData.setCart(String.valueOf(qty));
-                mResultData.set(position, itemShopData);
-                new CashbillActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 0);
+                mFilteredList.set(position, itemShopData);
+                notifyItemChanged(position);
+
+                new CashbillActivityPresenter().getView().setCheckoutValue(mFilteredList, itemShopData, 0);
             }
         }
 
         @OnClick(R.id.img_plus)
         public void plusItem() {
+            int qty = Integer.parseInt(mQty.getText().toString());
             if (qty < Integer.parseInt(itemShopData.getQty())) {
-                setZeroQty();
                 qty += 1;
-                mQty.setText(String.valueOf(qty));
                 itemShopData.setCart(String.valueOf(qty));
-                mResultData.set(position, itemShopData);
-                new CashbillActivityPresenter().getView().setCheckoutValue(mResultData, itemShopData, 1);
+                mFilteredList.set(position, itemShopData);
+                notifyItemChanged(position);
+
+                new CashbillActivityPresenter().getView().setCheckoutValue(mFilteredList, itemShopData, 1);
             }
         }
     }

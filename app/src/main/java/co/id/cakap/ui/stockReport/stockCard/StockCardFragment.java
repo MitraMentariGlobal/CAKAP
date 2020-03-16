@@ -24,6 +24,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -85,6 +86,9 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
     @BindView(R.id.txt_saldo_akhir)
     TextView mTxtSaldoAkhir;
 
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
+
     private View mView;
     private Unbinder mUnbinder;
     private RecyclerView mRecyclerViewSearch;
@@ -130,6 +134,12 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
 
     @Override
     public void setAdapter(List<StockCardData> resultData) {
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         mLinearRecyclerView.setVisibility(View.VISIBLE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -137,7 +147,6 @@ public class StockCardFragment extends Fragment implements StockCardContract.Vie
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
         mListAdapter = new StockCardAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         int saldoAwal = 0;
         int totalIn = 0;

@@ -107,6 +107,10 @@ public class ResultDataLogin implements Parcelable {
     @Expose
     private String total_omset;
 
+    @SerializedName("bulan_bonus")
+    @Expose
+    private String bulan_bonus;
+
     protected ResultDataLogin(Parcel in) {
         url = in.readString();
         role = in.readString();
@@ -130,14 +134,16 @@ public class ResultDataLogin implements Parcelable {
         fee = in.readString();
         omset = in.readString();
         total_omset = in.readString();
+        bulan_bonus = in.readString();
     }
 
-    @Generated(hash = 1662500561)
+    @Generated(hash = 269693891)
     public ResultDataLogin(String url, String role, String session_token,
             String update_profile, String running_text, String gambar, String nama,
             String username, String member_id, String posisi, String bonus, String pv_max,
             String pv_tupo, String userid, String group_id, String wilayah, String leader_ids,
-            String flag_login, String ewallet, String fee, String omset, String total_omset) {
+            String flag_login, String ewallet, String fee, String omset, String total_omset,
+            String bulan_bonus) {
         this.url = url;
         this.role = role;
         this.session_token = session_token;
@@ -160,6 +166,7 @@ public class ResultDataLogin implements Parcelable {
         this.fee = fee;
         this.omset = omset;
         this.total_omset = total_omset;
+        this.bulan_bonus = bulan_bonus;
     }
 
     @Generated(hash = 820616836)
@@ -190,6 +197,7 @@ public class ResultDataLogin implements Parcelable {
         dest.writeString(fee);
         dest.writeString(omset);
         dest.writeString(total_omset);
+        dest.writeString(bulan_bonus);
     }
 
     @Override
@@ -371,6 +379,14 @@ public class ResultDataLogin implements Parcelable {
 
     public void setTotal_omset(String total_omset) {
         this.total_omset = total_omset;
+    }
+
+    public String getBulan_bonus() {
+        return this.bulan_bonus;
+    }
+
+    public void setBulan_bonus(String bulan_bonus) {
+        this.bulan_bonus = bulan_bonus;
     }
 
     public static final Creator<ResultDataLogin> CREATOR = new Creator<ResultDataLogin>() {

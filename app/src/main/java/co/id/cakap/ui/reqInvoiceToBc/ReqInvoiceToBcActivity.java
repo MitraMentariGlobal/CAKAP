@@ -125,8 +125,8 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopReqInvToBcAdapter(resultData, this);
+        mListAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();
@@ -134,10 +134,8 @@ public class ReqInvoiceToBcActivity extends AppCompatActivity implements ReqInvo
 
     @Override
     public void setCheckoutValue(List<ItemShopData> resultData, ItemShopData itemShopData, int action) {
-        Logger.d("set id : " + itemShopData.getItem_code());
-        Logger.d("set cart : " + itemShopData.getCart());
-
         mResultData = resultData;
+
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopData.getPv());

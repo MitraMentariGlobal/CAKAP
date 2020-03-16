@@ -131,7 +131,6 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mSwipeRefreshLayout.setRefreshing(true);
                 mUserActionListener.getData(getContext(), mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
             }
         });
@@ -139,19 +138,23 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
     @Override
     public void setAdapter(List<ActivityCashbillData> resultData) {
-        mLinearEmptyData.setVisibility(View.GONE);
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityCashbillAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                if (dy<0 && !mFab.isShown()) {
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy < 0 && !mFab.isShown()) {
                     mFab.show();
-                } else if(dy>0 && mFab.isShown()) {
+                } else if (dy > 0 && mFab.isShown()) {
                     mFab.hide();
                 }
             }
@@ -175,8 +178,12 @@ public class ActivityCashbillFragment extends Fragment implements ActivityCashbi
 
     @Override
     public void hideProgressBar() {
-        mSwipeRefreshLayout.setRefreshing(false);
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

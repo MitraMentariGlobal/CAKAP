@@ -34,7 +34,7 @@ public class Utils {
             }
         } catch (Exception e) {
             Logger.e(e.getMessage());
-            return "Error.";
+            return "Failed to sync data, check your transaction first and try again";
         }
     }
 

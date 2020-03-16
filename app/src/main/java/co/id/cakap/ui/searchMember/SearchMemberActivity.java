@@ -120,7 +120,6 @@ public class SearchMemberActivity extends AppCompatActivity implements SearchMem
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new SearchMemberAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();

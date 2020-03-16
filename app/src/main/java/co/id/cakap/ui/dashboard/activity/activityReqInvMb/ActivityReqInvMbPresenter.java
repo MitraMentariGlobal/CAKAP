@@ -65,12 +65,7 @@ public class ActivityReqInvMbPresenter implements ActivityReqInvMbContract.UserA
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseActivityReqInvoiceMb.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseActivityReqInvoiceMb.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseActivityReqInvoiceMb.getData());
-                            }
+                            getView().setAdapter(apiResponseActivityReqInvoiceMb.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

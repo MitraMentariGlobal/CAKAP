@@ -3,6 +3,7 @@ package co.id.cakap.ui.dashboard.home;
 import java.util.List;
 
 import co.id.cakap.data.ResultDataLogin;
+import co.id.cakap.network.ApiResponseLogin;
 
 public class HomeContract {
     public interface View{
@@ -14,5 +15,6 @@ public class HomeContract {
 
     public interface UserActionListener{
         void getData();
+        void saveData(ApiResponseLogin apiResponseLogin);
     }
 }

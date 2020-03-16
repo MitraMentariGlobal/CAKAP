@@ -58,12 +58,7 @@ public class RestockReqInvoicePresenter implements RestockReqInvoiceContract.Use
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseRestockReqInvoice.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseRestockReqInvoice.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseRestockReqInvoice.getData());
-                            }
+                            getView().setAdapter(apiResponseRestockReqInvoice.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

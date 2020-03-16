@@ -1,5 +1,17 @@
 package co.id.cakap.ui.dashboard.account;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.io.IOException;
 import java.util.List;
 
 import co.id.cakap.data.FirebaseTokenData;
@@ -63,7 +75,7 @@ public class AccountPresenter implements AccountContract.UserActionListener {
                         Logger.d("<<<<<=====");
 
                         try {
-                            deleteData();
+                            deleteInternalData(firebaseTokenData.getFirebase_user());
                             mView.hideProgressBar();
                             mView.setSuccessResponse();
                         } catch (Exception e) {
@@ -92,8 +104,41 @@ public class AccountPresenter implements AccountContract.UserActionListener {
                 });
     }
 
-    public void deleteData() {
+    private static void deleteFcmData() {
+        new AsyncTask<Void,Void,Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    FirebaseInstanceId.getInstance().deleteInstanceId();
+                    Logger.d("Fcm token deleted.");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                // Call your Activity where you want to land after log out
+            }
+        }.execute();
+    }
+
+    private void deleteInternalData(String uid) {
         mDataModel.deleteFirebaseTokenData();
         mDataModel.deleteResultDataLogin();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Logger.d("User account deleted.");
+                        }
+                    }
+                });
+
+        deleteFcmData();
     }
 }

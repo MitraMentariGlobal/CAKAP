@@ -189,8 +189,8 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mListAdapter = new ItemShopReqInvToCompanyAdapter(resultData, this);
+        mListAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();
@@ -199,6 +199,7 @@ public class ReqInvoiceToCompanyActivity extends AppCompatActivity implements Re
     @Override
     public void setCheckoutValue(List<ItemShopCompanyData> resultData, ItemShopCompanyData itemShopCompanyData, int action) {
         mResultData = resultData;
+
         if (action == 0) {
             mItem -= 1;
             mPv -= Integer.parseInt(itemShopCompanyData.getPv());

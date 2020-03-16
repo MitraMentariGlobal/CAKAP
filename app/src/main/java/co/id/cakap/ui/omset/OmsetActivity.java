@@ -111,7 +111,6 @@ public class OmsetActivity extends AppCompatActivity implements OmsetActivityCon
         mNestedScroll.getParent().requestChildFocus(mNestedScroll, mNestedScroll);
         mListAdapter = new OmsetAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         double total = 0;
         for (int i = 0; i < resultData.size(); i++) {

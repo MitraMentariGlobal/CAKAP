@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
@@ -11,6 +12,8 @@ import co.id.cakap.data.FirebaseTokenData;
 import co.id.cakap.helper.Constant;
 import co.id.cakap.model.DataModel;
 import co.id.cakap.network.ApiResponseLogin;
+import co.id.cakap.network.ApiResponseNetworkGeneology;
+import co.id.cakap.network.ApiResponseResetPassword;
 import co.id.cakap.repository.MainRepository;
 import co.id.cakap.utils.Logger;
 import co.id.cakap.utils.Utils;
@@ -36,7 +39,7 @@ public class LoginPresenter implements LoginContract.UserActionListener {
     }
 
     @Override
-    public void getNotificationToken(String userId, String password) {
+    public void getNotificationToken(String userId, String password, FirebaseUser user) {
         mView.showProgressBar();
         mDataModel.deleteFirebaseTokenData();
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -52,10 +55,13 @@ public class LoginPresenter implements LoginContract.UserActionListener {
                         String token = task.getResult().getToken();
 
                         // Log and toast
+                        String uid = "uid : " + user.getUid();
                         String msg = "Token : " + token;
+                        Logger.d(uid);
                         Logger.d(msg);
 
                         mFirebaseTokenData.setFcmToken(token);
+                        mFirebaseTokenData.setFirebase_user(user.getUid());
                         mDataModel.insertFirebaseTokenData(mFirebaseTokenData);
                         actionLogin(userId, password, mFirebaseTokenData.getFcmToken());
                     }
@@ -110,5 +116,45 @@ public class LoginPresenter implements LoginContract.UserActionListener {
 
         mView.hideProgressBar();
         mView.setSuccessResponse(apiResponseLogin);
+    }
+
+    @Override
+    public void resetPassword(String userId) {
+        mView.showProgressBar();
+
+        mMainRepository.postResetPassMember(userId)
+                .subscribe(new ResourceSubscriber<ApiResponseResetPassword>() {
+                    @Override
+                    public void onNext(ApiResponseResetPassword apiResponseResetPassword) {
+                        Logger.d("=====>>>>>");
+                        Logger.d("message : " + apiResponseResetPassword.getMessages());
+                        Logger.d("<<<<<=====");
+
+                        try {
+                            mView.setSuccessReset(apiResponseResetPassword);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        String errorResponse = "";
+                        t.printStackTrace();
+                        if (t instanceof HttpException) {
+                            ResponseBody responseBody = ((HttpException)t).response().errorBody();
+                            errorResponse = Utils.getErrorMessage(responseBody);
+                            Logger.e("error HttpException: " + errorResponse);
+                        }
+
+                        mView.hideProgressBar();
+                        mView.setErrorResponse(errorResponse);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Logger.d("onComplete");
+                    }
+                });
     }
 }

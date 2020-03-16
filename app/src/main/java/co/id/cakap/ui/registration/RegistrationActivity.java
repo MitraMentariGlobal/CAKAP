@@ -3,6 +3,7 @@ package co.id.cakap.ui.registration;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -47,6 +49,10 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     EditText mSearchEditText;
     @BindView(R.id.title_toolbar)
     TextView mTitle;
+    @BindView(R.id.linear_empty_data)
+    LinearLayout mLinearEmptyData;
+    @BindView(R.id.swiperefresh_items)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private RegistrationAdapter mListAdapter;
     private RegistrationActivityContract.UserActionListener mUserActionListener;
@@ -75,6 +81,13 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
         mTitle.setText(getString(R.string.registration).toUpperCase());
         mUserActionListener.getData();
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mUserActionListener.getData();
+            }
+        });
     }
 
     @Override
@@ -84,7 +97,12 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
     @Override
     public void hideProgressBar() {
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -94,11 +112,16 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
     @Override
     public void setAdapter(List<RegistrationData> resultData) {
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new RegistrationAdapter(resultData, this);
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         setupOnFocusListener(mSearchEditText);
         hideProgressBar();

@@ -14,10 +14,21 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/recycler_view_search"
+    <include layout="@layout/empty_data"
         android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefresh_items"
         android:layout_width="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize" />
+        android:layout_height="match_parent">
+
+        <include layout="@layout/recycler_view_search"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginTop="?android:attr/actionBarSize" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include
         layout="@layout/progress_bar_layout" />

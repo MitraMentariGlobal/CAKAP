@@ -62,12 +62,7 @@ public class ActivityRekapBnsBcmbPresenter implements ActivityRekapBnsBcmbContra
                         Logger.d("<<<<<=====");
 
                         try {
-                            if (apiResponseRekapBonusBcmb.getData().isEmpty()) {
-                                getView().hideProgressBar();
-                                getView().setErrorResponse(apiResponseRekapBonusBcmb.getMessages());
-                            } else {
-                                getView().setAdapter(apiResponseRekapBonusBcmb.getData());
-                            }
+                            getView().setAdapter(apiResponseRekapBonusBcmb.getData());
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

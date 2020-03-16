@@ -28,6 +28,10 @@ public class NotificationData implements Parcelable {
     @Id(autoincrement = true)
     Long id;
 
+    @SerializedName("member_id")
+    @Expose
+    private String member_id;
+
     @SerializedName("notification_title")
     @Expose
     private String notification_title;
@@ -50,16 +54,18 @@ public class NotificationData implements Parcelable {
         } else {
             id = in.readLong();
         }
+        member_id = in.readString();
         notification_title = in.readString();
         notification_desc = in.readString();
         date = in.readString();
         isRead = in.readByte() != 0;
     }
 
-    @Generated(hash = 1314555022)
-    public NotificationData(Long id, String notification_title, String notification_desc, String date,
-            boolean isRead) {
+    @Generated(hash = 1435508342)
+    public NotificationData(Long id, String member_id, String notification_title,
+            String notification_desc, String date, boolean isRead) {
         this.id = id;
+        this.member_id = member_id;
         this.notification_title = notification_title;
         this.notification_desc = notification_desc;
         this.date = date;
@@ -78,6 +84,7 @@ public class NotificationData implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeLong(id);
         }
+        dest.writeString(member_id);
         dest.writeString(notification_title);
         dest.writeString(notification_desc);
         dest.writeString(date);
@@ -95,6 +102,14 @@ public class NotificationData implements Parcelable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMember_id() {
+        return this.member_id;
+    }
+
+    public void setMember_id(String member_id) {
+        this.member_id = member_id;
     }
 
     public String getNotification_title() {

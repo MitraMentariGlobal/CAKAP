@@ -104,7 +104,6 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mSwipeRefreshLayout.setRefreshing(true);
                 mUserActionListener.getData(mYearSpinner.getSelectedItem().toString(), mMonthSpinner.getSelectedItem().toString());
             }
         });
@@ -112,12 +111,16 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
 
     @Override
     public void setAdapter(List<ActivityRekapBnsBcmbData> resultData) {
-        mLinearEmptyData.setVisibility(View.GONE);
+        if (resultData.isEmpty()) {
+            mLinearEmptyData.setVisibility(View.VISIBLE);
+        } else {
+            mLinearEmptyData.setVisibility(View.GONE);
+        }
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mListAdapter = new ActivityRekapBnsBcmbAdapter(resultData, getContext());
         mRecyclerView.setAdapter(mListAdapter);
-        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
 
         hideProgressBar();
     }
@@ -129,8 +132,12 @@ public class ActivityRekapBnsBcmbFragment extends Fragment implements ActivityRe
 
     @Override
     public void hideProgressBar() {
-        mSwipeRefreshLayout.setRefreshing(false);
-        mRelativeProgressBar.setVisibility(View.GONE);
+        try {
+            mSwipeRefreshLayout.setRefreshing(false);
+            mRelativeProgressBar.setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

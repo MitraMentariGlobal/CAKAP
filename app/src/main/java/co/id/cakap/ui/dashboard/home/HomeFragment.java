@@ -121,6 +121,9 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @BindView(R.id.txt_total_omset)
     TextView mTxtTotalOmset;
 
+    @BindView(R.id.txt_last_bonus)
+    TextView mTxtLastBonus;
+
     private View mView;
     private Unbinder mUnbinder;
     private Calendar mCalendar;
@@ -226,6 +229,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             mPvProgressBar.setProgress(pvTupo);
             mTxtSisaPv.setText(sisaPv + " PV left to complete your tupo");
             mTxtPv.setText(pvTupo + " PV");
+            mTxtLastBonus.setText(resultDataLogin.getBulan_bonus());
         } else {
             mTxtEwallet.setText(resultDataLogin.getEwallet());
             mTxtFee.setText(resultDataLogin.getFee());

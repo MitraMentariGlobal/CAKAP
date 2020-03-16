@@ -8,22 +8,24 @@ import co.id.cakap.BuildConfig;
  */
 
 public class Constant {
-    public static String URL_API = BuildConfig.URL_API;
-    public static String DATABASE_NAME = BuildConfig.DAO_NAME;
-    public static String FIREBASE_NOTIFICATION_TOKEN = BuildConfig.FIREBASE_NOTIFICATION_TOKEN;
-    public static String FIREBASE_NOTIFICATION_TITLE = BuildConfig.FIREBASE_NOTIFICATION_TITLE;
-    public static String FIREBASE_NOTIFICATION_BODY = BuildConfig.FIREBASE_NOTIFICATION_BODY;
-    public static String FIREBASE_NOTIFICATION_DATE = BuildConfig.FIREBASE_NOTIFICATION_DATE;
-    public static String FIREBASE_NOTIFICATION_MOVE = BuildConfig.FIREBASE_NOTIFICATION_MOVE;
-    public static String FIREBASE_NOTIFICATION_URL = BuildConfig.FIREBASE_NOTIFICATION_URL;
     public static String LOGIN_DATA = "";
     public static String URL_IMAGE_PRODUCT = "";
     public static int SUCCESS_TRANSACTION = 200;
     public static boolean IS_HAVE_PARENT = false;
     public static boolean IS_FLAG_UPDATE = false;
 
-    public static final String DUMMY_USER_ID = "0000160";
-    public static final String DUMMY_USER_NAME = "hanna";
+    public static final String URL_API = BuildConfig.URL_API;
+    public static final String DATABASE_NAME = BuildConfig.DAO_NAME;
+    public static final String FIREBASE_IS_CANCEL_DIALOG = BuildConfig.FIREBASE_IS_CANCEL_DIALOG;
+    public static final String FIREBASE_IS_UPDATE = BuildConfig.FIREBASE_IS_UPDATE;
+    public static final String FIREBASE_UPDATE_VERSION = BuildConfig.FIREBASE_UPDATE_VERSION;
+    public static final String FIREBASE_LINK_UPDATE_APP = BuildConfig.FIREBASE_LINK_UPDATE_APP;
+    public static final String FIREBASE_NOTIFICATION_TOKEN = BuildConfig.FIREBASE_NOTIFICATION_TOKEN;
+    public static final String FIREBASE_NOTIFICATION_TITLE = BuildConfig.FIREBASE_NOTIFICATION_TITLE;
+    public static final String FIREBASE_NOTIFICATION_BODY = BuildConfig.FIREBASE_NOTIFICATION_BODY;
+    public static final String FIREBASE_NOTIFICATION_DATE = BuildConfig.FIREBASE_NOTIFICATION_DATE;
+    public static final String FIREBASE_NOTIFICATION_MOVE = BuildConfig.FIREBASE_NOTIFICATION_MOVE;
+    public static final String FIREBASE_NOTIFICATION_URL = BuildConfig.FIREBASE_NOTIFICATION_URL;
 
     public static final String END_URL_DETAIL_CASHBILL = BuildConfig.END_URL_DETAIL_CASHBILL;
     public static final String END_URL_DETAIL_INVOICE_TO_MB = BuildConfig.END_URL_DETAIL_INVOICE_TO_MB;

@@ -185,14 +185,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String title, String messageBody, String url) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor sharedPrefEd = sharedPreferences.edit();
-        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_TITLE, title);
-        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_BODY, messageBody);
-        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_DATE, DateHelper.getTimeNow());
-        sharedPrefEd.putInt(Constant.FIREBASE_NOTIFICATION_MOVE, 1);
-        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_URL, url);
-        sharedPrefEd.apply();
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        SharedPreferences.Editor sharedPrefEd = sharedPreferences.edit();
+//        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_TITLE, title);
+//        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_BODY, messageBody);
+//        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_DATE, DateHelper.getTimeNow());
+//        sharedPrefEd.putInt(Constant.FIREBASE_NOTIFICATION_MOVE, 1);
+//        sharedPrefEd.putString(Constant.FIREBASE_NOTIFICATION_URL, url);
+//        sharedPrefEd.apply();
 
         Intent intent = new Intent(this, SplashScreenActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

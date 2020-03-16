@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.id.cakap.R;
 import co.id.cakap.data.ActivityInvToMbData;
+import co.id.cakap.data.NotificationApiData;
 import co.id.cakap.data.NotificationData;
 import co.id.cakap.ui.dashboard.activity.activityInvToMb.ActivityInvToMbPresenter;
 import co.id.cakap.ui.dashboard.notification.NotificationPresenter;
@@ -31,11 +32,11 @@ import co.id.cakap.utils.Logger;
  */
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
-    private List<NotificationData> mResultData;
+    private List<NotificationApiData> mResultData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
-    public NotificationAdapter(List<NotificationData> resultData, Context context){
+    public NotificationAdapter(List<NotificationApiData> resultData, Context context){
         mResultData = resultData;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
@@ -50,17 +51,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        NotificationData notificationData = mResultData.get(position);
+        NotificationApiData notificationApiData = mResultData.get(position);
 
         holder.position = position;
         holder.context = mContext;
-        holder.notificationData = notificationData;
-        holder.mNotificationTitle.setText(notificationData.getNotification_title());
-        holder.mNotificationDesc.setText(notificationData.getNotification_desc());
-        holder.mNotificationDescExpand.setText(notificationData.getNotification_desc());
-        holder.mDate.setText(notificationData.getDate());
+        holder.notificationApiData = notificationApiData;
+        holder.mNotificationTitle.setText(notificationApiData.getTitle());
+        holder.mNotificationDesc.setText(notificationApiData.getBody());
+        holder.mNotificationDescExpand.setText(notificationApiData.getBody());
+        holder.mDate.setText(notificationApiData.getCreated());
 
-        if (notificationData.getIsRead()) {
+        if (notificationApiData.getStatus().equals("1")) {
             holder.mNotificationTitle.setTextColor(mContext.getResources().getColor(R.color.curated));
             holder.mNotificationDesc.setTextColor(mContext.getResources().getColor(R.color.curated));
             holder.mNotificationDescExpand.setTextColor(mContext.getResources().getColor(R.color.curated));
@@ -97,7 +98,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         int position;
         Context context;
-        NotificationData notificationData;
+        NotificationApiData notificationApiData;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -113,15 +114,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 mNotificationDesc.setVisibility(View.VISIBLE);
             } else {
                 Logger.d("not Expanded");
-                Logger.d("notificationData id : " + notificationData.getId());
-                if (!notificationData.getIsRead()) {
-                    notificationData.setIsRead(true);
+                Logger.d("notificationData id : " + notificationApiData.getId());
+                if (notificationApiData.getStatus().equals("0")) {
+                    notificationApiData.setStatus("1");
                     mNotificationTitle.setTextColor(mContext.getResources().getColor(R.color.curated));
                     mNotificationDesc.setTextColor(mContext.getResources().getColor(R.color.curated));
                     mNotificationDescExpand.setTextColor(mContext.getResources().getColor(R.color.curated));
                     mDate.setTextColor(mContext.getResources().getColor(R.color.curated));
                     mImgUnread.setVisibility(View.GONE);
-//                    new NotificationPresenter().changeReadStatus(notificationData, position);
+                    new NotificationPresenter().readItemNotification(notificationApiData.getId());
 //                    notifyDataSetChanged();
                 }
 
