@@ -137,7 +137,7 @@ public class InvoiceToMbActivity extends AppCompatActivity implements InvoiceToM
 
     @Override
     public void setAdapter(List<ItemShopData> resultData, OperationUserStatusData operationUserStatusData) {
-        mMbId.setText(operationUserStatusData.getUser_code());
+//        mMbId.setText(operationUserStatusData.getUser_code());
         mName.setText(operationUserStatusData.getUser_name());
         mStatus.setText(operationUserStatusData.getStatus());
         setDataAdapter(resultData);

@@ -56,6 +56,14 @@ public class MonthlyPointReportAdapter extends RecyclerView.Adapter<MonthlyPoint
         if (monthlyPointReportData.getStatus().equals("TERMINATE")) {
             holder.mStatus.setTextColor(mContext.getResources().getColor(R.color.red));
         }
+
+        holder.mTxtWordingAppvYearly.setText(monthlyPointReportData.getStr1());
+        holder.mTxtWordingAtgpvYearly.setText(monthlyPointReportData.getStr2());
+        holder.mTxtWordingAtgpv.setText(monthlyPointReportData.getStr3());
+
+        holder.mTxtAppvYearly.setText(monthlyPointReportData.getKa1());
+        holder.mTxtAtgpvYearly.setText(monthlyPointReportData.getKa2());
+        holder.mTxtAtgpv.setText(monthlyPointReportData.getKa3());
     }
 
     @Override
@@ -79,6 +87,21 @@ public class MonthlyPointReportAdapter extends RecyclerView.Adapter<MonthlyPoint
         TextView mNgpv;
         @BindView(R.id.txt_tgpv)
         TextView mTgpv;
+
+        @BindView(R.id.txt_wording_appv_yearly)
+        TextView mTxtWordingAppvYearly;
+        @BindView(R.id.txt_appv_yearly)
+        TextView mTxtAppvYearly;
+
+        @BindView(R.id.txt_wording_atgpv_yearly)
+        TextView mTxtWordingAtgpvYearly;
+        @BindView(R.id.txt_atgpv_yearly)
+        TextView mTxtAtgpvYearly;
+
+        @BindView(R.id.txt_wording_atgpv)
+        TextView mTxtWordingAtgpv;
+        @BindView(R.id.txt_atgpv)
+        TextView mTxtAtgpv;
 
         Context context;
 
