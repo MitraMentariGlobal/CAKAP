@@ -143,7 +143,7 @@ public class AccountFragment extends Fragment implements AccountContract.View {
 
     @Override
     public void setLoginData(ResultDataLogin resultDataLogin) {
-        mTxtUserName.setText(resultDataLogin.getMember_id());
+        mTxtUserName.setText(resultDataLogin.getUsername());
         mTxtAccountName.setText(resultDataLogin.getNama());
     }
 

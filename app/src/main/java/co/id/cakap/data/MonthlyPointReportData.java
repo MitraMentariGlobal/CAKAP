@@ -48,16 +48,29 @@ public class MonthlyPointReportData implements Parcelable {
     @Expose
     private String status;
 
-    @Keep
-    public MonthlyPointReportData(String distr_id, String name, String rank, String ppv, String ngpv, String tgpv, String status) {
-        this.distr_id = distr_id;
-        this.name = name;
-        this.rank = rank;
-        this.ppv = ppv;
-        this.ngpv = ngpv;
-        this.tgpv = tgpv;
-        this.status = status;
-    }
+    @SerializedName("ka1")
+    @Expose
+    private String ka1;
+
+    @SerializedName("ka2")
+    @Expose
+    private String ka2;
+
+    @SerializedName("ka3")
+    @Expose
+    private String ka3;
+
+    @SerializedName("str1")
+    @Expose
+    private String str1;
+
+    @SerializedName("str2")
+    @Expose
+    private String str2;
+
+    @SerializedName("str3")
+    @Expose
+    private String str3;
 
     protected MonthlyPointReportData(Parcel in) {
         distr_id = in.readString();
@@ -67,6 +80,30 @@ public class MonthlyPointReportData implements Parcelable {
         ngpv = in.readString();
         tgpv = in.readString();
         status = in.readString();
+        ka1 = in.readString();
+        ka2 = in.readString();
+        ka3 = in.readString();
+        str1 = in.readString();
+        str2 = in.readString();
+        str3 = in.readString();
+    }
+
+    @Generated(hash = 577384524)
+    public MonthlyPointReportData(String distr_id, String name, String rank, String ppv, String ngpv, String tgpv,
+            String status, String ka1, String ka2, String ka3, String str1, String str2, String str3) {
+        this.distr_id = distr_id;
+        this.name = name;
+        this.rank = rank;
+        this.ppv = ppv;
+        this.ngpv = ngpv;
+        this.tgpv = tgpv;
+        this.status = status;
+        this.ka1 = ka1;
+        this.ka2 = ka2;
+        this.ka3 = ka3;
+        this.str1 = str1;
+        this.str2 = str2;
+        this.str3 = str3;
     }
 
     @Generated(hash = 1872705719)
@@ -82,6 +119,12 @@ public class MonthlyPointReportData implements Parcelable {
         dest.writeString(ngpv);
         dest.writeString(tgpv);
         dest.writeString(status);
+        dest.writeString(ka1);
+        dest.writeString(ka2);
+        dest.writeString(ka3);
+        dest.writeString(str1);
+        dest.writeString(str2);
+        dest.writeString(str3);
     }
 
     @Override
@@ -143,6 +186,54 @@ public class MonthlyPointReportData implements Parcelable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getKa1() {
+        return this.ka1;
+    }
+
+    public void setKa1(String ka1) {
+        this.ka1 = ka1;
+    }
+
+    public String getKa2() {
+        return this.ka2;
+    }
+
+    public void setKa2(String ka2) {
+        this.ka2 = ka2;
+    }
+
+    public String getKa3() {
+        return this.ka3;
+    }
+
+    public void setKa3(String ka3) {
+        this.ka3 = ka3;
+    }
+
+    public String getStr1() {
+        return this.str1;
+    }
+
+    public void setStr1(String str1) {
+        this.str1 = str1;
+    }
+
+    public String getStr2() {
+        return this.str2;
+    }
+
+    public void setStr2(String str2) {
+        this.str2 = str2;
+    }
+
+    public String getStr3() {
+        return this.str3;
+    }
+
+    public void setStr3(String str3) {
+        this.str3 = str3;
     }
 
     public static final Creator<MonthlyPointReportData> CREATOR = new Creator<MonthlyPointReportData>() {

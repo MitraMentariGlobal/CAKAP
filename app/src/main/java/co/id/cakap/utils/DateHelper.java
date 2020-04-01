@@ -34,6 +34,11 @@ public class DateHelper {
         }
     }
 
+    public static String getYearNow() {
+        Calendar c = Calendar.getInstance();
+        return String.valueOf(c.get(Calendar.YEAR));
+    }
+
     public static String getTimeNow() {
         Calendar c = Calendar.getInstance();
         return dateFormatFrontEnd.format(c.getTime());

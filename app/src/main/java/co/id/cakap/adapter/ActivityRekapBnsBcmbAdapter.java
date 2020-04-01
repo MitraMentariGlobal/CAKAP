@@ -58,7 +58,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
         holder.mAmount.setText("IDR " + activityRekapBnsBcmbData.getAmount());
 
         if (!(activityRekapBnsBcmbData.getFlag().equals("0"))) {
-            holder.mItemCancel.setVisibility(View.GONE);
+            holder.mItemVerified.setVisibility(View.GONE);
         }
     }
 
@@ -92,7 +92,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
             ButterKnife.bind(this, itemView);
 
             mDate.setVisibility(View.GONE);
-            mItemVerified.setVisibility(View.GONE);
+            mItemCancel.setVisibility(View.GONE);
         }
 
         @OnClick(R.id.relative_parent)
@@ -100,34 +100,11 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
 //            new ActivityRekapBnsBcmbPresenter().getView().openDetailTransaction(mMemberId.getText().toString());
         }
 
-//        @OnClick(R.id.item_cancel)
-//        public void actionApprove() {
-//            UserConfirmationDialog utils = new UserConfirmationDialog();
-//            Dialog dialog = utils.showDialog(context);
-//            utils.setTitleDialog("Invalid Acccount");
-//            utils.setNegativeAction();
-//
-//            dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    dialog.dismiss();
-//                }
-//            });
-//
-//            dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    dialog.dismiss();
-//                    new ActivityRekapBnsBcmbPresenter().getView().openPinDialog(activityRekapBnsBcmbData);
-//                }
-//            });
-//        }
-
-        @OnClick(R.id.item_cancel)
-        public void actionCancel() {
+        @OnClick(R.id.item_verified)
+        public void actionApprove() {
             UserConfirmationDialog utils = new UserConfirmationDialog();
             Dialog dialog = utils.showDialog(context);
-            utils.setTitleDialogInvalidAccount("Invalid Acccount?");
+            utils.setTitleDialog("Invalid Acccount");
             utils.setNegativeAction();
 
             dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
@@ -145,5 +122,28 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
                 }
             });
         }
+
+//        @OnClick(R.id.item_cancel)
+//        public void actionCancel() {
+//            UserConfirmationDialog utils = new UserConfirmationDialog();
+//            Dialog dialog = utils.showDialog(context);
+//            utils.setTitleDialogInvalidAccount("Invalid Acccount?");
+//            utils.setNegativeAction();
+//
+//            dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialog.dismiss();
+//                }
+//            });
+//
+//            dialog.findViewById(R.id.yes_act_btn).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialog.dismiss();
+//                    new ActivityRekapBnsBcmbPresenter().getView().openPinDialog(activityRekapBnsBcmbData);
+//                }
+//            });
+//        }
     }
 }

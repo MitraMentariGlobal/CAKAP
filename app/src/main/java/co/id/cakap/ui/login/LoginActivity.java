@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,9 @@ import co.id.cakap.ui.changePin.ChangePinActivity;
 import co.id.cakap.ui.dashboard.DashboardActivity;
 import co.id.cakap.ui.homeWebView.HomeWebViewActivity;
 import co.id.cakap.ui.myProfile.MyProfileActivity;
+import co.id.cakap.utils.DateHelper;
 import co.id.cakap.utils.Logger;
+import co.id.cakap.utils.Utils;
 import co.id.cakap.utils.dialog.BottomDialogActivity;
 import co.id.cakap.utils.dialog.ForgotPasswordDialog;
 
@@ -59,6 +62,8 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
     Button mLoginButton;
     @BindView(R.id.bottom_sheet)
     View bottomSheet;
+    @BindView(R.id.txt_copyright)
+    TextView mTxtCopyright;
 
     private LoginContract.UserActionListener mUserActionListener;
     private FirebaseAuth mAuth;
@@ -139,6 +144,8 @@ public class LoginActivity extends BottomDialogActivity implements LoginContract
         mUserActionListener = mLoginPresenter;
         mLoginPresenter.setView(this);
         mBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        mTxtCopyright.setText(getResources().getString(R.string.login_bottom, DateHelper.getYearNow()));
         hideProgressBar();
     }
 
