@@ -6,7 +6,7 @@
     <string name="login_user_id">User Id</string>
     <string name="login_password">Password</string>
     <string name="login_btn">Login</string>
-    <string name="login_bottom">Copyright © 2019 PT. CAKAP. All rights reserved. \n Powered by: MMG</string>
+    <string name="login_bottom">Copyright © %1$s PT. CAKAP. All rights reserved. \n Powered by: MMG</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
 
     <string name="home">Home</string>
