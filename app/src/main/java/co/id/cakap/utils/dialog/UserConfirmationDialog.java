@@ -54,6 +54,12 @@ public class UserConfirmationDialog {
         textView.setText(context.getResources().getString(R.string.this_transaction, param));
     }
 
+    public void setRekapBonusDialog() {
+        TextView textView = dialog.findViewById(R.id.txt_title);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(context.getResources().getString(R.string.bonus_delivered));
+    }
+
     public void setDescDialog(String param) {
         TextView textView = dialog.findViewById(R.id.txt_desc);
         textView.setVisibility(View.VISIBLE);
@@ -96,8 +102,10 @@ public class UserConfirmationDialog {
 
         txtNo.setBackground(context.getResources().getDrawable(R.drawable.background_no_confirmation_style));
         txtNo.setTextColor(context.getResources().getColor(R.color.white));
+        txtNo.setText(context.getResources().getString(R.string.no));
 
         txtYes.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        txtYes.setText(context.getResources().getString(R.string.yes));
     }
 
     public void setPositiveAction() {

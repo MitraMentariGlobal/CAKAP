@@ -56,6 +56,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
         holder.mName.setText(activityRekapBnsBcmbData.getName());
         holder.mPhoneNumber.setText(activityRekapBnsBcmbData.getMobile_phone());
         holder.mAmount.setText("IDR " + activityRekapBnsBcmbData.getAmount());
+        holder.mDate.setText(activityRekapBnsBcmbData.getDate());
 
         if (!(activityRekapBnsBcmbData.getFlag().equals("0"))) {
             holder.mItemVerified.setVisibility(View.GONE);
@@ -91,7 +92,6 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            mDate.setVisibility(View.GONE);
             mItemCancel.setVisibility(View.GONE);
         }
 
@@ -104,7 +104,7 @@ public class ActivityRekapBnsBcmbAdapter extends RecyclerView.Adapter<ActivityRe
         public void actionApprove() {
             UserConfirmationDialog utils = new UserConfirmationDialog();
             Dialog dialog = utils.showDialog(context);
-            utils.setTitleDialog("Invalid Acccount");
+            utils.setRekapBonusDialog();
             utils.setNegativeAction();
 
             dialog.findViewById(R.id.no_act_btn).setOnClickListener(new View.OnClickListener() {

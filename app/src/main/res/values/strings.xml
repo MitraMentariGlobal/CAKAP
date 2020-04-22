@@ -92,11 +92,14 @@
     <string name="back_to_home">Back to Home</string>
     <string name="back_to_home_upper">BACK TO HOME</string>
     <string name="this_transaction">%1$s this transaction?</string>
+    <string name="bonus_delivered">Bonus delivered to this member?</string>
     <string name="pleasee_check_again">Periksa kembali inputan anda, apakah Anda bersedia untuk melanjutkan transaksi ini?</string>
     <string name="pleasee_check_again_profile">Periksa kembali inputan anda, apakah Anda bersedia untuk merubah data?</string>
     <string name="dialog_log_out">Are you sure want to log out?</string>
     <string name="dialog_delete_notification">Are you sure want to delete all notification?</string>
     <string name="download">Download</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
 
     <string name="sex_male">Male</string>
     <string name="sex_female">Female</string>

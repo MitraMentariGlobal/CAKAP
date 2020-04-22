@@ -44,6 +44,10 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
     @Expose
     private String flag;
 
+    @SerializedName("tgl_terima")
+    @Expose
+    private String date;
+
     protected ActivityRekapBnsBcmbData(Parcel in) {
         item_id = in.readString();
         member_id = in.readString();
@@ -51,17 +55,19 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
         mobile_phone = in.readString();
         amount = in.readString();
         flag = in.readString();
+        date = in.readString();
     }
 
-    @Generated(hash = 300058419)
+    @Generated(hash = 1549123982)
     public ActivityRekapBnsBcmbData(String item_id, String member_id, String name, String mobile_phone,
-            String amount, String flag) {
+            String amount, String flag, String date) {
         this.item_id = item_id;
         this.member_id = member_id;
         this.name = name;
         this.mobile_phone = mobile_phone;
         this.amount = amount;
         this.flag = flag;
+        this.date = date;
     }
 
     @Generated(hash = 1219341017)
@@ -76,6 +82,7 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
         dest.writeString(mobile_phone);
         dest.writeString(amount);
         dest.writeString(flag);
+        dest.writeString(date);
     }
 
     @Override
@@ -129,6 +136,14 @@ public class ActivityRekapBnsBcmbData implements Parcelable {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public String getDate() {
+        return this.date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public static final Creator<ActivityRekapBnsBcmbData> CREATOR = new Creator<ActivityRekapBnsBcmbData>() {

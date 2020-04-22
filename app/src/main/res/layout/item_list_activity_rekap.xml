@@ -97,7 +97,7 @@
                 android:textAlignment="textEnd"
                 android:textSize="@dimen/text_12"
                 android:textColor="@color/black"
-                android:text="28 Jan 2020"
+                android:text=""
                 style="@style/TexViewFont" />
 
             <LinearLayout

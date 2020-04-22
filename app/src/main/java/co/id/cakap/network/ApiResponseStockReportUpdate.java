@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import co.id.cakap.data.ReligionData;
+import co.id.cakap.data.StockUpdate;
 import co.id.cakap.data.StockUpdateData;
 import lombok.Data;
 
@@ -18,5 +19,5 @@ public class ApiResponseStockReportUpdate {
     @SerializedName("messages")
     private String messages;
     @SerializedName("data")
-    private List<StockUpdateData> data;
+    private StockUpdate data;
 }

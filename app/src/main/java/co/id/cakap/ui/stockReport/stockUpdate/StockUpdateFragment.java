@@ -5,18 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,13 +23,10 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import co.id.cakap.CoreApp;
 import co.id.cakap.R;
+import co.id.cakap.adapter.InfoAdapter;
 import co.id.cakap.adapter.StockUpdateAdapter;
-import co.id.cakap.data.StockCardData;
-import co.id.cakap.data.StockUpdateData;
+import co.id.cakap.data.StockUpdate;
 import co.id.cakap.di.module.MainActivityModule;
-import co.id.cakap.ui.stockReport.stockCard.StockCardContract;
-import co.id.cakap.ui.stockReport.stockCard.StockCardPresenter;
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class StockUpdateFragment extends Fragment implements StockUpdateContract.View {
     @Inject
@@ -39,6 +34,9 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
 
     @BindView(R.id.main_list)
     RecyclerView mRecyclerView;
+    @BindView(R.id.main_list_info)
+    RecyclerView mRecyclerViewInfo;
+
     @BindView(R.id.relative_progress_bar)
     RelativeLayout mRelativeProgressBar;
     @BindView(R.id.linear_empty_data)
@@ -49,6 +47,7 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
     private View mView;
     private Unbinder mUnbinder;
     private StockUpdateAdapter mListAdapter;
+    private InfoAdapter mListAdapterInfo;
     private StockUpdateContract.UserActionListener mUserActionListener;
 
     @Nullable
@@ -88,16 +87,21 @@ public class StockUpdateFragment extends Fragment implements StockUpdateContract
     }
 
     @Override
-    public void setAdapter(List<StockUpdateData> resultData) {
-        if (resultData.isEmpty()) {
+    public void setAdapter(StockUpdate resultData) {
+        if (resultData.getData().isEmpty()) {
             mLinearEmptyData.setVisibility(View.VISIBLE);
         } else {
             mLinearEmptyData.setVisibility(View.GONE);
         }
 
+        RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(getContext());
+        mRecyclerViewInfo.setLayoutManager(layoutManager1);
+        mListAdapterInfo = new InfoAdapter(resultData.getNote(), getContext(), true);
+        mRecyclerViewInfo.setAdapter(mListAdapterInfo);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
-        mListAdapter = new StockUpdateAdapter(resultData, getContext());
+        mListAdapter = new StockUpdateAdapter(resultData.getData(), getContext());
         mRecyclerView.setAdapter(mListAdapter);
         hideProgressBar();
     }
