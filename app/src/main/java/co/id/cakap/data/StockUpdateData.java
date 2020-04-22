@@ -36,17 +36,23 @@ public class StockUpdateData implements Parcelable {
     @Expose
     private String amount;
 
+    @SerializedName("jmlpv")
+    @Expose
+    private String jmlpv;
+
     @Keep
     public StockUpdateData(
             String item_code,
             String product_name,
             String qty,
-            String amount
+            String amount,
+            String jmlpv
     ) {
         this.item_code = item_code;
         this.product_name = product_name;
         this.qty = qty;
         this.amount = amount;
+        this.jmlpv = jmlpv;
     }
 
     protected StockUpdateData(Parcel in) {
@@ -54,6 +60,7 @@ public class StockUpdateData implements Parcelable {
         product_name = in.readString();
         qty = in.readString();
         amount = in.readString();
+        jmlpv = in.readString();
     }
 
     @Generated(hash = 970784101)
@@ -66,6 +73,7 @@ public class StockUpdateData implements Parcelable {
         dest.writeString(product_name);
         dest.writeString(qty);
         dest.writeString(amount);
+        dest.writeString(jmlpv);
     }
 
     @Override
@@ -103,6 +111,14 @@ public class StockUpdateData implements Parcelable {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getJmlpv() {
+        return this.jmlpv;
+    }
+
+    public void setJmlpv(String jmlpv) {
+        this.jmlpv = jmlpv;
     }
 
     public static final Creator<StockUpdateData> CREATOR = new Creator<StockUpdateData>() {

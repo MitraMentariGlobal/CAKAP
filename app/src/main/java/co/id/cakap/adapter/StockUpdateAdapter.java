@@ -49,6 +49,7 @@ public class StockUpdateAdapter extends RecyclerView.Adapter<StockUpdateAdapter.
         holder.mItemName.setText(stockUpdateData.getProduct_name());
         holder.mQty.setText(stockUpdateData.getQty());
         holder.mAmount.setText(Utils.priceFromString(stockUpdateData.getAmount()));
+        holder.mTotalPv.setText(stockUpdateData.getJmlpv());
     }
 
     @Override
@@ -66,6 +67,8 @@ public class StockUpdateAdapter extends RecyclerView.Adapter<StockUpdateAdapter.
         TextView mQty;
         @BindView(R.id.txt_amount)
         TextView mAmount;
+        @BindView(R.id.txt_total_pv)
+        TextView mTotalPv;
 
         Context context;
 
