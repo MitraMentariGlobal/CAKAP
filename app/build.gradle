@@ -35,6 +35,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'cakapKeyAlias'
+            keyPassword 'mamamamagolf'
+            storeFile file('../keystore')
+            storePassword 'mamamamagolf'
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled true
@@ -50,6 +59,7 @@ android {
             shrinkResources true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
 
             buildConfigField 'String', 'DAO_NAME', endpointProperties['dao_name_prod']
             buildConfigField 'String', 'URL_API', endpointProperties['utl_api_prod']
