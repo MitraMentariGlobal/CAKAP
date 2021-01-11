@@ -290,11 +290,14 @@ public class ActivityInvToMbFragment extends Fragment implements ActivityInvToMb
         }
 
         mYearData.add(String.valueOf(getResources().getInteger(R.integer.minimum_year)));
+        int minimumYear = getResources().getInteger(R.integer.minimum_year);
         int now = calendar.get(Calendar.YEAR);
-        int totalLoop = now - getResources().getInteger(R.integer.minimum_year);
+        int totalLoop = now - minimumYear;
+        int year = minimumYear;
 
-        for (int i = 0; i < totalLoop; i++) {
-            mYearData.add(String.valueOf(now));
+        for (int i = 1; i <= totalLoop; i++) {
+            year = year + 1;
+            mYearData.add(String.valueOf(year));
         }
 
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(getActivity(),
