@@ -24,14 +24,14 @@ def endpointProperties = new Properties()
 endpointProperties.load(new FileInputStream(endpointFile))
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "29.0.1"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "co.id.cakap"
         minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 9
-        versionName "9.0"
+        targetSdkVersion 30
+        versionCode 10
+        versionName "10.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
