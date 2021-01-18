@@ -24,7 +24,7 @@ def endpointProperties = new Properties()
 endpointProperties.load(new FileInputStream(endpointFile))
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "co.id.cakap"
