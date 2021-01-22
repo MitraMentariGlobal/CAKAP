@@ -25,13 +25,13 @@ endpointProperties.load(new FileInputStream(endpointFile))
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.0"
     defaultConfig {
         applicationId "co.id.cakap"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 10
-        versionName "10.0"
+        versionCode 12
+        versionName "12.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
