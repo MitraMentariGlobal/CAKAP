@@ -12,10 +12,10 @@ def OkhttpVersion = "3.7.0"
 def RetrofitVersion = "2.3.0"
 def RxJavaVersion = "2.1.0"
 def RxAndroidVersion = "2.0.1"
-def DaggerVersion = "2.5"
-def GreenDaoVersion = "3.2.2"
+def DaggerVersion = "2.23.2"
+def GreenDaoVersion = "3.3.0"
 def PicassoVersion = "2.5.2"
-def LombokVersion = "1.16.20"
+def LombokVersion = "1.18.16"
 def CircleImageViewVersion = "3.0.1"
 
 // Define the endpoint strings
@@ -33,6 +33,7 @@ android {
         versionCode 12
         versionName "12.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -46,7 +47,7 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue("string", "PORT_NUMBER", "8080")
 
