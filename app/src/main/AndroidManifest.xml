@@ -10,9 +10,9 @@
     <application
         android:name=".CoreApp"
         android:allowBackup="true"
-        android:icon="@drawable/cakap_logo_13_13"
+        android:icon="@drawable/spectaversary"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/cakap_logo_13_13"
+        android:roundIcon="@drawable/spectaversary"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
